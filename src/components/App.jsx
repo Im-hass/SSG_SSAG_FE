@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { MainPage, NotFoundPage } from '../pages';
-import Toolbar from './toolbar/ToolList/ToolList';
+import { ToolbarList } from './toolbar/ToolbarList';
 
 const App = () => (
   <div>
@@ -11,7 +11,7 @@ const App = () => (
       <Route component={NotFoundPage} />
     </Routes>
 
-    <Toolbar />
+    <ToolbarList />
   </div>
 );
 
