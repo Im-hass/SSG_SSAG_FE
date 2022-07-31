@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './ToolbarItem.scss';
 
 const ToolbarItem = ({ to, iconName, txt }) => (
   <li className="toolbar_item">
