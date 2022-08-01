@@ -1,1 +1,6 @@
-@import "utils";
+@use '/src/styles/base/variable';
+
+footer {
+  font-size: variable.$FS-008;
+  color: red;
+}

@@ -14,11 +14,8 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "react/function-component-definition": [
-      "warn",
-      { "namedComponents": "arrow-function" }
-    ],
     "import/prefer-default-export": "off",
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "no-unused-vars": "warn"
   }
 }
