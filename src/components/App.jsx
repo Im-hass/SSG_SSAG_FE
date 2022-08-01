@@ -1,18 +1,22 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { MainPage, NotFoundPage } from '../pages';
-import Footer from './common/Footer/Footer';
+import { Header, Footer } from './common';
 
-const App = () => (
-  <div>
-    <h1>메인 페이지</h1>
-    <Routes>
-      <Route exact path="/" component={MainPage} />
-      <Route component={NotFoundPage} />
-    </Routes>
+function App() {
+  return (
+    <div>
+      <h1>메인 페이지</h1>
+      <Header />
 
-    <Footer />
-  </div>
-);
+      <Routes>
+        <Route exact path="/" element={<MainPage />} />
+        <Route element={<NotFoundPage />} />
+      </Routes>
+
+      <Footer />
+    </div>
+  );
+}
 
 export default App;
