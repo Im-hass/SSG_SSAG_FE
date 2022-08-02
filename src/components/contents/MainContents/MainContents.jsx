@@ -1,4 +1,5 @@
 import React from 'react';
+import { HappyLounge } from '../../list/HappyLounge';
 import './MainContents.scss';
 
 function MainContents() {
@@ -23,6 +24,7 @@ function MainContents() {
           data-globalid="홈"
           data-areaid="ad_list"
         >
+          <HappyLounge />
           <div className="cmgrid_module">
             <div className="cmgrid_list" data-equal-height="false">
               <div className="cmgrid_full_box">(왜 있는지 모르겠지만 있음)</div>

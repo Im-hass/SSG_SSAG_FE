@@ -12,13 +12,4 @@
     grid-template-columns: repeat(auto-fill, minmax(calc(50% - 5px), 1fr));
     grid-gap: 0 5px;
   }
-
-  .cmgrid_full_box {
-    grid-column: span 2;
-    margin: 0 -8px;
-  }
-
-  .cmgrid_full_box.cmitem_ty_deal.v2 {
-    padding: 15px 15px 30px;
-  }
 }
