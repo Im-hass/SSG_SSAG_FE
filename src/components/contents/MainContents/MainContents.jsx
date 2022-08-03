@@ -1,5 +1,6 @@
 import React from 'react';
 import { HappyLounge } from '../../list/HappyLounge';
+import { ListHeader } from '../../list/ListHeader';
 import './MainContents.scss';
 
 function MainContents() {
@@ -24,24 +25,13 @@ function MainContents() {
           data-globalid="홈"
           data-areaid="ad_list"
         >
-          <HappyLounge />
           <div className="cmgrid_module">
             <div className="cmgrid_list" data-equal-height="false">
               <div className="cmgrid_full_box">(왜 있는지 모르겠지만 있음)</div>
               <div className="cmgrid_full_box">명품, 패션, 뷰티</div>
-              <div
-                className="cmgrid_full_box js-set-header"
-                data-page-set-Id="106"
-              >
-                Happy Lounge 헤더
-              </div>
-              <div
-                className="cmgrid_full_box cmitem_ty_deal v2 "
-                data-page-set-id="112"
-                data-has-next="false"
-              >
-                Happy Lounge 바디
-              </div>
+
+              <ListHeader />
+              <HappyLounge />
             </div>
           </div>
         </div>
