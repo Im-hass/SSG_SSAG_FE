@@ -2,17 +2,23 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { MainPage, NotFoundPage } from '../pages';
 import { ToolbarList } from './toolbar/ToolbarList';
+import { Header, Footer } from './common';
 
-const App = () => (
-  <div>
-    <h1>메인 페이지</h1>
-    <Routes>
-      <Route exact path="/" component={MainPage} />
-      <Route component={NotFoundPage} />
-    </Routes>
+function App() {
+  return (
+    <div>
+      <h1>메인 페이지</h1>
+      <Header />
 
-    <ToolbarList />
-  </div>
-);
+      <Routes>
+        <Route exact path="/" element={<MainPage />} />
+        <Route element={<NotFoundPage />} />
+      </Routes>
+
+      <ToolbarList />
+      <Footer />
+    </div>
+  );
+}
 
 export default App;

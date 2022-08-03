@@ -2,6 +2,19 @@
 // http://meyerweb.com/eric/tools/css/reset/
 // v2.0 | 20110126
 // License: none (public domain)
+@import './variable';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
 
 html,
 body,
@@ -91,6 +104,7 @@ video {
   vertical-align: baseline;
   border: 0;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -132,4 +146,20 @@ q::after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
