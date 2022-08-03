@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { MainPage, NotFoundPage } from '../pages';
-import { ToolbarList } from './toolbar/ToolbarList';
 import { Header, Footer } from './common';
+import { ToolbarList } from './toolbar/ToolbarList';
 
 function App() {
   return (
