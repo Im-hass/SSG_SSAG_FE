@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  margin: 0 15px;
+}
+
+.header-util {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .search-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: center / 100% no-repeat;
+    background-image: url('./../../../../assets/img/icon-search.svg');
+  }
+}
