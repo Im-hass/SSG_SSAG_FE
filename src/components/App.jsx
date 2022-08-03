@@ -1,10 +1,11 @@
 import React from 'react';
-import { Header } from './common';
+import { Header, Footer } from './common';
 
 function App() {
   return (
     <div>
       <Header />
+      <Footer />
     </div>
   );
 }
