@@ -16,6 +16,22 @@
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "import/prefer-default-export": "off",
     "react/prop-types": 0,
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ]
   }
 }
