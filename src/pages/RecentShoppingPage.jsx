@@ -1,5 +1,10 @@
 import React from 'react';
-import { RecentShoppingHeader } from 'components/contents/index';
+import {
+  RecentShoppingHeader,
+  RecentShoppingProductList,
+  NoDataMessage,
+} from '../components/contents';
+import { FloatingContents } from '../components/common';
 
 function RecentShoppingPage() {
   return (
@@ -18,17 +23,17 @@ function RecentShoppingPage() {
             <div className="cmhistory_ct">
               <div className="cmhistory_scroll" id="_cmhistory_scroll">
                 <div className="iscroll">
-                  {/* <RecentShoppingProductList /> */}
+                  <RecentShoppingProductList />
                 </div>
               </div>
 
-              {/* <NoDataMessage /> */}
+              <NoDataMessage />
             </div>
           </div>
         </div>
       </div>
 
-      {/* <FloatingContents /> */}
+      <FloatingContents />
     </div>
   );
 }

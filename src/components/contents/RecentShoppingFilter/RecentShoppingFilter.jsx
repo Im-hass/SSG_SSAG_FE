@@ -1,31 +1,53 @@
 import React from 'react';
 import './RecentShoppingFilter.scss';
 
+const FILTERLIST = [
+  {
+    id: 1,
+    data: '10,70,71',
+    name: '상품',
+  },
+  {
+    id: 2,
+    data: '60',
+    name: '검색어',
+  },
+  {
+    id: 3,
+    data: '20',
+    name: '카테고리',
+  },
+  {
+    id: 4,
+    data: '50,51',
+    name: '이벤트',
+  },
+  {
+    id: 5,
+    data: '30,32,35,36',
+    name: '기획전',
+  },
+  {
+    id: 6,
+    data: '40',
+    name: '브랜드',
+  },
+  {
+    id: 7,
+    data: '41',
+    name: '매장',
+  },
+];
+
 function RecentShoppingFilter() {
   return (
     <div className="cmhistory_ctrl">
       <ul className="cmhistory_sort">
-        <li className="on" data-srch-div-cd="10,70,71">
-          <button type="button">상품</button>
-        </li>
-        <li data-srch-div-cd="60">
-          <button type="button">검색어</button>
-        </li>
-        <li data-srch-div-cd="20">
-          <button type="button">카테고리</button>
-        </li>
-        <li data-srch-div-cd="50,51">
-          <button type="button">이벤트</button>
-        </li>
-        <li data-srch-div-cd="30,32,35,36">
-          <button type="button">기획전</button>
-        </li>
-        <li data-srch-div-cd="40">
-          <button type="button">브랜드</button>
-        </li>
-        <li data-srch-div-cd="41">
-          <button type="button">매장</button>
-        </li>
+        {FILTERLIST.map((el, i) => (
+          <li key={el.id} data-srch-div-cd={el.data}>
+            <button type="button">{el.name}</button>
+          </li>
+        ))}
       </ul>
       <ul className="cmhistory_delete">
         <li>
