@@ -7,7 +7,6 @@ import { ToolbarList } from './toolbar/ToolbarList';
 function App() {
   return (
     <div>
-      <h1>메인 페이지</h1>
       <Header />
 
       <Routes>
