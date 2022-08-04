@@ -1,6 +1,5 @@
 import React from 'react';
-import { RecentShoppingTitle } from '../RecentShoppingTitle/index';
-import { RecentShoppingFilter } from '../RecentShoppingFilter/index';
+import { RecentShoppingFilter, RecentShoppingTitle } from '../index';
 import './RecentShoppingHeader.scss';
 
 function RecentShoppingHeader() {
