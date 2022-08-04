@@ -1,42 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="My First React App Project" />
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="My First React App Project" />
+    <!-- stylesheet -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_layout.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_global.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/ssg_component.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_sm/css/common.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_sm/css/swiper.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_sm/css/m_sm.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/ssg/css/common/common_layout.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/ssg/css/common/common_unit.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/ssg/css/com_component.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/ssg/css/ssgday_2021.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/ssg/css/com_detail_v2.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/m_search.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/cmunit.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/mntrip_search.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://sui.ssgcdn.com/ui/m_ssg/css/m_layout.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://sui.ssgcdn.com/ui/m_ssg/css/m_com.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://sui.ssgcdn.com/ui/m_ssg/css/m_ssg.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://sui.ssgcdn.com/ui/m_ssg/css/m_odr_v2.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/m_hotdeal.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/m_myssg.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_page_history.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://sui.ssgcdn.com/ui/m_ssg/css/mnodr.css?v=20220802"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://sui.ssgcdn.com/ui/m_ssg/css/mncl.css?v=20220802"
+    />
 
-  <!-- stylesheet -->
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_layout.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_global.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/ssg_component.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_sm/css/common.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_sm/css/swiper.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_sm/css/m_sm.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/common/common_layout.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/common/common_unit.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/com_component.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/ssgday_2021.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/ssg/css/com_detail_v2.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/m_search.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/cmunit.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/mntrip_search.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/m_ssg/css/m_layout.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/m_ssg/css/m_com.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/m_ssg/css/m_ssg.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/m_ssg/css/m_odr_v2.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/m_hotdeal.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/m_myssg.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_page_history.css" />
-  <link rel="stylesheet" href="https://sui.ssgcdn.com/ui/m_ssg/css/mnodr.css?v=20220802" />
-  <link rel="stylesheet" type="text/css" href="https://sui.ssgcdn.com/ui/m_ssg/css/mncl.css?v=20220802" />
-  
-  <title>SSG APP</title>
-</head>
+    <title>SSG APP</title>
+  </head>
 
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-</body>
-
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
 </html>
