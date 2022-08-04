@@ -6,7 +6,6 @@ import { Header, Footer } from './common';
 function App() {
   return (
     <div>
-      <h1>메인 페이지</h1>
       <Header />
 
       <Routes>
