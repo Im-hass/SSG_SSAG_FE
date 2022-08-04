@@ -1,32 +1,19 @@
 import { React, useState } from 'react';
-import HeaderLogo from '../HeaderLogo/HeaderLogo';
-import HeaderBackArrow from '../HeaderBackArrow/HeaderBackArrow';
-import NotOpenSearchInput from '../NotOpenSearchInput/NotOpenSearchInput';
-import OpenSearchInput from '../OpenSearchInput/OpenSearchInput';
 import './Header.scss';
-import { Cart } from '../Cart/index';
+import { SearchInput, Cart, HeaderLeftSide } from '../../ui';
 
 function Header() {
-  const [openSearch, setOpenSearch] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenSearch = (action) =>
-    action === 'open' ? setOpenSearch(true) : setOpenSearch(false);
+    action === 'open' ? setIsOpen(true) : setIsOpen(false);
 
   return (
     <header>
       <div className="header-container">
-        {!openSearch && <HeaderLogo />}
-        {openSearch && <HeaderBackArrow handleOpenSearch={handleOpenSearch} />}
-
-        <div className="header-util">
-          <div className="search-box">
-            {!openSearch && (
-              <NotOpenSearchInput handleOpenSearch={handleOpenSearch} />
-            )}
-            {openSearch && <OpenSearchInput />}
-          </div>
-          <Cart />
-        </div>
+        <HeaderLeftSide isOpen={isOpen} handleOpenSearch={handleOpenSearch} />
+        <SearchInput isOpen={isOpen} handleOpenSearch={handleOpenSearch} />
+        <Cart />
       </div>
     </header>
   );

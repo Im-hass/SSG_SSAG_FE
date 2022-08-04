@@ -1,3 +1,4 @@
+// header-logo
 .header-logo-wrap {
   display: flex;
   align-items: center;
@@ -30,4 +31,14 @@
     background: center / 100% no-repeat;
     background-image: url('./../../../../assets/img/icon-down-arrow.svg');
   }
+}
+
+// header-back-arrow
+.back-arrow-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url('./../../../../assets/img/search-set.png') no-repeat;
+  background-size: 115px 165px;
+  background-position: -95px -40px;
 }
