@@ -10,6 +10,8 @@ function App() {
       <Header />
 
       <Routes>
+        <Route exact path="/" element={<MainPage />} />
+        <Route path="/category" element={<h1>카테고리</h1>} />
         <Route path="/search" element={<h1>검색</h1>} />
         <Route path="/my" element={<h1>마이 페이지</h1>} />
         <Route path="/login" element={<h1>로그인</h1>} />
@@ -21,5 +23,6 @@ function App() {
       <Footer />
     </div>
   );
+}
 
 export default App;

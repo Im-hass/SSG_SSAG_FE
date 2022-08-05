@@ -1,104 +1,18 @@
 import React from 'react';
+import {
+  FooterNotification,
+  FooterService,
+  FooterButtonBox,
+} from '../../contents';
 import './Footer.scss';
 
 function Footer() {
   return (
     <footer id="m_footer" className="mcom_footer react-area">
-      <div className="footer_notiwrap">
-        <div className="footer_noti">
-          <p className="noti_tit">공지</p>
-          <ul className="noti_dsc">
-            <li>
-              <a href="http://m.ssg.com/customer/noticeList.ssg?siteNo=6005&amp;bbsId=1&amp;postngId=1177650441&amp;postTeryIdnfNo=6005">
-                [SSG.COM 스타벅스 서머 캐리백 구매 고객 대...
-              </a>
-            </li>
-            <li>
-              <a href="http://m.ssg.com/customer/noticeList.ssg?siteNo=6005&amp;bbsId=1&amp;postngId=1177655171&amp;postTeryIdnfNo=6005">
-                SSG.COM 이용약관 및 전자금융거래이용약관 개정 안...
-              </a>
-            </li>
-            <li>
-              <a href="http://m.ssg.com/customer/noticeList.ssg?siteNo=6005&amp;bbsId=1&amp;postngId=1176587314&amp;postTeryIdnfNo=6005">
-                SSG.COM 생일쿠폰 적용몰 확대 안내
-              </a>
-            </li>
-          </ul>
-        </div>
-        <span className="sp_head noti_arrow">&nbsp;</span>
-      </div>
+      <FooterNotification />
+      <FooterService />
+      <FooterButtonBox />
 
-      <div className="mcom_service_wrap">
-        <div className="mcom_service_area">
-          <p className="mcom_service_info">
-            <span className="mcom_info_mall">
-              SSG.COM 고객센터 / 전자금융거래 분쟁처리
-            </span>
-            <br />
-            <span className="mcom_tel_tx">1577-3419 /</span>
-            <span className="mcom_email_tx">ssg@ssg.com</span>
-          </p>
-          <div className="mcom_service_btnarea">
-            <a
-              href="tel:1577-3419"
-              className="mcom_service_btn clickable"
-              data-react-tarea="푸터|전화연결"
-            >
-              <em>전화걸기</em>
-            </a>
-            <a
-              href="http://talk.ssg.com/webchat?gateType=cs"
-              className="mcom_service_btn clickable"
-              data-react-tarea="푸터|고객상담톡"
-            >
-              <em>1:1 고객센터</em>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="mcom_btnbx_warp">
-        <ul className="mcom_btnbx_list">
-          <li id="footer_loginBtn">
-            <a
-              // href="javascript:mobileLogin('login');"
-              href="/"
-              className="clickable"
-              data-react-tarea="푸터|로그인"
-            >
-              로그인
-            </a>
-          </li>
-          <li id="footer_logoutBtn" style={{ display: 'none' }}>
-            <a
-              // href="javascript:logout();"
-              href="/"
-              className="clickable"
-              data-react-tarea="푸터|로그아웃"
-            >
-              로그아웃
-            </a>
-          </li>
-          <li id="footer_joinMemberBtn">
-            <a href="/" className="clickable" data-react-tarea="푸터|회원가입">
-              회원가입
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://m.ssg.com/comm/app/appLink.ssg?mobilAppSvcNo=3"
-              className="clickable"
-              data-react-tarea="푸터|앱다운로드"
-            >
-              앱다운로드
-            </a>
-          </li>
-          <li>
-            <a href="/" className="clickable" data-react-tarea="푸터|PC버전">
-              PC버전
-            </a>
-          </li>
-        </ul>
-      </div>
       <div className="mcom_mall_wrap v2">
         <div className="mcom_mall_box">
           <span className="mcom_mall_name">(주)에스에스지닷컴</span>

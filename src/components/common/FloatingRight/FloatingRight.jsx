@@ -1,6 +1,5 @@
 import React from 'react';
-import { FloatingTalk } from '../FloatingTalk/index';
-import { FloatingTopButton } from '../FloatingTopButton/index';
+import { FloatingTopButton, FloatingTalk } from '../index';
 import './FloatingRight.scss';
 
 function FloatingRight() {

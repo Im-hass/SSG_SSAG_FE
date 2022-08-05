@@ -1,7 +1,6 @@
 import React from 'react';
+import { FloatingLeft, FloatingRight } from '../index';
 import './FloatingContents.scss';
-import FloatingLeft from '../FloatingLeft/FloatingLeft';
-import FloatingRight from '../FloatingRight/FloatingRight';
 
 function FloatingContents() {
   return (
