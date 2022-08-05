@@ -4,6 +4,7 @@ import {
   RecentShoppingProductList,
   NoDataMessage,
 } from '../components/contents';
+import { ToolbarList } from '../components/toolbar/ToolbarList';
 import { FloatingContents } from '../components/common';
 
 function RecentShoppingPage() {
@@ -32,7 +33,7 @@ function RecentShoppingPage() {
           </div>
         </div>
       </div>
-
+      <ToolbarList />
       <FloatingContents />
     </div>
   );
