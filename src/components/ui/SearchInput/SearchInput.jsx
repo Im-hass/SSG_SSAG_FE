@@ -1,7 +1,14 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { isOpenState } from '../../../recoil/isOpenState';
 import './SearchInput.scss';
 
-function SearchInput({ isOpen, handleOpenSearch }) {
+function SearchInput() {
+  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+
+  const handleOpenSearch = (action) =>
+    action === 'open' ? setIsOpen(true) : setIsOpen(false);
+
   return (
     <div className="header-util">
       <div className="search-box">

@@ -1,20 +1,21 @@
-import { React, useState } from 'react';
+import React from 'react';
 import './Header.scss';
+import { useRecoilState } from 'recoil';
 import { SearchInput, Cart, HeaderLeftSide } from '../../ui';
+import SearchBox from '../../ui/SearchBox/SearchBox';
+import { isOpenState } from '../../../recoil/isOpenState';
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpenSearch = (action) =>
-    action === 'open' ? setIsOpen(true) : setIsOpen(false);
+  const [isOpen] = useRecoilState(isOpenState);
 
   return (
     <header>
       <div className="header-container">
-        <HeaderLeftSide isOpen={isOpen} handleOpenSearch={handleOpenSearch} />
-        <SearchInput isOpen={isOpen} handleOpenSearch={handleOpenSearch} />
+        <HeaderLeftSide />
+        <SearchInput />
         <Cart />
       </div>
+      {isOpen && <SearchBox />}
     </header>
   );
 }
