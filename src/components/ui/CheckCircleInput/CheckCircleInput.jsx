@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
-function CheckInput(props) {
+function CheckCircleInput(props) {
   const { inputId, inputName, inputValue, inputCheck, labelFor, laberValue } =
     props;
 
@@ -19,4 +19,4 @@ function CheckInput(props) {
   );
 }
 
-export default CheckInput;
+export default CheckCircleInput;
