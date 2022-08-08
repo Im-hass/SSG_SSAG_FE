@@ -16,6 +16,7 @@
   display: flex;
   width: 78vw;
   padding-left: 15px;
+  padding-right: 10px;
 
   .open-search-input {
     width: 100%;
@@ -47,7 +48,7 @@
     flex: 1;
     width: 100%;
     height: 100%;
-    margin-right: 15px;
+    margin-right: 5px;
     padding-right: 10px;
     background-color: variable.$BLACK-010;
 
@@ -58,13 +59,13 @@
       margin-left: 5px;
       background-color: variable.$BLACK-010;
     }
-
-    .search-icon {
-      display: block;
-      width: 24px;
-      height: 24px;
-      background: center / 100% no-repeat;
-      background-image: url('../../../assets/svg/icon-search.svg');
-    }
   }
+}
+
+.search-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: center / 100% no-repeat;
+  background-image: url('../../../assets/svg/icon-search.svg');
 }
