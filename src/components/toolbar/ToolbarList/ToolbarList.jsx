@@ -9,7 +9,7 @@ const TOOL_LIST = [
     txt: '카테고리',
   },
   {
-    link: '/search',
+    link: '',
     iconName: 'icon_search',
     txt: '통합검색',
   },

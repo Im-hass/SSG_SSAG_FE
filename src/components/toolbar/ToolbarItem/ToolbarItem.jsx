@@ -1,12 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { isOpenState } from '../../../recoil/isOpenState';
 import './ToolbarItem.scss';
 
 function ToolbarItem({ data }) {
   const { link, iconName, txt, imgUrl, hasHistory } = data;
+  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+
+  const handleOpenSearch = (action, text) => {
+    if (text === '통합검색') {
+      return action === 'open' ? setIsOpen(true) : setIsOpen(false);
+    }
+    return null;
+  };
 
   return (
-    <li className="toolbar_item">
+    <li
+      role="menuitem"
+      className="toolbar_item"
+      onClick={() => handleOpenSearch('open', txt)}
+      onKeyDown={() => handleOpenSearch('open', txt)}
+    >
       <Link to={link} className="toolbar_lnk ty_category clickable">
         <i className={`icon ty_lg ${iconName}`} aria-hidden="true" />
         {hasHistory ? (
