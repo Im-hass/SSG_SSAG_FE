@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Cart } from '../index';
 
 function MobileHeader(props) {
   const { title } = props;
@@ -9,13 +11,15 @@ function MobileHeader(props) {
         <a href="/">{title}</a>
       </h2>
       <div className="mcom_tit_lft">
-        <a href="/" className="btn_back clickable">
+        <Link to=".." className="btn_back clickable">
           <span className="sp_ctg_icon ctg_icon_back">
             <span className="blind">이전 페이지</span>
           </span>
-        </a>
+        </Link>
       </div>
-      <div className="mcom_tit_rgt" />
+      <div className="mcom_tit_rgt">
+        <Cart />
+      </div>
     </div>
   );
 }

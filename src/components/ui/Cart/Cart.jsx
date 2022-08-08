@@ -1,11 +1,12 @@
 import React from 'react';
 import './Cart.scss';
+import { Link } from 'react-router-dom';
 
 function Cart() {
   return (
-    <div className="cart-btn">
+    <Link to="/cart" className="cart-btn">
       <i className="cart-icon" />
-    </div>
+    </Link>
   );
 }
 
