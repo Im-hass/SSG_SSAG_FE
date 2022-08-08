@@ -10,13 +10,12 @@ import { FloatingContents } from '../components/common';
 function RecentShoppingPage() {
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_page_history.css"
+      />
       <div id="m_container" className="mcom_container" data-iframe-height="">
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_page_history.css"
-        />
-
         <div id="m_content">
           <div className="cmhistory_wrap" id="_cmhistory_wrap">
             <RecentShoppingHeader />
