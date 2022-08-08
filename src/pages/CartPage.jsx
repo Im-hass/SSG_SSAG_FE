@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { MobileHeader } from '../components/ui/index';
 
 function CartPage() {
   return (
@@ -26,102 +26,7 @@ function CartPage() {
         </a>
       </div>
 
-      <header
-        id="header"
-        className="reveal-left-header reveal-right-header mnodr_head_fix"
-      >
-        <div className="mcom_tit_renew ty_top">
-          <h2 className="mcom_tit_txt">장바구니</h2>
-
-          <div className="mcom_tit_lft">
-            <Link
-              // href="javascript:;"
-              to=".."
-              className="btn_back"
-              onClick="historyBack();"
-            >
-              <span
-                className="sp_ctg_icon ctg_icon_back orderInfoTracking"
-                data-tracking-cd="00014_000000094_t00060"
-                data-tracking-value="뒤로가기"
-              >
-                <span className="blind">이전 페이지</span>
-              </span>
-            </Link>
-          </div>
-          <div className="mcom_tit_rgt">
-            <div className="btn_cate btn_search">
-              <button type="button">
-                <span
-                  className="sp_ctg_icon ctg_icon_search payTracking"
-                  data-pt-click="장바구니|GNB|검색"
-                >
-                  <span className="blind">검색</span>
-                </span>
-              </button>
-            </div>
-            <div className="btn_cate btn_home">
-              <Link id="headerHomeBtn" to="/" onClick="headerGoHome();">
-                <span className="sp_ctg_icon ctg_icon_home">
-                  <span className="blind">홈</span>
-                </span>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div
-          className="m_srharea m_srhprev"
-          style={{
-            position: 'absolute !important',
-            top: '0px',
-            display: 'none',
-          }}
-        >
-          <fieldset>
-            <div className="m_head_srh">
-              <div className="m_head_inparea2">
-                <div className="addr_ipbx">
-                  <a
-                    // href="javascript:void(0);"
-                    href="/"
-                    className="mcom_b_prev"
-                  >
-                    <span className="inp_ico_prev">
-                      <span className="blind">이전페이지</span>
-                    </span>
-                  </a>
-                  <span className="inpbx2">
-                    <input
-                      type="text"
-                      id="query"
-                      name="query"
-                      autoComplete="off"
-                      placeholder="검색어를 입력하세요."
-                    />
-                    <label htmlFor="query">
-                      <span className="blind">검색하기</span>
-                    </label>
-                    <input
-                      type="hidden"
-                      id="select_site_no"
-                      value="6005"
-                      data-evn="PROD"
-                    />
-                  </span>
-                  <button type="button" className="addr_del">
-                    <span className="blind">검색단어 초기화</span>
-                  </button>
-                </div>
-                <button className="mcom_b_def" type="button">
-                  <span className="inp_ico_srch">
-                    <span className="blind">검색</span>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </header>
+      <MobileHeader title="장바구니" />
 
       <div
         id="m_container"
