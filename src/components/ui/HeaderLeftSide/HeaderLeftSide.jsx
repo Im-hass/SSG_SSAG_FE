@@ -1,19 +1,16 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { isOpenState } from '../../../recoil/isOpenState';
+import { HeaderBackArrow } from '../index';
+
 import './HeaderLeftSide.scss';
 
-function HeaderLeftSide({ isOpen, handleOpenSearch }) {
+function HeaderLeftSide() {
+  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+
   return (
     <>
-      {isOpen && (
-        <button
-          className="back-arrow"
-          type="button"
-          onClick={() => handleOpenSearch('close')}
-          onKeyDown={() => handleOpenSearch('close')}
-        >
-          <i className="back-arrow-icon" />
-        </button>
-      )}
+      {isOpen && <HeaderBackArrow />}
 
       {!isOpen && (
         <div className="header-logo-wrap">
