@@ -9,16 +9,14 @@ const datas = [
 ];
 
 function SearchBox() {
-  const hasSearchList = true;
-
   return (
     <div id="m_wrap" className="search-wrap">
-      {hasSearchList ? (
-        <SearchList datas={datas} />
-      ) : (
+      {datas.length === 0 ? (
         <div className="search-none-result">
           <p>최근 검색어가 없습니다</p>
         </div>
+      ) : (
+        <SearchList datas={datas} />
       )}
 
       <div className="cgsearch_recomm_tag" id="now_hot_all">
