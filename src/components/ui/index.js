@@ -20,3 +20,4 @@ export { WithdrawTit } from './WithdrawTit';
 export { Textarea } from './Textarea';
 export { Table } from './Table';
 export { CheckSquareInput } from './CheckSquareInput';
+export { SquareBorderBtn } from './SquareBorderBtn';

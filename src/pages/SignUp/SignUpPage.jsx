@@ -1,12 +1,12 @@
 import React from 'react';
-import { Footer } from '../components/common/index';
-import CircleImgList from '../components/ui/CircleImgList/CircleImgList';
+import { Footer } from '../../components/common/index';
+import CircleImgList from '../../components/ui/CircleImgList/CircleImgList';
 import {
   MobileHeader,
   SNSLoginBtn,
   WithdrawTit,
   Button,
-} from '../components/ui/index';
+} from '../../components/ui/index';
 
 const BENEFIT_CONTENT = [
   {
