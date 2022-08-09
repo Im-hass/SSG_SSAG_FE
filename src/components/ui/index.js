@@ -1,4 +1,5 @@
 export { Cart } from './Cart';
+export { CartPageBtn } from './CartPageBtn';
 export { CartPageParcelContent } from './CartPageParcelContent';
 export { CartPageParcelContentSummary } from './CartPageParcelContentSummary';
 export { CartPageParcelContentUnit } from './CartPageParcelContentUnit';
@@ -10,7 +11,10 @@ export { CartPageParcelContentUnitPayRight } from './CartPageParcelContentUnitPa
 export { CartPageParcelContentUnitThmb } from './CartPageParcelContentUnitThmb';
 export { CartPageParcelContentUnitTit } from './CartPageParcelContentUnitTit';
 export { CartPageParcelContentUnitUtil } from './CartPageParcelContentUnitUtil';
+export { CartPageParcelFootInfo } from './CartPageParcelFootInfo';
 export { CartPageParcelHeader } from './CartPageParcelHeader';
+export { CartPageParcelToolBar } from './CartPageParcelToolBar';
+export { CartPageTotal } from './CartPageTotal';
 export { HeaderBackArrow } from './HeaderBackArrow';
 export { HeaderHomeButton } from './HeaderHomeButton';
 export { HeaderLeftSide } from './HeaderLeftSide';

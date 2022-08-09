@@ -3,9 +3,16 @@ import {
   CartPageNotLogin,
   CartPageControl,
   CartPageParcel,
+  CartPageFooter,
 } from '../components/contents';
 
-import { MobileHeader } from '../components/ui';
+import {
+  MobileHeader,
+  CartPageTotal,
+  CartPageParcelFootInfo,
+  CartPageParcelToolBar,
+  CartPageBtn,
+} from '../components/ui';
 
 function CartPage() {
   return (
@@ -56,153 +63,16 @@ function CartPage() {
           </div>
 
           <div className="mnodr_thickhr" />
-          <div className="mnodr_total" id="cartInformation">
-            <div className="mnodr_form_sec">
-              <h3 className="mnodr_form_tit">
-                <strong>결제 예정금액</strong>
-              </h3>
-              <dl className="mnodr_priceitem ty_narrow">
-                <dt>
-                  <span className="mnodr_priceitem_stit">주문금액</span>
-                </dt>
-                <dd>
-                  <span className="mnodr_tx_primary">
-                    +<em className="ssg_price viewAmt_sellprc">23,000</em>
-                    <span className="ssg_tx">원</span>
-                  </span>
-                </dd>
-              </dl>
-              <dl className="mnodr_priceitem ty_narrow">
-                <dt>
-                  <span className="mnodr_priceitem_stit">상품할인</span>
-                </dt>
-                <dd>
-                  <span className="mnodr_tx_primary">
-                    -<em className="ssg_price viewAmt_dcprc">2,300</em>
-                    <span className="ssg_tx">원</span>
-                  </span>
-                </dd>
-              </dl>
-              <dl className="mnodr_priceitem ty_narrow">
-                <dt>
-                  <span className="mnodr_priceitem_stit">배송비</span>
-                </dt>
-                <dd>
-                  <span className="mnodr_tx_primary">
-                    +<em className="ssg_price viewAmt_shppcst">3,000</em>
-                    <span className="ssg_tx">원</span>
-                  </span>
-                </dd>
-              </dl>
-              <dl className="mnodr_priceitem ty_total">
-                <dt>
-                  <span className="mnodr_tx_point mnodr_priceitem_stit">
-                    총 결제예정금액
-                  </span>
-                </dt>
-                <dd>
-                  <span className="mnodr_priceitem_total">
-                    <em className="ssg_price viewAmt_paymt">23,700</em>
-                    <span className="ssg_tx">원</span>
-                  </span>
-                </dd>
-              </dl>
-            </div>
-          </div>
+
+          <CartPageTotal />
 
           <div className="mnodr_thickhr" />
+
           <div className="mnodr_buyoften v2" id="recommendationCartItem" />
+
           <div className="mnodr_thickhr" />
 
-          <div className="mnodr_footinfo">
-            <button
-              type="button"
-              className="mnodr_cmplccbn cartTracking"
-              name="plccBtn"
-              style={{
-                backgroundImage:
-                  "url('https://sui.ssgcdn.com/cmpt/banner/202207/2022071216423641510009634100_30.png')",
-              }}
-              onClick="location.href='https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000000858&amp;siteNo=6005recruitmentPath=L6007001&amp;eventCode=HPG02'"
-              data-tracking-cd="00044_000000209_t00001"
-              data-tracking-value="2003010236"
-            >
-              <span className="mnodr_cmplccbn_logo">
-                <img
-                  src="https://sui.ssgcdn.com/cmpt/banner/202207/2022071216424180894012693501_964.png"
-                  alt="SSG.COM CARD"
-                />
-              </span>
-              <span className="mnodr_cmplccbn_desc">
-                스마일클럽 가입비 지원 + 최대 12% 적립
-              </span>
-            </button>
-            <button
-              type="button"
-              className="mnodr_cmplccbn cartTracking"
-              name="ssPlccBtn"
-              style={{
-                backgroundImage:
-                  "url('https://sui.ssgcdn.com/cmpt/banner/202202/2022022109481447918457898845_569.png')",
-              }}
-              onClick="location.href='https://m.ssg.com/event/eventDetail.ssg?promId=1100580609'"
-              data-tracking-cd="00044_000000209_t00001"
-              data-tracking-value="2003010238"
-            >
-              <span className="mnodr_cmplccbn_logo">
-                <img
-                  src="https://sui.ssgcdn.com/cmpt/banner/202202/2022022110000988966866483786_123.png"
-                  alt="SSG.COM CARD"
-                />
-              </span>
-              <span className="mnodr_cmplccbn_desc">
-                SSG MONEY 1% 적립 + 4% 추가적립
-              </span>
-            </button>
-            <button
-              type="button"
-              className="mnodr_footinfo_row layer_filter cartTracking"
-              data-type="cardDiscount"
-              data-tracking-cd="00044_000000209_t00060"
-              data-tracking-value="청구할인혜택보기"
-            >
-              <i className="mnodr_ic ic_card_icon" />
-              <p className="mnodr_footinfo_tit">
-                <strong className="mnodr_tx_point">트레이더스삼성카드</strong>
-                <span className="mnodr_tx_primary">
-                  {' '}
-                  외 6개 카드혜택 확인하기
-                </span>
-              </p>
-              <span className="mnodr_arr">
-                <i className="mnodr_ic ic_arr ty_arr_right">
-                  <span className="blind">청구할인 혜택안내</span>
-                </i>
-              </span>
-            </button>
-            <a
-              href="/"
-              style={{ display: 'none' }}
-              className="modal-fix-open"
-              data-layer-target="#_layerDiscountCharge"
-            >
-              ㅇㅅㅇ
-            </a>
-
-            <div
-              className="mnodr_modal ty_full"
-              role="dialog"
-              tabIndex="-1"
-              aria-hidden="true"
-              id="_layerDiscountCharge"
-            >
-              <div
-                className="mnodr_modal_wrap"
-                role="document"
-                // tabIndex="0"
-              />
-            </div>
-          </div>
+          <CartPageParcelFootInfo />
 
           <div className="mnodr_cartinfo">
             <div className="mnodr_form_sec">
@@ -239,67 +109,10 @@ function CartPage() {
             </div>
           </div>
 
-          <div className="mnodr_toolbar_ctn">
-            <div className="mnodr_toolbar_cont">
-              <p className="mnodr_tx_desc" id="bar_price">
-                <span className="mnodr_cnt">전체상품 1개</span>
-                <span className="ssg_tx" id="toolbarCst">
-                  20,700원 + 배송비 3,000원 =
-                </span>
-                <span className="mnodr_tx_total">
-                  <span className="ssg_tx" id="toolbarTotCst">
-                    {' '}
-                    23,700원
-                  </span>
-                </span>
-              </p>
-              <p
-                id="dmndDisplay"
-                className="mnodr_tx_desc mnodr_tx_point"
-                style={{ display: 'block' }}
-              >
-                <a
-                  // href="javascript:void(0);"
-                  href="/"
-                  className="mnodr_tx_link2 layer_filter cartTracking"
-                  data-btn-target="#_layerDiscountCharge"
-                  data-type="cardDiscount"
-                  data-tracking-cd="00044_000000094_t00060"
-                  data-tracking-value="청구할인혜택보기"
-                >
-                  청구할인 혜택보기
-                  <i
-                    className="icon ty_xs icon_chevron_right"
-                    aria-hidden="true"
-                  />
-                </a>
-              </p>
-            </div>
-          </div>
-
-          <div className="mnodr_btn_area">
-            <button
-              type="button"
-              className="mnodr_btn ty_line ty_m cartTracking"
-              id="mnodr_btn_gift2"
-              data-tracking-cd="00044_000000094_t00060"
-              data-tracking-value="선물하기"
-            >
-              <i className="icon ty_md icon_gift" aria-hidden="true" />
-              <span className="mnodr_txt_gift">선물하기</span>
-            </button>
-            <button
-              type="button"
-              className="mnodr_btn ty_point ty_m cartTracking"
-              name="btOrdCheckbox"
-              data-prom-yn=""
-              data-tracking-cd="00044_000000094_t00060"
-              data-tracking-value="주문하기"
-            >
-              <span className="mnodr_btn_tx">주문하기</span>
-            </button>
-          </div>
+          <CartPageParcelToolBar />
+          <CartPageBtn />
         </div>
+
         <div
           className="mnodr_modal ty_alert"
           role="dialog"
@@ -325,6 +138,7 @@ function CartPage() {
                 </span>
               </p>
             </div>
+
             <footer className="mnodr_modal_foot">
               <div className="mnodr_btn_area">
                 <button
@@ -771,23 +585,7 @@ function CartPage() {
             </button>
           </div>
         </div>
-        <div id="mcom_footer">
-          <div className="mcom_footer mcom_footer_order mcom_footer_order_v2 ty_bg ty_space_lg">
-            <div className="mcom_mall_wrap v2">
-              <div className="mcom_noti_wrap">
-                <p className="mcom_noti_txt">
-                  ㈜에스에스지닷컴에서 판매되는 상품 중에는 개별 판매자가
-                  판매하는 오픈마켓 상품이 포함되어 있습니다.
-                </p>
-                <p className="mcom_noti_txt">
-                  오픈마켓 상품의 경우, ㈜에스에스지닷컴은 통신판매중개자로서
-                  거래 당사자가 아니며, 입점 판매사가 등록한 상품정보 및 거래
-                  등에 대해 책임을 지지 않습니다.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CartPageFooter />
       </div>
     </div>
   );

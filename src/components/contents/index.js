@@ -1,4 +1,5 @@
 export { CartPageControl } from './CartPageControl';
+export { CartPageFooter } from './CartPageFooter';
 export { CartPageNotLogin } from './CartPageNotLogin';
 export { CartPageParcel } from './CartPageParcel';
 export { FooterButtonBox } from './FooterButtonBox';
