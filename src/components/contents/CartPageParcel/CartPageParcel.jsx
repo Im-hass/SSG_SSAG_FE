@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartPageParcelContent, CartPageParcelHeader } from '../../ui';
+import { CartPageParcelContent, CartPageParcelHeader } from '../index';
 
 import './CartPageParcel.scss';
 
