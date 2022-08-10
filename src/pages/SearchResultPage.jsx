@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
-import { Header, Footer } from '../components/common/index';
+import { Header, Footer, FloatingContents } from '../components/common/index';
 import { SearchContent } from '../components/contents/index';
 import { searchValueState } from '../recoil/isOpenState';
 
@@ -20,6 +20,7 @@ function SearchResultPage() {
       <SearchContent />
       <Footer />
       <ToolbarList />
+      <FloatingContents />
     </div>
   );
 }
