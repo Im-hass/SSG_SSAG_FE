@@ -9,3 +9,4 @@ export { FooterNotification } from './FooterNotification';
 export { FooterService } from './FooterService';
 export { FooterButtonBox } from './FooterButtonBox';
 export { FooterMallWrap } from './FooterMallWrap';
+export { SearchContent } from './SearchContent';
