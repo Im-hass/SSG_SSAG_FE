@@ -1,6 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { MainPage, NotFoundPage, RecentShoppingPage, CartPage } from '../pages';
+import {
+  MainPage,
+  NotFoundPage,
+  RecentShoppingPage,
+  CartPage,
+  PaymentMeansPage,
+} from '../pages';
 import Login from './contents/Login/Login';
 
 function App() {
@@ -14,6 +20,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
+        <Route path="/paymentmeans" element={<PaymentMeansPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

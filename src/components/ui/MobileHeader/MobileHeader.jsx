@@ -19,6 +19,7 @@ function MobileHeader(props) {
     <header
       id="header"
       className="reveal-left-header reveal-right-header mnodr_head_fix"
+      style={{ position: title !== '장바구니' ? 'relative' : '' }}
     >
       {!isOpen && (
         <div className="mcom_tit_renew  react-area">
@@ -28,8 +29,7 @@ function MobileHeader(props) {
           {!isOpen && title === '장바구니' && <HeaderSearchButton />}
 
           <div className="mcom_tit_rgt">
-            {title !== '장바구니' && <Cart />}
-            {!isOpen && title === '장바구니' && <HeaderHomeButton />}
+            {!isOpen && title !== '로그인' && <HeaderHomeButton />}
           </div>
         </div>
       )}
