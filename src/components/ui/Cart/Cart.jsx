@@ -5,7 +5,7 @@ import { isOpenState } from '../../../recoil/isOpenState';
 import './Cart.scss';
 
 function Cart() {
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [, setIsOpen] = useRecoilState(isOpenState);
 
   const handleClick = () => {
     setIsOpen(false);

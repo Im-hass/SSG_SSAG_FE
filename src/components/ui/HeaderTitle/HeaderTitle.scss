@@ -6,8 +6,9 @@
   padding: 0 50px 0 10px;
 }
 
-.mcom_tit_txt a {
-  position: absolute;
-  top: 15px;
-  left: 35%;
+.mcom_tit_txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 50px;
 }
