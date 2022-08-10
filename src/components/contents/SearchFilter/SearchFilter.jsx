@@ -1,5 +1,51 @@
 import React from 'react';
+import { FilterList } from '../FilterList';
 import './SearchFilter.scss';
+
+const RANK_OPTIONS = [
+  {
+    isActive: true, // 임시
+    isRecommend: true, // 임시
+    title: 'rank',
+    value: '추천순',
+  },
+  {
+    isActive: false, // 임시
+    isRecommend: false, // 임시
+    title: 'sale',
+    value: '판매량순',
+  },
+  {
+    isActive: false, // 임시
+    isRecommend: false, // 임시
+    title: 'prcasc',
+    value: '낮은가격순',
+  },
+  {
+    isActive: false, // 임시
+    isRecommend: false, // 임시
+    title: 'prcdsc',
+    value: '높은가격순',
+  },
+  {
+    isActive: false, // 임시
+    isRecommend: false, // 임시
+    title: 'dcrt',
+    value: '할인율순',
+  },
+  {
+    isActive: false, // 임시
+    isRecommend: false, // 임시
+    title: 'regdt',
+    value: '신상품순',
+  },
+  {
+    isActive: false, // 임시
+    isRecommend: false, // 임시
+    title: 'cnt',
+    value: '리뷰많은순',
+  },
+];
 
 function SearchFilter() {
   return (
@@ -8,6 +54,7 @@ function SearchFilter() {
         <div className="sch_filter_view">
           <div className="m_ncatetblarea">
             <ul className="m_ncatetbl">
+              {/* 뷰 타입 */}
               <li className="view_td" data-areaid="view">
                 <div className="posr">
                   <a href="/" id="_btn_view_type_toggle" className="btn_t">
@@ -15,9 +62,11 @@ function SearchFilter() {
                   </a>
                 </div>
               </li>
+
+              {/* 백화점상품 / 매장픽업 */}
               <li className="filter_td" data-areaid="order">
                 <div className="in">
-                  {/* on 클래스 추가시 백화점상품 option 출력 */}
+                  {/* 누르면 on 클래스 추가되고 option 출력 */}
                   <div className="cmft_sel_wrap">
                     <span className="cmft_inp_chk">
                       <input
@@ -54,88 +103,25 @@ function SearchFilter() {
                   </div>
                 </div>
               </li>
+
+              {/* 추천순 */}
               <li className="rank_td" data-areaid="order">
-                {/* active 클래스 추가시 추천순 option 출력 */}
+                {/* 누르면 active 클래스 추가되고 option 출력 */}
                 <div className="in">
                   <a href="/" className="btn_t">
                     추천순<span className="sp_view ico_arrow">&nbsp;</span>
                   </a>
                   <ul className="mn_layer">
-                    <li className="active">
-                      <a href="/" className="clickable" data-info="best">
-                        추천순
-                      </a>
-                      <button
-                        type="button"
-                        onClick="alert('추천순 상품의 판매량과 정확도 등을 점수화하여 정렬하며, 광고상품의 경우 별도 기준으로 상단에 정렬됩니다.');"
-                        className="btn_info"
-                      >
-                        <span className="blind">추천순 설명 보기</span>
-                      </button>
-                    </li>
-                    <li>
-                      <a
-                        title="sale"
-                        href="/"
-                        className="clickable"
-                        data-info="sale"
-                      >
-                        판매량순
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        title="prcasc"
-                        href="/"
-                        className="clickable"
-                        data-info="prcasc"
-                      >
-                        낮은가격순
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        title="prcdsc"
-                        href="/"
-                        className="clickable"
-                        data-info="prcdsc"
-                      >
-                        높은가격순
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        title="dcrt"
-                        href="/"
-                        className="clickable"
-                        data-info="dcrt"
-                      >
-                        할인율순
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        title="regdt"
-                        href="/"
-                        className="clickable"
-                        data-info="regdt"
-                      >
-                        신상품순
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        title="cnt"
-                        href="/"
-                        className="clickable"
-                        data-info="cnt"
-                      >
-                        리뷰많은순
-                      </a>
-                    </li>
+                    {/* 선택된 option에 active 클래스 추가되어 있음 */}
+                    {RANK_OPTIONS &&
+                      RANK_OPTIONS.map((data) => (
+                        <FilterList key={data.title} data={data} />
+                      ))}
                   </ul>
                 </div>
               </li>
+
+              {/* 필터 옵션 : 카테고리/브랜드/상품유형/배송유형/혜택/백화점상품/가격 */}
               <li className="sch_td">
                 {/* active 클래스 추가시 필터 option 출력 */}
                 <div className="in">
