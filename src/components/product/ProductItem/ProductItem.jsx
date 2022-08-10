@@ -55,7 +55,7 @@ function ProductItem({ hasResult, datas }) {
           <div className="mnsditem_detail">
             <div className="mnsditem_maininfo">
               <a
-                href="/item/itemView.ssg?itemId=1000356205098&amp;siteNo=6004&amp;salestrNo=6005&amp;advertBidId=1001998859&amp;advertExtensTeryDivCd=20"
+                href={`/product/${productId}`}
                 className="mnsditem_maininfo_link"
               >
                 <div className="mnsditem_tit">

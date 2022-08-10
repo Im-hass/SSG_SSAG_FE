@@ -1,3 +1,14 @@
-.cm_sch_result .csr_relate_bx {
-  background: inherit;
+.cm_sch_result {
+  .csr_relate_bx {
+    padding: 11px 40px 11px 59px;
+    background: inherit;
+
+    .csr_relate_txt {
+      top: 11px;
+    }
+
+    .csr_open {
+      top: 10px;
+    }
+  }
 }
