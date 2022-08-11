@@ -5,3 +5,4 @@ export { default as PaymentMeansPage } from './PaymentMeansPage';
 export { default as RecentShoppingPage } from './RecentShoppingPage';
 export { default as SearchResultPage } from './SearchResultPage';
 export { default as CategoryPage } from './CategoryPage';
+export { default as MyPage } from './MyPage';
