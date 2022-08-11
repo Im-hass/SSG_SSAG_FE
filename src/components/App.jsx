@@ -6,6 +6,7 @@ import {
   RecentShoppingPage,
   CartPage,
   SearchResultPage,
+  PaymentMeansPage,
 } from '../pages';
 import { Login, WithdrawMember } from './contents/index';
 
@@ -20,6 +21,8 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
+        <Route path="/withdrawMember" element={<WithdrawMember />} />
+        <Route path="/paymentMeans" element={<PaymentMeansPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
