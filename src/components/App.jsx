@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { MainPage, NotFoundPage, RecentShoppingPage, CartPage } from '../pages';
-import Login from './contents/Login/Login';
+import { Login, WithdrawMember } from './contents/index';
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
+        <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
