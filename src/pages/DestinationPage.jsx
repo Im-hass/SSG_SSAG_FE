@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
+import { Link } from 'react-router-dom';
 import { isDestinationState } from '../recoil/states';
 import { Footer } from '../components/common';
 import {
@@ -48,7 +49,9 @@ function DestinationPage() {
                     {isDestination && (
                       <>
                         <DestinationList />
-                        <DestinationListNewAdd />
+                        <Link to="/addDestination">
+                          <DestinationListNewAdd />
+                        </Link>
                         <DestinationBtns />
                         <DestinationListInfo />
                       </>

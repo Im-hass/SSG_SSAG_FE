@@ -1,23 +1,30 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { isOpenState } from '../../../recoil/states';
 import './HeaderPrevButton.scss';
 
 function HeaderPrevButton() {
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [, setIsOpen] = useRecoilState(isOpenState);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setIsOpen(false);
+    navigate(-1);
   };
 
   return (
     <div className="mcom_tit_lft">
-      <Link to=".." className="btn_back clickable" onClick={handleClick}>
+      <button
+        type="button"
+        to=".."
+        className="btn_back clickable"
+        onClick={handleClick}
+      >
         <span className="sp_ctg_icon ctg_icon_back">
           <span className="blind">이전 페이지</span>
         </span>
-      </Link>
+      </button>
     </div>
   );
 }

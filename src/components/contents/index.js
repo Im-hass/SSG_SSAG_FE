@@ -1,3 +1,5 @@
+export { AddAddressMyInfo } from './AddAddressMyInfo';
+export { AddAddressZipCode } from './AddAddressZipCode';
 export { CartPageCartInfo } from './CartPageCartInfo';
 export { CartPageControl } from './CartPageControl';
 export { CartPageFooter } from './CartPageFooter';

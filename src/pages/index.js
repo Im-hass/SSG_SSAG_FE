@@ -1,3 +1,4 @@
+export { default as AddDestinationPage } from './AddDestinationPage';
 export { default as CartPage } from './CartPage';
 export { default as DestinationPage } from './DestinationPage';
 export { default as MainPage } from './MainPage';
