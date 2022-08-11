@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { searchValueState } from '../../../recoil/isOpenState';
 import { AdInfo } from '../../ui/AdInfo';
 import { NoSearchValue } from '../NoSearchValue';
 import { FindSearchValue } from '../FindSearchValue';
 import { RelateSearchValue } from '../../common/RelateSearchValue';
 import './SearchContent.scss';
-
-const hasResult = true; // 검색 결과
+import { searchValueState } from '../../../recoil/searchValueState';
 
 function SearchContent() {
   const { value } = useParams();
   const [searchValue] = useRecoilState(searchValueState);
+  const [hasResult, setHasResult] = useState(false);
+
+  const handleResult = () => {
+    setHasResult(!hasResult);
+  };
 
   return (
     <div id="m_wrap" className="mcom_wrap sm_v3">
+      <button type="button" onClick={handleResult}>
+        검색 결과 Test
+      </button>
       {/* 검색 결과 타이틀 */}
       <div className="mcom_tit_renew react-area search-value">
         <h2 className="mcom_tit_txt clickable">
