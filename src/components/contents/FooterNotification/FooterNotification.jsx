@@ -9,7 +9,7 @@ function FooterNotification() {
         <ul className="noti_dsc">
           <li>
             <a href="http://m.ssg.com/customer/noticeList.ssg?siteNo=6005&amp;bbsId=1&amp;postngId=1177650441&amp;postTeryIdnfNo=6005">
-              [SSG.COM 스타벅스 서머 캐리백 구매 고객 대...
+              SSG.COM 스타벅스 서머 캐리백 구매 고객 대...
             </a>
           </li>
           <li>

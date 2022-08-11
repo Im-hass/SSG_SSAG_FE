@@ -28,6 +28,8 @@ export { FooterMallWrap } from './FooterMallWrap';
 export { FooterNotification } from './FooterNotification';
 export { FooterService } from './FooterService';
 export { NoDataMessage } from './NoDataMessage';
+export { Login } from './Login';
+export { WithdrawMember } from './WithdrawMember';
 export { RecentShoppingFilter } from './RecentShoppingFilter';
 export { RecentShoppingHeader } from './RecentShoppingHeader';
 export { RecentShoppingProductList } from './RecentShoppingProductList';

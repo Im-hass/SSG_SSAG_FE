@@ -4,10 +4,10 @@ import {
   Captcha,
   HiddenInput,
   Input,
-  CheckInput,
+  CheckCircleInput,
   MobileHeader,
   SNSLoginBtn,
-  SubmitBtn,
+  Button,
 } from '../../ui/index';
 import { Footer } from '../../common/index';
 
@@ -81,7 +81,7 @@ function Login() {
                 ))}
               </div>
               <div className="cmem_login_chk">
-                <CheckInput
+                <CheckCircleInput
                   inputId="keep_id"
                   inputName="chk_log"
                   inputValue="Y"
@@ -90,7 +90,11 @@ function Login() {
                 />
               </div>
               <Captcha />
-              <SubmitBtn className="cmem_btn cmem_btn_orange3" name="로그인" />
+              <Button
+                type="submit"
+                className="cmem_btn cmem_btn_orange3"
+                name="로그인"
+              />
               <div className="cmem_login_support">
                 <a href="/m/member/findIdPw.ssg">아이디 찾기</a>
                 <a href="/m/member/findIdPw.ssg?tabType=pw">비밀번호 찾기</a>
