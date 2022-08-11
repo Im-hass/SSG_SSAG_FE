@@ -1,15 +1,26 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { isDestinationState } from '../recoil/states';
 import { Footer } from '../components/common';
 import {
   DestinationTit,
   DestinationTabList,
   DestinationNoData,
   DestinationBanner,
+  DestinationList,
+  DestinationListNewAdd,
+  DestinationBtns,
+  DestinationListInfo,
 } from '../components/contents';
-
 import { MobileHeader } from '../components/ui';
 
 function DestinationPage() {
+  const [isDestination, setIsDestination] = useRecoilState(isDestinationState);
+
+  const handleDestination = () => {
+    setIsDestination(!isDestination);
+  };
+
   return (
     <>
       <a href="#m_container" className="skip_navi">
@@ -22,6 +33,10 @@ function DestinationPage() {
 
           <div id="m_content">
             <div className="myodr_addrwrap">
+              {/* 가라 버튼 */}
+              <button type="button" onClick={handleDestination}>
+                {isDestination ? '배송지 숨기기' : '배송지 보이기'}
+              </button>
               <DestinationTit />
 
               <div className="myodr_tab">
@@ -29,7 +44,15 @@ function DestinationPage() {
 
                 <div className="myodr_tab_cont">
                   <div className="myodr_tab_panel" role="tabpanel">
-                    <DestinationNoData />
+                    {!isDestination && <DestinationNoData />}
+                    {isDestination && (
+                      <>
+                        <DestinationList />
+                        <DestinationListNewAdd />
+                        <DestinationBtns />
+                        <DestinationListInfo />
+                      </>
+                    )}
                   </div>
 
                   <DestinationBanner />

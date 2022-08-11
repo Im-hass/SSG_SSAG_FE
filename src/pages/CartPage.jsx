@@ -19,11 +19,11 @@ function CartPage() {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [isItems, setIsItems] = useRecoilState(isItemsState);
 
-  const onLogin = () => {
+  const handleLogin = () => {
     setIsLogin(!isLogin);
   };
 
-  const onItems = () => {
+  const handleItems = () => {
     setIsItems(!isItems);
   };
   return (
@@ -41,12 +41,12 @@ function CartPage() {
           {/* 가라 버튼 */}
           <button
             type="button"
-            onClick={onLogin}
+            onClick={handleLogin}
             style={{ marginRight: '10px' }}
           >
             {isLogin ? '로그아웃' : '로그인'}
           </button>
-          <button type="button" onClick={onItems}>
+          <button type="button" onClick={handleItems}>
             {isItems ? '장바구니 비우기' : '장바구니 추가'}
           </button>
 

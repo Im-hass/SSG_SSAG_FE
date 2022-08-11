@@ -19,3 +19,8 @@ export const isItemsState = atom({
   key: 'isItems',
   default: false,
 });
+
+export const isDestinationState = atom({
+  key: 'isDestination',
+  default: false,
+});
