@@ -1,12 +1,18 @@
 import React from 'react';
 
-const boxHeigth = [150, 150, 150, 180, 150, 90, 150, 150, 120, 150, 120, 150];
+const BOX_HEIGHT = [
+  150, 120, 150, 150, 180, 150, 90, 150, 150, 120, 150, 120, 120,
+];
 
 function SubCategoryList({ isSelected, largeCategoryId, mediumCategoryList }) {
   return (
     <div
-      className={isSelected ? 'clnb_lst_cate selected' : 'clnb_lst_cate'}
-      style={{ height: `${boxHeigth[largeCategoryId - 1]}px` }}
+      className={
+        isSelected[largeCategoryId - 1]
+          ? 'clnb_lst_cate selected'
+          : 'clnb_lst_cate'
+      }
+      style={{ height: `${BOX_HEIGHT[largeCategoryId - 1]}px` }}
     >
       {/* 클릭 시 selected 추가 */}
       <div className="clnb_lst">
