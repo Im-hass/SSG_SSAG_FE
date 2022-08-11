@@ -1,4 +1,5 @@
 export { Cart } from './Cart';
+export { CartPageBtn } from './CartPageBtn';
 export { HeaderBackArrow } from './HeaderBackArrow';
 export { HeaderHomeButton } from './HeaderHomeButton';
 export { HeaderLeftSide } from './HeaderLeftSide';

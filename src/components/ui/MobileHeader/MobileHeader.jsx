@@ -13,7 +13,7 @@ import './MobileHeader.scss';
 
 function MobileHeader(props) {
   const { title } = props;
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [isOpen] = useRecoilState(isOpenState);
 
   return (
     <header
