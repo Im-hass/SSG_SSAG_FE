@@ -34,3 +34,4 @@ export { RecentShoppingHeader } from './RecentShoppingHeader';
 export { RecentShoppingProductList } from './RecentShoppingProductList';
 export { RecentShoppingTitle } from './RecentShoppingTitle';
 export { WithdrawMember } from './WithdrawMember';
+export { SearchContent } from './SearchContent';
