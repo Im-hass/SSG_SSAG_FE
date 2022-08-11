@@ -20,6 +20,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
+        <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
