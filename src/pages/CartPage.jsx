@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { isLoginState } from '../recoil/isLoginState';
-import { isItemsState } from '../recoil/isItemsState';
+import { isItemsState, isLoginState } from '../recoil/states';
 import {
   CartPageControl,
   CartPageParcel,
@@ -14,7 +13,6 @@ import {
   CartPageParcelFootInfo,
   CartPageParcelToolBar,
 } from '../components/contents';
-
 import { MobileHeader, CartPageBtn } from '../components/ui';
 
 function CartPage() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
-import { isOpenState } from '../../../recoil/isOpenState';
+import { isOpenState } from '../../../recoil/states';
 import './HeaderPrevButton.scss';
 
 function HeaderPrevButton() {

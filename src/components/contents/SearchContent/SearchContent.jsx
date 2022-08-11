@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { searchValueState } from '../../../recoil/isOpenState';
+import { searchValueState } from '../../../recoil/states';
 import { AdInfo } from '../../ui/AdInfo';
 import { NoSearchValue } from '../NoSearchValue';
 import { FindSearchValue } from '../FindSearchValue';

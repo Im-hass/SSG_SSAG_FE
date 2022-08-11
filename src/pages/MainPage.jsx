@@ -8,7 +8,7 @@ function MainPage() {
       <Header />
       MainPage
       <ToolbarList />
-      <Footer />
+      <Footer pageName="main" />
     </div>
   );
 }
