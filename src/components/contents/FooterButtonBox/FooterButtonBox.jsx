@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './FooterButtonBox.scss';
 
 const BUTTONLIST = [
   {
     id: 1,
     // href: "javascript:mobileLogin('login');"
-    href: '/',
+    href: '/login',
     data: '푸터|로그인',
     onClick: '',
     name: '로그인',
@@ -47,17 +48,17 @@ function FooterButtonBox() {
   return (
     <div className="mcom_btnbx_warp">
       <ul className="mcom_btnbx_list">
-        {BUTTONLIST.map((el, i) => (
+        {BUTTONLIST.map((el) => (
           <li key={el.id} id="footer_loginBtn">
-            <a
-              href={el.href}
+            <Link
+              to={el.href}
               className="clickable"
               data-react-tarea={el.data}
               onClick={el.onClick}
               style={{ display: el.name === '로그아웃' ? 'none' : '' }}
             >
               {el.name}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
