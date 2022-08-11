@@ -10,6 +10,7 @@ import {
   Button,
 } from '../../ui/index';
 import { Footer } from '../../common/index';
+import './Login.scss';
 
 const INPUT_CONTENT = [
   {
