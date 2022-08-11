@@ -5,9 +5,9 @@ import {
   NotFoundPage,
   RecentShoppingPage,
   CartPage,
-  PaymentMeansPage,
+  SearchResultPage,
 } from '../pages';
-import Login from './contents/Login/Login';
+import { Login, WithdrawMember } from './contents/index';
 
 function App() {
   return (
@@ -15,12 +15,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<MainPage />} />
         <Route path="/category" element={<h1>카테고리</h1>} />
-        <Route path="/search" element={<h1>검색</h1>} />
+        <Route path="/search/:value" element={<SearchResultPage />} />
         <Route path="/my" element={<h1>마이 페이지</h1>} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
-        <Route path="/paymentmeans" element={<PaymentMeansPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

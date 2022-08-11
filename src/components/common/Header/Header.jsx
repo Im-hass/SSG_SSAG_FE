@@ -1,8 +1,13 @@
 import React from 'react';
 import './Header.scss';
+import { useRecoilState } from 'recoil';
 import { SearchInput, Cart, HeaderLeftSide } from '../../ui';
+import SearchBox from '../../ui/SearchBox/SearchBox';
+import { isOpenState } from '../../../recoil/isOpenState';
 
 function Header() {
+  const [isOpen] = useRecoilState(isOpenState);
+
   return (
     <header>
       <div className="header-container">
@@ -10,6 +15,7 @@ function Header() {
         <SearchInput />
         <Cart />
       </div>
+      {isOpen && <SearchBox />}
     </header>
   );
 }
