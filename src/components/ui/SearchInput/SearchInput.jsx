@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isOpenState, searchValueState } from '../../../recoil/states';
 import './SearchInput.scss';
@@ -14,6 +15,10 @@ function SearchInput() {
     setSearchValue(e.target.value);
   };
 
+  const handleSearch = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="header-util">
       <div className="search-box">
@@ -27,9 +32,13 @@ function SearchInput() {
               onChange={handleSearchInput}
               value={searchValue !== '' ? searchValue : ''}
             />
-            <button className="search-btn" type="submit">
+            <Link
+              className="search-btn"
+              to={`/search/${searchValue}`}
+              onClick={handleSearch}
+            >
               <i className="search-icon" />
-            </button>
+            </Link>
           </form>
         )}
 

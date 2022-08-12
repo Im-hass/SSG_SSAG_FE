@@ -5,3 +5,4 @@ export { FloatingLeft } from './FloatingLeft';
 export { FloatingRight } from './FloatingRight';
 export { FloatingTalk } from './FloatingTalk';
 export { FloatingTopButton } from './FloatingTopButton';
+export { CategoryFooter } from './CategoryFooter';

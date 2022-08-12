@@ -1,9 +1,10 @@
 .search-wrap {
   width: 100%;
+  height: calc(100% - 60px);
   display: block;
   position: absolute;
   background-color: #fff;
-  z-index: 3000;
+  z-index: 4000;
 }
 
 .search-none-result {

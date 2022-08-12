@@ -7,8 +7,10 @@ import {
   MainPage,
   NotFoundPage,
   RecentShoppingPage,
-  PaymentMeansPage,
   SearchResultPage,
+  PaymentMeansPage,
+  CategoryPage,
+  MyPage,
 } from '../pages';
 import { Login, WithdrawMember } from './contents/index';
 
@@ -17,9 +19,9 @@ function App() {
     <div>
       <Routes>
         <Route exact path="/" element={<MainPage />} />
-        <Route path="/category" element={<h1>카테고리</h1>} />
+        <Route path="/category" element={<CategoryPage />} />
         <Route path="/search/:value" element={<SearchResultPage />} />
-        <Route path="/my" element={<h1>마이 페이지</h1>} />
+        <Route path="/my" element={<MyPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
