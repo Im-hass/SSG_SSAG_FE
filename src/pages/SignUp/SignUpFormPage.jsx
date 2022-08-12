@@ -14,7 +14,7 @@ import {
   SignUpInput,
 } from '../../components/ui/index';
 import SignUpTermTit from '../../components/ui/SignUpTermTit/SignUpTermTit';
-import * as datas from '../../assets/datas/SignUpFormContents';
+import * as datas from '../../assets/datas';
 
 function SignUpFormPage() {
   const {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { isCategorySelected } from '../../../recoil/isCategorySelected';
+import { isCategorySelected } from '../../../recoil/states';
 import { SubCategoryList } from '../SubCategoryList';
 
 function CategoryItem({ data, imgUrl }) {

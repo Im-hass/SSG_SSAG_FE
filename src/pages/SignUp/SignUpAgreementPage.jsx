@@ -8,7 +8,7 @@ import {
 } from '../../components/ui/index';
 import { Footer } from '../../components/common/index';
 import SignUpTermTit from '../../components/ui/SignUpTermTit/SignUpTermTit';
-import * as datas from '../../assets/datas/SignUpAgreementContents';
+import * as datas from '../../assets/datas';
 
 function SignUpAgreementPage() {
   const { AGREEMENT_CONTENT0, AGREEMENT_CONTENT1, AGREEMENT_CONTENT2 } = datas;
