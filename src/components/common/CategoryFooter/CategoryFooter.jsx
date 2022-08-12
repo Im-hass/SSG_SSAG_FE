@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function CategoryFooter() {
   return (
@@ -6,7 +7,7 @@ function CategoryFooter() {
       <div className="clnb_renew_help">
         <a
           href="/"
-          onClick="appBroswer('http://m.ssg.com/customer/main.ssg?aplSiteNo=6004&_mpop=new','stack'); return false;"
+          // onClick="appBroswer('http://m.ssg.com/customer/main.ssg?aplSiteNo=6004&_mpop=new','stack'); return false;"
           className="clnb_help_link clickable"
           data-react-tarea="카테고리_LNB|기타|고객센터_N"
         >
@@ -28,18 +29,18 @@ function CategoryFooter() {
         <a href="https://partners.ssgadm.com/m/" className="clnb_help_link">
           <span>입점상담</span>
         </a>
-        <a
-          href="/"
+        <Link
+          to="/login"
           className="clnb_help_link"
-          onClick="mobileLogin('login')"
+          // onClick="mobileLogin('login')"
           id="lnb_loginBtn"
         >
           <span>로그인</span>
-        </a>
+        </Link>
         <a
           href="/"
           className="clnb_help_link"
-          onClick="logout()"
+          // onClick="logout()"
           id="lnb_logoutBtn"
           style={{ display: 'none' }}
         >

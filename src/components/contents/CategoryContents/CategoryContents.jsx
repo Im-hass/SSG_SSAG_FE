@@ -1155,7 +1155,7 @@ function CategoryContents() {
                       src="//sui.ssgcdn.com/cmpt/banner/202207/2022070515062822153723407372_375.jpg"
                       alt="/cmpt/banner/202207/2022070515062822153723407372_375.jpg"
                       data-src="//sui.ssgcdn.com/cmpt/banner/202207/2022070515062822153723407372_375.jpg"
-                      onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=145&h=145&t=9173a371ff680649d2abfc58b64355ad05421821'"
+                      // onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=145&h=145&t=9173a371ff680649d2abfc58b64355ad05421821'"
                       data-ll-status="loaded"
                     />
                   </div>
@@ -1180,7 +1180,7 @@ function CategoryContents() {
                       src="//sui.ssgcdn.com/cmpt/banner/202204/2022041517155741312171025217_772.jpg"
                       alt="/cmpt/banner/202204/2022041517155741312171025217_772.jpg"
                       data-src="//sui.ssgcdn.com/cmpt/banner/202204/2022041517155741312171025217_772.jpg"
-                      onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=145&h=145&t=9173a371ff680649d2abfc58b64355ad05421821'"
+                      // onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&w=145&h=145&t=9173a371ff680649d2abfc58b64355ad05421821'"
                       data-ll-status="loaded"
                     />
                   </div>

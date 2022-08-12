@@ -30,7 +30,7 @@ function SearchInput() {
               type="text"
               placeholder="검색어를 입력하세요."
               onChange={handleSearchInput}
-              value={searchValue !== '' ? searchValue : ''}
+              defaultValue={searchValue !== '' ? searchValue : ''}
             />
             <Link
               className="search-btn"
@@ -49,7 +49,7 @@ function SearchInput() {
                 className="not-open-search-input"
                 type="text"
                 onFocus={() => handleOpenSearch('open')}
-                value={searchValue !== '' ? searchValue : ''}
+                defaultValue={searchValue !== '' ? searchValue : ''}
               />
               <button className="search-btn" type="button">
                 <i className="search-icon" />

@@ -1,56 +1,6 @@
 import React from 'react';
 import './FooterMallWrap.scss';
-
-const MALL_WRAP_CONTENTS = [
-  {
-    id: 1,
-    href: '/',
-    title: '새창열림',
-    onClick:
-      "appBroswer('https://m.ssg.com/comm/commInfo.ssg?type=clause&amp;_mpop=new','stack','Y'); return false;",
-    name: '이용약관',
-  },
-  {
-    id: 2,
-    href: '/',
-    title: '새창열림',
-    onClick:
-      "appBroswer('https://company.ssg.com', 'stack', 'Y'); return false;",
-    name: '회사소개',
-  },
-  {
-    id: 2,
-    href: '/',
-    title: '새창열림',
-    onClick:
-      "appBroswer('https://m.ssg.com/comm/commInfo.ssg?type=clause&amp;_mpop=new','stack','Y'); return false;",
-    name: '이용약관',
-  },
-  {
-    id: 3,
-    href: '/',
-    title: '새창열림',
-    onClick:
-      "appBroswer('https://member.ssg.com/m/policies/tradeTerms.ssg', 'stack', 'Y'); return false;",
-    name: '전자금융거래이용약관',
-  },
-  {
-    id: 4,
-    href: '/',
-    title: '새창열림',
-    onClick:
-      "appBroswer('https://member.ssg.com/m/policies/privacy.ssg', 'stack', 'Y'); return false;",
-    name: '개인정보처리방침',
-  },
-  {
-    id: 5,
-    href: '/',
-    title: '새창열림',
-    onClick:
-      "appBroswer('https://member.ssg.com/m/policies/youthProtection.ssg', 'stack', 'Y'); return false;",
-    name: '청소년보호방침',
-  },
-];
+import { MALL_WRAP_CONTENTS } from '../../../assets/datas/MallContentsList';
 
 function FooterMallWrap() {
   return (
@@ -88,9 +38,9 @@ function FooterMallWrap() {
       <div className="mcom_cont_info">
         <h3 className="blind">SSG.COM 정책 및 약관</h3>
         <ul className="mcom_cont_lst">
-          {MALL_WRAP_CONTENTS.map((el, i) => (
+          {MALL_WRAP_CONTENTS.map((el) => (
             <li key={el.id}>
-              <a href={el.href} title={el.title} onClick={el.onClick}>
+              <a href={el.href} title={el.title}>
                 <span
                   style={{ color: el.name === '개인정보처리방침' ? 'red' : '' }}
                 >

@@ -55,7 +55,7 @@ function SearchContent() {
                 <a
                   href="/"
                   className="clickable"
-                  onClick="ssg_ad.adClick(this, {link: 'https://www.ssg.com/plan/planShop.ssg?dispCmptId=6000244304&amp;src_area=mbnr', position: 'banr'});return false;"
+                  // onClick="ssg_ad.adClick(this, {link: 'https://www.ssg.com/plan/planShop.ssg?dispCmptId=6000244304&amp;src_area=mbnr', position: 'banr'});return false;"
                 >
                   <img
                     src="//sui.ssgcdn.com/ssgadp/1m/14/1002057141m.jpg"
