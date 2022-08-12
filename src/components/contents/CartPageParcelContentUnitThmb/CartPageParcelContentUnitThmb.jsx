@@ -11,8 +11,6 @@ function CartPageParcelContentUnitThmb() {
           id="chk_order_5092900303"
           name="cbCartId"
           value="5092900303"
-          data-tracking-cd="00044_000000204_t00060"
-          data-tracking-value="상품개별선택"
         />
         <label htmlFor="chk_order_5092900303">
           <span className="blind">상품선택</span>

@@ -22,8 +22,6 @@ function CartPageLogin() {
             className="mnodr_info_btn cartTracking"
             type="button"
             name="btnReqMultShpp"
-            data-tracking-cd="00044_000000195_t00060"
-            data-tracking-value="여러곳으로한방에"
           >
             여러곳으로 한방에
           </button>
@@ -31,19 +29,10 @@ function CartPageLogin() {
             type="button"
             id="changeAddressBtn"
             className="mnodr_info_btn layer_filter cartTracking"
-            data-type="shpploc"
-            data-tracking-cd="00044_000000195_t00060"
-            data-tracking-value="배송지변경"
           >
             배송지 변경
           </button>
-          <a
-            href="/"
-            style={{ display: 'none' }}
-            className="modal-fix-open"
-            data-layer-target="#_layerChangeAddr"
-            data-shpp-value="46623,1"
-          >
+          <a href="/" style={{ display: 'none' }} className="modal-fix-open">
             ㅇㅅㅇ
           </a>
 
@@ -81,9 +70,7 @@ function CartPageLogin() {
                         tabIndex="-1"
                         id="ui_test0"
                         value="46623,1"
-                        data-zipcd="46623"
                         name="mbrShpplocRadio"
-                        data-pt-click="배송지변경_레이어|배송지 목록|배송지"
                       />
                       <label
                         htmlFor="ui_test0"
@@ -118,7 +105,6 @@ function CartPageLogin() {
                       className="mnodr_btn ty_m ty_grayline payTracking"
                       type="button"
                       name="btnAddMbrNshpploc"
-                      data-pt-click="배송지변경_레이어|배송지 목록|주소추가하기"
                     >
                       <span className="mnodr_btn_tx4">+ 주소 추가하기</span>
                     </button>
@@ -131,7 +117,6 @@ function CartPageLogin() {
                     id="onceAddrChange"
                     type="button"
                     className="mnodr_btn ty_lg ty_gray5 payTracking"
-                    data-pt-click="배송지변경_레이어|하단 버튼|이번만 배송지 변경"
                   >
                     <strong className="mnodr_btn_tx">
                       {' '}
@@ -142,7 +127,6 @@ function CartPageLogin() {
                     id="basicAddrChange"
                     type="button"
                     className="mnodr_btn ty_lg ty_point payTracking"
-                    data-pt-click="배송지변경_레이어|하단 버튼|기본 배송지 변경"
                   >
                     <strong> 기본배송지 변경</strong>
                   </button>
