@@ -3,8 +3,8 @@ import { useRecoilState } from 'recoil';
 import { isCategorySelected } from '../../../recoil/isCategorySelected';
 import { SubCategoryList } from '../SubCategoryList';
 
-function CategoryItem({ data }) {
-  const { largeCategoryId, imgUrl, title, mediumCategoryList } = data;
+function CategoryItem({ data, imgUrl }) {
+  const { largeCategoryId, title, mediumCategoryList } = data;
   const [isSelected, setIsSelected] = useRecoilState(isCategorySelected);
 
   const handleClick = (e) => {

@@ -10,8 +10,6 @@ function CartPageParcelHeader() {
           className="blind codr_inp_chk cartTracking"
           name="btChekShppGrp"
           id="20"
-          data-tracking-cd="00044_000000204_t00060"
-          data-tracking-value="전체선택"
         />
         <label htmlFor="20">
           <span className="blind">택배배송상품전체선택</span>

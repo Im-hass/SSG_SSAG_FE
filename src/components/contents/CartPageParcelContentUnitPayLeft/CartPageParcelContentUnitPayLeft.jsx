@@ -11,11 +11,7 @@ function CartPageParcelContentUnitPayLeft() {
           <span className="ssg_tx">원</span>
         </del>
 
-        <button
-          type="button"
-          className="mnodr_btn_detail modal-alert-open"
-          data-layer-target="#_layerDiscountInfo_5092900303"
-        >
+        <button type="button" className="mnodr_btn_detail modal-alert-open">
           <i className="mnodr_ic ic_detail">
             <span className="blind">자세히 보기</span>
           </i>

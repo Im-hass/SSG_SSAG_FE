@@ -11,8 +11,7 @@ function CartPageControl() {
             id="chk_all"
             name="btChekAll"
             className="blind cartTracking"
-            data-tracking-cd="00044_000000199_t00060"
-            data-tracking-value="전체선택"
+            asdfasf
           />
           <label htmlFor="chk_all">
             <span className="blind">모든상품전체선택</span>
@@ -28,18 +27,10 @@ function CartPageControl() {
             // href="javascript:void(0);"
             href="/"
             className="mnodr_control_link layer_filter cartTracking"
-            data-type="cartMove"
-            data-tracking-cd="00044_000000199_t00060"
-            data-tracking-value="배송방법바꾸기"
           >
             <span className="mnodr_selbox_tx"> 배송방법바꾸기 </span>
           </a>
-          <a
-            href="/"
-            style={{ display: 'none' }}
-            className="modal-fix-open"
-            data-layer-target="#_layerMoveProduct"
-          >
+          <a href="/" style={{ display: 'none' }} className="modal-fix-open">
             ㅇㅅㅇ
           </a>
         </span>
@@ -50,8 +41,6 @@ function CartPageControl() {
           href="/"
           className="df cartTracking"
           name="btDelChekItemAll"
-          data-tracking-cd="00044_000000199_t00060"
-          data-tracking-value="품절상품삭제"
         >
           품절상품삭제
         </a>
@@ -60,8 +49,6 @@ function CartPageControl() {
           href="/"
           className="sm cartTracking"
           name="btDelChekItemAll"
-          data-tracking-cd="00044_000000199_t00060"
-          data-tracking-value="품절상품삭제"
         >
           품절삭제
         </a>
