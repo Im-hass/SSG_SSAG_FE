@@ -1,51 +1,7 @@
 import React from 'react';
 import { FilterList } from '../FilterList';
+import { RANK_OPTIONS } from '../../../assets/datas/RankOptions';
 import './SearchFilter.scss';
-
-const RANK_OPTIONS = [
-  {
-    isActive: true, // 임시
-    isRecommend: true, // 임시
-    title: 'rank',
-    value: '추천순',
-  },
-  {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'sale',
-    value: '판매량순',
-  },
-  {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'prcasc',
-    value: '낮은가격순',
-  },
-  {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'prcdsc',
-    value: '높은가격순',
-  },
-  {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'dcrt',
-    value: '할인율순',
-  },
-  {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'regdt',
-    value: '신상품순',
-  },
-  {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'cnt',
-    value: '리뷰많은순',
-  },
-];
 
 function SearchFilter() {
   return (
@@ -55,7 +11,7 @@ function SearchFilter() {
           <div className="m_ncatetblarea">
             <ul className="m_ncatetbl">
               {/* 뷰 타입 */}
-              <li className="view_td" data-areaid="view">
+              <li className="view_td">
                 <div className="posr">
                   <a href="/" id="_btn_view_type_toggle" className="btn_t">
                     <span className="sp_view ico_thmb">이미지형</span>
@@ -64,7 +20,7 @@ function SearchFilter() {
               </li>
 
               {/* 백화점상품 / 매장픽업 */}
-              <li className="filter_td" data-areaid="order">
+              <li className="filter_td">
                 <div className="in">
                   {/* 누르면 on 클래스 추가되고 option 출력 */}
                   <div className="cmft_sel_wrap">
@@ -80,22 +36,12 @@ function SearchFilter() {
                     </a>
                     <ul className="cmft_sel_lst">
                       <li>
-                        <a
-                          href="/"
-                          id="sd_store_chk"
-                          className="chk clickable"
-                          data-info="department"
-                        >
+                        <a href="/" id="sd_store_chk" className="chk clickable">
                           <span className="cmft_txt">백화점상품</span>
                         </a>
                       </li>
                       <li>
-                        <a
-                          href="/"
-                          id="magic_chk"
-                          className="chk clickable"
-                          data-info="picku"
-                        >
+                        <a href="/" id="magic_chk" className="chk clickable">
                           <span className="cmft_txt">매장픽업</span>
                         </a>
                       </li>
@@ -105,7 +51,7 @@ function SearchFilter() {
               </li>
 
               {/* 추천순 */}
-              <li className="rank_td" data-areaid="order">
+              <li className="rank_td">
                 {/* 누르면 active 클래스 추가되고 option 출력 */}
                 <div className="in">
                   <a href="/" className="btn_t">
@@ -131,7 +77,7 @@ function SearchFilter() {
                   <div className="m_ds_pos">
                     <div className="m_schmid" id="m_schmid">
                       <div className="detail_schwrap">
-                        <div className="detail_sch" data-areaid="category">
+                        <div className="detail_sch">
                           <span className="tit">카테고리</span>
                           <div className="ds_cont">
                             <span className="des_select">
@@ -152,7 +98,6 @@ function SearchFilter() {
                                     value="6000209194"
                                     title="컴퓨터/노트북/태블릿"
                                     className="clickable"
-                                    data-info="6000209194"
                                   >
                                     컴퓨터/노트북/태블릿
                                   </option>
@@ -160,7 +105,6 @@ function SearchFilter() {
                                     value="6000209203"
                                     title="휴대폰/스마트기기"
                                     className="clickable"
-                                    data-info="6000209203"
                                   >
                                     휴대폰/스마트기기
                                   </option>
@@ -168,7 +112,6 @@ function SearchFilter() {
                                     value="6000211273"
                                     title="문구/미술/사무용품"
                                     className="clickable"
-                                    data-info="6000211273"
                                   >
                                     문구/미술/사무용품
                                   </option>
@@ -176,7 +119,6 @@ function SearchFilter() {
                                     value="6000200799"
                                     title="가방/지갑"
                                     className="clickable"
-                                    data-info="6000200799"
                                   >
                                     가방/지갑
                                   </option>
@@ -184,7 +126,6 @@ function SearchFilter() {
                                     value="6000209202"
                                     title="영상/음향가전"
                                     className="clickable"
-                                    data-info="6000209202"
                                   >
                                     영상/음향가전
                                   </option>
@@ -192,7 +133,6 @@ function SearchFilter() {
                                     value="6000209196"
                                     title="PC주변기기/저장장치"
                                     className="clickable"
-                                    data-info="6000209196"
                                   >
                                     PC주변기기/저장장치
                                   </option>
@@ -200,7 +140,6 @@ function SearchFilter() {
                                     value="6000209199"
                                     title="내비/블랙박스/차량용품"
                                     className="clickable"
-                                    data-info="6000209199"
                                   >
                                     내비/블랙박스/차량용품
                                   </option>
@@ -208,7 +147,6 @@ function SearchFilter() {
                                     value="6000210596"
                                     title="도서"
                                     className="clickable"
-                                    data-info="6000210596"
                                   >
                                     도서
                                   </option>
@@ -216,7 +154,6 @@ function SearchFilter() {
                                     value="6000209197"
                                     title="카메라/캠코더"
                                     className="clickable"
-                                    data-info="6000209197"
                                   >
                                     카메라/캠코더
                                   </option>
@@ -224,7 +161,6 @@ function SearchFilter() {
                                     value="6000200803"
                                     title="명품잡화/아이웨어"
                                     className="clickable"
-                                    data-info="6000200803"
                                   >
                                     명품잡화/아이웨어
                                   </option>
@@ -232,7 +168,6 @@ function SearchFilter() {
                                     value="6000209195"
                                     title="게임/타이틀"
                                     className="clickable"
-                                    data-info="6000209195"
                                   >
                                     게임/타이틀
                                   </option>
@@ -240,7 +175,6 @@ function SearchFilter() {
                                     value="6000163570"
                                     title="완구/교구"
                                     className="clickable"
-                                    data-info="6000163570"
                                   >
                                     완구/교구
                                   </option>
@@ -248,7 +182,6 @@ function SearchFilter() {
                                     value="6000200802"
                                     title="시계/쥬얼리"
                                     className="clickable"
-                                    data-info="6000200802"
                                   >
                                     시계/쥬얼리
                                   </option>
@@ -256,7 +189,6 @@ function SearchFilter() {
                                     value="6000177371"
                                     title="조명/인테리어소품"
                                     className="clickable"
-                                    data-info="6000177371"
                                   >
                                     조명/인테리어소품
                                   </option>
@@ -264,7 +196,6 @@ function SearchFilter() {
                                     value="6000178524"
                                     title="청소/욕실/공구"
                                     className="clickable"
-                                    data-info="6000178524"
                                   >
                                     청소/욕실/공구
                                   </option>
@@ -272,7 +203,6 @@ function SearchFilter() {
                                     value="6000205356"
                                     title="캠핑/낚시용품"
                                     className="clickable"
-                                    data-info="6000205356"
                                   >
                                     캠핑/낚시용품
                                   </option>
@@ -280,7 +210,6 @@ function SearchFilter() {
                                     value="6000193742"
                                     title="스킨케어"
                                     className="clickable"
-                                    data-info="6000193742"
                                   >
                                     스킨케어
                                   </option>
@@ -288,7 +217,6 @@ function SearchFilter() {
                                     value="6000177369"
                                     title="거실/주방가구"
                                     className="clickable"
-                                    data-info="6000177369"
                                   >
                                     거실/주방가구
                                   </option>
@@ -296,7 +224,6 @@ function SearchFilter() {
                                     value="6000178525"
                                     title="생활/건강"
                                     className="clickable"
-                                    data-info="6000178525"
                                   >
                                     생활/건강
                                   </option>
@@ -304,7 +231,6 @@ function SearchFilter() {
                                     value="6000177370"
                                     title="서재/학생아동가구"
                                     className="clickable"
-                                    data-info="6000177370"
                                   >
                                     서재/학생아동가구
                                   </option>
@@ -312,7 +238,6 @@ function SearchFilter() {
                                     value="6000177372"
                                     title="DIY/시공"
                                     className="clickable"
-                                    data-info="6000177372"
                                   >
                                     DIY/시공
                                   </option>
@@ -320,7 +245,6 @@ function SearchFilter() {
                                     value="6000178523"
                                     title="주방용품"
                                     className="clickable"
-                                    data-info="6000178523"
                                   >
                                     주방용품
                                   </option>
@@ -328,7 +252,6 @@ function SearchFilter() {
                                     value="6000205355"
                                     title="등산/아웃도어"
                                     className="clickable"
-                                    data-info="6000205355"
                                   >
                                     등산/아웃도어
                                   </option>
@@ -336,7 +259,6 @@ function SearchFilter() {
                                     value="3500000958"
                                     title="악기"
                                     className="clickable"
-                                    data-info="3500000958"
                                   >
                                     악기
                                   </option>
@@ -344,7 +266,6 @@ function SearchFilter() {
                                     value="6000209198"
                                     title="에어컨/계절가전"
                                     className="clickable"
-                                    data-info="6000209198"
                                   >
                                     에어컨/계절가전
                                   </option>
@@ -352,7 +273,6 @@ function SearchFilter() {
                                     value="6000205354"
                                     title="스포츠웨어/용품"
                                     className="clickable"
-                                    data-info="6000205354"
                                   >
                                     스포츠웨어/용품
                                   </option>
@@ -360,7 +280,6 @@ function SearchFilter() {
                                     value="6000185640"
                                     title="반려동물용품"
                                     className="clickable"
-                                    data-info="6000185640"
                                   >
                                     반려동물용품
                                   </option>
@@ -368,7 +287,6 @@ function SearchFilter() {
                                     value="6000209200"
                                     title="냉장고/주방가전"
                                     className="clickable"
-                                    data-info="6000209200"
                                   >
                                     냉장고/주방가전
                                   </option>
@@ -376,7 +294,6 @@ function SearchFilter() {
                                     value="6000163573"
                                     title="유아동신발/잡화"
                                     className="clickable"
-                                    data-info="6000163573"
                                   >
                                     유아동신발/잡화
                                   </option>
@@ -384,7 +301,6 @@ function SearchFilter() {
                                     value="6000200800"
                                     title="모자/장갑/ACC"
                                     className="clickable"
-                                    data-info="6000200800"
                                   >
                                     모자/장갑/ACC
                                   </option>
@@ -392,7 +308,6 @@ function SearchFilter() {
                                     value="6000177368"
                                     title="침실/수납가구"
                                     className="clickable"
-                                    data-info="6000177368"
                                   >
                                     침실/수납가구
                                   </option>
@@ -400,7 +315,6 @@ function SearchFilter() {
                                     value="6000205361"
                                     title="수영/수상레저"
                                     className="clickable"
-                                    data-info="6000205361"
                                   >
                                     수영/수상레저
                                   </option>
@@ -408,7 +322,6 @@ function SearchFilter() {
                                     value="6000189392"
                                     title="남성패션"
                                     className="clickable"
-                                    data-info="6000189392"
                                   >
                                     남성패션
                                   </option>
@@ -416,7 +329,6 @@ function SearchFilter() {
                                     value="6000189453"
                                     title="언더웨어"
                                     className="clickable"
-                                    data-info="6000189453"
                                   >
                                     언더웨어
                                   </option>
@@ -424,7 +336,6 @@ function SearchFilter() {
                                     value="6000193747"
                                     title="미용기기/소품"
                                     className="clickable"
-                                    data-info="6000193747"
                                   >
                                     미용기기/소품
                                   </option>
@@ -432,7 +343,6 @@ function SearchFilter() {
                                     value="6000177367"
                                     title="침구/커튼/카페트"
                                     className="clickable"
-                                    data-info="6000177367"
                                   >
                                     침구/커튼/카페트
                                   </option>
@@ -440,7 +350,6 @@ function SearchFilter() {
                                     value="6000193745"
                                     title="바디케어"
                                     className="clickable"
-                                    data-info="6000193745"
                                   >
                                     바디케어
                                   </option>
@@ -448,7 +357,6 @@ function SearchFilter() {
                                     value="6000018405"
                                     title="취미/키덜트"
                                     className="clickable"
-                                    data-info="6000018405"
                                   >
                                     취미/키덜트
                                   </option>
@@ -456,7 +364,6 @@ function SearchFilter() {
                                     value="6000163569"
                                     title="유모차/카시트/실내용품"
                                     className="clickable"
-                                    data-info="6000163569"
                                   >
                                     유모차/카시트/실내용품
                                   </option>
@@ -464,7 +371,6 @@ function SearchFilter() {
                                     value="6000163568"
                                     title="출산/육아용품"
                                     className="clickable"
-                                    data-info="6000163568"
                                   >
                                     출산/육아용품
                                   </option>
@@ -472,7 +378,6 @@ function SearchFilter() {
                                     value="6000205357"
                                     title="골프웨어/용품/클럽"
                                     className="clickable"
-                                    data-info="6000205357"
                                   >
                                     골프웨어/용품/클럽
                                   </option>
@@ -480,7 +385,6 @@ function SearchFilter() {
                                     value="6000189500"
                                     title="캐주얼/유니섹스"
                                     className="clickable"
-                                    data-info="6000189500"
                                   >
                                     캐주얼/유니섹스
                                   </option>
@@ -489,7 +393,7 @@ function SearchFilter() {
                             </span>
                           </div>
                         </div>
-                        <div className="detail_sch" data-areaid="brand">
+                        <div className="detail_sch">
                           <span className="tit">브랜드</span>
                           <div className="ds_cont">
                             <span className="des_select">
@@ -505,7 +409,6 @@ function SearchFilter() {
                                   id="brand"
                                   title="옵션"
                                   multiple="multiple"
-                                  data-defaultvalue="전체"
                                 >
                                   <option
                                     value="2000000375"
@@ -864,7 +767,7 @@ function SearchFilter() {
                             <ul className="ds_schlist" />
                           </div>
                         </div>
-                        <div className="detail_sch" data-areaid="cls">
+                        <div className="detail_sch">
                           <span className="tit">상품유형</span>
                           <div className="ds_cont">
                             <span className="des_select">
@@ -880,7 +783,6 @@ function SearchFilter() {
                                   id="cls"
                                   title="옵션"
                                   multiple="multiple"
-                                  data-defaultvalue="전체"
                                 >
                                   <option value="department" title="백화점상품">
                                     백화점상품
@@ -894,7 +796,7 @@ function SearchFilter() {
                             <ul className="ds_schlist" />
                           </div>
                         </div>
-                        <div className="detail_sch" data-areaid="shpp">
+                        <div className="detail_sch">
                           <span className="tit">배송유형</span>
                           <div className="ds_cont">
                             <span className="des_select">
@@ -915,7 +817,6 @@ function SearchFilter() {
                                     value="picku"
                                     title="매장픽업"
                                     className="clickable"
-                                    data-info="picku"
                                   >
                                     매장픽업
                                   </option>
@@ -923,7 +824,6 @@ function SearchFilter() {
                                     value="qshpp"
                                     title="퀵배송"
                                     className="clickable"
-                                    data-info="qshpp"
                                   >
                                     퀵배송
                                   </option>
@@ -931,7 +831,6 @@ function SearchFilter() {
                                     value="con"
                                     title="모바일쿠폰"
                                     className="clickable"
-                                    data-info="con"
                                   >
                                     모바일쿠폰
                                   </option>
@@ -939,7 +838,6 @@ function SearchFilter() {
                                     value="direct"
                                     title="해외직구"
                                     className="clickable"
-                                    data-info="direct"
                                   >
                                     해외직구
                                   </option>
@@ -964,7 +862,6 @@ function SearchFilter() {
                                   id="filter"
                                   title="옵션"
                                   multiple="multiple"
-                                  data-defaultvalue="전체"
                                 >
                                   <option
                                     value="obanjang|spprice"

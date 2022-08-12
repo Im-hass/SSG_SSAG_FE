@@ -48,7 +48,7 @@ function SearchContent() {
         {hasResult && <RelateSearchValue />}
 
         <div className="m_scharea seach-background">
-          <div className="cm_sch_result v2" data-areaid="nr_description">
+          <div className="cm_sch_result v2">
             {/* 광고 배너 */}
             <div className="mcom_ban react-search">
               <span className=" gate_unit">

@@ -28,7 +28,6 @@ function RecentShoppingProductList() {
             <a
               href="https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000064626497&amp;siteNo=6009&amp;salestrNo=1013&amp;tarea=history_6005"
               className="clickable"
-              data-react-tarea="최근본|목록_상품|클릭|[엠포리오아르마니] [엠포리오아르마니] 엠보싱 로고 크루넥 티셔츠 (A511126045)"
               // onClick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);"
             >
               <div className="cmhistory_h_txt">
@@ -49,7 +48,6 @@ function RecentShoppingProductList() {
                   <img
                     className="ssg_lazy"
                     src="//sitem.ssgcdn.com/97/64/62/item/1000064626497_i1_120.jpg"
-                    data-src="//sitem.ssgcdn.com/97/64/62/item/1000064626497_i1_120.jpg"
                     onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?w=120&amp;h=120&amp;src=/ui/ssg/img/common/img_ready_500x500.jpg'"
                     alt="[엠포리오아르마니] [엠포리오아르마니] 엠보싱 로고 크루넥 티셔츠 (A511126045)"
                   />
@@ -63,19 +61,12 @@ function RecentShoppingProductList() {
                 type="button"
                 className="cmhistory_bt_cart"
                 onClick="frontCommCart.put(this, '');"
-                data-react-tarea="최근본|목록_상품|장바구니|[엠포리오아르마니] [엠포리오아르마니] 엠보싱 로고 크루넥 티셔츠 (A511126045)"
               >
                 <i className="sp_cmhistory_ic cmhistory_ic_cart">
                   <span className="blind">장바구니 담기</span>
                 </i>
               </button>
-              <span
-                style={{ display: 'none' }}
-                className="disp_cart_data"
-                data-cart-type="10"
-                data-cart-inflo-site-no="6004"
-                data-cart-ordqty="1"
-              >
+              <span style={{ display: 'none' }} className="disp_cart_data">
                 {/* "advertBidId":"","giftBtnShowType":"","giftBtnActType":"N","itemChrctDivCd":"10","itemLnkd":"https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000064626497&amp;siteNo=6009&amp;salestrNo=1013","giftBtnMsg":"선물하기
                                 불가 상품
                                 입니다.","bothSsgMorningShppYn":"N","goItemDetailYn":"Y","drctPurchYn":"N","itemId":"1000064626497","dealItemYn":"N","advertExtensTeryDivCd":"","cleaningLabYn":"N","siteNo":"6009","useForcedSsg":"N","cartPsblType":"","uitemId":"00000","infloSiteNo":"6005","salestrNo":"1013","msgItemDetail":" */}
@@ -98,7 +89,6 @@ function RecentShoppingProductList() {
                 <button
                   type="button"
                   className="cmlike_btn _js_cmlike_btn sel_clip clickable"
-                  data-react-tarea="최근본|목록_상품|클립|엠포리오아르마니"
                 >
                   <span className="cmlike_ico">
                     <i className="cmlike_secondary_m" />
@@ -145,7 +135,6 @@ function RecentShoppingProductList() {
             <a
               href="https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000349155743&amp;siteNo=6009&amp;salestrNo=1013&amp;tarea=history_6005"
               className="clickable"
-              data-react-tarea="최근본|목록_상품|클릭|[엠포리오아르마니] 로고 그래픽 이지 티셔츠 [아르마니 2022 S/S] A512126096"
               // onClick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);"
             >
               <div className="cmhistory_h_txt">
@@ -166,7 +155,6 @@ function RecentShoppingProductList() {
                   <img
                     className="ssg_lazy"
                     src="//sitem.ssgcdn.com/43/57/15/item/1000349155743_i1_120.jpg"
-                    data-src="//sitem.ssgcdn.com/43/57/15/item/1000349155743_i1_120.jpg"
                     onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?w=120&amp;h=120&amp;src=/ui/ssg/img/common/img_ready_500x500.jpg'"
                     alt="[엠포리오아르마니] 로고 그래픽 이지 티셔츠 [아르마니 2022 S/S] A512126096"
                   />
@@ -180,19 +168,12 @@ function RecentShoppingProductList() {
                 type="button"
                 className="cmhistory_bt_cart"
                 onClick="frontCommCart.put(this, '');"
-                data-react-tarea="최근본|목록_상품|장바구니|[엠포리오아르마니] 로고 그래픽 이지 티셔츠 [아르마니 2022 S/S] A512126096"
               >
                 <i className="sp_cmhistory_ic cmhistory_ic_cart">
                   <span className="blind">장바구니 담기</span>
                 </i>
               </button>
-              <span
-                style={{ display: 'none' }}
-                className="disp_cart_data"
-                data-cart-type="10"
-                data-cart-inflo-site-no="6009"
-                data-cart-ordqty="1"
-              >
+              <span style={{ display: 'none' }} className="disp_cart_data">
                 {/* "advertBidId":"","giftBtnShowType":"","giftBtnActType":"N","itemChrctDivCd":"10","itemLnkd":"https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000349155743&amp;siteNo=6009&amp;salestrNo=1013","giftBtnMsg":"선물하기
                                 불가 상품
                                 입니다.","bothSsgMorningShppYn":"N","goItemDetailYn":"Y","drctPurchYn":"N","itemId":"1000349155743","dealItemYn":"N","advertExtensTeryDivCd":"","cleaningLabYn":"N","siteNo":"6009","useForcedSsg":"N","cartPsblType":"","uitemId":"00000","infloSiteNo":"6005","salestrNo":"1013","msgItemDetail":" */}
@@ -215,7 +196,6 @@ function RecentShoppingProductList() {
                 <button
                   type="button"
                   className="cmlike_btn _js_cmlike_btn sel_clip clickable"
-                  data-react-tarea="최근본|목록_상품|클립|엠포리오아르마니"
                 >
                   <span className="cmlike_ico">
                     <i className="cmlike_secondary_m" />
@@ -261,7 +241,6 @@ function RecentShoppingProductList() {
             <a
               href="https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000179980808&amp;siteNo=6004&amp;salestrNo=6005&amp;tarea=history_6005"
               className="clickable"
-              data-react-tarea="최근본|목록_상품|클릭|[기프티콘] [컬쳐랜드]모바일 문화상품권 5만원"
               // onClick="javascript:setCommonGnbCookie('useGnbAdvertCk','',-1);"
             >
               <div className="cmhistory_h_txt">
@@ -281,7 +260,6 @@ function RecentShoppingProductList() {
                   <img
                     className="ssg_lazy"
                     src="//sitem.ssgcdn.com/08/08/98/item/1000179980808_i1_120.jpg"
-                    data-src="//sitem.ssgcdn.com/08/08/98/item/1000179980808_i1_120.jpg"
                     onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?w=120&amp;h=120&amp;src=/ui/ssg/img/common/img_ready_500x500.jpg'"
                     alt="[기프티콘] [컬쳐랜드]모바일 문화상품권 5만원"
                   />
@@ -295,19 +273,12 @@ function RecentShoppingProductList() {
                 type="button"
                 className="cmhistory_bt_cart"
                 onClick="frontCommCart.put(this, '');"
-                data-react-tarea="최근본|목록_상품|장바구니|[기프티콘] [컬쳐랜드]모바일 문화상품권 5만원"
               >
                 <i className="sp_cmhistory_ic cmhistory_ic_cart">
                   <span className="blind">장바구니 담기</span>
                 </i>
               </button>
-              <span
-                style={{ display: 'none' }}
-                className="disp_cart_data"
-                data-cart-type="10"
-                data-cart-inflo-site-no="6004"
-                data-cart-ordqty="1"
-              >
+              <span style={{ display: 'none' }} className="disp_cart_data">
                 {/* "advertBidId":"","giftBtnShowType":"","giftBtnActType":"N","itemChrctDivCd":"50","itemLnkd":"https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000179980808&amp;siteNo=6004&amp;salestrNo=6005","giftBtnMsg":" */}
                 선물하기 불가 상품 입니다.
                 {/* ","bothSsgMorningShppYn":"N","goItemDetailYn":"N","drctPurchYn":"N","itemId":"1000179980808","dealItemYn":"N","advertExtensTeryDivCd":"","cleaningLabYn":"N","siteNo":"6004","useForcedSsg":"N","cartPsblType":"","uitemId":"00000","infloSiteNo":"6005","salestrNo":"6005","msgItemDetail":"" */}
@@ -328,7 +299,6 @@ function RecentShoppingProductList() {
                 <button
                   type="button"
                   className="cmlike_btn _js_cmlike_btn sel_clip clickable"
-                  data-react-tarea="최근본|목록_상품|클립|기프티콘"
                 >
                   <span className="cmlike_ico">
                     <i className="cmlike_secondary_m" />

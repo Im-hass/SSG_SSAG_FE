@@ -9,14 +9,12 @@ function CategoryFooter() {
           href="/"
           // onClick="appBroswer('http://m.ssg.com/customer/main.ssg?aplSiteNo=6004&_mpop=new','stack'); return false;"
           className="clnb_help_link clickable"
-          data-react-tarea="카테고리_LNB|기타|고객센터_N"
         >
           <span>고객센터</span>
         </a>
         <a
           href="http://m.ssg.com/comm/reportItem.ssg?&divcTypeCd=50&siteNo=6004"
           className="clnb_help_link clickable"
-          data-react-tarea="카테고리_LNB|기타|제안해봐쓱_N"
         >
           <span>제안해봐쓱</span>
         </a>

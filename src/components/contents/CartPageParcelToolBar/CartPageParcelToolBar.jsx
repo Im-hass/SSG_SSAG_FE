@@ -26,10 +26,6 @@ function CartPageParcelToolBar() {
             // href="javascript:void(0);"
             href="/"
             className="mnodr_tx_link2 layer_filter cartTracking"
-            data-btn-target="#_layerDiscountCharge"
-            data-type="cardDiscount"
-            data-tracking-cd="00044_000000094_t00060"
-            data-tracking-value="청구할인혜택보기"
           >
             청구할인 혜택보기
             <i className="icon ty_xs icon_chevron_right" aria-hidden="true" />

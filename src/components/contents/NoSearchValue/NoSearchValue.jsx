@@ -11,7 +11,7 @@ function NoSearchValue({ hasResult, searchValue }) {
         <p>단어의 철자나 띄어쓰기가 정확한지 확인해 보세요.</p>
       </div>
 
-      <div className="cm_search_ssgclick" data-areaid="nr_advert_item">
+      <div className="cm_search_ssgclick">
         <div className="cm_search_titbox">
           <h3>이런 상품 어떠세요?</h3>
           <div className="ssg-tooltip-wrap tt_adinfo_n">
