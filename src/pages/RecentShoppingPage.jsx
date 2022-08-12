@@ -15,7 +15,7 @@ function RecentShoppingPage() {
         type="text/css"
         href="//sui.ssgcdn.com/ui/m_ssg/css/mcom_page_history.css"
       />
-      <div id="m_container" className="mcom_container" data-iframe-height="">
+      <div id="m_container" className="mcom_container">
         <div id="m_content">
           <div className="cmhistory_wrap" id="_cmhistory_wrap">
             <RecentShoppingHeader />

@@ -10,7 +10,7 @@ import { ToolbarList } from '../components/toolbar/ToolbarList';
 function CategoryPage() {
   return (
     <div id="m_wrap" className="mcom_wrap sm_v3 ">
-      <div id="m_container" className="mcom_container" data-iframe-height="">
+      <div id="m_container" className="mcom_container">
         <div id="m_content">
           <div className="mcom_category_renew react-area">
             <Header />

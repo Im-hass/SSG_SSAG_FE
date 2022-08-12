@@ -12,7 +12,7 @@ function AddDestinationPage() {
 
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
-      <div id="m_container" className="mcom_container" data-iframe-height="">
+      <div id="m_container" className="mcom_container">
         <MobileHeader title="배송지 추가" />
 
         {!isOpen && <AddAddressMyInfo handleIsOpen={handleIsOpen} />}
