@@ -9,7 +9,7 @@ function SearchList({ datas }) {
         {datas &&
           datas.map((data) => <SearchItem key={data.productId} data={data} />)}
       </ul>
-      <button type="button" className="cgsearch_delete_all" data-value="mbr">
+      <button type="button" className="cgsearch_delete_all">
         검색어 전체 삭제
       </button>
     </div>

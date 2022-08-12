@@ -12,10 +12,7 @@ function HeaderSearchButton() {
   return (
     <div className="btn_cate btn_search">
       <button type="button" onClick={() => handleOpenSearch('open')}>
-        <span
-          className="sp_ctg_icon ctg_icon_search payTracking"
-          data-pt-click="장바구니|GNB|검색"
-        >
+        <span className="sp_ctg_icon ctg_icon_search payTracking">
           <span className="blind">검색</span>
         </span>
       </button>

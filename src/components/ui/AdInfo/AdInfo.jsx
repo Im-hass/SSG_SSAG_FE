@@ -54,7 +54,6 @@ function AdInfo({ isBanner }) {
             className="ssg-tooltip-layer cmitem_tt_adinfo_layer clickable"
             role="tooltip"
             aria-label="광고란?"
-            data-react-tarea="상품상세|추천상품영역_입찰형광고|안내_클릭"
           >
             광고구좌를 구매한 상품으로 입찰가 순으로 전시됩니다.
             <button

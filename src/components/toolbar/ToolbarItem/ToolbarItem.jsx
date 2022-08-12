@@ -6,7 +6,7 @@ import './ToolbarItem.scss';
 
 function ToolbarItem({ data }) {
   const { link, iconName, txt, imgUrl, hasHistory } = data;
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [, setIsOpen] = useRecoilState(isOpenState);
 
   const handleOpenSearch = (action, text) => {
     if (text === '통합검색') {

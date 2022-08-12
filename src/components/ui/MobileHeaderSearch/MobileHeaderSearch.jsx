@@ -18,12 +18,7 @@ function MobileHeaderSearch() {
           <label htmlFor="query">
             <span className="blind">검색하기</span>
           </label>
-          <input
-            type="hidden"
-            id="select_site_no"
-            value="6005"
-            data-evn="PROD"
-          />
+          <input type="hidden" id="select_site_no" value="6005" />
         </span>
 
         <button type="button" className="addr_del">
