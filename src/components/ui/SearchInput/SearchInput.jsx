@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isOpenState } from '../../../recoil/isOpenState';
-import { searchValueState } from '../../../recoil/searchValueState';
+import { isOpenState, searchValueState } from '../../../recoil/states';
 import './SearchInput.scss';
 
 function SearchInput() {

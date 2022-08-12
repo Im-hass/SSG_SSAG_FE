@@ -3,7 +3,7 @@ import './Header.scss';
 import { useRecoilState } from 'recoil';
 import { SearchInput, Cart, HeaderLeftSide } from '../../ui';
 import SearchBox from '../../ui/SearchBox/SearchBox';
-import { isOpenState } from '../../../recoil/isOpenState';
+import { isOpenState } from '../../../recoil/states';
 
 function Header() {
   const [isOpen] = useRecoilState(isOpenState);

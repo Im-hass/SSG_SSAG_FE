@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { isLoginState } from '../../../recoil/isLoginState';
-import { isItemsState } from '../../../recoil/isItemsState';
+import { isLoginState, isItemsState } from '../../../recoil/states';
 import { CartPageLogin, CartPageNotLogin, CartPageTab } from '../index';
 import './CartPageLoginInfo.scss';
 

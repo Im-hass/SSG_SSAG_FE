@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import { searchValueState } from '../../../recoil/states';
 import { AdInfo } from '../../ui/AdInfo';
 import { NoSearchValue } from '../NoSearchValue';
 import { FindSearchValue } from '../FindSearchValue';
 import { RelateSearchValue } from '../../common/RelateSearchValue';
 import './SearchContent.scss';
-import { searchValueState } from '../../../recoil/searchValueState';
 
 function SearchContent() {
   const { value } = useParams();

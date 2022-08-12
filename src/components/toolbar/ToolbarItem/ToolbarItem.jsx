@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isOpenState } from '../../../recoil/isOpenState';
+import { isOpenState } from '../../../recoil/states';
 import './ToolbarItem.scss';
 
 function ToolbarItem({ data }) {
