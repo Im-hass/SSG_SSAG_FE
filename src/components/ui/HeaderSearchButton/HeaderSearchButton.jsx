@@ -1,15 +1,13 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { isOpenState } from '../../../recoil/isOpenState';
+import { isOpenState } from '../../../recoil/states';
 import './HeaderSearchButton.scss';
 
 function HeaderSearchButton() {
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [, setIsOpen] = useRecoilState(isOpenState);
 
-  const handleOpenSearch = (action) => {
-    console.log('clicked');
-    return action === 'open' ? setIsOpen(true) : setIsOpen(false);
-  };
+  const handleOpenSearch = (action) =>
+    action === 'open' ? setIsOpen(true) : setIsOpen(false);
 
   return (
     <div className="btn_cate btn_search">

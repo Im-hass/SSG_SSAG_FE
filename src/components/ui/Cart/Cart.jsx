@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
-import { isOpenState } from '../../../recoil/isOpenState';
+import { isOpenState } from '../../../recoil/states';
 import './Cart.scss';
 
 function Cart() {
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [, setIsOpen] = useRecoilState(isOpenState);
 
   const handleClick = () => {
     setIsOpen(false);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Footer } from '../../components/common/index';
 import {
@@ -11,14 +12,12 @@ import {
   RequireLabel,
   WithdrawTit,
   SignUpInput,
-  SignUpInputBtnSet,
 } from '../../components/ui/index';
 import SignUpTermTit from '../../components/ui/SignUpTermTit/SignUpTermTit';
 import * as datas from '../../assets/datas/SignUpFormContents';
 
 function SignUpFormPage() {
   const {
-    INPUT_BTN_CONTENT,
     INPUT_CONTENT,
     AGREEMENT_CONTENTS1,
     AGREEMENT_CONTENTS2,
@@ -31,6 +30,7 @@ function SignUpFormPage() {
 
   return (
     <div id="m_container" className="mcom_container" data-iframe-height="">
+      <MobileHeader title="신세계포인트 통합회원 가입" />
       <form id="joinForm" method="POST">
         <input
           type="hidden"
@@ -46,7 +46,19 @@ function SignUpFormPage() {
                   <RequireLabel htmlFor="mbrLoginId" labelValue="아이디" />
                 </dt>
                 <dd>
-                  <SignUpInputBtnSet object={INPUT_BTN_CONTENT[0]} />
+                  <div className="cmem_inpbtn_set" id="idIpt">
+                    <span className="cmem_inp_txt">
+                      <SignUpInput object={INPUT_CONTENT[0]} />
+                    </span>
+                    <button
+                      type="button"
+                      className="cmem_btn cmem_btn_gray3"
+                      id="checkDuplicateLoginIdBtn"
+                    >
+                      중복확인
+                    </button>
+                    <input type="hidden" id="isDuplicateMbrLoginId" value="" />
+                  </div>
                   <span className="cmem_noti">
                     <em className="usable_value">
                       <p id="id_msg" />
@@ -61,8 +73,12 @@ function SignUpFormPage() {
                   <RequireLabel htmlFor="pwd" labelValue="비밀번호" />
                 </dt>
                 <dd>
-                  <SignUpInput object={INPUT_CONTENT[0]} />
-                  <SignUpInput object={INPUT_CONTENT[1]} />
+                  <div className="cmem_inp_txt">
+                    <SignUpInput object={INPUT_CONTENT[1]} />
+                  </div>
+                  <div className="cmem_inp_txt">
+                    <SignUpInput object={INPUT_CONTENT[2]} />
+                  </div>
                 </dd>
               </dl>
             </div>
@@ -72,7 +88,9 @@ function SignUpFormPage() {
                   <RequireLabel htmlFor="mem_name" labelValue="이름" />
                 </dt>
                 <dd>
-                  <SignUpInput object={INPUT_CONTENT[2]} />
+                  <div className="cmem_inp_txt">
+                    <SignUpInput object={INPUT_CONTENT[3]} />
+                  </div>
                 </dd>
               </dl>
             </div>
@@ -90,7 +108,18 @@ function SignUpFormPage() {
                     <RequireLabel htmlFor="zipcd" labelValue="주소" />
                   </dt>
                   <dd>
-                    <SignUpInputBtnSet object={INPUT_BTN_CONTENT[1]} />
+                    <div className="cmem_inpbtn_set">
+                      <span className="cmem_inp_txt">
+                        <SignUpInput object={INPUT_CONTENT[4]} />
+                      </span>
+                      <Link
+                        to="/addDestination"
+                        className="cmem_btn cmem_btn_gray"
+                        id="btnPostNum"
+                      >
+                        우편번호<span className="blind">찾기</span>
+                      </Link>
+                    </div>
                     <div className="addr_info v2" id="addr_info" />
                   </dd>
                 </dl>
@@ -104,7 +133,9 @@ function SignUpFormPage() {
                     <RequireLabel htmlFor="mem_hpno" labelValue="휴대폰번호" />
                   </dt>
                   <dd>
-                    <SignUpInput object={INPUT_CONTENT[3]} />
+                    <div className="cmem_inp_txt">
+                      <SignUpInput object={INPUT_CONTENT[5]} />
+                    </div>
                   </dd>
                 </dl>
               </div>
@@ -115,7 +146,9 @@ function SignUpFormPage() {
                   <RequireLabel htmlFor="email" labelValue="이메일주소" />
                 </dt>
                 <dd>
-                  <SignUpInput object={INPUT_CONTENT[4]} />
+                  <div className="cmem_inp_txt">
+                    <SignUpInput object={INPUT_CONTENT[6]} />
+                  </div>
                 </dd>
               </dl>
             </div>
@@ -155,7 +188,12 @@ function SignUpFormPage() {
               </div>
             </div>
             <div className="cmem_row">
-              <MemberNotice title="선택 항목에 동의하지 않더라도 SSG,COM회원가입 및 기본 서비스를 이용하실 수 있습니다." />
+              <p className="cmem_noti">
+                <strong style={{ fontWeight: 'bold' }}>
+                  선택 항목에 동의하지 않더라도 SSG,COM회원가입 및 기본 서비스를
+                  이용하실 수 있습니다.
+                </strong>
+              </p>
             </div>
             <Button
               type="submit"

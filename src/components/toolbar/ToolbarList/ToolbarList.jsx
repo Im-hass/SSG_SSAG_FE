@@ -34,14 +34,11 @@ const TOOL_LIST = [
 
 function ToolbarList() {
   return (
-    <div>
-      <h2>Toolbar List</h2>
-      <div id="m_toolbar" className="mcom_toolbar_v2 react-area">
-        <ul className="toolbar_menu" role="navigation">
-          {TOOL_LIST &&
-            TOOL_LIST.map((v) => <ToolbarItem data={v} key={v.txt} />)}
-        </ul>
-      </div>
+    <div id="m_toolbar" className="mcom_toolbar_v2 react-area">
+      <ul className="toolbar_menu" role="navigation">
+        {TOOL_LIST &&
+          TOOL_LIST.map((v) => <ToolbarItem data={v} key={v.txt} />)}
+      </ul>
     </div>
   );
 }

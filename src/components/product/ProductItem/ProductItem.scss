@@ -1,0 +1,13 @@
+.cmitem_grid .cmitem_grid_lst.cmitem_ty_thmb .cmitem_grid_item.list-wide:nth-child(odd) {
+  padding-right: 2.5px;
+  padding-left: 0;
+}
+
+.cmitem_grid .cmitem_grid_lst.cmitem_ty_thmb .cmitem_grid_item.list-wide:nth-child(even) {
+  padding-right: 0;
+  padding-left: 2.5px;
+}
+
+.mnsditem_detail {
+  padding: 10px 15px 0;
+}

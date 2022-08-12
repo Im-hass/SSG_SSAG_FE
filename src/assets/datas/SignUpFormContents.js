@@ -1,4 +1,4 @@
-export const INPUT_BTN_CONTENT = [
+export const INPUT_CONTENT = [
   {
     type: 'text',
     title: '아이디 입력',
@@ -6,24 +6,7 @@ export const INPUT_BTN_CONTENT = [
     placeholder: '영어 또는 숫자로 6~20자리',
     name: 'mbrDto.mbrLoginId',
     maxLength: '20',
-    btnClass: 'cmem_btn cmem_btn_gray3',
-    btnId: 'checkDuplicateLoginIdBtn',
-    btnValue: '중복확인',
   },
-  {
-    type: 'text',
-    title: '',
-    id: 'zipcd',
-    placeholder: '',
-    name: 'mbrNshpploc[0].zipcd',
-    maxLength: '',
-    btnClass: 'cmem_btn cmem_btn_gray',
-    btnId: 'btnPostNum',
-    btnValue: '우편번호',
-  },
-];
-
-export const INPUT_CONTENT = [
   {
     type: 'password',
     id: 'pwd',
@@ -47,6 +30,14 @@ export const INPUT_CONTENT = [
     placeholder: '한글로 입력',
     name: 'mbrDto.mbrLoginName',
     maxLength: '20',
+  },
+  {
+    type: 'text',
+    title: '',
+    id: 'zipcd',
+    placeholder: '',
+    name: 'mbrNshpploc[0].zipcd',
+    maxLength: '',
   },
   {
     type: 'tel',

@@ -7,10 +7,12 @@ import {
 } from '../../contents';
 import './Footer.scss';
 
-function Footer() {
+function Footer(props) {
+  const { pageName } = props;
+
   return (
     <footer id="m_footer" className="mcom_footer react-area">
-      <FooterNotification />
+      {pageName === 'main' && <FooterNotification />}
       <FooterService />
       <FooterButtonBox />
       <FooterMallWrap />

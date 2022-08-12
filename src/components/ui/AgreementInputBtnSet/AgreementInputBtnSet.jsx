@@ -7,7 +7,7 @@ function AgreementInputBtnSet(props) {
   return (
     <>
       {array.map((item) => (
-        <div key={item.id}>
+        <div className="cmem_term_box" key={item.id}>
           <AgreementInput object={item} />
           <a href="/" className="cmem_btn cmem_btn_gray3" title="새창 열림">
             내용보기

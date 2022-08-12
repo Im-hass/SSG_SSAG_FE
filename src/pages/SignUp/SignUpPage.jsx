@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { Footer } from '../../components/common/index';
 import CircleImgList from '../../components/ui/CircleImgList/CircleImgList';
 import {
@@ -67,11 +69,11 @@ function SignUpPage() {
                 />
               ))}
             </ul>
-            <Button
-              type="button"
-              className="cmem_btn cmem_btn_orange"
-              name="통합회원가입"
-            />
+            <div className="cmem_btn_area">
+              <Link to="/signupAgreement" className="cmem_btn cmem_btn_orange">
+                통합회원가입
+              </Link>
+            </div>
           </div>
         </div>
         <div className="cmem_card">
