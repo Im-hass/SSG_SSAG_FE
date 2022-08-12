@@ -7,7 +7,7 @@ function LikeButton() {
         <button
           type="button"
           className="cmlike_btn _js_cmlike_btn clickable"
-          onClick="ssg_ad.adClick(this, {position: 'clip'});"
+          // onClick="ssg_ad.adClick(this, {position: 'clip'});"
         >
           <span className="cmlike_ico">
             <i className="cmlike_primary_m" />
