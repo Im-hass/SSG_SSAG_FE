@@ -1,6 +1,6 @@
 import React from 'react';
 import './DestinationBtns.scss';
-import { DES_BTNS_LIST } from '../../../assets/datas/DestinationData';
+import { DES_BTNS_LIST } from '../../../assets/datas';
 
 function DestinationBtns() {
   return (

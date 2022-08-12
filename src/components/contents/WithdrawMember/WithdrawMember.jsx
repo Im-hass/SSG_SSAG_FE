@@ -12,7 +12,7 @@ import {
 } from '../../ui/index';
 import { Footer } from '../../common/index';
 
-import * as datas from '../../../assets/datas/WithdrawContents';
+import * as datas from '../../../assets/datas';
 
 function WithdrawMember() {
   const {

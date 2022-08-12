@@ -1,6 +1,6 @@
 import React from 'react';
 import './DestinationTabList.scss';
-import { DES_TAB_LIST } from '../../../assets/datas/DestinationData';
+import { DES_TAB_LIST } from '../../../assets/datas';
 
 function DestinationTabList() {
   return (

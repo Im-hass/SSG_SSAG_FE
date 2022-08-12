@@ -1,6 +1,6 @@
 import React from 'react';
 import { CategoryItem } from '../CategoryItem';
-import { CATEGORY_LIST_DATA } from '../../../assets/datas/CategoryList';
+import { CATEGORY_LIST_DATA } from '../../../assets/datas';
 
 function CategoryList() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FilterList } from '../FilterList';
-import { RANK_OPTIONS } from '../../../assets/datas/RankOptions';
+import { RANK_OPTIONS } from '../../../assets/datas';
 import './SearchFilter.scss';
 
 function SearchFilter() {

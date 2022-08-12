@@ -1,6 +1,6 @@
 import React from 'react';
 import { ServiceItem } from '../ServiceItem';
-import { SERVICE_LIST_DATA } from '../../../assets/datas/ServiceList';
+import { SERVICE_LIST_DATA } from '../../../assets/datas';
 
 function ServiceList() {
   return (

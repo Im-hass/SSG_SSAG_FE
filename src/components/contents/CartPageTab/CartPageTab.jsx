@@ -1,6 +1,6 @@
 import React from 'react';
+import { CART_TAB_LIST } from '../../../assets/datas';
 import './CartPageTab.scss';
-import { CART_TAB_LIST } from '../../../assets/datas/CartPageTab';
 
 function CartPageTab() {
   return (

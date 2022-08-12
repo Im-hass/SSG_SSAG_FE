@@ -1,6 +1,6 @@
 import React from 'react';
 import './FooterMallWrap.scss';
-import { MALL_WRAP_CONTENTS } from '../../../assets/datas/MallContentsList';
+import { MALL_WRAP_CONTENTS } from '../../../assets/datas';
 
 function FooterMallWrap() {
   return (

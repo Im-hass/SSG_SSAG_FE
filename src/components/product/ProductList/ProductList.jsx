@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductList.scss';
 import ProductItem from '../ProductItem/ProductItem';
-import { PRODUCT_LIST } from '../../../assets/datas/ProductList';
+import { PRODUCT_LIST } from '../../../assets/datas';
 
 function ProductList({ hasResult }) {
   return (

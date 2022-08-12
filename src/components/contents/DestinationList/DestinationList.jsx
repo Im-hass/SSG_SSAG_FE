@@ -1,5 +1,5 @@
 import React from 'react';
-import { MY_DES_LIST } from '../../../assets/datas/DestinationData';
+import { MY_DES_LIST } from '../../../assets/datas';
 import { DestinationListBtns } from '../index';
 import './DestinationList.scss';
 
