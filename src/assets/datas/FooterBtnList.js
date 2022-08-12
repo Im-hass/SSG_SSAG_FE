@@ -15,9 +15,8 @@ export const BUTTON_LIST = [
   },
   {
     id: 3,
-    href: '#',
-    onClick:
-      "appBroswer('https://member.ssg.com/m/member/join/simpleJoinIntro.ssg', 'stack'); return false;",
+    href: '/signup',
+    onClick: '',
     name: '회원가입',
   },
   {
