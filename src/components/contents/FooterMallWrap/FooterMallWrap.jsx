@@ -19,7 +19,7 @@ const MALL_WRAP_CONTENTS = [
     name: '회사소개',
   },
   {
-    id: 2,
+    id: 3,
     href: '/',
     title: '새창열림',
     onClick:
@@ -27,7 +27,7 @@ const MALL_WRAP_CONTENTS = [
     name: '이용약관',
   },
   {
-    id: 3,
+    id: 4,
     href: '/',
     title: '새창열림',
     onClick:
@@ -35,7 +35,7 @@ const MALL_WRAP_CONTENTS = [
     name: '전자금융거래이용약관',
   },
   {
-    id: 4,
+    id: 5,
     href: '/',
     title: '새창열림',
     onClick:
@@ -43,7 +43,7 @@ const MALL_WRAP_CONTENTS = [
     name: '개인정보처리방침',
   },
   {
-    id: 5,
+    id: 6,
     href: '/',
     title: '새창열림',
     onClick:

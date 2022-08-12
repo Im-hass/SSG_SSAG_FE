@@ -1,7 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { MainPage, NotFoundPage, RecentShoppingPage, CartPage } from '../pages';
-import { SignUpPage, SignUpAuthPage } from '../pages/SignUp/index';
+import {
+  SignUpPage,
+  SignUpAuthPage,
+  SignUpFormPage,
+  SignUpAgreementPage,
+} from '../pages/SignUp/index';
 import { Login, WithdrawMember } from './contents/index';
 
 function App() {
@@ -16,6 +21,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signup/auth" element={<SignUpAuthPage />} />
+        <Route path="/signup/agreement" element={<SignUpAgreementPage />} />
+        <Route path="/signup/form" element={<SignUpFormPage />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="*" element={<NotFoundPage />} />
