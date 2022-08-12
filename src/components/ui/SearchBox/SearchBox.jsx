@@ -3,9 +3,9 @@ import SearchList from '../SearchList/SearchList';
 import './SearchBox.scss';
 
 const datas = [
-  { to: '/', word: '아이패드' },
-  { to: '/', word: '애플워치' },
-  { to: '/', word: '갤럭시 워치' },
+  { productId: 5, word: '아이패드' },
+  { productId: 6, word: '애플워치' },
+  { productId: 7, word: '갤럭시 워치' },
 ];
 
 function SearchBox() {
