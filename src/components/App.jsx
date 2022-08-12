@@ -13,6 +13,12 @@ import {
   MyPage,
   ProductDetailPage,
 } from '../pages';
+import {
+  SignUpPage,
+  SignUpAuthPage,
+  SignUpFormPage,
+  SignUpAgreementPage,
+} from '../pages/SignUp';
 import { Login, WithdrawMember } from './contents/index';
 
 function App() {
@@ -28,6 +34,10 @@ function App() {
         <Route path="/my" element={<MyPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/signupAuth" element={<SignUpAuthPage />} />
+        <Route path="/signupAgreement" element={<SignUpAgreementPage />} />
+        <Route path="/signupForm" element={<SignUpFormPage />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />

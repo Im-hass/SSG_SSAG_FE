@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import {
   Captcha,
-  HiddenInput,
   Input,
   CheckCircleInput,
   MobileHeader,
@@ -59,14 +60,12 @@ function Login() {
       <div className="cmem_ct_login v2">
         <div className="cmem_login_form">
           <form id="login_form" method="post">
-            <HiddenInput
-              inputName="loginCertCode"
-              inputValue="L6DqmLF_JvV1FQfVUTk1B10yp9WKV1xlQDy"
+            <input
+              type="hidden"
+              name="loginCertCode"
+              value="L6DqmLF_JvV1FQfVUTk1B10yp9WKV1xlQDy"
             />
-            <HiddenInput
-              inputName="PCID"
-              inputValue="16587089474241102959881"
-            />
+            <input type="hidden" name="PCID" value="16587089474241102959881" />
             <fieldset>
               <legend>로그인</legend>
               <div className="cmem_inp_area">
@@ -99,7 +98,7 @@ function Login() {
               <div className="cmem_login_support">
                 <a href="/m/member/findIdPw.ssg">아이디 찾기</a>
                 <a href="/m/member/findIdPw.ssg?tabType=pw">비밀번호 찾기</a>
-                <a href="/m/member/join/simpleJoinIntro.ssg">회원가입</a>
+                <Link to="/signup">회원가입</Link>
               </div>
             </fieldset>
           </form>
@@ -127,10 +126,10 @@ function Login() {
         method="post"
         action="/m/member/join/simpleJoinGuide.ssg"
       >
-        <HiddenInput inputName="mbrId" inputValue="" />
-        <HiddenInput inputName="email" inputValue="" />
-        <HiddenInput inputName="snsTypeCd" inputValue="" />
-        <HiddenInput inputName="accessToken" inputValue="" />
+        <input type="hidden" name="mbrId" value="" />
+        <input type="hidden" name="email" value="" />
+        <input type="hidden" name="snsTypeCd" value="" />
+        <input type="hidden" name="accessToken" value="" />
       </form>
       <Footer />
     </div>
