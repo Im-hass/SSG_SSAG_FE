@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
 import { Header, Footer, FloatingContents } from '../components/common/index';
 import { SearchContent } from '../components/contents/index';
-import { searchValueState } from '../recoil/isOpenState';
+import { searchValueState } from '../recoil/states';
 
 function SearchResultPage() {
   const { value } = useParams();
