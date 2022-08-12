@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LikeButton } from '../../common/LikeButton';
 import { AdInfo } from '../../ui/AdInfo';
 import './ProductItem.scss';
@@ -31,10 +32,9 @@ function ProductItem({ hasResult, datas }) {
         {/* <div className="mnsditem_helper" /> */}
         <div className="mnsditem_goods  gate_unit">
           <div className="mnsditem_thmb">
-            <a
-              // href="/item/itemView.ssg?itemId=1000356205098&amp;siteNo=6004&amp;salestrNo=6005&amp;advertBidId=1001998859&amp;advertExtensTeryDivCd=20"
-              href={`/product/${productId}`}
-              onClick="ssg_ad.adClick(this, {position:'view'});"
+            <Link
+              to={`/product/${productId}`}
+              // onClick="ssg_ad.adClick(this, {position:'view'});"
               className="mnsditem_thmb_link clickable"
             >
               <div className="mnsditem_thmb_imgbx">
@@ -44,7 +44,7 @@ function ProductItem({ hasResult, datas }) {
                   className="ssg_lazy mnsditem_thmb_img loaded"
                 />
               </div>
-            </a>
+            </Link>
 
             {isAd && <AdInfo />}
 
@@ -54,8 +54,8 @@ function ProductItem({ hasResult, datas }) {
           {/* 상세 정보 */}
           <div className="mnsditem_detail">
             <div className="mnsditem_maininfo">
-              <a
-                href={`/product/${productId}`}
+              <Link
+                to={`/product/${productId}`}
                 className="mnsditem_maininfo_link"
               >
                 <div className="mnsditem_tit">
@@ -99,7 +99,7 @@ function ProductItem({ hasResult, datas }) {
                     </>
                   )}
                 </div>
-              </a>
+              </Link>
             </div>
             <div className="mnsditem_sideinfo">
               <div className="mnsditem_review">

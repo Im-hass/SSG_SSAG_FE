@@ -11,6 +11,7 @@ import {
   PaymentMeansPage,
   CategoryPage,
   MyPage,
+  ProductDetailPage,
 } from '../pages';
 import { Login, WithdrawMember } from './contents/index';
 
@@ -21,6 +22,9 @@ function App() {
         <Route exact path="/" element={<MainPage />} />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/search/:value" element={<SearchResultPage />} />
+        <Route path="/product" element={<ProductDetailPage />}>
+          <Route path=":productId" element={<ProductDetailPage />} />
+        </Route>
         <Route path="/my" element={<MyPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
