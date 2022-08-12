@@ -1,12 +1,14 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {
+  AddDestinationPage,
+  CartPage,
+  DestinationPage,
   MainPage,
   NotFoundPage,
   RecentShoppingPage,
-  CartPage,
-  SearchResultPage,
   PaymentMeansPage,
+  SearchResultPage,
 } from '../pages';
 import { Login, WithdrawMember } from './contents/index';
 
@@ -23,6 +25,8 @@ function App() {
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />
+        <Route path="/destination" element={<DestinationPage />} />
+        <Route path="/addDestination" element={<AddDestinationPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
