@@ -25,6 +25,7 @@ export { AgreementInputBtnSet } from './AgreementInputBtnSet';
 export { AgreementInput } from './AgreementInput';
 export { OptionCheckInput } from './OptionCheckInput';
 export { OptionCheckInputArr } from './OptionCheckInputArr';
+export { PaymentMeansPwBtn } from './PaymentMeansPwBtn';
 export { MemberNotice } from './MemberNotice';
 export { CircleImgList } from './CircleImgList';
 export { RequireLabel } from './RequireLabel';
