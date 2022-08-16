@@ -8,13 +8,13 @@ import {
 } from '../../components/ui/index';
 import { Footer } from '../../components/common/index';
 import SignUpTermTit from '../../components/ui/SignUpTermTit/SignUpTermTit';
-import * as datas from '../../assets/datas';
+import * as datas from '../../assets/datas/SignUpAgreementContents';
 
 function SignUpAgreementPage() {
   const { AGREEMENT_CONTENT0, AGREEMENT_CONTENT1, AGREEMENT_CONTENT2 } = datas;
 
   return (
-    <div id="m_container" className="mcom_container" data-iframe-height="">
+    <div id="m_container" className="mcom_container">
       <MobileHeader title="신세계포인트 통합회원 가입" />
       <div id="content" className="cmem_ct_join">
         <div className="cmem_cont">
@@ -36,12 +36,6 @@ function SignUpAgreementPage() {
             </div>
           </div>
           <form id="agreeForm" method="POST" action="/m/member/join/form.ssg">
-            <input
-              type="hidden"
-              name="selfCertTokenId"
-              value="146a39cd18b011edb8ca8030e02dff00"
-            />
-            <input type="hidden" name="autoFillYn" value="N" />
             <div className="cmem_btn_area">
               <Link to="/signupForm" className="cmem_btn cmem_btn_orange2">
                 다음
