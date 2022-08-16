@@ -1,3 +1,42 @@
 .myssgpay_modal_addcard {
-  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 60px 20px 0 20px;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.codr_modal_head {
+  width: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+
+  .codr_modal_tit {
+    font-size: 20px;
+  }
+}
+
+.codr_modal_ctn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 15px;
+  background-color: white;
+}
+
+.pay_modal_close_btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background: url('./../../../assets/img/btn-set.png') no-repeat;
+  background-position: -85px -20px;
+  background-size: 240px 240px;
 }

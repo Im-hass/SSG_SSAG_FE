@@ -1,16 +1,32 @@
 import React from 'react';
 import './PaymentMeansAddCardModal.scss';
+import { useRecoilState } from 'recoil';
+import { isModalOpenState } from '../../../recoil/states';
 
 function PaymentMeansAddCardModal() {
+  const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div
-      className="codr_modal myssgpay_modal_addcard"
+      className="myssgpay_modal_addcard"
       role="dialog"
       tabIndex="-1"
       aria-hidden="false"
       id="myssgpay_modal_addcard"
-      style={{ userSelect: 'auto' }}
+      style={{ display: isModalOpen ? 'block' : 'none' }}
     >
+      <button
+        type="button"
+        className="pay_modal_close_btn"
+        onClick={handleModalOpen}
+      >
+        <span />
+      </button>
+
       <div
         className="codr_modal_wrap codr_modal_focus"
         role="document"
@@ -23,6 +39,7 @@ function PaymentMeansAddCardModal() {
               카드 등록
             </h2>
           </div>
+
           <div className="codr_modal_cont" style={{ userSelect: 'auto' }}>
             <ul
               className="codr_info_lst ty_noindent ty_space_btm"
@@ -598,37 +615,29 @@ function PaymentMeansAddCardModal() {
             </ul>
             <div className="codr_btnarea" style={{ userSelect: 'auto' }}>
               <ul className="ty_inbtn" style={{ userSelect: 'auto' }}>
-                <li style={{ userSelect: 'auto' }}>
-                  <a
-                    href="/"
-                    className="codr_btn codr_btn_blkline modal-close-btn"
+                <li
+                  role="presentation"
+                  style={{ userSelect: 'auto' }}
+                  onClick={handleModalOpen}
+                >
+                  <span
+                    className="codr_btn codr_btn_blkline"
                     style={{ userSelect: 'auto' }}
                   >
-                    <span style={{ userSelect: 'auto' }}>취소</span>
-                  </a>
+                    취소
+                  </span>
                 </li>
                 <li style={{ userSelect: 'auto' }}>
-                  <a
-                    href="/"
+                  <span
                     className="codr_btn codr_btn_blkline"
-                    id="regCrd"
                     style={{ userSelect: 'auto' }}
                   >
-                    <span style={{ userSelect: 'auto' }}>확인</span>
-                  </a>
+                    확인
+                  </span>
                 </li>
               </ul>
             </div>
           </div>
-          <button
-            type="button"
-            className="codr_modal_close modal-close-btn"
-            style={{ userSelect: 'auto' }}
-          >
-            <span className="blind" style={{ userSelect: 'auto' }}>
-              닫기
-            </span>
-          </button>
         </div>
       </div>
     </div>
