@@ -11,7 +11,7 @@ export const INPUT_CONTENT = [
     type: 'password',
     id: 'pwd',
     title: '비밀번호 입력',
-    placeholder: '영문, 숫자 조합 8~20자리',
+    placeholder: '대소문자, 숫자조합 8~20자리',
     name: 'mbrDto.pwd',
     maxLength: '20',
   },

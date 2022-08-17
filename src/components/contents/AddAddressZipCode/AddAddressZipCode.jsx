@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AddAddressZipCode.scss';
 
 function AddAddressZipCode(props) {
   const { handleIsOpen } = props;
+  const [clickSearchBtn, setClickSearchBtn] = useState(false);
+
+  const handleSearchBtn = () => {};
 
   return (
     <div id="zipcode" style={{ display: 'block' }}>
@@ -44,7 +47,7 @@ function AddAddressZipCode(props) {
                   className="search_btn"
                   // href="javascript:void(0)"
                   href="/"
-                  onClick="Zipcd.actionSearchZipcd()"
+                  onClick={handleSearchBtn}
                 >
                   <span className="blind">검색</span>
                 </button>

@@ -5,7 +5,7 @@ function AgreementInputBtnSet(props) {
   const { array } = props;
 
   return (
-    <>
+    <div>
       {array.map((item) => (
         <div className="cmem_term_box" key={item.id}>
           <AgreementInput object={item} />
@@ -14,7 +14,7 @@ function AgreementInputBtnSet(props) {
           </a>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
