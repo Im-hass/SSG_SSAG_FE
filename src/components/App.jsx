@@ -42,6 +42,8 @@ function App() {
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />
         <Route path="/destination" element={<DestinationPage />} />
+        <Route path="/destination/myDes" element={<DestinationPage />} />
+        <Route path="/destination/withDes" element={<DestinationPage />} />
         <Route path="/addDestination" element={<AddDestinationPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
