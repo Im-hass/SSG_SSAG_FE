@@ -8,7 +8,11 @@ function DestinationBtns() {
       <ul>
         {DES_BTNS_LIST.map((el) => (
           <li key={el.id}>
-            <button type="button" className={el.className} onClick={el.onClick}>
+            <button
+              type="button"
+              className={el.className}
+              // onClick={el.onClick}
+            >
               <span>{el.name}</span>
             </button>
           </li>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './DestinationListBtns.scss';
 
-function DestinationListBtns() {
+function DestinationListBtns({ isDefaultAddr }) {
   return (
     <span className="myodr_btn_rt">
       <button
@@ -11,13 +11,11 @@ function DestinationListBtns() {
       >
         <span>수정</span>
       </button>
-      <button
-        type="button"
-        className="myodr_btn_tx"
-        onClick="ShpplocList.delete(2);"
-      >
-        <span>삭제</span>
-      </button>
+      {!isDefaultAddr && (
+        <button type="button" className="myodr_btn_tx">
+          <span>삭제</span>
+        </button>
+      )}
     </span>
   );
 }
