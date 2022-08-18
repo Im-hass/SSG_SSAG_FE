@@ -10,7 +10,6 @@ export { RANK_OPTIONS } from './RankOptions';
 export { SERVICE_LIST_DATA } from './ServiceList';
 export { AGREEMENT_CONTENT0 } from './SignUpAgreementContents';
 export { AGREEMENT_CONTENT1 } from './SignUpAgreementContents';
-export { INPUT_CONTENT } from './SignUpFormContents';
 export { AGREEMENT_CONTENTS1 } from './SignUpFormContents';
 export { AGREEMENT_CONTENTS2 } from './SignUpFormContents';
 export { AGREEMENT_CONTENTS3 } from './SignUpFormContents';

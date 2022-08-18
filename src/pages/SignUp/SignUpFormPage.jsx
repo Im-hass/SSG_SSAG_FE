@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { Footer } from '../../components/common/index';
 import {
@@ -11,7 +11,6 @@ import {
   OptionCheckInput,
   RequireLabel,
   WithdrawTit,
-  SignUpInput,
 } from '../../components/ui/index';
 import { AddAddressZipCode } from '../../components/contents/index';
 import SignUpTermTit from '../../components/ui/SignUpTermTit/SignUpTermTit';
@@ -19,7 +18,6 @@ import * as datas from '../../assets/datas';
 
 function SignUpFormPage() {
   const {
-    INPUT_CONTENT,
     AGREEMENT_CONTENTS1,
     AGREEMENT_CONTENTS2,
     AGREEMENT_CONTENTS3,
@@ -29,9 +27,10 @@ function SignUpFormPage() {
     OPTION_CONTENTS4,
   } = datas;
 
-  const [information, setInformation] = useState({
+  const [inputData, setInputData] = useState({
     loginId: '',
     loginPwd: '',
+    confirmPwd: '',
     name: '',
     email: '',
     phone: '',
@@ -43,30 +42,73 @@ function SignUpFormPage() {
     updateAt3: '',
   });
 
-  const [idStatus, setIdStatus] = useState(false);
-  const [pwdStatus, setPwdStatus] = useState('');
-  const [enteredId, setEnteredId] = useState('');
-  const [validId, setValidId] = useState(false);
-  const [enteredPwd, setEnteredPwd] = useState('');
-  const [enteredPwdConfirm, setEnteredPwdConfirm] = useState('');
-  const [validPwd, setValidPwd] = useState(false);
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [validEmail, setValidEmail] = useState(false);
-  const [emailStatusMessage, setEmailStatusMessage] = useState('');
-  const [enteredPhoneNumber, setEnteredPhoneNumber] = useState('');
+  const [valid, setValid] = useState({
+    loginId: false,
+    loginPwd: false,
+    email: false,
+    phone: false,
+  });
+
+  const [error, setError] = useState({
+    loginId: '',
+    loginPwd: '',
+    email: '',
+    phone: '',
+  });
+
   const [clickZipCodeBtn, setClickZipCodeBtn] = useState(false);
 
-  const handleCheckDuplicateIdBtn = () => {
-    const id = enteredId;
+  const validCheck = (data) => {
+    const validValue = /^[a-zA-Z0-9]+$/;
 
-    if (validId) {
+    if (validValue.test(data)) return true;
+
+    return false;
+  };
+
+  const handleInputData = (e) => {
+    if (e.target.name === 'loginId' || e.target.name === 'loginPwd') {
+      const val = e.target.value;
+      console.log(val);
+
+      if (val !== undefined && val.length >= 6) {
+        if (validCheck(val) === true) {
+          setValid({ [e.target.name]: true });
+          setError({
+            [e.target.name]: '',
+          });
+        } else return;
+      } else {
+        setError({
+          [e.target.name]: `${e.target.title}값이 유효하지 않습니다.`,
+        });
+      }
+    }
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+
+    if (e.target.name === 'confirmPwd') {
+      console.log(inputData.loginPwd, e.target.value);
+      if (inputData.loginPwd === e.target.value) {
+        setValid({ confirmPwd: true });
+        setError({ loginPwd: '' });
+      } else {
+        setError({
+          loginPwd: `${e.target.title}값이 유효하지 않습니다.`,
+        });
+      }
+    }
+  };
+
+  const handleCheckDuplicateIdBtn = () => {
+    if (valid.loginId) {
       axios
-        .get(`http://10.10.10.174:8081/comm-users/signup/overlap/${id}`)
+        .get(
+          `http://10.10.10.174:8081/comm-users/signup/overlap/${inputData.loginId}`,
+        )
         .then((res) => {
-          if (!res.data.result) setIdStatus(res.data.message);
+          if (!res.data.result) setError({ loginId: res.data.message });
           else {
-            setIdStatus(res.data.result);
-            setInformation({ loginId: `${enteredId}` });
+            setError({ loginId: res.data.result });
           }
         })
         .catch((err) => {
@@ -75,78 +117,39 @@ function SignUpFormPage() {
     }
   };
 
-  const handleChangeId = (e) => {
-    setEnteredId(e.target.value);
-  };
+  // useEffect(() => {
+  //   const validCheck = /^[A-Za-z0-9]+$/g.test(enteredPwd);
 
-  const handleChangePassword = (e) => {
-    setEnteredPwd(e.target.value);
-  };
+  //   if (enteredPwd.length !== 0) {
+  //     if (validCheck && enteredPwd.length >= 8) {
+  //       setValidPwd(true);
+  //       setPwdStatus('');
+  //     } else {
+  //       setValidPwd(false);
+  //       setPwdStatus('유효하지 않은 비밀번호입니다.');
+  //     }
+  //   }
 
-  const handleChangePasswordConfirm = (e) => {
-    setEnteredPwdConfirm(e.target.value);
-  };
+  //   if (validPwd && enteredPwdConfirm.length !== 0) {
+  //     if (enteredPwd === enteredPwdConfirm) {
+  //       setPwdStatus('비밀번호가 일치합니다.');
+  //       setInformation({ loginPwd: `${enteredPwdConfirm}` });
+  //     } else {
+  //       setPwdStatus('비밀번호가 일치하지 않습니다.');
+  //     }
+  //   }
+  // }, [enteredPwd, enteredPwdConfirm]);
 
-  const handleChangeName = (e) => {
-    const name = e.target.value;
-    setInformation({ name: `${name}` });
-  };
-
-  const handleChangeEmail = (e) => {
-    setEnteredEmail(e.target.value);
-  };
-
-  const handleChangePhoneNumber = (e) => {
-    setEnteredPhoneNumber(e.target.value);
-  };
-
-  useEffect(() => {
-    const validCheck = /^[a-zA-Z0-9]+$/g.test(enteredId);
-
-    if (enteredId.length !== 0) {
-      if (validCheck && enteredId.length >= 6) {
-        setValidId(true);
-        setIdStatus('');
-      } else {
-        setValidId(false);
-        setIdStatus('유효하지 않은 아이디입니다.');
-      }
-    }
-  }, [enteredId]);
-
-  useEffect(() => {
-    const validCheck = /^[A-Za-z0-9]+$/g.test(enteredPwd);
-
-    if (enteredPwd.length !== 0) {
-      if (validCheck && enteredPwd.length >= 8) {
-        setValidPwd(true);
-        setPwdStatus('');
-      } else {
-        setValidPwd(false);
-        setPwdStatus('유효하지 않은 비밀번호입니다.');
-      }
-    }
-
-    if (validPwd && enteredPwdConfirm.length !== 0) {
-      if (enteredPwd === enteredPwdConfirm) {
-        setPwdStatus('비밀번호가 일치합니다.');
-        setInformation({ loginPwd: `${enteredPwdConfirm}` });
-      } else {
-        setPwdStatus('비밀번호가 일치하지 않습니다.');
-      }
-    }
-  }, [enteredPwd, enteredPwdConfirm]);
-
-  useEffect(() => {
-    if (enteredPwdConfirm.length !== 0) {
-      if (validEmail) {
-        setEmailStatusMessage('');
-        setInformation({ email: `${enteredPwdConfirm}` });
-      } else {
-        setEmailStatusMessage('이메일 형식에 맞지 않습니다.');
-      }
-    }
-  }, [enteredEmail]);
+  // useEffect(() => {
+  //   if (enteredPwdConfirm.length !== 0) {
+  //     if (validEmail) {
+  //       setEmailStatusMessage('');
+  //       setInformation({ email: `${enteredPwdConfirm}` });
+  //     } else {
+  //       setEmailStatusMessage('이메일 형식에 맞지 않습니다.');
+  //     }
+  //   }
+  // }, [enteredEmail]);
 
   const handleClickZipCodeBtn = () => {
     setClickZipCodeBtn((prev) => !prev);
@@ -174,9 +177,14 @@ function SignUpFormPage() {
                   <dd>
                     <div className="cmem_inpbtn_set" id="idIpt">
                       <span className="cmem_inp_txt">
-                        <SignUpInput
-                          object={INPUT_CONTENT[0]}
-                          onChange={handleChangeId}
+                        <input
+                          type="text"
+                          name="loginId"
+                          title="아이디"
+                          value={inputData.loginId}
+                          maxLength={20}
+                          placeholder="대소문자 또는 숫자로 6~20자리"
+                          onChange={handleInputData}
                         />
                       </span>
                       <button
@@ -189,7 +197,7 @@ function SignUpFormPage() {
                     </div>
                     <span className="cmem_noti">
                       <em className="usable_value">
-                        <p id="id_msg">{idStatus}</p>
+                        <p>{error.loginId}</p>
                       </em>
                     </span>
                   </dd>
@@ -202,20 +210,30 @@ function SignUpFormPage() {
                   </dt>
                   <dd>
                     <div className="cmem_inp_txt">
-                      <SignUpInput
-                        object={INPUT_CONTENT[1]}
-                        onChange={handleChangePassword}
+                      <input
+                        type="password"
+                        name="loginPwd"
+                        title="패스워드"
+                        value={inputData.loginPwd}
+                        maxLength={20}
+                        placeholder="대소문자 또는 숫자로 6~20자리"
+                        onChange={handleInputData}
                       />
                     </div>
                     <div className="cmem_inp_txt">
-                      <SignUpInput
-                        object={INPUT_CONTENT[2]}
-                        onChange={handleChangePasswordConfirm}
+                      <input
+                        type="password"
+                        name="confirmPwd"
+                        title="패스워드"
+                        value={inputData.confirmPwd}
+                        maxLength={20}
+                        placeholder="비밀번호 재확인"
+                        onChange={handleInputData}
                       />
                     </div>
                     <span className="cmem_noti">
                       <em className="usable_value">
-                        <p id="id_msg">{pwdStatus}</p>
+                        <p>{error.loginPwd}</p>
                       </em>
                     </span>
                   </dd>
@@ -228,40 +246,19 @@ function SignUpFormPage() {
                   </dt>
                   <dd>
                     <div className="cmem_inp_txt">
-                      <SignUpInput
-                        object={INPUT_CONTENT[3]}
-                        onChange={handleChangeName}
+                      <input
+                        type="text"
+                        name="name"
+                        title="이름"
+                        value={inputData.name}
+                        maxLength={20}
+                        placeholder="한글로 입력"
+                        onChange={handleInputData}
                       />
                     </div>
                   </dd>
                 </dl>
               </div>
-              <div className="cmem_row">
-                <div className="cmem_user_addr">
-                  <dl className="cmem_ip">
-                    <dt>
-                      <RequireLabel htmlFor="zipcd" labelValue="주소" />
-                    </dt>
-                    <dd>
-                      <div className="cmem_inpbtn_set">
-                        <span className="cmem_inp_txt">
-                          <SignUpInput object={INPUT_CONTENT[4]} />
-                        </span>
-                        <button
-                          type="button"
-                          className="cmem_btn cmem_btn_gray"
-                          id="btnPostNum"
-                          onClick={handleClickZipCodeBtn}
-                        >
-                          우편번호<span className="blind">찾기</span>
-                        </button>
-                      </div>
-                      <div className="addr_info v2" id="addr_info" />
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-              <input type="hidden" name="mbrCnts[0].cntsTypeCd" value="20" />
               <div className="cmem_row">
                 <div className="cmem_user_phone">
                   <dl className="cmem_ip">
@@ -273,9 +270,14 @@ function SignUpFormPage() {
                     </dt>
                     <dd>
                       <div className="cmem_inp_txt">
-                        <SignUpInput
-                          object={INPUT_CONTENT[5]}
-                          onChange={handleChangePhoneNumber}
+                        <input
+                          type="tel"
+                          name="phone"
+                          title="휴대폰번호"
+                          value={inputData.phone}
+                          maxLength={20}
+                          placeholder="ex) 010-1234-5678"
+                          onChange={handleInputData}
                         />
                       </div>
                     </dd>
@@ -289,14 +291,19 @@ function SignUpFormPage() {
                   </dt>
                   <dd>
                     <div className="cmem_inp_txt">
-                      <SignUpInput
-                        object={INPUT_CONTENT[6]}
-                        onChange={handleChangeEmail}
+                      <input
+                        type="email"
+                        name="email"
+                        title="이메일주소"
+                        value={inputData.email}
+                        maxLength={50}
+                        placeholder="이메일주소"
+                        onChange={handleInputData}
                       />
                     </div>
                     <span className="cmem_noti">
                       <em className="usable_value">
-                        <p id="id_msg">{emailStatusMessage}</p>
+                        <p>{error.email}</p>
                       </em>
                     </span>
                   </dd>
