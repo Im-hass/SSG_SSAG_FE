@@ -27,7 +27,7 @@ function AddAddressMyInfo(props) {
                             id="shpplocAntnmNm"
                             name="shpplocAntnmNm"
                             placeholder="주소별칭 입력"
-                            value=""
+                            defaultValue=""
                             maxLength="20"
                           />
                         </span>
@@ -45,7 +45,7 @@ function AddAddressMyInfo(props) {
                             id="rcptpeNm"
                             name="rcptpeNm"
                             placeholder="받는분 성함입력"
-                            value=""
+                            defaultValue=""
                             maxLength="20"
                           />
                         </span>
@@ -115,7 +115,7 @@ function AddAddressMyInfo(props) {
                               title="휴대폰(숫자만 입력)"
                               placeholder="휴대폰(숫자만 입력)"
                               id="phoneNum2"
-                              value=""
+                              defaultValue=""
                               maxLength="8"
                             />
                           </span>
@@ -134,7 +134,7 @@ function AddAddressMyInfo(props) {
                               <span className="sp_com sel_arrow">&nbsp;</span>
                               <span className="hide_select">
                                 <select id="telNum1" title="전화번호 앞자리">
-                                  <option value="">선택</option>
+                                  <option defaultValue="">선택</option>
                                   <option
                                     value="02"
                                     addtoptnval1=""
@@ -332,7 +332,7 @@ function AddAddressMyInfo(props) {
                             <input
                               type="tel"
                               id="telNum2"
-                              value=""
+                              defaultValue=""
                               maxLength="8"
                               placeholder="전화번호(숫자만 입력)"
                               title="전화번호(숫자만 입력)"
@@ -358,7 +358,7 @@ function AddAddressMyInfo(props) {
                                   <input
                                     type="text"
                                     name="zipcd"
-                                    value=""
+                                    defaultValue=""
                                     title="우편번호 입력"
                                     readOnly="readonly"
                                   />
@@ -424,19 +424,23 @@ function AddAddressMyInfo(props) {
                     </ul>
                   </div>
 
-                  <input type="hidden" name="shpplocSeq" value="" />
-                  <input type="hidden" name="bascShpplocYn" value="" />
-                  <input type="hidden" name="oldZipcd" value="" />
-                  <input type="hidden" name="roadNmBascAddr" value="" />
-                  <input type="hidden" name="roadNmDtlAddr" value="" />
-                  <input type="hidden" name="lotnoBascAddr" value="" />
-                  <input type="hidden" name="lotnoDtlAddr" value="" />
-                  <input type="hidden" name="mbrIptAddrTypeCd" value="" />
-                  <input type="hidden" name="mbrIptAddr" value="" />
-                  <input type="hidden" name="shpplocRegPstCd" value="" />
-                  <input type="hidden" name="addrExamRstCd" value="" />
-                  <input type="hidden" name="rcptpeTelno" value="" />
-                  <input type="hidden" name="rcptpeHpno" value="" />
+                  <input type="hidden" name="shpplocSeq" defaultValue="" />
+                  <input type="hidden" name="bascShpplocYn" defaultValue="" />
+                  <input type="hidden" name="oldZipcd" defaultValue="" />
+                  <input type="hidden" name="roadNmBascAddr" defaultValue="" />
+                  <input type="hidden" name="roadNmDtlAddr" defaultValue="" />
+                  <input type="hidden" name="lotnoBascAddr" defaultValue="" />
+                  <input type="hidden" name="lotnoDtlAddr" defaultValue="" />
+                  <input
+                    type="hidden"
+                    name="mbrIptAddrTypeCd"
+                    defaultValue=""
+                  />
+                  <input type="hidden" name="mbrIptAddr" defaultValue="" />
+                  <input type="hidden" name="shpplocRegPstCd" defaultValue="" />
+                  <input type="hidden" name="addrExamRstCd" defaultValue="" />
+                  <input type="hidden" name="rcptpeTelno" defaultValue="" />
+                  <input type="hidden" name="rcptpeHpno" defaultValue="" />
                 </form>
               </div>
             </div>

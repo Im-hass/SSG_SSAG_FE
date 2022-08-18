@@ -4,11 +4,7 @@ import './DestinationListBtns.scss';
 function DestinationListBtns({ isDefaultAddr }) {
   return (
     <span className="myodr_btn_rt">
-      <button
-        type="button"
-        className="myodr_btn_tx"
-        onClick="ShpplocList.update(2);"
-      >
+      <button type="button" className="myodr_btn_tx">
         <span>수정</span>
       </button>
       {!isDefaultAddr && (

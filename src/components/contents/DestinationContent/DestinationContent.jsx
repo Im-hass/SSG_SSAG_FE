@@ -26,7 +26,7 @@ function DestinationContent() {
     localStorage.setItem(
       'token',
       JSON.stringify(
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjA3MjY1NzYsImV4cCI6MTY2MDcyODM3Nn0.p0UmhrOYxU-JFXLvzFCapidZ54oPxjou7RvjT9feqho',
+        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjA3OTk2MzgsImV4cCI6MTY2MDgwMTQzOH0.FT4H9xDJUpkQztfE2WLTP4dbrkUaSJ4FlYQXqarVjtM',
       ),
     );
     const token = localStorage.getItem('token');

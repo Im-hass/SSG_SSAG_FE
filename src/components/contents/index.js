@@ -49,3 +49,4 @@ export { RecentShoppingProductList } from './RecentShoppingProductList';
 export { RecentShoppingTitle } from './RecentShoppingTitle';
 export { WithdrawMember } from './WithdrawMember';
 export { SearchContent } from './SearchContent';
+export { ZipCodeSearchResult } from './ZipCodeSearchResult';
