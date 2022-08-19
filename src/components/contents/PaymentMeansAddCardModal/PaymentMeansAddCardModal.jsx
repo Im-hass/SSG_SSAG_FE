@@ -20,6 +20,12 @@ function PaymentMeansAddCardModal() {
     input4: '',
   });
   const { input1, input2, input3, input4 } = inputVal;
+  const [isInputValValid, setIsInputValValid] = useState({
+    input1: false,
+    input2: false,
+    input3: false,
+    input4: false,
+  });
 
   const handleModalOpen = () => {
     setIsModalOpen(false);
@@ -51,7 +57,12 @@ function PaymentMeansAddCardModal() {
         ...addCardInputData,
         [e.target.name]: nums,
       });
+      setIsInputValValid({
+        ...isInputValValid,
+        [e.target.name]: true,
+      });
     }
+    console.log(isInputValValid);
     console.log('before', addCardInputData);
   };
 
@@ -67,20 +78,10 @@ function PaymentMeansAddCardModal() {
     const joinedNums = `${addCardInputData.input1}-${addCardInputData.input2}-${addCardInputData.input3}-${addCardInputData.input4}`;
 
     return joinedNums;
-    // setAddCardInputData({
-    //   ...addCardInputData,
-    //   cardNumber: joinedNums,
-    // });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('numsfun', joinedCardNum());
-    setAddCardInputData({
-      ...addCardInputData,
-      cardNumber: joinedCardNum(),
-    });
-    console.log('final', addCardInputData);
     setAddCardInputData({
       cardCompany: '',
       cardNumber: '',
@@ -232,6 +233,7 @@ function PaymentMeansAddCardModal() {
                   name="input1"
                   onChange={handleAddCardInputData}
                   value={input1}
+                  index={0}
                 />
                 <input
                   className="add_card_num_input"
@@ -240,6 +242,7 @@ function PaymentMeansAddCardModal() {
                   name="input2"
                   onChange={handleAddCardInputData}
                   value={input2}
+                  index={1}
                 />
                 <input
                   className="add_card_num_input"
@@ -248,6 +251,7 @@ function PaymentMeansAddCardModal() {
                   name="input3"
                   onChange={handleAddCardInputData}
                   value={input3}
+                  index={2}
                 />
                 <input
                   className="add_card_num_input"
@@ -256,6 +260,7 @@ function PaymentMeansAddCardModal() {
                   name="input4"
                   onChange={handleAddCardInputData}
                   value={input4}
+                  index={3}
                 />
               </div>
             </div>
