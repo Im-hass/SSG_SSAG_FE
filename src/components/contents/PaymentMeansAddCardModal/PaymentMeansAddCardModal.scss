@@ -1,5 +1,4 @@
 /* modal position */
-
 .myssgpay_modal_addcard {
   position: fixed;
   top: 0;
@@ -36,6 +35,10 @@
   margin-top: 10px;
 }
 
+.codr_tx_gray {
+  font-size: 13px;
+}
+
 .pay_modal_close_btn {
   position: absolute;
   top: 15px;
@@ -63,12 +66,32 @@
     margin-bottom: 20px;
   }
 
-  .add_card_num_inputs input {
+  .add_card_num_input {
+    padding: 0 3px;
     width: 20%;
     margin: 20px 10px 0 10px;
+    border: 1px solid lightgrey;
+    transition: all 0.1s linear;
+  }
+
+  .add_card_num_input:focus {
+    border: 1px solid black;
   }
 }
 
 .codr_btnarea {
   margin-top: 50px;
+}
+
+.ty_inbtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  li,
+  button {
+    display: inline-block;
+    width: 50%;
+    padding: 0 4px;
+  }
 }

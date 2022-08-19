@@ -19,7 +19,7 @@ function FooterButtonBox() {
         {isLogin ? '로그아웃' : '로그인'}
       </button>
       <ul className="mcom_btnbx_list">
-        {BUTTON_LIST.map((el) => (
+        {BUTTON_LIST.map((el, i) => (
           <li key={el.id} id="footer_loginBtn">
             <Link
               to={el.href}
@@ -35,6 +35,12 @@ function FooterButtonBox() {
               }}
             >
               {el.name}
+              <span
+                className="footer_btn_divider"
+                style={{ display: i === 4 ? 'none' : '' }}
+              >
+                |
+              </span>
             </Link>
           </li>
         ))}

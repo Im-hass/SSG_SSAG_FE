@@ -35,7 +35,7 @@ function PaymentMeansCardList() {
 
   useEffect(() => {
     axios
-      .get('http://10.10.10.174:8081/users/payment/3', {
+      .get('http://10.10.10.174:8081/users/payment', {
         headers: {
           Authorization:
             'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjA4MDU1NDMsImV4cCI6MTY2MDgwNzM0M30._Te4qgbQBxnsNxW9B8pHFaqkBQiwiMRnjGg1bjodgeg',
@@ -49,59 +49,59 @@ function PaymentMeansCardList() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(cards[0].cardImg.imgUrl);
   return (
     <ul className="myssgpay_reserv_cardlst" style={{ userSelect: 'auto' }}>
-      {cards.map((card, i) => (
-        <li
-          key={card.paymentId}
-          className="myssgpay_reserv_card"
-          style={{ userSelect: 'auto' }}
-        >
-          <div
-            className="myssgpay_reserv_carditem"
+      {cards &&
+        cards.map((card, i) => (
+          <li
+            key={card.paymentId}
+            className="myssgpay_reserv_card"
             style={{ userSelect: 'auto' }}
           >
             <div
-              className="card_item"
-              style={{
-                backgroundColor: 'rgb(119, 119, 119)',
-                userSelect: 'auto',
-              }}
+              className="myssgpay_reserv_carditem"
+              style={{ userSelect: 'auto' }}
             >
-              <span
-                className="logo ty_short"
+              <div
+                className="card_item"
                 style={{
-                  backgroundImage: `url('${card.cardImg.imgUrl}')`,
+                  backgroundColor: 'rgb(119, 119, 119)',
                   userSelect: 'auto',
                 }}
               >
-                <span className="blind" style={{ userSelect: 'auto' }}>
-                  {card.cardCompany} 로고
+                <span
+                  className="logo ty_short"
+                  style={{
+                    backgroundImage: `url('${card.cardImg.imgUrl}')`,
+                    userSelect: 'auto',
+                  }}
+                >
+                  <span className="blind" style={{ userSelect: 'auto' }}>
+                    {card.cardCompany} 로고
+                  </span>
                 </span>
-              </span>
-            </div>
-            <div className="card_info" style={{ userSelect: 'auto' }}>
-              <div className="card_name" style={{ userSelect: 'auto' }}>
-                {card.cardCompany}
               </div>
-              <div className="card_num" style={{ userSelect: 'auto' }}>
-                {cardNumArr[i]}
+              <div className="card_info" style={{ userSelect: 'auto' }}>
+                <div className="card_name" style={{ userSelect: 'auto' }}>
+                  {card.cardCompany}
+                </div>
+                <div className="card_num" style={{ userSelect: 'auto' }}>
+                  {cardNumArr[i]}
+                </div>
+              </div>
+              <div className="card_btn" style={{ userSelect: 'auto' }}>
+                <button
+                  type="button"
+                  className="btn_remove"
+                  data-fncco-cd="08"
+                  style={{ userSelect: 'auto' }}
+                >
+                  삭제
+                </button>
               </div>
             </div>
-            <div className="card_btn" style={{ userSelect: 'auto' }}>
-              <button
-                type="button"
-                className="btn_remove"
-                data-fncco-cd="08"
-                style={{ userSelect: 'auto' }}
-              >
-                삭제
-              </button>
-            </div>
-          </div>
-        </li>
-      ))}
+          </li>
+        ))}
     </ul>
   );
 }
