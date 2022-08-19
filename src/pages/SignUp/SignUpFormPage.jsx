@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Footer } from '../../components/common/index';
 import {
@@ -69,7 +69,6 @@ function SignUpFormPage() {
   const handleInputData = (e) => {
     if (e.target.name === 'loginId' || e.target.name === 'loginPwd') {
       const val = e.target.value;
-      console.log(val);
 
       if (val !== undefined && val.length >= 6) {
         if (validCheck(val) === true) {
@@ -87,7 +86,6 @@ function SignUpFormPage() {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
 
     if (e.target.name === 'confirmPwd') {
-      console.log(inputData.loginPwd, e.target.value);
       if (inputData.loginPwd === e.target.value) {
         setValid({ confirmPwd: true });
         setError({ loginPwd: '' });
@@ -116,29 +114,6 @@ function SignUpFormPage() {
         });
     }
   };
-
-  // useEffect(() => {
-  //   const validCheck = /^[A-Za-z0-9]+$/g.test(enteredPwd);
-
-  //   if (enteredPwd.length !== 0) {
-  //     if (validCheck && enteredPwd.length >= 8) {
-  //       setValidPwd(true);
-  //       setPwdStatus('');
-  //     } else {
-  //       setValidPwd(false);
-  //       setPwdStatus('유효하지 않은 비밀번호입니다.');
-  //     }
-  //   }
-
-  //   if (validPwd && enteredPwdConfirm.length !== 0) {
-  //     if (enteredPwd === enteredPwdConfirm) {
-  //       setPwdStatus('비밀번호가 일치합니다.');
-  //       setInformation({ loginPwd: `${enteredPwdConfirm}` });
-  //     } else {
-  //       setPwdStatus('비밀번호가 일치하지 않습니다.');
-  //     }
-  //   }
-  // }, [enteredPwd, enteredPwdConfirm]);
 
   // useEffect(() => {
   //   if (enteredPwdConfirm.length !== 0) {
