@@ -83,7 +83,6 @@ function SignUpFormPage() {
         });
       }
     }
-    setInputData({ ...inputData, [e.target.name]: e.target.value });
 
     if (e.target.name === 'confirmPwd') {
       if (inputData.loginPwd === e.target.value) {
@@ -95,6 +94,19 @@ function SignUpFormPage() {
         });
       }
     }
+
+    if (e.target.name === 'phone') {
+      e.target.value = e.target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+      setValid({ email: true });
+    }
+
+    if (e.target.name === 'email') {
+      /*       let valid =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; */
+    }
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
   };
 
   const handleCheckDuplicateIdBtn = () => {
