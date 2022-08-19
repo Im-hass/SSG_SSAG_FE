@@ -23,15 +23,9 @@ function DestinationContent() {
   const [datas, setDatas] = useState();
 
   useEffect(() => {
-    localStorage.setItem(
-      'token',
-      JSON.stringify(
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjA3OTk2MzgsImV4cCI6MTY2MDgwMTQzOH0.FT4H9xDJUpkQztfE2WLTP4dbrkUaSJ4FlYQXqarVjtM',
-      ),
-    );
     const token = localStorage.getItem('token');
     axios
-      .get('http://10.10.10.174:8081/users/shipping-addr/1', {
+      .get('http://10.10.10.174:8081/users/shipping-addr', {
         headers: {
           Authorization: JSON.parse(token),
         },

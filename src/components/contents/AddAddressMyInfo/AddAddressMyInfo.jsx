@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import './AddAddressMyInfo.scss';
 
 function AddAddressMyInfo(props) {
   const { handleIsOpen, selectedItem } = props;
+  const [inputDatas, setInputDatas] = useState({
+    addrName: '',
+    recipient: '',
+    phone: '',
+    homePhone: '',
+    zipCode: '',
+    streetAddr: '',
+    lotAddr: '',
+  });
 
   const handleAdd = (e) => {
     e.preventDefault();
-    handleIsOpen();
-    window.location.href = '/my';
+    window.location.href = '/destination';
+  };
+
+  const handleInputData = (e) => {
+    console.log(e.target.value);
   };
 
   return (
@@ -36,6 +49,7 @@ function AddAddressMyInfo(props) {
                             placeholder="주소별칭 입력"
                             defaultValue=""
                             maxLength="20"
+                            onChange={handleInputData}
                           />
                         </span>
                       </div>
@@ -54,6 +68,7 @@ function AddAddressMyInfo(props) {
                             placeholder="받는분 성함입력"
                             defaultValue=""
                             maxLength="20"
+                            onChange={handleInputData}
                           />
                         </span>
                       </div>
@@ -124,6 +139,7 @@ function AddAddressMyInfo(props) {
                               id="phoneNum2"
                               defaultValue=""
                               maxLength="8"
+                              onChange={handleInputData}
                             />
                           </span>
                         </div>
@@ -343,6 +359,7 @@ function AddAddressMyInfo(props) {
                               maxLength="8"
                               placeholder="전화번호(숫자만 입력)"
                               title="전화번호(숫자만 입력)"
+                              onChange={handleInputData}
                             />
                           </span>
                         </div>
