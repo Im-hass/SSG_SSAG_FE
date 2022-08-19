@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
@@ -45,6 +46,7 @@ function SignUpFormPage() {
   const [valid, setValid] = useState({
     loginId: false,
     loginPwd: false,
+    name: false,
     email: false,
     phone: false,
   });
@@ -60,6 +62,15 @@ function SignUpFormPage() {
 
   const validCheck = (data) => {
     const validValue = /^[a-zA-Z0-9]+$/;
+
+    if (validValue.test(data)) return true;
+
+    return false;
+  };
+
+  const emailValidCheck = (data) => {
+    const validValue =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (validValue.test(data)) return true;
 
@@ -95,6 +106,25 @@ function SignUpFormPage() {
       }
     }
 
+    if (e.target.name === 'name') {
+      if (e.target.value.length !== 0) {
+        setValid({ name: true });
+      } else {
+        setValid({ name: false });
+      }
+    }
+
+    if (e.target.name === 'email') {
+      if (emailValidCheck(e.target.value) === true) {
+        setValid({ email: true });
+        setError({ email: '' });
+      } else {
+        setError({
+          email: `${e.target.title}값이 유효하지 않습니다.`,
+        });
+      }
+    }
+
     if (e.target.name === 'phone') {
       e.target.value = e.target.value
         .replace(/[^0-9]/g, '')
@@ -102,10 +132,6 @@ function SignUpFormPage() {
       setValid({ email: true });
     }
 
-    if (e.target.name === 'email') {
-      /*       let valid =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; */
-    }
     setInputData({ ...inputData, [e.target.name]: e.target.value });
   };
 
@@ -239,7 +265,6 @@ function SignUpFormPage() {
                         title="이름"
                         value={inputData.name}
                         maxLength={20}
-                        placeholder="한글로 입력"
                         onChange={handleInputData}
                       />
                     </div>
