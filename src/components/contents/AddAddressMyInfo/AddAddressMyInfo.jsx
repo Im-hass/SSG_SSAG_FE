@@ -1,8 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './AddAddressMyInfo.scss';
 
 function AddAddressMyInfo(props) {
-  const { handleIsOpen } = props;
+  const { handleIsOpen, selectedItem } = props;
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+    handleIsOpen();
+    window.location.href = '/my';
+  };
 
   return (
     <div id="m_content">
@@ -14,7 +21,7 @@ function AddAddressMyInfo(props) {
           >
             <div className="order_artcont">
               <div className="order_infoset">
-                <form id="submitForm">
+                <form onSubmit={handleAdd}>
                   <ul className="order_infolist">
                     <li className="oi_th_inp">
                       <span className="oi_th">
@@ -350,19 +357,14 @@ function AddAddressMyInfo(props) {
                           <div className="in_bwrap">
                             <span className="in_b">
                               <span className="inpbx">
-                                <a
-                                  // href="javascript:void(0);"
-                                  href="/"
-                                  // onClick="searchZipcd()"
-                                >
-                                  <input
-                                    type="text"
-                                    name="zipcd"
-                                    defaultValue=""
-                                    title="우편번호 입력"
-                                    readOnly="readonly"
-                                  />
-                                </a>
+                                <input
+                                  type="text"
+                                  name="zipcd"
+                                  title="우편번호 입력"
+                                  readOnly="readonly"
+                                  onClick={handleIsOpen}
+                                  value={selectedItem.zipNo}
+                                />
                               </span>
                             </span>
                           </div>
@@ -374,16 +376,18 @@ function AddAddressMyInfo(props) {
                             우편번호
                           </button>
                         </div>
-                        <div className="addr_info" style={{ display: 'none' }}>
-                          <strong className="info_tit">도로명</strong>
-                          <span id="roadNmAddr" className="info_cont">
-                            도로명주소가 없거나 확인되지 않습니다.
-                          </span>
-                          <strong className="info_tit">지번</strong>
-                          <span id="lotnoAddr" className="info_cont">
-                            지번주소가 없거나 확인되지 않습니다
-                          </span>
-                        </div>
+                        {selectedItem.detailAddr && (
+                          <div className="addr_info">
+                            <strong className="info_tit">도로명</strong>
+                            <span id="roadNmAddr" className="info_cont">
+                              {selectedItem.lnmAdres} {selectedItem.detailAddr}
+                            </span>
+                            <strong className="info_tit">지번</strong>
+                            <span id="lotnoAddr" className="info_cont">
+                              {selectedItem.rnAdres} {selectedItem.detailAddr}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </li>
                   </ul>
@@ -401,30 +405,20 @@ function AddAddressMyInfo(props) {
                       </li>
 
                       <li>
-                        <a
-                          // href="javascript:void(0);"
-                          href="/"
-                          // onClick="ShpplocForm.list()"
-                          className="b_def"
-                        >
+                        <Link to="/destination" className="b_def">
                           취소
-                        </a>
+                        </Link>
                       </li>
 
                       <li>
-                        <a
-                          // href="javascript:void(0);"
-                          href="/"
-                          // onClick="ShpplocForm.save()"
-                          className="b_def5"
-                        >
+                        <button type="submit" className="b_def5">
                           등록
-                        </a>
+                        </button>
                       </li>
                     </ul>
                   </div>
 
-                  <input type="hidden" name="shpplocSeq" defaultValue="" />
+                  {/* <input type="hidden" name="shpplocSeq" defaultValue="" />
                   <input type="hidden" name="bascShpplocYn" defaultValue="" />
                   <input type="hidden" name="oldZipcd" defaultValue="" />
                   <input type="hidden" name="roadNmBascAddr" defaultValue="" />
@@ -440,7 +434,7 @@ function AddAddressMyInfo(props) {
                   <input type="hidden" name="shpplocRegPstCd" defaultValue="" />
                   <input type="hidden" name="addrExamRstCd" defaultValue="" />
                   <input type="hidden" name="rcptpeTelno" defaultValue="" />
-                  <input type="hidden" name="rcptpeHpno" defaultValue="" />
+                  <input type="hidden" name="rcptpeHpno" defaultValue="" /> */}
                 </form>
               </div>
             </div>

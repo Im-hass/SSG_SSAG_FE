@@ -34,7 +34,6 @@ function DestinationContent() {
       .get('http://10.10.10.174:8081/users/shipping-addr/1', {
         headers: {
           Authorization: JSON.parse(token),
-          // Authorization: token,
         },
       })
       .then((res) => {
@@ -63,7 +62,6 @@ function DestinationContent() {
                       <Link to="/addDestination">
                         <DestinationAddBtn />
                       </Link>
-
                       <DestinationBtns />
                       <DestinationListInfo />
                     </>
