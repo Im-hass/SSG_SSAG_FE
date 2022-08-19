@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SignUpInput(props) {
-  const { object } = props;
+  const { object, onChange } = props;
 
   return (
     <input
@@ -11,6 +11,7 @@ function SignUpInput(props) {
       placeholder={object.placeholder}
       name={object.name}
       maxLength={object.maxLength}
+      onChange={onChange}
     />
   );
 }

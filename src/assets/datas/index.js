@@ -10,7 +10,6 @@ export {
   AGREEMENT_CONTENT1,
   AGREEMENT_CONTENT2,
 } from './SignUpAgreementContents';
-export { INPUT_CONTENT } from './SignUpFormContents';
 export {
   AGREEMENT_CONTENTS1,
   AGREEMENT_CONTENTS2,
