@@ -23,6 +23,7 @@ function PaymentMeansAddCardModal() {
   const [isInputValValid, setIsInputValValid] = useState(
     new Array(4).fill(false),
   );
+  const [cardNums, setCardNums] = useState(new Array(4).fill(''));
 
   const handleModalOpen = () => {
     setIsModalOpen(false);
@@ -41,31 +42,6 @@ function PaymentMeansAddCardModal() {
     return true;
   };
 
-  const handleAddCardInputData = (e) => {
-    const nums = e.target.value;
-    const idx = +e.target.getAttribute('index');
-    const newArr = [...isInputValValid];
-
-    setInputVal({
-      ...inputVal,
-      [e.target.name]: nums,
-    });
-
-    if (inputValCheck(nums)) {
-      newArr[idx] = true;
-
-      setAddCardInputData((prevData) => ({
-        ...prevData,
-        [e.target.name]: nums,
-        cardNumber: `${prevData.input1}-${prevData.input2}-${prevData.input3}-${prevData.input4}`, // input4가 안 따라옴ㅇㅅㅇ
-      }));
-      setIsInputValValid(newArr);
-    } else {
-      newArr[idx] = false;
-      setIsInputValValid(newArr);
-    }
-  };
-
   const handleSelectedCardData = (e) => {
     const selectedCard = e.target.value;
 
@@ -75,9 +51,46 @@ function PaymentMeansAddCardModal() {
     });
   };
 
+  const handleAddCardInputData = (e) => {
+    const nums = e.target.value;
+    const idx = +e.target.getAttribute('index');
+    const validArr = [...isInputValValid];
+    const cardNumArr = [...cardNums];
+
+    setInputVal({
+      ...inputVal,
+      [e.target.name]: nums,
+    });
+
+    if (inputValCheck(nums)) {
+      validArr[idx] = true;
+      cardNumArr[idx] = nums;
+
+      // setAddCardInputData((prevData) => ({
+      //   ...prevData,
+      //   [e.target.name]: nums,
+      // }));
+      setCardNums(cardNumArr);
+      setIsInputValValid(validArr);
+    } else {
+      validArr[idx] = false;
+      setIsInputValValid(validArr);
+    }
+  };
+
+  const joinedCardNumber = () => {
+    const joinedCardNums = cardNums.join('-');
+    setAddCardInputData({
+      ...addCardInputData,
+      cardNumber: joinedCardNums,
+    });
+    // return joinedCardNums;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isInputValValid.includes(false)) return;
+    joinedCardNumber();
     console.log('final', isInputValValid);
     console.log('final', addCardInputData);
     setAddCardInputData({
@@ -94,7 +107,6 @@ function PaymentMeansAddCardModal() {
       input3: '',
       input4: '',
     });
-    console.log(addCardInputData);
     // setIsModalOpen(false);
   };
 
