@@ -7,6 +7,8 @@ function ZipCodeSearchResult({
   selectedItem,
   setSelectedItem,
   handleIsOpen,
+  inputDatas,
+  setInputDatas,
 }) {
   const handleListSelected = (e, i) => {
     e.preventDefault();
@@ -20,10 +22,16 @@ function ZipCodeSearchResult({
   };
 
   const handleChange = (e) => {
-    setSelectedItem((pre) => ({
-      ...pre,
+    setSelectedItem({
+      ...selectedItem,
       detailAddr: e.target.value,
-    }));
+    });
+    setInputDatas({
+      ...inputDatas,
+      zipCode: selectedItem.zipNo,
+      streetAddr: `${selectedItem.lnmAdres} ${e.target.value}`,
+      lotAddr: `${selectedItem.rnAdres} ${e.target.value}`,
+    });
   };
 
   return (

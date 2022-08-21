@@ -6,7 +6,13 @@ import { ZipCodeSearchResult } from '../ZipCodeSearchResult';
 const ifFunc = (condition, then, otherwise) => (condition ? then : otherwise);
 
 function AddAddressZipCode(props) {
-  const { handleIsOpen, selectedItem, setSelectedItem } = props;
+  const {
+    handleIsOpen,
+    selectedItem,
+    setSelectedItem,
+    inputDatas,
+    setInputDatas,
+  } = props;
   const [hasDatas, setHasDatas] = useState(false);
   const [searchVal, setSearchVal] = useState();
   const [datas, setDatas] = useState();
@@ -101,6 +107,8 @@ function AddAddressZipCode(props) {
               selectedItem={selectedItem}
               setSelectedItem={setSelectedItem}
               handleIsOpen={handleIsOpen}
+              inputDatas={inputDatas}
+              setInputDatas={setInputDatas}
             />,
           )
         ) : (

@@ -5,6 +5,15 @@ import { AddAddressMyInfo, AddAddressZipCode } from '../components/contents';
 
 function AddDestinationPage() {
   const [isOpen, setIsOpen] = useState(false);
+  const [inputDatas, setInputDatas] = useState({
+    addrName: '',
+    recipient: '',
+    phone: '',
+    homePhone: '',
+    zipCode: '',
+    streetAddr: '',
+    lotAddr: '',
+  });
   const [selectedItem, setSelectedItem] = useState({
     zipNo: '',
     lnmAdres: '',
@@ -16,6 +25,10 @@ function AddDestinationPage() {
     setIsOpen(!isOpen);
   };
 
+  const handleInputData = (e) => {
+    setInputDatas({ ...inputDatas, [e.target.name]: e.target.value });
+  };
+
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
       <div id="m_container" className="mcom_container">
@@ -24,6 +37,8 @@ function AddDestinationPage() {
         {!isOpen && (
           <AddAddressMyInfo
             handleIsOpen={handleIsOpen}
+            inputDatas={inputDatas}
+            handleInputData={handleInputData}
             selectedItem={selectedItem}
           />
         )}
@@ -32,6 +47,8 @@ function AddDestinationPage() {
         {isOpen && (
           <AddAddressZipCode
             handleIsOpen={handleIsOpen}
+            inputDatas={inputDatas}
+            setInputDatas={setInputDatas}
             selectedItem={selectedItem}
             setSelectedItem={setSelectedItem}
           />

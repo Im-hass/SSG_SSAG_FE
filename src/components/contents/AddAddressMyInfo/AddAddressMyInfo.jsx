@@ -1,28 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
+import axios from 'axios/index';
 import './AddAddressMyInfo.scss';
 
 function AddAddressMyInfo(props) {
-  const { handleIsOpen, selectedItem } = props;
-  const [inputDatas, setInputDatas] = useState({
-    addrName: '',
-    recipient: '',
-    phone: '',
-    homePhone: '',
-    zipCode: '',
-    streetAddr: '',
-    lotAddr: '',
-  });
+  const { handleIsOpen, selectedItem, inputDatas, handleInputData } = props;
 
   const handleAdd = (e) => {
     e.preventDefault();
+    // 유효성 검사 후 datas 이용해서 서버에 추가
+    const token = localStorage.getItem('token');
+    axios
+      .post(
+        'http://localhost:8080/users/shipping-addr',
+        {
+          ...inputDatas,
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        },
+      )
+      .then((res) => {
+        console.log('등록');
+        console.log(res);
+      });
     window.location.href = '/destination';
   };
 
-  const handleInputData = (e) => {
-    console.log(e.target.value);
-  };
+  useEffect(() => {
+    console.log(inputDatas);
+  }, [inputDatas]);
 
   return (
     <div id="m_content">
@@ -38,14 +48,14 @@ function AddAddressMyInfo(props) {
                   <ul className="order_infolist">
                     <li className="oi_th_inp">
                       <span className="oi_th">
-                        <label htmlFor="shpplocAntnmNm">주소별칭</label>
+                        <label htmlFor="addrName">주소별칭</label>
                       </span>
                       <div className="oi_cont">
                         <span className="inpbx">
                           <input
                             type="text"
-                            id="shpplocAntnmNm"
-                            name="shpplocAntnmNm"
+                            id="addrName"
+                            name="addrName"
                             placeholder="주소별칭 입력"
                             defaultValue=""
                             maxLength="20"
@@ -57,14 +67,14 @@ function AddAddressMyInfo(props) {
 
                     <li className="oi_th_inp">
                       <span className="oi_th">
-                        <label htmlFor="rcptpeNm">받는 분</label>
+                        <label htmlFor="recipient">받는 분</label>
                       </span>
                       <div className="oi_cont">
                         <span className="inpbx">
                           <input
                             type="text"
-                            id="rcptpeNm"
-                            name="rcptpeNm"
+                            id="recipient"
+                            name="recipient"
                             placeholder="받는분 성함입력"
                             defaultValue=""
                             maxLength="20"
@@ -75,7 +85,7 @@ function AddAddressMyInfo(props) {
                     </li>
                     <li className="oi_th_inp">
                       <span className="oi_th">
-                        <label htmlFor="phoneNum1">휴대폰</label>
+                        <label htmlFor="phone">휴대폰</label>
                       </span>
                       <div className="oi_cont">
                         <div className="oi_phone_pd">
@@ -84,7 +94,7 @@ function AddAddressMyInfo(props) {
                               <span className="cc_ellip_in selected">010</span>
                               <span className="sp_com sel_arrow">&nbsp;</span>
                               <span className="hide_select">
-                                <select id="phoneNum1" title="휴대폰 앞자리">
+                                <select id="phone" title="휴대폰 앞자리">
                                   <option
                                     value="010"
                                     addtoptnval1=""
@@ -147,7 +157,7 @@ function AddAddressMyInfo(props) {
                     </li>
                     <li className="oi_th_inp">
                       <span className="oi_th">
-                        <label htmlFor="lf_like4">전화번호(선택)</label>
+                        <label htmlFor="homePhone">전화번호(선택)</label>
                       </span>
                       <div className="oi_cont">
                         <div className="oi_phone_pd">
@@ -354,7 +364,8 @@ function AddAddressMyInfo(props) {
                           <span className="inpbx">
                             <input
                               type="tel"
-                              id="telNum2"
+                              id="homePhone"
+                              name="homePhone"
                               defaultValue=""
                               maxLength="8"
                               placeholder="전화번호(숫자만 입력)"
@@ -367,7 +378,7 @@ function AddAddressMyInfo(props) {
                     </li>
                     <li className="oi_th_inp">
                       <span className="oi_th">
-                        <label htmlFor="zipcd">배송주소</label>
+                        <label htmlFor="zipCode">배송주소</label>
                       </span>
                       <div className="oi_cont">
                         <div className="oi_cblock oi_post_pd">
@@ -376,7 +387,7 @@ function AddAddressMyInfo(props) {
                               <span className="inpbx">
                                 <input
                                   type="text"
-                                  name="zipcd"
+                                  name="zipCode"
                                   title="우편번호 입력"
                                   readOnly="readonly"
                                   onClick={handleIsOpen}
@@ -437,7 +448,7 @@ function AddAddressMyInfo(props) {
 
                   {/* <input type="hidden" name="shpplocSeq" defaultValue="" />
                   <input type="hidden" name="bascShpplocYn" defaultValue="" />
-                  <input type="hidden" name="oldZipcd" defaultValue="" />
+                  <input type="hidden" name="oldzipCode" defaultValue="" />
                   <input type="hidden" name="roadNmBascAddr" defaultValue="" />
                   <input type="hidden" name="roadNmDtlAddr" defaultValue="" />
                   <input type="hidden" name="lotnoBascAddr" defaultValue="" />
