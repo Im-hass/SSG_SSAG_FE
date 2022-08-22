@@ -2,10 +2,12 @@ export const DES_TAB_LIST = [
   {
     to: '/destination/myDes',
     name: 'MY배송지',
+    menuName: 'myDes',
   },
   {
     to: '/destination/withDes',
     name: '함께장보기 배송지',
+    menuName: 'withDes',
   },
 ];
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios/index';
+import axios from 'axios';
 import {
   DestinationTit,
   DestinationTabList,
@@ -21,16 +21,16 @@ function defaultAddrSort(a, b) {
 
 function DestinationContent() {
   const [datas, setDatas] = useState();
-  const [isClassOn, setIsClassOn] = useState('myDes');
+  const [menuName, setMenuName] = useState('myDes');
 
-  const handleMenu = (index) => {
-    setIsClassOn(index);
+  const handleMenu = (name) => {
+    setMenuName(name);
   };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     axios
-      .get('http://10.10.10.174:8081/users/shipping-addr', {
+      .get('http://13.209.26.150:9000/users/shipping-addr', {
         headers: {
           Authorization: JSON.parse(token),
         },
@@ -40,7 +40,7 @@ function DestinationContent() {
         const sortLists = lists.sort(defaultAddrSort);
         setDatas(sortLists);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => new Error(e));
   }, []);
 
   return (
@@ -51,31 +51,9 @@ function DestinationContent() {
             <DestinationTit />
 
             <div className="myodr_tab">
-              <ul className="myodr_tab_list" role="tablist">
-                <li
-                  role="menuitem"
-                  onClick={() => handleMenu('myDes')}
-                  onKeyDown={() => handleMenu('myDes')}
-                  className={isClassOn === 'myDes' ? 'on' : ''}
-                >
-                  <Link to="/destination/myDes">
-                    <span className="myodr_tab_tx">MY배송지</span>
-                  </Link>
-                </li>
-                <li
-                  role="menuitem"
-                  onClick={() => handleMenu('withDes')}
-                  onKeyDown={() => handleMenu('withDes')}
-                  className={isClassOn === 'withDes' ? 'on' : ''}
-                >
-                  <Link to="/destination/withDes">
-                    <span className="myodr_tab_tx">함께장보기 배송지</span>
-                  </Link>
-                </li>
-              </ul>
-              <DestinationTabList handleMenu={handleMenu} />
+              <DestinationTabList handleMenu={handleMenu} menuName={menuName} />
 
-              {isClassOn === 'myDes' ? (
+              {menuName === 'myDes' ? (
                 <div className="myodr_tab_cont">
                   <div className="myodr_tab_panel" role="tabpanel">
                     {datas && datas.length !== 0 ? (
