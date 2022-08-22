@@ -1,11 +1,54 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios/index';
 import './AddAddressMyInfo.scss';
 
-function AddAddressMyInfo(props) {
-  const { handleIsOpen, selectedItem, inputDatas, handleInputData } = props;
+function AddAddressMyInfo() {
+  // const {
+  //   handleIsOpen,
+  //   selectedItem,
+  //   inputDatas,
+  //   handleInputData,
+  //   error,
+  // } = props;
+  const navigate = useNavigate();
+
+  const [data, setData] = useState({
+    addrName: '',
+    recipient: '',
+    phone: '',
+    homePhone: '',
+    zipCode: '',
+    streetAddr: '',
+    lotAddr: '',
+  });
+  const [isReset, setIsReset] = useState(false);
+
+  useEffect(() => {
+    console.log(isReset);
+    console.log(data);
+  }, [isReset]);
+
+  const handleInputData = (e) => {
+    // const regPhone = /^[0-9]+$/;
+    console.log(e.target.value);
+    const { name, value } = e.target;
+
+    // console.log(name);
+    // console.log(value);
+
+    // if (name === 'phone' || name === 'homePhone') {
+    //   if (regPhone.test(value) === true) {
+    //     setValid({ [e.target.name]: true });
+    //     setError({
+    //       [e.target.name]: '',
+    //     });
+    //   } else return;
+    // }
+
+    setData({ ...data, [name]: value });
+  };
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -13,9 +56,9 @@ function AddAddressMyInfo(props) {
     const token = localStorage.getItem('token');
     axios
       .post(
-        'http://localhost:8080/users/shipping-addr',
+        'http://13.209.26.150:9000/users/shipping-addr',
         {
-          ...inputDatas,
+          ...data,
         },
         {
           headers: {
@@ -27,12 +70,22 @@ function AddAddressMyInfo(props) {
         console.log('등록');
         console.log(res);
       });
-    window.location.href = '/destination';
+    navigate(-1);
   };
 
-  useEffect(() => {
-    console.log(inputDatas);
-  }, [inputDatas]);
+  const onReset = () => {
+    setIsReset(!isReset);
+    setData({
+      ...data,
+      addrName: '',
+      recipient: '',
+      phone: '',
+      homePhone: '',
+      zipCode: '',
+      streetAddr: '',
+      lotAddr: '',
+    });
+  };
 
   return (
     <div id="m_content">
@@ -57,10 +110,16 @@ function AddAddressMyInfo(props) {
                             id="addrName"
                             name="addrName"
                             placeholder="주소별칭 입력"
-                            defaultValue=""
+                            // defaultValue=""
+                            value={data && data.addrName}
                             maxLength="20"
                             onChange={handleInputData}
                           />
+                        </span>
+                        <span className="cmem_noti">
+                          <em className="usable_value">
+                            {/* <p>{error.addrName}</p> */}
+                          </em>
                         </span>
                       </div>
                     </li>
@@ -76,10 +135,15 @@ function AddAddressMyInfo(props) {
                             id="recipient"
                             name="recipient"
                             placeholder="받는분 성함입력"
-                            defaultValue=""
+                            defaultValue={data && data.recipient}
                             maxLength="20"
                             onChange={handleInputData}
                           />
+                        </span>
+                        <span className="cmem_noti">
+                          <em className="usable_value">
+                            {/* <p>{error.recipient}</p> */}
+                          </em>
                         </span>
                       </div>
                     </li>
@@ -147,10 +211,16 @@ function AddAddressMyInfo(props) {
                               title="휴대폰(숫자만 입력)"
                               placeholder="휴대폰(숫자만 입력)"
                               id="phoneNum2"
-                              defaultValue=""
+                              name="phone"
+                              defaultValue={data && data.phone}
                               maxLength="8"
                               onChange={handleInputData}
                             />
+                          </span>
+                          <span className="cmem_noti">
+                            <em className="usable_value">
+                              {/* <p>{error.phone}</p> */}
+                            </em>
                           </span>
                         </div>
                       </div>
@@ -366,12 +436,17 @@ function AddAddressMyInfo(props) {
                               type="tel"
                               id="homePhone"
                               name="homePhone"
-                              defaultValue=""
+                              defaultValue={data && data.homePhone}
                               maxLength="8"
                               placeholder="전화번호(숫자만 입력)"
                               title="전화번호(숫자만 입력)"
                               onChange={handleInputData}
                             />
+                          </span>
+                          <span className="cmem_noti">
+                            <em className="usable_value">
+                              {/* <p>{error.homePhone}</p> */}
+                            </em>
                           </span>
                         </div>
                       </div>
@@ -390,21 +465,26 @@ function AddAddressMyInfo(props) {
                                   name="zipCode"
                                   title="우편번호 입력"
                                   readOnly="readonly"
-                                  onClick={handleIsOpen}
-                                  value={selectedItem.zipNo}
+                                  // onClick={handleIsOpen}
+                                  // value={selectedItem.zipNo}
                                 />
+                              </span>
+                              <span className="cmem_noti">
+                                <em className="usable_value">
+                                  {/* <p>{error.zipNo}</p> */}
+                                </em>
                               </span>
                             </span>
                           </div>
                           <button
                             type="button"
                             className="b_def3"
-                            onClick={handleIsOpen}
+                            // onClick={handleIsOpen}
                           >
                             우편번호
                           </button>
                         </div>
-                        {selectedItem.detailAddr && (
+                        {/* {selectedItem.detailAddr && (
                           <div className="addr_info">
                             <strong className="info_tit">도로명</strong>
                             <span id="roadNmAddr" className="info_cont">
@@ -415,21 +495,20 @@ function AddAddressMyInfo(props) {
                               {selectedItem.rnAdres} {selectedItem.detailAddr}
                             </span>
                           </div>
-                        )}
+                        )} */}
                       </div>
                     </li>
                   </ul>
                   <div className="order_btnarea2 order_btnarea3">
                     <ul className="bnbox">
                       <li>
-                        <a
-                          // href="javascript:void(0);"
-                          href="/"
-                          // onClick="ShpplocForm.reset()"
+                        <button
+                          type="button"
+                          onClick={onReset}
                           className="b_def"
                         >
                           초기화
-                        </a>
+                        </button>
                       </li>
 
                       <li>
