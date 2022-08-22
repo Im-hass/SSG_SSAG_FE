@@ -1,53 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const axios = require('axios');
+function PaymentMeansCardList({ cards, cardNumArr, isSubmit, setIsSubmit }) {
+  const handleDeleteCard = (data) => {
+    const { paymentId } = data;
+    const token = localStorage.getItem('token');
+    const headers = {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    };
 
-const cardNumArr = [];
-
-function PaymentMeansCardList() {
-  const [cards, setCards] = useState([]);
-
-  const changeCardNums = (numArr) => {
-    for (let i = 0; i < numArr.length; i += 1) {
-      cardNumArr[i] = numArr[i].split('');
-      for (let j = 0; j < numArr[i].length; j += 1) {
-        if (
-          j === 7 ||
-          j === 8 ||
-          j === 10 ||
-          j === 11 ||
-          j === 12 ||
-          j === 13
-        ) {
-          cardNumArr[i][j] = '*';
-        }
-      }
-      cardNumArr[i] = numArr[i].join('');
-    }
-  };
-
-  const insertCardNums = (datas) => {
-    for (let i = 0; i < datas.length; i += 1) {
-      cardNumArr.push(datas[i].cardNumber);
-    }
-    changeCardNums(cardNumArr);
-  };
-
-  useEffect(() => {
     axios
-      .get('http://10.10.10.174:8081/users/payment', {
-        headers: {
-          Authorization:
-            'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjA4MDU1NDMsImV4cCI6MTY2MDgwNzM0M30._Te4qgbQBxnsNxW9B8pHFaqkBQiwiMRnjGg1bjodgeg',
-        },
-      })
+      .delete(`http://13.209.26.150:9000/users/payment/${paymentId}`, headers)
       .then((res) => {
-        console.log(res);
-        setCards(res.data.result);
-        insertCardNums(res.data.result);
+        console.log('delete result:', res);
+        setIsSubmit(!isSubmit);
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log('delete err:', err));
+  };
 
   return (
     <ul className="myssgpay_reserv_cardlst" style={{ userSelect: 'auto' }}>
@@ -95,6 +66,7 @@ function PaymentMeansCardList() {
                   className="btn_remove"
                   data-fncco-cd="08"
                   style={{ userSelect: 'auto' }}
+                  onClick={() => handleDeleteCard(card)}
                 >
                   삭제
                 </button>

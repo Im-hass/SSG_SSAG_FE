@@ -59,17 +59,10 @@
 .add_card_num_input_box {
   margin: 30px 0;
 
-  .add_card_num_inputs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-
   .add_card_num_input {
     padding: 0 3px;
-    width: 20%;
-    margin: 20px 10px 0 10px;
+    margin-top: 20px;
+    width: 100%;
     border: 1px solid lightgrey;
     transition: all 0.1s linear;
   }

@@ -1,38 +1,25 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './PaymentMeansAddCardModal.scss';
 import { useRecoilState } from 'recoil';
 import { isModalOpenState } from '../../../recoil/states';
 
-function PaymentMeansAddCardModal() {
+function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
   const [addCardInputData, setAddCardInputData] = useState({
     cardCompany: '',
     cardNumber: '',
-    input1: '',
-    input2: '',
-    input3: '',
-    input4: '',
   });
-  const [inputVal, setInputVal] = useState({
-    input1: '',
-    input2: '',
-    input3: '',
-    input4: '',
-  });
-  const { input1, input2, input3, input4 } = inputVal;
-  const [isInputValValid, setIsInputValValid] = useState(
-    new Array(4).fill(false),
-  );
-  const [cardNums, setCardNums] = useState(new Array(4).fill(''));
+  const [inputVal, setInputVal] = useState('');
 
   const handleModalOpen = () => {
     setIsModalOpen(false);
   };
 
-  const inputValCheck = (data) => {
+  const validCheck = (data) => {
     const testData = data.split('');
 
-    if (testData.length < 4) {
+    if (testData.length > 16) {
       return false;
     }
     for (let i = 0; i < testData.length; i += 1) {
@@ -42,72 +29,63 @@ function PaymentMeansAddCardModal() {
     return true;
   };
 
-  const handleSelectedCardData = (e) => {
-    const selectedCard = e.target.value;
-
-    setAddCardInputData({
-      ...addCardInputData,
-      [e.target.name]: selectedCard,
-    });
-  };
-
   const handleAddCardInputData = (e) => {
     const nums = e.target.value;
-    const idx = +e.target.getAttribute('index');
-    const validArr = [...isInputValValid];
-    const cardNumArr = [...cardNums];
 
-    setInputVal({
-      ...inputVal,
-      [e.target.name]: nums,
-    });
+    setInputVal(nums);
 
-    if (inputValCheck(nums)) {
-      validArr[idx] = true;
-      cardNumArr[idx] = nums;
-
-      // setAddCardInputData((prevData) => ({
-      //   ...prevData,
-      //   [e.target.name]: nums,
-      // }));
-      setCardNums(cardNumArr);
-      setIsInputValValid(validArr);
-    } else {
-      validArr[idx] = false;
-      setIsInputValValid(validArr);
+    if (validCheck(nums)) {
+      setAddCardInputData({
+        ...addCardInputData,
+        cardNumber: nums,
+      });
     }
   };
 
-  const joinedCardNumber = () => {
-    const joinedCardNums = cardNums.join('-');
+  const handleSelectedCardData = (e) => {
+    const card = e.target.value;
     setAddCardInputData({
       ...addCardInputData,
-      cardNumber: joinedCardNums,
+      cardCompany: card,
     });
-    // return joinedCardNums;
+  };
+
+  const test = () => {
+    let nums = addCardInputData.cardNumber;
+    nums = nums.split('');
+    nums.splice(4, 0, '-');
+    nums.splice(9, 0, '-');
+    nums.splice(14, 0, '-');
+    return nums.join('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isInputValValid.includes(false)) return;
-    joinedCardNumber();
-    console.log('final', isInputValValid);
-    console.log('final', addCardInputData);
+
+    const token = localStorage.getItem('token');
+    const data = {
+      cardCompany: addCardInputData.cardCompany,
+      cardNumber: test(),
+    };
+    const headers = {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    };
+    axios
+      .post('http://13.209.26.150:9000/users/payment', data, headers)
+      .then((res) => {
+        console.log(res);
+        setIsSubmit(!isSubmit);
+      })
+      .catch((err) => console.log(err));
+
     setAddCardInputData({
       cardCompany: '',
       cardNumber: '',
-      input1: '',
-      input2: '',
-      input3: '',
-      input4: '',
     });
-    setInputVal({
-      input1: '',
-      input2: '',
-      input3: '',
-      input4: '',
-    });
-    // setIsModalOpen(false);
+    setInputVal('');
+    setIsModalOpen(false);
   };
 
   return (
@@ -153,7 +131,11 @@ function PaymentMeansAddCardModal() {
               </li>
             </ul>
 
-            <ul className="codr_pay_cardlst" style={{ userSelect: 'auto' }}>
+            <ul
+              className="codr_pay_cardlst"
+              style={{ userSelect: 'auto' }}
+              onChange={handleSelectedCardData}
+            >
               <li style={{ userSelect: 'auto' }}>
                 <input
                   type="radio"
@@ -162,8 +144,6 @@ function PaymentMeansAddCardModal() {
                   className="blind"
                   value="우리카드"
                   style={{ userSelect: 'auto' }}
-                  onChange={handleSelectedCardData}
-                  index={0}
                 />
                 <label htmlFor="woori_card" style={{ userSelect: 'auto' }}>
                   우리카드
@@ -178,8 +158,6 @@ function PaymentMeansAddCardModal() {
                   className="blind"
                   value="현대카드"
                   style={{ userSelect: 'auto' }}
-                  onChange={handleSelectedCardData}
-                  index={1}
                 />
                 <label htmlFor="hyundai_card" style={{ userSelect: 'auto' }}>
                   현대카드
@@ -194,8 +172,6 @@ function PaymentMeansAddCardModal() {
                   className="blind"
                   value="국민카드"
                   style={{ userSelect: 'auto' }}
-                  onChange={handleSelectedCardData}
-                  index={2}
                 />
                 <label htmlFor="kb_card" style={{ userSelect: 'auto' }}>
                   국민카드
@@ -210,8 +186,6 @@ function PaymentMeansAddCardModal() {
                   className="blind"
                   value="삼성카드"
                   style={{ userSelect: 'auto' }}
-                  onChange={handleSelectedCardData}
-                  index={3}
                 />
                 <label htmlFor="samsung_card" style={{ userSelect: 'auto' }}>
                   삼성카드
@@ -226,8 +200,6 @@ function PaymentMeansAddCardModal() {
                   className="blind"
                   value="신한카드"
                   style={{ userSelect: 'auto' }}
-                  onChange={handleSelectedCardData}
-                  index={4}
                 />
                 <label htmlFor="shinhan_card" style={{ userSelect: 'auto' }}>
                   신한카드
@@ -240,44 +212,13 @@ function PaymentMeansAddCardModal() {
                 카드번호를 입력해주세요.
               </span>
               <div className="add_card_num_inputs">
-                {/* input 4개 값 각각 쏴서 백 넘기기 전에 '-'넣고 join 
-                각 입력값 길이 4되면 옆으로 넘기기
-                */}
                 <input
                   className="add_card_num_input"
                   type="text"
-                  maxLength={4}
+                  maxLength={16}
                   name="input1"
                   onChange={handleAddCardInputData}
-                  value={input1}
-                  index={0}
-                />
-                <input
-                  className="add_card_num_input"
-                  type="password"
-                  maxLength={4}
-                  name="input2"
-                  onChange={handleAddCardInputData}
-                  value={input2}
-                  index={1}
-                />
-                <input
-                  className="add_card_num_input"
-                  type="password"
-                  maxLength={4}
-                  name="input3"
-                  onChange={handleAddCardInputData}
-                  value={input3}
-                  index={2}
-                />
-                <input
-                  className="add_card_num_input"
-                  type="text"
-                  maxLength={4}
-                  name="input4"
-                  onChange={handleAddCardInputData}
-                  value={input4}
-                  index={3}
+                  value={inputVal}
                 />
               </div>
             </div>

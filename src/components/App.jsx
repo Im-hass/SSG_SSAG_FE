@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {
   AddDestinationPage,
@@ -22,6 +22,15 @@ import {
 import { Login, WithdrawMember } from './contents/index';
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem(
+      'token',
+      JSON.stringify(
+        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjExNTI4NzUsImV4cCI6MTY2MTE1NDY3NX0.n7SpVjeFMnKqUConoKt-lpuobxEXmQhTtLCpnbA5JiE',
+      ),
+    );
+  }, []);
+
   return (
     <div>
       <Routes>
