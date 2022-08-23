@@ -33,7 +33,7 @@ const SNS_LOGIN_CONTENT = [
 
 function Login() {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const [, setIsLogin] = useRecoilState(isLoginState);
 
   const [inputData, setInputData] = useState({
     loginId: '',

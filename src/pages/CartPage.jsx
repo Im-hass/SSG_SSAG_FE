@@ -16,12 +16,8 @@ import {
 import { MobileHeader, CartPageBtn } from '../components/ui';
 
 function CartPage() {
-  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const [isLogin] = useRecoilState(isLoginState);
   const [isItems, setIsItems] = useRecoilState(isItemsState);
-
-  const handleLogin = () => {
-    setIsLogin(!isLogin);
-  };
 
   const handleItems = () => {
     setIsItems(!isItems);
@@ -38,14 +34,6 @@ function CartPage() {
         className="reveal-left-contents reveal-right-contents mcom_container mnodr_container_step ty_headfix"
       >
         <div id="m_content">
-          {/* 가라 버튼 */}
-          <button
-            type="button"
-            onClick={handleLogin}
-            style={{ marginRight: '10px' }}
-          >
-            {isLogin ? '로그아웃' : '로그인'}
-          </button>
           <button type="button" onClick={handleItems}>
             {isItems ? '장바구니 비우기' : '장바구니 추가'}
           </button>
