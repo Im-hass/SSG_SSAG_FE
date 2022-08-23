@@ -7,17 +7,15 @@ function ZipCodeSearchResult({
   selectedItem,
   setSelectedItem,
   handleIsOpen,
-  inputDatas,
-  setInputDatas,
 }) {
   const handleListSelected = (e, i) => {
     e.preventDefault();
     setIsSelected(!isSelected);
     setSelectedItem((pre) => ({
       ...pre,
-      zipNo: datas[i].zipNo,
-      lnmAdres: datas[i].lnmAdres,
-      rnAdres: datas[i].rnAdres,
+      zipCode: datas[i].zipNo,
+      streetAddr: datas[i].lnmAdres,
+      lotAddr: datas[i].rnAdres,
     }));
   };
 
@@ -25,12 +23,6 @@ function ZipCodeSearchResult({
     setSelectedItem({
       ...selectedItem,
       detailAddr: e.target.value,
-    });
-    setInputDatas({
-      ...inputDatas,
-      zipCode: selectedItem.zipNo,
-      streetAddr: `${selectedItem.lnmAdres} ${e.target.value}`,
-      lotAddr: `${selectedItem.rnAdres} ${e.target.value}`,
     });
   };
 
@@ -122,15 +114,15 @@ function ZipCodeSearchResult({
             <dl className="srchaddr_info">
               <dt className="info_tit">우편번호</dt>
               <dd name="zipcd" className="info_cont">
-                <span className="num">{selectedItem.zipNo}</span>
+                <span className="num">{selectedItem.zipCode}</span>
               </dd>
               <dt className="info_tit">도로명</dt>
               <dd name="roadNmAddr" className="info_cont">
-                <span className="notranslate">{selectedItem.lnmAdres}</span>
+                <span className="notranslate">{selectedItem.streetAddr}</span>
               </dd>
               <dt className="info_tit">지번</dt>
               <dd name="lotnoAddr" className="info_cont">
-                <span className="notranslate">{selectedItem.rnAdres}</span>
+                <span className="notranslate">{selectedItem.lotAddr}</span>
               </dd>
             </dl>
           </div>
