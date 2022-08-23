@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import ProductLiveMsg from "../../common/ui/ProductLiveMsg";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ProductLiveMsg from './ProductLiveMsg';
 
 function ProductDetailInfo() {
   const [more, setMore] = useState(false);
-  const handleMore= () => {
+  const handleMore = () => {
     setMore(!more);
-  }
+  };
   return (
     <div className="mndtl_sec_cont" id="_detailinfo">
       <ProductLiveMsg />
@@ -24,7 +24,10 @@ function ProductDetailInfo() {
         <h3 className="mndtl_sec_tit">상세정보</h3>
       </div>
 
-      <div className={more ? "mndtl_detail_wrap on":"mndtl_detail_wrap"} data-react-tarea-cd="00006_000000009">
+      <div
+        className={more ? 'mndtl_detail_wrap on' : 'mndtl_detail_wrap'}
+        data-react-tarea-cd="00006_000000009"
+      >
         <div className="mndtl_detail_info">
           <ul className="mndtl_detail_infolist">
             <li>상품번호 : 1000310147566</li>
@@ -32,18 +35,14 @@ function ProductDetailInfo() {
             <li>모델 : 론디 01(BR)</li>
           </ul>
 
-          <div
-            className="mndtl_detail_err">
-            <i className="mndtl_ic mndtl_ic_warning"></i>
+          <div className="mndtl_detail_err">
+            <i className="mndtl_ic mndtl_ic_warning" />
             <p className="mndtl_err_txt">
               상품정보에
               <br />
               문제가 있나요?
             </p>
-            <Link
-              to=""
-              className="mndtl_btn_err clickable"
-              target="_parent">
+            <Link to=".." className="mndtl_btn_err clickable" target="_parent">
               <span>신고하기</span>
             </Link>
           </div>
@@ -59,7 +58,7 @@ function ProductDetailInfo() {
                   <br />
                   <br />
                   &lt; 2022 뉴패키지 &gt; <br />
-                  젠틀몬스터 선글라스 제품은 2022년 뉴패키지로 발송됩니다.{" "}
+                  젠틀몬스터 선글라스 제품은 2022년 뉴패키지로 발송됩니다.{' '}
                   <br />
                   콜라보 제품은 스페셜 패키지로 포장 발송 됩니다. <br />
                   <br />
@@ -88,13 +87,13 @@ function ProductDetailInfo() {
                 차단이 되는 브라운 그라디언트 렌즈를 사용하였습니다.
               </div>
 
-              <div className="blind" id="itemNutritionGrid"></div>
+              <div className="blind" id="itemNutritionGrid" />
 
-              <div id="itemAppeProp"></div>
+              <div id="itemAppeProp" />
             </div>
           </div>
 
-          <div className={more ? "mndtl_detail_more on":"mndtl_detail_more"}>
+          <div className={more ? 'mndtl_detail_more on' : 'mndtl_detail_more'}>
             <button
               type="button"
               className="mndtl_detail_btnmore clickable"
@@ -102,7 +101,7 @@ function ProductDetailInfo() {
             >
               <span className="sr_off">상세정보 펼쳐보기</span>
               <span className="sr_on">상세정보 접기</span>
-              <i className="mndtl_ico_arr"></i>
+              <i className="mndtl_ico_arr" />
             </button>
           </div>
         </div>

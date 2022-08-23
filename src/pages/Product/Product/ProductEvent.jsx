@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function ProductEvent() {
   return (
@@ -16,7 +16,7 @@ function ProductEvent() {
             />
           </a>
         </div>
-        {/* 위에꺼 세번 더 반복 총4개인거임*/}
+        {/* 위에꺼 세번 더 반복 총4개인거임 */}
       </div>
     </div>
   );

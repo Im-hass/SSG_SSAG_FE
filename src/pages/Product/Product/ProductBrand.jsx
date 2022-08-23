@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react';
 
 function ProductBrand() {
   return (
     <div
       className="mndtl_sec_bx"
       data-observable-unit="true"
-      data-react-tarea-cd="00006_000000017">
+      data-react-tarea-cd="00006_000000017"
+    >
       <div className="mndtl_rectit_tytext">
         <a
           href="/mall/disp/brandMain.ssg?brandId=3000027757&amp;ctgId=6000200803&amp;_mpop=new"
@@ -29,7 +30,7 @@ function ProductBrand() {
             <i
               className="mndtl_ic_arr clickable"
               data-react-tarea-dtl-cd="t00060"
-            ></i>
+            />
           </span>
         </a>
         <div className="mndtl_rectit_text_subtx">
@@ -39,14 +40,14 @@ function ProductBrand() {
       <div className="cmitem_grid">
         <ul className="cmitem_grid_lst mnsditem_ty_thmb">
           {/* 여기서 반복 */}
-          
+
           <li className="cmitem_grid_item">
             <div className="mnsditem_unit">
-              <div className="mnsditem_helper"></div>
+              <div className="mnsditem_helper" />
               <div className="mnsditem_goods">
                 <div className="mnsditem_thmb">
                   <a
-                    href=""
+                    href="/"
                     className="mnsditem_thmb_link clickable"
                     target="_parent"
                   >
@@ -92,9 +93,12 @@ function ProductBrand() {
                       />
                       <input type="hidden" name="checked" value="N" />
                       <input type="hidden" name="useForcedSsgYn" value="N" />
-                      <button className="cmlike_btn _js_cmlike_btn clickable">
+                      <button
+                        type="button"
+                        className="cmlike_btn _js_cmlike_btn clickable"
+                      >
                         <span className="cmlike_ico">
-                          <i className="cmlike_primary_m"></i>
+                          <i className="cmlike_primary_m" />
                           <span className="sr_off">
                             <span className="blind">관심상품 취소</span>
                           </span>
@@ -138,7 +142,7 @@ function ProductBrand() {
                     </a>
                   </div>
                   <div className="mnsditem_sideinfo">
-                    <div className="mnsditem_taglist"></div>
+                    <div className="mnsditem_taglist" />
                   </div>
                 </div>
               </div>
@@ -153,5 +157,3 @@ function ProductBrand() {
 }
 
 export default ProductBrand;
-
-

@@ -1,12 +1,17 @@
-import React from "react";
-import ShareBtn from "../../common/ui/button/ShareBtn";
+import React from 'react';
+import ShareBtn from './ShareBtn';
 
 function ProductEctExplain() {
   return (
     <>
       <div id="cdtl_mflick_layer">
-        <div className="flick_zoom_img"></div>
-        <a href="javascript:;" className="cdtl_btn_close" target="_parent">
+        <div className="flick_zoom_img" />
+        <a
+          // href='/'
+          href="/"
+          className="cdtl_btn_close"
+          target="_parent"
+        >
           <span className="blind">닫기</span>
         </a>
       </div>
@@ -25,7 +30,7 @@ function ProductEctExplain() {
               </dl>
             </div>
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -34,9 +39,9 @@ function ProductEctExplain() {
         <div className="cdtl_ly_inr">
           <h2 className="cdtl_ly_tit">퀵배송 안내</h2>
           <div className="cdtl_ly_cont">
-            <div className="cdtl_ly_scroll"></div>
+            <div className="cdtl_ly_scroll" />
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -59,7 +64,7 @@ function ProductEctExplain() {
               </ul>
             </div>
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -74,7 +79,7 @@ function ProductEctExplain() {
                 해외에서 직접 고객님께 배송되는 상품입니다. 국내 통관 시에
                 <em className="cdtl_point">
                   개인통관고유부호가 필요하며,
-                </em>{" "}
+                </em>{' '}
                 구매 상품의 종류와 금액에 따라
                 <em className="cdtl_point">
                   관세 및 부가세를 세관에 납부하실 수도 있습니다.
@@ -89,7 +94,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -115,7 +120,7 @@ function ProductEctExplain() {
               </ul>
             </div>
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -145,7 +150,7 @@ function ProductEctExplain() {
               </ul>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -157,11 +162,11 @@ function ProductEctExplain() {
           <div className="cdtl_ly_cont">
             <div className="cdtl_ly_scroll">
               <ul className="cdtl_ly_list">
-                <li></li>
+                <li />
               </ul>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -178,7 +183,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -202,7 +207,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -228,7 +233,7 @@ function ProductEctExplain() {
               </ul>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -253,7 +258,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -275,7 +280,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="javascript:;" className="modal-close-btn" target="_parent">
+          <a href="/" className="modal-close-btn" target="_parent">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -297,7 +302,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -319,7 +324,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -350,7 +355,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -370,7 +375,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -388,7 +393,7 @@ function ProductEctExplain() {
                 </strong>
                 <span className="cdtl_ly_link_area">
                   <a
-                    href="#"
+                    href="/"
                     onClick="location.href='//event.ssg.com/m/eventDetail.ssg?nevntId=1000000000661';"
                     className="cdtl_ly_link_more"
                     target=""
@@ -437,7 +442,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -489,7 +494,7 @@ function ProductEctExplain() {
               </ul>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -503,13 +508,13 @@ function ProductEctExplain() {
               <p className="cdtl_ly_txt">
                 제품 출시 시점에 설정된 가격으로
                 <br />
-                현재 판매가 대비한 '할인율'에는 포함되지 않으며,
+                현재 판매가 대비한 할인율에는 포함되지 않으며,
                 <br />
                 정보제공 차원으로 기재하고 있습니다.
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -541,7 +546,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -564,7 +569,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -590,7 +595,7 @@ function ProductEctExplain() {
               </div>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -615,7 +620,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -638,7 +643,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -656,7 +661,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -673,7 +678,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -690,7 +695,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -707,7 +712,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -739,7 +744,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -771,7 +776,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -790,13 +795,13 @@ function ProductEctExplain() {
               </ul>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
       </div>
 
-      <div className="cdtl_ly_wrap cdtl_modal_recommend_store"></div>
+      <div className="cdtl_ly_wrap cdtl_modal_recommend_store" />
 
       <div className="cdtl_ly_wrap cdtl_modal_store_badge">
         <div className="cdtl_ly_inr">
@@ -833,7 +838,7 @@ function ProductEctExplain() {
               </ul>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -862,7 +867,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -900,7 +905,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -944,7 +949,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -964,7 +969,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -983,7 +988,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -1002,7 +1007,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -1024,7 +1029,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -1047,7 +1052,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -1064,7 +1069,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -1085,7 +1090,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>
@@ -1109,7 +1114,7 @@ function ProductEctExplain() {
               </p>
             </div>
           </div>
-          <a href="#" className="modal-close-btn" target="">
+          <a href="/" className="modal-close-btn" target="">
             <span className="blind">닫기</span>
           </a>
         </div>

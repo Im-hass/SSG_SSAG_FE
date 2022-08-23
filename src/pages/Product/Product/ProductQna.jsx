@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function ProductQna() {
   return (
@@ -7,7 +7,8 @@ function ProductQna() {
         <h3 className="mndtl_sec_tit">Q&amp;A 문의</h3>
         <div className="mndtl_qna_btnarea">
           <a
-            href="javascript:itemQna.newQuestion('1000310147566', '6004', '6005');"
+            // href="javascript:itemQna.newQuestion('1000310147566', '6004', '6005');"
+            href="/"
             className="mndtl_qna_btn"
             target="_parent"
           >
@@ -62,7 +63,8 @@ function ProductQna() {
                 <div className="mndtl_msg_bx">
                   <div className="mndtl_msg">
                     <a
-                      href="#"
+                      // href="#"
+                      href="/"
                       className="mndtl_msg_more modal-iframe-open clickable"
                       target=""
                     >

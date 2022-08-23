@@ -13,6 +13,7 @@ import {
   MyPage,
   ProductDetailPage,
 } from '../pages';
+import Product from '../pages/Product/Product';
 import {
   SignUpPage,
   SignUpAuthPage,
@@ -52,6 +53,7 @@ function App() {
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />
         <Route path="/destination" element={<DestinationPage />} />
         <Route path="/addDestination" element={<AddDestinationPage />} />
+        <Route path="/productDetails" element={<Product />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

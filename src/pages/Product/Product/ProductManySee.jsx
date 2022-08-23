@@ -1,33 +1,20 @@
-import React from "react";
+import React from 'react';
 
 function ProductManySee() {
   return (
-    <div
-      className="mndtl_sec_bx"
-      
-    >
+    <div className="mndtl_sec_bx">
       <div className="mndtl_rectit_tytext">
         <a
           href="/disp/category.ssg?ctgId=6000211238&amp;_mpop=new"
           className="mndtl_rectit_text"
-          
           target="_parent"
         >
-          <span
-            className="mndtl_rectit_text_tx clickable"
-           
-          >
+          <span className="mndtl_rectit_text_tx clickable">
             함께 보면 좋은 상품
           </span>
-          <span
-            className="mndtl_rectit_arrow"
-            
-          >
+          <span className="mndtl_rectit_arrow">
             <span className="blind">더보러가기</span>
-            <i
-              className="mndtl_ic_arr clickable"
-             
-            ></i>
+            <i className="mndtl_ic_arr clickable" />
           </span>
         </a>
         <div className="mndtl_rectit_text_subtx">
@@ -36,37 +23,26 @@ function ProductManySee() {
       </div>
       <div className="cmitem_grid">
         <ul className="cmitem_grid_lst mnsditem_ty_thmb">
-          <li
-            className="cmitem_grid_item"
-            >
-            <div
-              className="mnsditem_unit"
-              
-            >
+          <li className="cmitem_grid_item">
+            <div className="mnsditem_unit">
               <div className="mnsditem_helper">
                 <div className="mnsditem_helper_el mnsditem_bdg ty_always">
                   SSG 개런티
                 </div>
               </div>
-              <div
-                className="mnsditem_goods"
-                
-              >
+              <div className="mnsditem_goods">
                 <div className="mnsditem_thmb">
                   <a
                     href="/item/itemView.ssg?itemId=1000057900457&amp;siteNo=6004&amp;salestrNo=6005&amp;click=itemMidArea02"
                     className="mnsditem_thmb_link clickable"
-                    
                     target="_parent"
                   >
                     <div className="mnsditem_thmb_imgbx">
                       <img
                         src="//sitem.ssgcdn.com/57/04/90/item/1000057900457_i1_187.jpg"
-
                         alt="토미 G1"
                         onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=187&amp;h=187&amp;t=5d2b57804279b6fa3be78209e63e1055c6ecc968'"
                         className="ssg_lazy mnsditem_thmb_img"
-                       
                       />
                     </div>
                   </a>
@@ -74,7 +50,6 @@ function ProductManySee() {
                     <a
                       href="https://m.ssg.com/search/image/main.ssg?searchType=img&amp;itemId=1000057900457&amp;src_area=ssglens"
                       className="mnsditem_btn_lens clickable"
-                     
                       target="_parent"
                     >
                       <span className="blind">이 상품 이미지로 검색하기</span>
@@ -101,11 +76,11 @@ function ProductManySee() {
                       <input type="hidden" name="checked" value="N" />
                       <input type="hidden" name="useForcedSsgYn" value="N" />
                       <button
+                        type="button"
                         className="cmlike_btn _js_cmlike_btn clickable"
-                        
                       >
                         <span className="cmlike_ico">
-                          <i className="cmlike_primary_m"></i>
+                          <i className="cmlike_primary_m" />
                           <span className="sr_off">
                             <span className="blind">관심상품 취소</span>
                           </span>
