@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios/index';
@@ -22,34 +22,92 @@ function AddAddressMyInfo() {
     lotAddr: '', // 지번
     detailAddr: '',
   });
+  const [valid, setValid] = useState({
+    addrName: false,
+    recipient: false,
+    phone: false,
+    zipCode: false,
+  });
+  // const [error, setError] = useState({
+  //   addrName: '',
+  //   recipient: '',
+  //   phone: '',
+  //   zipCode: '',
+  // });
 
   const handleIsOpen = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleInputData = (e) => {
-    const { name, value } = e.target;
-    // const regPhone = /^[0-9]+$/;
-
-    // console.log(name);
-    // console.log(value);
-
-    // if (name === 'phone' || name === 'homePhone') {
-    //   if (regPhone.test(value) === true) {
-    //     setValid({ [e.target.name]: true });
-    //     setError({
-    //       [e.target.name]: '',
-    //     });
-    //   } else return;
-    // }
-
-    setData({ ...data, [name]: value });
   };
 
   const handleNumber = (e) => {
     const { name, value } = e.target;
     const number = value.replace(/[^0-9]/gi, '');
     setData({ ...data, [name]: number });
+  };
+
+  const handleInputData = (e) => {
+    const { name, value } = e.target;
+    if (value.length !== 0) {
+      if (name === 'phone' && value.length !== 8) {
+        setValid({
+          ...valid,
+          [name]: false,
+        });
+      } else {
+        setValid({
+          ...valid,
+          [name]: true,
+        });
+      }
+    } else {
+      setValid({
+        ...valid,
+        [name]: false,
+      });
+    }
+    setData({ ...data, [name]: value });
+  };
+
+  useEffect(() => {
+    if (selectedItem.zipCode.length !== 0) {
+      setValid({
+        ...valid,
+        zipCode: true,
+      });
+    }
+  }, [selectedItem.zipCode]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (Object.values(valid).every((v) => v === true) === true) {
+      const token = localStorage.getItem('token');
+      axios
+        .post(
+          'http://13.209.26.150:9000/users/shipping-addr',
+          {
+            addrName: data.addrName,
+            recipient: data.recipient,
+            phone: data.phone,
+            homePhone: data.homePhone,
+            zipCode: selectedItem.zipCode,
+            streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
+            lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
+          },
+          {
+            headers: {
+              Authorization: JSON.parse(token),
+            },
+          },
+        )
+        .then((res) => {
+          navigate(-1);
+          console.log(res);
+        });
+    } else {
+      alert('값을 입력해 주세요');
+      console.log('유효성 통과 못함');
+    }
   };
 
   const onReset = () => {
@@ -68,34 +126,6 @@ function AddAddressMyInfo() {
       lotAddr: '', // 지번
       detailAddr: '',
     });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // 유효성 검사 후 datas 이용해서 서버에 추가
-    const token = localStorage.getItem('token');
-    axios
-      .post(
-        'http://13.209.26.150:9000/users/shipping-addr',
-        {
-          addrName: data.addrName,
-          recipient: data.recipient,
-          phone: data.phone,
-          homePhone: data.homePhone,
-          zipCode: selectedItem.zipCode,
-          streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`, // 도로명
-          lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`, //
-        },
-        {
-          headers: {
-            Authorization: JSON.parse(token),
-          },
-        },
-      )
-      .then((res) => {
-        console.log(res);
-      });
-    navigate(-1);
   };
 
   return (
@@ -459,9 +489,7 @@ function AddAddressMyInfo() {
                               />
                             </span>
                             <span className="cmem_noti">
-                              <em className="usable_value">
-                                {/* <p>{error.homePhone}</p> */}
-                              </em>
+                              <em className="usable_value" />
                             </span>
                           </div>
                         </div>
