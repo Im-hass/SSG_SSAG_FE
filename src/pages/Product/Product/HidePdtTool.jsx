@@ -7,7 +7,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
   const three = () => {
     Swal.fire({
       title: '잠깐 !',
-      text: '3個以上買えません..',
+      text: '3개 이상 구매할 수 없습니다.',
       icon: 'warning',
     });
   };
@@ -15,7 +15,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
   const one = () => {
     Swal.fire({
       title: '잠깐 !',
-      text: '1個以上買ってください..',
+      text: '1개 이상 구매해주세요.',
       icon: 'warning',
     });
   };
@@ -26,8 +26,6 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
       setPdtCnt((prev) => prev + 1);
     } else if (pdtCnt > 2) {
       three();
-
-      // MySwal;
     }
   };
 

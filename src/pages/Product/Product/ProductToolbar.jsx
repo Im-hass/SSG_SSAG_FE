@@ -25,7 +25,7 @@ function ProductToolbar() {
     <>
       <div className="mndtl_opt_btm _js_mndtl_opt_btm react-area">
         <div className="opt_btm_bgn">
-          {toggleOn === '' && (
+          {toggleOn !== 'on' && (
             <PdtTool01 buyBtn={buyBtn} handleOpenBtn={handleOpenBtn} />
           )}
           {toggleOn === 'on' && (
