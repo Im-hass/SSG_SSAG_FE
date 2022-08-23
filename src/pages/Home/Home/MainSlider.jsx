@@ -10,23 +10,6 @@ function MainSlider() {
   const DELAY = 2500;
   const timeoutRef = useRef(null);
 
-  const data = [
-    {
-      id: 1,
-      bannerContents: '피카츄',
-      bannerName: '피카츄',
-      bannerPhotoPath:
-        'https://ichef.bbci.co.uk/news/640/cpsprodpb/C120/production/_104304494_mediaitem104304493.jpg',
-    },
-    {
-      id: 2,
-      bannerContents: '농담곰',
-      bannerName: '농담곰',
-      bannerPhotoPath:
-        'https://blog.kakaocdn.net/dn/c0nsol/btqXrCOZ6J9/XLlGPEHQoIiwwIClQTkVPk/img.png',
-    },
-  ];
-
   const resetTimeout = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -44,8 +27,13 @@ function MainSlider() {
   }, [imgIdx]);
 
   useEffect(() => {
-    // 나중에 data axios.get
-    setMainSlider(data);
+    axios
+      .get('http://13.209.26.150:9000/comm-users/main-banner')
+      .then((res) => {
+        console.log('get result:', res);
+        setMainSlider(res.data.result);
+      })
+      .catch((err) => console.log('get result:', err));
   }, []);
 
   const useScroll = () => {
@@ -86,7 +74,7 @@ function MainSlider() {
             >
               {mainSlider &&
                 mainSlider.map((m, index) => (
-                  <SwiperSlide key={m.id}>
+                  <SwiperSlide key={m.mainBannerId}>
                     <li
                       className="swiper-slide swiper-slide-duplicate"
                       data-swiper-slide-index="16"
@@ -119,18 +107,18 @@ function MainSlider() {
                         </div>
                         <Link to="/" className="smhero_bnlink">
                           <div className="smhero_thumb">
-                            <img src={m.bannerPhotoPath} alt="product_img" />
+                            <img src={m.imgUrl} alt="product_img" />
                           </div>
                           <div className="smhero_tit">
                             <h3 className="smhero_titmain">
                               <span className="smhero_titmain_tx">
-                                {m.bannerName}
+                                배너 제목
                               </span>
                               <span className="smhero_titmain_tx" />
                             </h3>
                             <div className="smhero_titsub">
                               <span className="csmhero_titsub_tx">
-                                {m.bannerContents}
+                                배너 컨텐츠
                               </span>
                               <span className="csmhero_titsub_tx" />
                             </div>
