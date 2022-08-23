@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 
-function PaymentMeansCardList({ cards, cardNumArr, isSubmit, setIsSubmit }) {
-  const handleDeleteCard = (data) => {
+function PaymentMeansCardList({ cards, isSubmit, setIsSubmit }) {
+  const handleDeleteCard = (data, index) => {
     const { paymentId } = data;
     const token = localStorage.getItem('token');
     const headers = {
@@ -57,7 +57,7 @@ function PaymentMeansCardList({ cards, cardNumArr, isSubmit, setIsSubmit }) {
                   {card.cardCompany}
                 </div>
                 <div className="card_num" style={{ userSelect: 'auto' }}>
-                  {cardNumArr[i]}
+                  {card.cardNumber}
                 </div>
               </div>
               <div className="card_btn" style={{ userSelect: 'auto' }}>
@@ -66,7 +66,7 @@ function PaymentMeansCardList({ cards, cardNumArr, isSubmit, setIsSubmit }) {
                   className="btn_remove"
                   data-fncco-cd="08"
                   style={{ userSelect: 'auto' }}
-                  onClick={() => handleDeleteCard(card)}
+                  onClick={() => handleDeleteCard(card, i)}
                 >
                   삭제
                 </button>

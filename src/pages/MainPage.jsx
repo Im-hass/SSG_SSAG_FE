@@ -1,12 +1,13 @@
 import React from 'react';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
 import { Header, Footer } from '../components/common/index';
+import Home from './Home/Home';
 
 function MainPage() {
   return (
     <div>
       <Header />
-      MainPage
+      <Home />
       <ToolbarList />
       <Footer pageName="main" />
     </div>

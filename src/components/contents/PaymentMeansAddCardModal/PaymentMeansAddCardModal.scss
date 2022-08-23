@@ -70,6 +70,10 @@
   .add_card_num_input:focus {
     border: 1px solid black;
   }
+
+  .card_num_err_msg {
+    margin-top: 20px;
+  }
 }
 
 .codr_btnarea {

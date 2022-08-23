@@ -26,7 +26,7 @@ function App() {
     localStorage.setItem(
       'token',
       JSON.stringify(
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjExNTI4NzUsImV4cCI6MTY2MTE1NDY3NX0.n7SpVjeFMnKqUConoKt-lpuobxEXmQhTtLCpnbA5JiE',
+        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjExNTkxMjgsImV4cCI6MTY2Mjk3MzUyOH0.p8eB4KLaH9nZpoAkF29nlDt55FLDNh_h7_hPvpxua0M',
       ),
     );
   }, []);

@@ -9,36 +9,18 @@ import {
 
 import { MobileHeader, PaymentMeansPwBtn } from '../components/ui';
 
-const cardNumArr = [];
-
 function PaymentMeansPage() {
   const [cards, setCards] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const changeCardNums = (numArr) => {
-    for (let i = 0; i < numArr.length; i += 1) {
-      cardNumArr[i] = numArr[i].split('');
-      for (let j = 0; j < numArr[i].length; j += 1) {
-        if (
-          j === 7 ||
-          j === 8 ||
-          j === 10 ||
-          j === 11 ||
-          j === 12 ||
-          j === 13
-        ) {
-          cardNumArr[i][j] = '*';
-        }
+  const changeCardNum = (num) => {
+    const cardNum = num;
+    for (let i = 0; i < cardNum.length; i += 1) {
+      if (i === 7 || i === 8 || i === 10 || i === 11 || i === 12 || i === 13) {
+        cardNum[i] = '*';
       }
-      cardNumArr[i] = numArr[i].join('');
     }
-  };
-
-  const insertCardNums = (datas) => {
-    for (let i = 0; i < datas.length; i += 1) {
-      cardNumArr.push(datas[i].cardNumber);
-    }
-    changeCardNums(cardNumArr);
+    return cardNum.join('');
   };
 
   useEffect(() => {
@@ -52,8 +34,13 @@ function PaymentMeansPage() {
       })
       .then((res) => {
         console.log('get result:', res);
-        setCards(res.data.result);
-        insertCardNums(res.data.result);
+        const data = res.data.result;
+        setCards(data);
+
+        for (let i = 0; i < data.length; i += 1) {
+          const cardNum = data[i].cardNumber.split('');
+          data[i].cardNumber = changeCardNum(cardNum);
+        }
       })
       .catch((err) => console.log('get result:', err));
   }, [isSubmit]);
@@ -80,7 +67,6 @@ function PaymentMeansPage() {
             {cards.length > 0 && (
               <PaymentMeansCardList
                 cards={cards}
-                cardNumArr={cardNumArr}
                 isSubmit={isSubmit}
                 setIsSubmit={setIsSubmit}
               />

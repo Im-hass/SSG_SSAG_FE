@@ -1,0 +1,86 @@
+[
+
+    {
+        "id": 1,
+        "url": "https://m-shinsegaemall.ssg.com/page/giftshop.ssg",
+        "tarea": "홈|버티컬카테고리|배너_클릭|명절",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018095879442344852334_902.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018095879442344852334_902.png')",
+        "txt":"명절"
+    },
+
+    {
+        "id": 2,
+        "url": "https://m-shinsegaemall.ssg.com/page/happybuy.ssg",
+        "tarea": "홈|버티컬카테고리|배너_클릭|해피라운지",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018085132408328907832_886.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018085132408328907832_886.png')",
+        "txt":"해피라운지"
+    }, 
+    
+    {
+        "id": 3,
+        "url": "https://m-shinsegaemall.ssg.com/special/index.ssg",
+        "tarea": "홈|버티컬카테고리|배너_클릭|공식브랜드관",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018090271094493915549_213.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018090271094493915549_213.png')",
+        "txt":"브랜드관"
+    },
+    {
+        "id": 4,
+        "url": "https://m-shinsegaemall.ssg.com/page/ssgdept.ssg",
+        "tarea": "홈|버티컬카테고리|배너_클릭|백화점(N)",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202206/2022062117422173428272685827_495.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202206/2022062117422173428272685827_495.png')",
+        "txt":"백화점"
+    },
+    {
+        "id": 5,
+        "url": "https://m-shinsegaemall.ssg.com/page/ssgdept.ssg",
+        "tarea": "홈|버티컬카테고리|배너_클릭|SSG럭셔리",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202206/2022062209260465823396706339_622.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202206/2022062209260465823396706339_622.png')",
+        "txt":"SSG럭셔리"
+    },
+    {
+        "id": 6,
+        "url": "http://member.ssg.com/m/membership/gate.ssg?mccode=6005",
+        "tarea": "홈|버티컬카테고리|배너_클릭|스마일클럽",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022071814342769215729184572_167.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022071814342769215729184572_167.png')",
+        "txt":"스마일클럽"
+    },
+    {
+        "id": 7,
+        "url": "https://m-shinsegaemall.ssg.com/event/eventMain.ssg",
+        "tarea": "홈|버티컬카테고리|배너_클릭|이벤트",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202208/2022080210585625059006668900_230.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202208/2022080210585625059006668900_230.png')",
+        "txt":"이벤트"
+    },  {
+        "id": 8,
+        "url": "https://m.ssg.com/page/giftsub.ssg?mGnbYn=N&amp;mccode=6005",
+        "tarea": "홈|버티컬카테고리|배너_클릭|선물하기",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018091578124885200588_919.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018091578124885200588_919.png')",
+        "txt":"선물하기"
+    }
+    ,  {
+        "id": 9,
+        "url": "https://m-shinsegaemall.ssg.com/page/best.ssg",
+        "tarea": "홈|버티컬카테고리|배너_클릭|베스트",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072220331105257687978768_380.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072220331105257687978768_380.png')",
+        "txt":"베스트"
+    } ,  
+    {
+        "id": 10,
+        "url": "https://m-shinsegaemall.ssg.com/page/newarrivals.ssg",
+        "tarea": "홈|버티컬카테고리|배너_클릭|신상품",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018093759774844126584_698.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072018093759774844126584_698.png')",
+        "txt":"신상품"
+    }
+
+
+]

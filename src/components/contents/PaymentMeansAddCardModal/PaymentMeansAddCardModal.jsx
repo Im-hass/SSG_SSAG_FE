@@ -11,6 +11,8 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
     cardNumber: '',
   });
   const [inputVal, setInputVal] = useState('');
+  const [isCardNumValid, setIsCardNumValid] = useState(false);
+  const [cardNumErrMsg, setCardNumErrMsg] = useState('');
 
   const handleModalOpen = () => {
     setIsModalOpen(false);
@@ -19,13 +21,20 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
   const validCheck = (data) => {
     const testData = data.split('');
 
-    if (testData.length > 16) {
+    if (testData.length > 16 || testData.length < 16) {
+      setIsCardNumValid(false);
+      setCardNumErrMsg('카드 번호를 올바르게 입력하세요.');
       return false;
     }
     for (let i = 0; i < testData.length; i += 1) {
-      if (Number.isNaN(Number(testData[i]))) return false;
+      if (Number.isNaN(Number(testData[i]))) {
+        setIsCardNumValid(false);
+        setCardNumErrMsg('카드 번호를 올바르게 입력하세요.');
+        return false;
+      }
     }
-
+    setIsCardNumValid(true);
+    setCardNumErrMsg('올바른 카드 번호입니다.');
     return true;
   };
 
@@ -50,7 +59,7 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
     });
   };
 
-  const test = () => {
+  const generateCardNum = () => {
     let nums = addCardInputData.cardNumber;
     nums = nums.split('');
     nums.splice(4, 0, '-');
@@ -59,33 +68,44 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
     return nums.join('');
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const postData = () => {
     const token = localStorage.getItem('token');
     const data = {
       cardCompany: addCardInputData.cardCompany,
-      cardNumber: test(),
+      cardNumber: generateCardNum(),
     };
     const headers = {
       headers: {
         Authorization: JSON.parse(token),
       },
     };
+
     axios
       .post('http://13.209.26.150:9000/users/payment', data, headers)
       .then((res) => {
-        console.log(res);
+        console.log('post res:', res);
         setIsSubmit(!isSubmit);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('post err:', err));
+  };
 
+  const resetData = () => {
     setAddCardInputData({
       cardCompany: '',
       cardNumber: '',
     });
     setInputVal('');
     setIsModalOpen(false);
+    setIsCardNumValid(false);
+    setCardNumErrMsg('');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isCardNumValid) return;
+
+    postData();
+    resetData();
   };
 
   return (
@@ -221,6 +241,12 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
                   value={inputVal}
                 />
               </div>
+              <p
+                className="card_num_err_msg"
+                style={{ color: isCardNumValid ? 'blue' : 'tomato' }}
+              >
+                {cardNumErrMsg}
+              </p>
             </div>
 
             <div className="codr_btnarea" style={{ userSelect: 'auto' }}>
