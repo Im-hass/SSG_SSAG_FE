@@ -7,7 +7,6 @@ import SignUpTermTit from '../../components/ui/SignUpTermTit/SignUpTermTit';
 
 function SignUpAgreementPage() {
   const navigate = useNavigate();
-  const [validForm, setValidForm] = useState(false);
   const [checkedAll, setCheckedAll] = useState(false);
   const [checkedInput, setCheckedInput] = useState({
     agree1: false,
@@ -41,9 +40,8 @@ function SignUpAgreementPage() {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     if (Object.values(checkedInput).every((v) => v === true) === true) {
-      setValidForm(true);
       navigate('/signupForm');
-    } else setValidForm(false);
+    }
   };
 
   return (

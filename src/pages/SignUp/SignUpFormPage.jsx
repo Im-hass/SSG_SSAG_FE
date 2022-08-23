@@ -28,7 +28,9 @@ function SignUpFormPage() {
 
   const [valid, setValid] = useState({
     loginId: false,
+    confirmId: false,
     loginPwd: false,
+    confirmPwd: false,
     name: false,
     email: false,
     phone: false,
@@ -64,19 +66,22 @@ function SignUpFormPage() {
           `http://13.209.26.150:9000/comm-users/signup/overlap/${inputData.loginId}`,
         )
         .then((res) => {
-          if (!res.data.result)
-            setError({ ...error, loginId: res.data.message });
-          else {
+          if (res.data.isSuccess === true) {
+            setValid({ ...valid, confirmId: true });
             setError({ ...error, loginId: res.data.result });
+          } else {
+            setValid({ ...valid, confirmId: false });
+            setError({ ...error, loginId: res.data.message });
           }
         });
     }
   };
 
   const handleInputData = (e) => {
+    let val = e.target.value;
+
     if (e.target.name === 'loginId' || e.target.name === 'loginPwd') {
-      const val = e.target.value;
-      setInputData({ ...inputData, [e.target.name]: e.target.value });
+      setInputData({ ...inputData, [e.target.name]: val });
 
       if (val !== undefined && val.length >= 6) {
         if (validCheck(val) === true) {
@@ -84,6 +89,7 @@ function SignUpFormPage() {
           setError({ ...error, [e.target.name]: '' });
         } else return;
       } else {
+        setValid({ ...valid, [e.target.name]: false });
         setError({
           ...error,
           [e.target.name]: `${e.target.title}값이 유효하지 않습니다.`,
@@ -92,10 +98,11 @@ function SignUpFormPage() {
     }
 
     if (e.target.name === 'confirmPwd') {
-      if (inputData.loginPwd === e.target.value) {
+      if (inputData.loginPwd === val && valid.loginPwd === true) {
         setValid({ ...valid, confirmPwd: true });
         setError({ ...error, loginPwd: '' });
       } else {
+        setValid({ ...valid, confirmPwd: false });
         setError({
           ...error,
           loginPwd: `${e.target.title}값이 유효하지 않습니다.`,
@@ -104,26 +111,26 @@ function SignUpFormPage() {
     }
 
     if (e.target.name === 'name') {
-      if (e.target.value.length !== 0) {
+      if (val.length !== 0) {
         setValid({ ...valid, name: true });
       } else {
         setValid({ ...valid, name: false });
       }
-      setInputData({ ...inputData, name: e.target.value });
+      setInputData({ ...inputData, name: val });
     }
 
     if (e.target.name === 'phone') {
-      e.target.value = e.target.value
+      val = val
         .replace(/[^0-9]/g, '')
         .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
-      if (e.target.value.length === 13) {
+      if (val.length === 13) {
         setValid({ ...valid, phone: true });
       } else setValid({ ...valid, phone: false });
-      setInputData({ ...inputData, phone: e.target.value });
+      setInputData({ ...inputData, phone: val });
     }
 
     if (e.target.name === 'email') {
-      if (emailValidCheck(e.target.value) === true) {
+      if (emailValidCheck(val) === true) {
         setValid({ ...valid, email: true });
         setError({ ...error, email: '' });
       } else {
@@ -133,7 +140,7 @@ function SignUpFormPage() {
           email: `${e.target.title}값이 유효하지 않습니다.`,
         });
       }
-      setInputData({ ...inputData, email: e.target.value });
+      setInputData({ ...inputData, email: val });
     }
   };
 
