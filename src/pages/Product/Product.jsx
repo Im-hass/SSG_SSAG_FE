@@ -22,10 +22,12 @@ import ShareBtn from './Product/ShareBtn';
 import ProductBackButton from './Product/ProductBackButton';
 import ProductLikeCouponBtn from './Product/ProductLikeBtn';
 import ProductLikeCouponSection from './Product/ProductLikeCouponSection';
+import { Header, FloatingContents, Footer } from '../../components/common';
 
 function Product() {
   return (
     <>
+      <Header />
       <div id="m_wrap" className="mcom_wrap sm_v3">
         <div id="m_container" className="mcom_container">
           <div className="ly_change">
@@ -86,6 +88,8 @@ function Product() {
       <ProductLikeCouponBtn />
       <ProductLikeCouponSection />
       <ShareBtn />
+      <FloatingContents />
+      <Footer />
     </>
   );
 }

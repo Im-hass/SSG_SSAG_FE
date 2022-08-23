@@ -9,7 +9,7 @@ function ProductImgHeaderBtn() {
         <Link to=".." className="mndtl_btn_back clickable" target="_parent">
           <span className="blind">이전 페이지</span>
         </Link>
-        {/* <BackBtn /> */}
+        <BackBtn />
       </div>
       <div className="mndtl_cntr">
         <div className="mndtl_unit_tit">

@@ -5,7 +5,7 @@ import './FloatingContents.scss';
 function FloatingContents({ pageName }) {
   return (
     <div id="m_floating" className="mcom_floating_v2 react-area">
-      {pageName !== 'main' && <FloatingLeft />}
+      {pageName === 'recentHistory' && <FloatingLeft />}
       <FloatingRight />
     </div>
   );
