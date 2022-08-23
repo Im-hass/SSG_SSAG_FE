@@ -1,5 +1,9 @@
 export { CART_TAB_LIST } from './CartPageTab';
-export { CATEGORY_LIST_DATA, CATEGORY_IMG_LIST } from './CategoryList';
+export {
+  CATEGORY_LIST_DATA,
+  CATEGORY1_IMG_LIST,
+  CATEGORY2_IMG_LIST,
+} from './CategoryList';
 export { DES_TAB_LIST, DES_BTNS_LIST } from './DestinationData';
 export { MALL_WRAP_CONTENTS } from './MallContentsList';
 export { PRODUCT_LIST } from './ProductList';
