@@ -18,6 +18,7 @@ import {
   SignUpAuthPage,
   SignUpFormPage,
   SignUpAgreementPage,
+  SignUpDonePage,
 } from '../pages/SignUp';
 import { Login, WithdrawMember } from './contents/index';
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/signupAuth" element={<SignUpAuthPage />} />
         <Route path="/signupAgreement" element={<SignUpAgreementPage />} />
         <Route path="/signupForm" element={<SignUpFormPage />} />
+        <Route path="/signupDone" element={<SignUpDonePage />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />
