@@ -19,11 +19,12 @@ import {
   SignUpFormPage,
   SignUpAgreementPage,
 } from '../pages/SignUp';
-import { Login, WithdrawMember } from './contents/index';
+import { ScrollToTop } from './common/ScrollToTop';
+import { Login, WithdrawMember } from './contents';
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route exact path="/" element={<MainPage />} />
         <Route path="/category" element={<CategoryPage />} />
@@ -47,7 +48,8 @@ function App() {
         <Route path="/addDestination" element={<AddDestinationPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </div>
+      <ScrollToTop />
+    </>
   );
 }
 
