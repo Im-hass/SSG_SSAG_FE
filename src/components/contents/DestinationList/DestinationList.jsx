@@ -1,8 +1,24 @@
 import React from 'react';
+import axios from 'axios/index';
 import { DestinationListBtns } from '../index';
 import './DestinationList.scss';
 
-function DestinationList({ datas }) {
+function DestinationList({ datas, isDelete, setIsDelete }) {
+  const handleDelete = (id) => {
+    const token = localStorage.getItem('token');
+
+    axios
+      .delete(`http://13.209.26.150:9000/users/shipping-addr/${id}`, {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then(() => {
+        setIsDelete(!isDelete);
+      })
+      .catch((e) => new Error(e));
+  };
+
   return (
     <ul className="myodr_tabrdo_lst">
       {datas &&
@@ -37,7 +53,11 @@ function DestinationList({ datas }) {
                   </span>
                 </span>
               </label>
-              <DestinationListBtns isDefaultAddr={data.addrDefault === 1} />
+              <DestinationListBtns
+                isDefaultAddr={data.addrDefault === 1}
+                id={data.addrId}
+                handleDelete={handleDelete}
+              />
             </div>
           </li>
         ))}

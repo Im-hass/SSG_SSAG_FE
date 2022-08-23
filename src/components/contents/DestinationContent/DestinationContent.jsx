@@ -22,6 +22,7 @@ function defaultAddrSort(a, b) {
 function DestinationContent() {
   const [datas, setDatas] = useState();
   const [menuName, setMenuName] = useState('myDes');
+  const [isDelete, setIsDelete] = useState(false);
 
   const handleMenu = (name) => {
     setMenuName(name);
@@ -41,7 +42,7 @@ function DestinationContent() {
         setDatas(sortLists);
       })
       .catch((e) => new Error(e));
-  }, []);
+  }, [isDelete]);
 
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
@@ -58,7 +59,11 @@ function DestinationContent() {
                   <div className="myodr_tab_panel" role="tabpanel">
                     {datas && datas.length !== 0 ? (
                       <>
-                        <DestinationList datas={datas} />
+                        <DestinationList
+                          datas={datas}
+                          isDelete={isDelete}
+                          setIsDelete={setIsDelete}
+                        />
                         <Link to="/addDestination">
                           <DestinationAddBtn />
                         </Link>
