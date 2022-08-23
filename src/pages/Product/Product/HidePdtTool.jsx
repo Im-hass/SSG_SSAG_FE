@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import './style/HidePdtTool.scss';
 
 import Swal from 'sweetalert2';
 
-function HidePdtTool({ toggleOn, closeBuyBtn }) {
+function HidePdtTool({ toggleOn, handleOpenBtn }) {
   const three = () => {
     Swal.fire({
       title: '잠깐 !',
@@ -52,17 +53,16 @@ function HidePdtTool({ toggleOn, closeBuyBtn }) {
         data-react-unit-type="text"
         data-react-unit-text='[{"type":"tarea_addt_val","value":"닫기"}]'
       >
-        <a
-          // href="javascript:;"
-          href="/"
-          onClick={closeBuyBtn}
+        <button
+          type="button"
+          onClick={() => handleOpenBtn('close')}
           className="mndtl_btn_opt_close _js_mndtl_opt_toggle_btn clickable"
           data-react-tarea="상품상세|옵션바|닫기"
           data-react-tarea-dtl-cd="t00060"
           target="_parent"
         >
           <span className="blind">열기/닫기</span>
-        </a>
+        </button>
       </div>
       <div className="mndtl_opt_wrap _js_opt_wrap">
         <div id="cdtl_scr1" className="mndtl_scr_area">

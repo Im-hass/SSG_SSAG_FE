@@ -1,6 +1,7 @@
 import React from 'react';
+import './style/PdtTool01.scss';
 
-function PdtTool01({ buyBtn, openBuyBtn }) {
+function PdtTool01({ buyBtn, handleOpenBtn }) {
   return (
     <div className={`btm_bgn_in dps1 ${buyBtn}`}>
       <ul className="btm_bgn_bx type_other1">
@@ -51,15 +52,14 @@ function PdtTool01({ buyBtn, openBuyBtn }) {
           </a>
         </li>
         <li>
-          <a
-            // href="javascript:;"
-            href="/"
+          <button
+            type="button"
             className="mndtl_btn type01 line _js_mndtl_opt_toggle_btn clickable"
             target="_parent"
-            onClick={openBuyBtn}
+            onClick={() => handleOpenBtn('open')}
           >
             <span className="btn_tx">구매하기</span>
-          </a>
+          </button>
         </li>
       </ul>
     </div>

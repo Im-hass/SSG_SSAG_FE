@@ -9,29 +9,31 @@ function ProductToolbar() {
   const [goBuyBtn, setGoBuyBtn] = useState('hideCom');
   const [toggleOn, setToggleOn] = useState('');
 
-  const openBuyBtn = () => {
-    setBuyBtn('hideCom');
-    setGoBuyBtn('viewCom');
-    console.log(buyBtn);
-    setToggleOn('on');
-  };
-
-  const closeBuyBtn = () => {
-    setBuyBtn('viewCom');
-    setGoBuyBtn('hideCom');
-    console.log(buyBtn);
-    setToggleOn('');
+  const handleOpenBtn = (action) => {
+    if (action === 'open') {
+      setBuyBtn('hideCom');
+      setGoBuyBtn('viewCom');
+      setToggleOn('on');
+    } else {
+      setBuyBtn('viewCom');
+      setGoBuyBtn('hideCom');
+      setToggleOn('');
+    }
   };
 
   return (
     <>
       <div className="mndtl_opt_btm _js_mndtl_opt_btm react-area">
         <div className="opt_btm_bgn">
-          <PdtTool01 buyBtn={buyBtn} openBuyBtn={openBuyBtn} />
-          <PdtTool02 goBuyBtn={goBuyBtn} openBuyBtn={openBuyBtn} />
+          {toggleOn === '' && (
+            <PdtTool01 buyBtn={buyBtn} handleOpenBtn={handleOpenBtn} />
+          )}
+          {toggleOn === 'on' && (
+            <PdtTool02 goBuyBtn={goBuyBtn} handleOpenBtn={handleOpenBtn} />
+          )}
         </div>
       </div>
-      <HidePdtTool toggleOn={toggleOn} closeBuyBtn={closeBuyBtn} />
+      <HidePdtTool toggleOn={toggleOn} handleOpenBtn={handleOpenBtn} />
     </>
   );
 }

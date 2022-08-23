@@ -15,7 +15,6 @@ import ProductDetailReview from './Product/ProductDetailReview';
 import ProductQna from './Product/ProductQna';
 import ProductEvent from './Product/ProductEvent';
 import ProductSpecial from './Product/ProductSpecial';
-import Floating from './Product/Floating';
 import ProductToolbar from './Product/ProductToolbar';
 import ProductOptBar from './Product/ProductOptBar';
 import ShareBtn from './Product/ShareBtn';
@@ -44,8 +43,6 @@ function Product() {
 
           <div id="m_content" className="react-area">
             <div className="mndtl_wrap ty_default">
-              <h2 className="blind">상품상세</h2>
-
               <ProductImgHeaderBtn />
               <ProductSwiper />
 
@@ -83,7 +80,6 @@ function Product() {
         <ProductBackButton />
       </div>
       <ProductOptBar />
-      <Floating />
       <ProductToolbar />
       <ProductLikeCouponBtn />
       <ProductLikeCouponSection />

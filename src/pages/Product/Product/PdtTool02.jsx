@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function PdtTool02({ goBuyBtn, openBuyBtn }) {
+function PdtTool02({ goBuyBtn, handleOpenBtn }) {
   return (
     <div className={`btm_bgn_in dps2 ${goBuyBtn}`}>
       <ul className="btm_bgn_bx" id="dps2_gift" style={{ display: 'none' }}>
@@ -34,7 +34,7 @@ function PdtTool02({ goBuyBtn, openBuyBtn }) {
             to="/buyPage"
             className="mndtl_btn type01 clickable"
             target="_parent"
-            onClick={openBuyBtn}
+            onClick={() => handleOpenBtn('open')}
           >
             <span className="btn_tx ssgpay">
               <i className="ico_txt_ssgpay_btm">
