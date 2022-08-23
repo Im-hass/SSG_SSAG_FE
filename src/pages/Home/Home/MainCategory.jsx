@@ -1,5 +1,6 @@
 import React from 'react';
 import MainCtgy from './MainCtgy.json';
+import './style/MainCategory.scss';
 
 function MainCategory() {
   return (

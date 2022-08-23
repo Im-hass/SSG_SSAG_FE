@@ -1,46 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import './style/MainSlider.scss';
 import axios from 'axios';
 
-function MainSlider(props) {
+function MainSlider() {
   const [mainSlider, setMainSlider] = useState([]);
+  const [imgIdx, setImgIdx] = useState(0);
+  const DELAY = 2500;
+  const timeoutRef = useRef(null);
+
+  const data = [
+    {
+      id: 1,
+      bannerContents: '피카츄',
+      bannerName: '피카츄',
+      bannerPhotoPath:
+        'https://ichef.bbci.co.uk/news/640/cpsprodpb/C120/production/_104304494_mediaitem104304493.jpg',
+    },
+    {
+      id: 2,
+      bannerContents: '농담곰',
+      bannerName: '농담곰',
+      bannerPhotoPath:
+        'https://blog.kakaocdn.net/dn/c0nsol/btqXrCOZ6J9/XLlGPEHQoIiwwIClQTkVPk/img.png',
+    },
+  ];
+
+  const resetTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
   useEffect(() => {
-    axios.get(`http://10.10.10.153:8081/api/banner/getAll`).then((Response) => {
-      setMainSlider(Response.data);
-      console.log(Response.data);
-    });
+    resetTimeout();
+    timeoutRef.current = setTimeout(() => {
+      setImgIdx((prevIdx) =>
+        prevIdx === mainSlider.length - 1 ? 0 : prevIdx + 1,
+      );
+    }, DELAY);
+    return () => resetTimeout();
+  }, [imgIdx]);
+
+  useEffect(() => {
+    // 나중에 data axios.get
+    setMainSlider(data);
   }, []);
 
-  // const getMainSlider = async () =>{
-  //     const response = await fetch(`http://10.10.10.153:8081/api/banner/getAll`);
-  //     //광식씨가 준 주소 받기 -> get
-  //     const json = await response.json();
-  //     setMainSlider(json)
-  // }
-
-  // useEffect(()=>{
-  //     getMainSlider();
-  // },[])
-  // fetch로 받는방법
-
-  const [settings, setSettings] = useState({
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplaySpeed: 1000,
-    autoplay: true,
-  });
-  const handleAutoBtn = () => {
-    setSettings({ ...settings, autoplay: !settings.autoplay });
-    console.log(settings.autoplay);
-  };
-  const [idx, setIdx] = useState(0);
-  const handleChange = (i) => {
-    setIdx(i + 1);
-  };
   const useScroll = () => {
     const [state, setState] = useState({
       y: 0,
@@ -71,83 +78,80 @@ function MainSlider(props) {
       >
         <div className="smhero_swiper">
           <div className="swiper-container swiper-container-horizontal swiper-container-autoheight">
-            <div>
-              <Slider style={{ settings }}>
-                {mainSlider &&
-                  mainSlider.map((m, index) => (
-                    <div key={m.id} onChange={() => handleChange({ index })}>
-                      <li
-                        className="swiper-slide swiper-slide-duplicate"
-                        data-swiper-slide-index="16"
+            <Swiper
+              style={{
+                transform: `translate3d(${-imgIdx * 100}%, 0, 0)`,
+                transition: 'all 0.3s ease-in-out',
+              }}
+            >
+              {mainSlider &&
+                mainSlider.map((m, index) => (
+                  <SwiperSlide key={m.id}>
+                    <li
+                      className="swiper-slide swiper-slide-duplicate"
+                      data-swiper-slide-index="16"
+                    >
+                      <div
+                        className="smhero_bn gate_unit"
+                        data-unittype="banr"
+                        data-advertacctid="1005578087"
+                        data-advertbidid="1002120689"
+                        data-advertbilngtypecd="10"
+                        data-advertkindcd="50"
                       >
-                        <div
-                          className="smhero_bn gate_unit"
-                          data-unittype="banr"
-                          data-advertacctid="1005578087"
-                          data-advertbidid="1002120689"
-                          data-advertbilngtypecd="10"
-                          data-advertkindcd="50"
-                        >
-                          <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
-                            <a
-                              // href="#"
-                              href="/"
-                              className="cmitem_btn_tt_adinfo ssg-tooltip"
+                        <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
+                          <a
+                            // href="#"
+                            href="/"
+                            className="cmitem_btn_tt_adinfo ssg-tooltip"
+                          >
+                            <span className="blind">광고 안내 툴팁</span>
+                          </a>
+                          <div className="cmitem_tt_adinfo_layer ssg-tooltip-layer">
+                            검색어와 관련된 상품으로 입찰가순으로 전시됩니다.
+                            <button
+                              type="button"
+                              className="cmitem_close_tt_adinfo ssg-tooltip-close"
                             >
-                              <span className="blind">광고 안내 툴팁</span>
-                            </a>
-                            <div className="cmitem_tt_adinfo_layer ssg-tooltip-layer">
-                              검색어와 관련된 상품으로 입찰가순으로 전시됩니다.
-                              <button
-                                type="button"
-                                className="cmitem_close_tt_adinfo ssg-tooltip-close"
-                              >
-                                <span className="blind">
-                                  광고 안내 툴팁 닫기
-                                </span>
-                              </button>
+                              <span className="blind">광고 안내 툴팁 닫기</span>
+                            </button>
+                          </div>
+                        </div>
+                        <Link to="/" className="smhero_bnlink">
+                          <div className="smhero_thumb">
+                            <img src={m.bannerPhotoPath} alt="product_img" />
+                          </div>
+                          <div className="smhero_tit">
+                            <h3 className="smhero_titmain">
+                              <span className="smhero_titmain_tx">
+                                {m.bannerName}
+                              </span>
+                              <span className="smhero_titmain_tx" />
+                            </h3>
+                            <div className="smhero_titsub">
+                              <span className="csmhero_titsub_tx">
+                                {m.bannerContents}
+                              </span>
+                              <span className="csmhero_titsub_tx" />
                             </div>
                           </div>
-                          <Link to={m.bannerUri} className="smhero_bnlink">
-                            <div className="smhero_thumb">
-                              {/* <img src={m.bannerPhotoPath} /> */}
-                            </div>
-                            <div className="smhero_tit">
-                              <h3 className="smhero_titmain">
-                                <span className="smhero_titmain_tx">
-                                  {m.bannerName}
-                                </span>
-                                <span className="smhero_titmain_tx" />
-                              </h3>
-                              <div className="smhero_titsub">
-                                <span className="csmhero_titsub_tx">
-                                  {m.bannerContents}
-                                </span>
-                                <span className="csmhero_titsub_tx" />
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </li>
+                        </Link>
+                      </div>
+                    </li>
+                    <div className="swiper-pagination swiper-pagination-custom">
+                      <span className="blind">현재 배너</span>
+                      <span className="swiper-pagination-current">
+                        {index + 1}
+                      </span>
+                      <span className="swiper-pagination-separator">-</span>
+                      <span className="blind">전체 배너</span>
+                      <span className="swiper-pagination-total">
+                        {mainSlider.length}
+                      </span>
                     </div>
-                  ))}
-              </Slider>
-            </div>
-          </div>
-
-          <div className="swiper-pagination swiper-pagination-custom">
-            <span className="blind">현재 배너</span>
-            <span className="swiper-pagination-current">{idx}</span>
-            <span className="swiper-pagination-separator">-</span>
-            <span className="blind">전체 배너</span>
-            <span className="swiper-pagination-total">{mainSlider.length}</span>
-          </div>
-          <div className="swiper-pagination swiper-pagination-custom">
-            <span className="blind">현재 배너</span>
-            <span className="swiper-pagination-current">{idx}</span>
-            <span className="swiper-pagination-separator">-</span>
-            <span className="blind">전체 배너</span>
-            <span className="swiper-pagination-total">{mainSlider.length}</span>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
           </div>
 
           <div className="swiper-ctrls">

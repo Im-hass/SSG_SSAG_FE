@@ -1,7 +1,6 @@
 import React from 'react';
 import BannerTitle from './BannerTitle';
 import HeroSwiper from './HeroSwiper';
-import ItemBlank from './ItemBlank';
 import PromoBn from './PromoBn';
 import QuickCont from './QuickCont';
 import q1 from './quickLst1.json';
@@ -17,9 +16,7 @@ function NewService() {
       />
       <HeroSwiper />
       <QuickCont data={q1} clname="ty_view5" />
-      <ItemBlank />
       <PromoBn />
-      <ItemBlank />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
 import axios from 'axios';
 
 function HeroSwiper() {
@@ -55,10 +55,10 @@ function HeroSwiper() {
       <div className="cmhero_banner cmhero_banner_ty_sd_scroll ty_bn100">
         <div className="cmhero_swiper" id="_cmhero_swiper">
           <div className="swiper-container swiper-container-horizontal">
-            <Slider style={{ ...settings }}>
+            <Swiper style={{ ...settings }}>
               {good &&
                 good.map((d) => (
-                  <div key={d.id}>
+                  <SwiperSlide key={d.id}>
                     <li className="swiper-slide">
                       <div className="cmhero_bn">
                         <Link
@@ -90,9 +90,9 @@ function HeroSwiper() {
                         </Link>
                       </div>
                     </li>
-                  </div>
+                  </SwiperSlide>
                 ))}
-            </Slider>
+            </Swiper>
           </div>
           <div className="swiper-ctrls">
             <div className="swiper-pagination swiper-pagination-progressbar">

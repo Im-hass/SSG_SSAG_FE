@@ -1,13 +1,11 @@
 import React from 'react';
-import Slider from 'react-slick';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 function ProductSwiper() {
   return (
     <div className="mndtl_swiper_wrap">
       <div className="mndtl_swiper swiper-container-horizontal swiper-container-android">
-        <Slider>
+        <Swiper>
           <div>
             <li
               className="swiper-slide swiper-slide-duplicate"
@@ -104,7 +102,7 @@ function ProductSwiper() {
               />
             </li>
           </div>
-        </Slider>
+        </Swiper>
         <div className="mndtl_swiper_pagination swiper-pagination-custom">
           <div className="mndtl_swiper_pagenum">
             <span className="blind">현재 슬라이드</span>

@@ -1,7 +1,6 @@
 import React from 'react';
 import BannerTitle from './BannerTitle';
 import BmrPromo from './BmrPromo';
-import ItemBlank from './ItemBlank';
 import ItemGrid from './ItemGrid';
 import More from './More';
 
@@ -14,7 +13,6 @@ function SsgLuxury() {
         isBtn={false}
         isV2={false}
       />
-      <ItemBlank />
       <BmrPromo />
       <ItemGrid />
       <More />
