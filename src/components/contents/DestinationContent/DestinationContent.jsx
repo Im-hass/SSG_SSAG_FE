@@ -23,9 +23,15 @@ function DestinationContent() {
   const [datas, setDatas] = useState();
   const [menuName, setMenuName] = useState('myDes');
   const [isDelete, setIsDelete] = useState(false);
+  const [isDefaultChanged, setIsDefaultChanged] = useState(false);
+  const [selected, setSelected] = useState();
 
   const handleMenu = (name) => {
     setMenuName(name);
+  };
+
+  const handleSelectedAddr = (id) => {
+    setSelected(id);
   };
 
   useEffect(() => {
@@ -39,10 +45,11 @@ function DestinationContent() {
       .then((res) => {
         const lists = res.data.result;
         const sortLists = lists.sort(defaultAddrSort);
+        setSelected(lists[0].addrId);
         setDatas(sortLists);
       })
       .catch((e) => new Error(e));
-  }, [isDelete]);
+  }, [isDelete, isDefaultChanged]);
 
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
@@ -63,11 +70,16 @@ function DestinationContent() {
                           datas={datas}
                           isDelete={isDelete}
                           setIsDelete={setIsDelete}
+                          handleSelectedAddr={handleSelectedAddr}
                         />
                         <Link to="/addDestination">
                           <DestinationAddBtn />
                         </Link>
-                        <DestinationBtns />
+                        <DestinationBtns
+                          selected={selected}
+                          isDefaultChanged={isDefaultChanged}
+                          setIsDefaultChanged={setIsDefaultChanged}
+                        />
                         <DestinationListInfo />
                       </>
                     ) : (
