@@ -12,6 +12,7 @@ import {
   CategoryPage,
   MyPage,
   ProductDetailPage,
+  OrderPage,
 } from '../pages';
 import {
   SignUpPage,
@@ -38,6 +39,7 @@ function App() {
         <Route path="/signupAuth" element={<SignUpAuthPage />} />
         <Route path="/signupAgreement" element={<SignUpAgreementPage />} />
         <Route path="/signupForm" element={<SignUpFormPage />} />
+        <Route path="/order" element={<OrderPage />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />

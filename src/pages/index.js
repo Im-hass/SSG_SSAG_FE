@@ -10,3 +10,4 @@ export { default as CategoryPage } from './CategoryPage';
 export { default as MyPage } from './MyPage';
 export { default as ProductDetailPage } from './ProductDetailPage';
 export { default as SignUpPage } from './SignUp/SignUpPage';
+export { default as OrderPage } from './Order/OrderPage';
