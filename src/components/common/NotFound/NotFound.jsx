@@ -1,34 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import './NotFound.scss';
 
 function NotFound() {
   const navigate = useNavigate();
+  const [time, setTime] = useState(5);
 
-  const handleBack = () => {
+  const handleToBack = () => {
     navigate(-1);
   };
 
   useEffect(() => {
-    let setTimeInt = 5;
-
-    let setTimer = null;
-
-    function reDirect() {
-      if (setTimeInt <= 0) {
-        handleBack();
-        clearInterval(setTimer);
+    const setTimer = setTimeout(() => {
+      if (time < 1) {
+        handleToBack();
       } else {
-        document.getElementById('goToSecond').innerHTML = setTimeInt;
-        setTimeInt -= 1;
+        setTime(time - 1);
       }
-    }
-
-    setTimer = setInterval(() => {
-      reDirect();
     }, 1000);
-  }, []);
+
+    return () => {
+      clearTimeout(setTimer);
+    };
+  }, [time]);
 
   return (
     <div id="m_content" style={{ position: 'static', width: 'auto' }}>
@@ -39,9 +34,9 @@ function NotFound() {
             수 없습니다.
           </p>
           <p className="ssgerr_txt">
-            <em id="goToSecond">2</em>초 후에 메인으로 자동 이동합니다.
+            <em id="goToSecond">{time}</em>초 후에 메인으로 자동 이동합니다.
           </p>
-          <button type="button" className="ssgerr_lnk" onClick={handleBack}>
+          <button type="button" className="ssgerr_lnk" onClick={handleToBack}>
             이전페이지 돌아가기
           </button>
         </div>
