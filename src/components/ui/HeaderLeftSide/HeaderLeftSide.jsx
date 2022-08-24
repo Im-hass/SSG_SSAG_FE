@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isOpenState } from '../../../recoil/states';
 import { HeaderBackArrow } from '../index';
@@ -6,20 +7,20 @@ import { HeaderBackArrow } from '../index';
 import './HeaderLeftSide.scss';
 
 function HeaderLeftSide() {
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [isOpen] = useRecoilState(isOpenState);
 
   return (
     <>
       {isOpen && <HeaderBackArrow />}
 
       {!isOpen && (
-        <div className="header-logo-wrap">
+        <Link to="/" className="header-logo-wrap">
           <div className="logo-ssg" />
           <div className="logo-ssg-mall" />
           <div className="open-mall-btn">
             <span className="open-mall-btn-icon" />
           </div>
-        </div>
+        </Link>
       )}
     </>
   );

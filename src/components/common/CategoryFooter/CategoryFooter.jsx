@@ -1,7 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { isLoginState } from '../../../recoil/states';
 
 function CategoryFooter() {
+  const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+
+  useEffect(() => {
+    if (localStorage.getItem('token') !== null) {
+      setIsLogin(true);
+    }
+  }, [isLogin]);
+
+  const handleIsLogin = (e) => {
+    if (e.target.textContent === '로그아웃') {
+      setIsLogin(false);
+      localStorage.removeItem('token');
+      navigate('/');
+    }
+  };
+
   return (
     <div className="clnb_footer">
       <div className="clnb_renew_help">
@@ -28,22 +47,13 @@ function CategoryFooter() {
           <span>입점상담</span>
         </a>
         <Link
-          to="/login"
+          to={isLogin ? '/' : '/login'}
           className="clnb_help_link"
-          // onClick="mobileLogin('login')"
           id="lnb_loginBtn"
+          onClick={handleIsLogin}
         >
-          <span>로그인</span>
+          <span>{isLogin ? '로그아웃' : '로그인'}</span>
         </Link>
-        <a
-          href="/"
-          className="clnb_help_link"
-          // onClick="logout()"
-          id="lnb_logoutBtn"
-          style={{ display: 'none' }}
-        >
-          <span>로그아웃</span>
-        </a>
       </div>
       <div className="clnb_renew_lang">
         <a

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LikeButton } from '../../common/LikeButton';
+import { LikeButton } from '../../ui/LikeButton';
 import { AdInfo } from '../../ui/AdInfo';
 import './ProductItem.scss';
 

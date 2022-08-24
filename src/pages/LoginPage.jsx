@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { useRecoilState } from 'recoil';
-import { isLoginState } from '../../../recoil/states';
-import { MobileHeader, SNSLoginBtn, Button } from '../../ui/index';
-import { Footer } from '../../common/index';
+import { isLoginState } from '../recoil/states';
+import { MobileHeader, SNSLoginBtn, Button } from '../components/ui/index';
+import { Footer } from '../components/common/index';
 
 const SNS_LOGIN_CONTENT = [
   {
@@ -31,7 +31,7 @@ const SNS_LOGIN_CONTENT = [
   },
 ];
 
-function Login() {
+function LoginPage() {
   const navigate = useNavigate();
   const [, setIsLogin] = useRecoilState(isLoginState);
 
@@ -181,4 +181,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;
