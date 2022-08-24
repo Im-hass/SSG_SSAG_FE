@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { useRecoilState } from 'recoil';
-import { isLoginState } from '../recoil/states';
+import AuthContext from '../store/auth-context';
 import { MobileHeader, SNSLoginBtn, Button } from '../components/ui/index';
 import { Footer } from '../components/common/index';
 
@@ -33,7 +32,7 @@ const SNS_LOGIN_CONTENT = [
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [, setIsLogin] = useRecoilState(isLoginState);
+  const authCtx = useContext(AuthContext);
 
   const [inputData, setInputData] = useState({
     loginId: '',
@@ -71,9 +70,9 @@ function LoginPage() {
         .then((res) => {
           if (res.data.isSuccess === false) setError(res.data.message);
           else {
-            localStorage.setItem('token', JSON.stringify(res.data.result));
+            authCtx.onLogin();
             if (checkedSaveId) localStorage.setItem('id', inputData.loginId);
-            setIsLogin(true);
+            localStorage.setItem('token', JSON.stringify(res.data.result));
             navigate('/');
           }
         });
