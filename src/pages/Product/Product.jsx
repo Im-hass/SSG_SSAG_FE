@@ -2,19 +2,12 @@ import React from 'react';
 import ProductImgHeaderBtn from './Product/ProductImgHeaderBtn';
 import ProductSwiper from './Product/ProductSwiper';
 import ProductBrand from './Product/ProductBrand';
-import ProductCard from './Product/ProductCard';
-import ProductCategory from './Product/ProductCategory';
-import ProductDetailInfo from './Product/ProductDetailInfo';
 import ProductEtcExplain from './Product/ProductEtcExplain';
 import ProductEndlessGoods from './Product/ProductEndlessGoods';
-import ProductExplain from './Product/ProductExplain';
+import ProductExplaination from './Product/ProductExplaination';
 import ProductManySee from './Product/ProductManySee';
-import ProductDetailEtc from './Product/ProductDetailEtc';
 import ProductReview from './Product/ProductReview';
-import ProductDetailReview from './Product/ProductDetailReview';
 import ProductQna from './Product/ProductQna';
-import ProductEvent from './Product/ProductEvent';
-import ProductSpecial from './Product/ProductSpecial';
 import ProductToolbar from './Product/ProductToolbar';
 import ProductOptBar from './Product/ProductOptBar';
 import ShareBtn from './Product/ShareBtn';
@@ -22,6 +15,17 @@ import ProductBackButton from './Product/ProductBackButton';
 import ProductLikeCouponBtn from './Product/ProductLikeBtn';
 import ProductLikeCouponSection from './Product/ProductLikeCouponSection';
 import { Header, FloatingContents, Footer } from '../../components/common';
+import ProductInfo from './Product/ProductInfo';
+import ProductAlert from './Product/ProductAlert';
+import ProductDetailInfo from './Product/ProductDetailInfo';
+import ProductReviewRate from './Product/ProductReviewRate';
+import ProductReviewGraph from './Product/ProductReviewGraph';
+import ProductReviewPhotos from './Product/ProductReviewPhotos';
+import ProductReviewSummary from './Product/ProductReviewSummary';
+import ProductEtc from './Product/ProductEtc';
+import ProductBanners from './Product/ProductBanners';
+import ProductStoreInfo from './Product/ProductStoreInfo';
+import ProductDetailCategory from './Product/ProductDetailCategory';
 
 function Product() {
   return (
@@ -45,35 +49,72 @@ function Product() {
             <div className="mndtl_wrap ty_default">
               <ProductImgHeaderBtn />
               <ProductSwiper />
-
-              <ProductExplain />
-
-              <ProductCard />
+              <ProductExplaination />
+              <ProductInfo />
 
               <div className="mndtl_sec mndtl_cont_wrap" id="detailDescTab">
-                <ProductDetailInfo />
-
-                <ProductDetailReview />
-                <ProductQna />
-                <div className="mndtl_sec_cont">
-                  <ProductDetailEtc />
-
-                  <ProductEvent />
-                  <ProductCategory />
-                  <ProductSpecial />
+                <div className="mndtl_sec_cont" id="_detailgoods">
+                  <ProductAlert />
+                  <div className="mndtl_sec_subject">
+                    <h3 className="mndtl_sec_tit">상세정보</h3>
+                  </div>
+                  <ProductDetailInfo />
                 </div>
 
-                <div className="mndtl_sec_cont" id="_detailgoods">
-                  <div className="mndtl_recommend">
-                    <ProductManySee />
-                    <ProductBrand />
+                <div
+                  className="mndtl_sec_cont"
+                  id="_detailreview"
+                  data-react-tarea-cd="00006_000000007"
+                >
+                  <div className="mndtl_sec_subject">
+                    <h3 className="mndtl_sec_tit">고객리뷰</h3>
                   </div>
+                  <div className="mndtl_review_wrap">
+                    <ProductReviewRate />
+                    <ProductReviewGraph />
+                    <ProductReviewPhotos />
+                    <ProductReviewSummary />
+                  </div>
+                </div>
+
+                <div
+                  className="mndtl_sec_cont"
+                  id="_detailqna"
+                  data-react-tarea-cd="00006_000000003"
+                >
+                  <div className="mndtl_sec_subject">
+                    <h3 className="mndtl_sec_tit">Q&amp;A 문의</h3>
+                    <div className="mndtl_qna_btnarea">
+                      <a href="/" className="mndtl_qna_btn">
+                        <span
+                          className="clickable"
+                          data-react-tarea-dtl-cd="t00060"
+                        >
+                          문의하기
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                  <ProductQna />
+                </div>
+
+                <div
+                  className="mndtl_sec_cont"
+                  data-react-tarea-cd="00006_000000014"
+                >
+                  <ProductEtc />
+                  <ProductBanners />
+                  <ProductDetailCategory />
+                  <ProductStoreInfo />
+                </div>
+
+                <div className="mndtl_recommend">
+                  <ProductManySee />
+                  <ProductBrand />
                 </div>
                 <ProductEndlessGoods />
               </div>
             </div>
-            <ProductReview />
-            <ProductReview />
           </div>
           <ProductEtcExplain />
         </div>
