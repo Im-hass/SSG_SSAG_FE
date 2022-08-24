@@ -1,49 +1,59 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { BUTTON_LIST } from '../../../assets/datas/FooterBtnList';
 import { isLoginState } from '../../../recoil/states';
 
-import './FooterButtonBox.scss';
-
 function FooterButtonBox() {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
 
-  const onLogin = () => {
-    setIsLogin(!isLogin);
+  useEffect(() => {
+    if (localStorage.getItem('token') !== null) {
+      setIsLogin(true);
+    }
+  }, [isLogin]);
+
+  const handleIsLogin = (e) => {
+    if (e.target.name === '로그아웃') {
+      setIsLogin(false);
+      localStorage.removeItem('token');
+      navigate('/');
+    }
   };
+
   return (
     <div className="mcom_btnbx_warp">
-      {/* 가라 버튼 */}
-      <button type="button" onClick={onLogin}>
-        {isLogin ? '로그아웃' : '로그인'}
-      </button>
       <ul className="mcom_btnbx_list">
-        {BUTTON_LIST.map((el, i) => (
-          <li key={el.id} id="footer_loginBtn">
-            <Link
-              to={el.href}
-              className="clickable"
-              onClick={el.onClick}
-              style={{
-                display:
-                  (isLogin && el.name === '로그인') ||
-                  (isLogin && el.name === '회원가입') ||
-                  (!isLogin && el.name === '로그아웃')
-                    ? 'none'
-                    : '',
-              }}
-            >
-              {el.name}
-              <span
-                className="footer_btn_divider"
-                style={{ display: i === 4 ? 'none' : '' }}
-              >
-                |
-              </span>
+        <li id="footer_loginBtn">
+          <Link
+            to={isLogin ? '/' : '/login'}
+            onClick={handleIsLogin}
+            className="clickable"
+            name={isLogin ? '로그아웃' : '로그인'}
+          >
+            {isLogin ? '로그아웃' : '로그인'}
+          </Link>
+        </li>
+        {!isLogin && (
+          <li id="footer_loginBtn">
+            <Link to="/signup" className="clickable">
+              회원가입
             </Link>
           </li>
-        ))}
+        )}
+        <li id="footer_loginBtn">
+          <Link
+            to="https://m-shinsegaemall.ssg.com/comm/app/appLink.ssg?mobilAppSvcNo=2"
+            className="clickable"
+          >
+            앱다운로드
+          </Link>
+        </li>
+        <li id="footer_loginBtn">
+          <Link to="/" className="clickable">
+            PC버전
+          </Link>
+        </li>
       </ul>
     </div>
   );

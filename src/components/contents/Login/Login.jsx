@@ -1,17 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import {
-  Captcha,
-  CheckCircleInput,
-  MobileHeader,
-  SNSLoginBtn,
-  Button,
-} from '../../ui/index';
+import { useRecoilState } from 'recoil';
+import { isLoginState } from '../../../recoil/states';
+import { MobileHeader, SNSLoginBtn, Button } from '../../ui/index';
 import { Footer } from '../../common/index';
-import './Login.scss';
 
 const SNS_LOGIN_CONTENT = [
   {
@@ -38,15 +33,30 @@ const SNS_LOGIN_CONTENT = [
 
 function Login() {
   const navigate = useNavigate();
+  const [, setIsLogin] = useRecoilState(isLoginState);
 
   const [inputData, setInputData] = useState({
     loginId: '',
     loginPwd: '',
   });
+  const [checkedSaveId, setCheckedSaveId] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (localStorage.getItem('id') !== null) {
+      const id = localStorage.getItem('id');
+      setInputData({ loginId: id });
+      setCheckedSaveId(true);
+    }
+  }, []);
 
   const handleInputData = (e) => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckSaveIdBtn = () => {
+    setCheckedSaveId((prev) => !prev);
+    if (checkedSaveId) localStorage.removeItem('id');
   };
 
   const handleSubmitLogin = (e) => {
@@ -54,7 +64,7 @@ function Login() {
 
     if (inputData.loginId.length !== 0 && inputData.loginPwd.length !== 0) {
       axios
-        .post('http://10.10.10.174:8081/comm-users/login/user', {
+        .post('http://13.209.26.150:9000/comm-users/login/user', {
           loginId: inputData.loginId,
           loginPwd: inputData.loginPwd,
         })
@@ -62,6 +72,8 @@ function Login() {
           if (res.data.isSuccess === false) setError(res.data.message);
           else {
             localStorage.setItem('token', JSON.stringify(res.data.result));
+            if (checkedSaveId) localStorage.setItem('id', inputData.loginId);
+            setIsLogin(true);
             navigate('/');
           }
         });
@@ -87,8 +99,8 @@ function Login() {
                     name="loginId"
                     placeholder="아이디"
                     maxLength="50"
-                    // defaultValue="testId"
                     onChange={handleInputData}
+                    value={inputData.loginId}
                   />
                   <button type="button" className="inp_clear">
                     <span className="sp_cmem_login cmem_ico_clear">
@@ -104,7 +116,6 @@ function Login() {
                     type="password"
                     id="inp_pw"
                     name="loginPwd"
-                    // defaultValue="testPwd"
                     placeholder="비밀번호"
                     onChange={handleInputData}
                   />
@@ -123,15 +134,17 @@ function Login() {
               </span>
 
               <div className="cmem_login_chk">
-                <CheckCircleInput
-                  inputId="keep_id"
-                  inputName="chk_log"
-                  inputValue="Y"
-                  labelFor="keep_id"
-                  laberValue="아이디 저장"
-                />
+                <span className="cmem_inp_chk type3">
+                  <input
+                    type="checkbox"
+                    id="keep_id"
+                    name="chk_log"
+                    checked={checkedSaveId}
+                    onChange={handleCheckSaveIdBtn}
+                  />
+                  <label htmlFor="keep_id">아이디 저장</label>
+                </span>
               </div>
-              <Captcha />
               <Button
                 type="submit"
                 className="cmem_btn cmem_btn_orange3"
