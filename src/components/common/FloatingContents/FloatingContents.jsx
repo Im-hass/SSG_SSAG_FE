@@ -2,10 +2,10 @@ import React from 'react';
 import { FloatingLeft, FloatingRight } from '../index';
 import './FloatingContents.scss';
 
-function FloatingContents() {
+function FloatingContents({ pageName }) {
   return (
     <div id="m_floating" className="mcom_floating_v2 react-area">
-      <FloatingLeft />
+      {pageName === 'recentHistory' && <FloatingLeft />}
       <FloatingRight />
     </div>
   );

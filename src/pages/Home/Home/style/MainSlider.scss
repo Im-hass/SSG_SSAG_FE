@@ -1,0 +1,10 @@
+#m_topnav {
+  background-color: white;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.mcom_topnav .topnav_lnk.new .topnav_txt:after {
+  content: '';
+  background: none;
+}

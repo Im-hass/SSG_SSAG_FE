@@ -7,31 +7,6 @@ function OrderPage() {
       <MobileHeader title="결제하기" />
       <ul className="mnodr_article_list" id="ordPageShpplocInfoDiv_1">
         <li
-          className="mnodr_article_item ordPageShpplocArea quickOrdArea"
-          style={{ display: 'none' }}
-        >
-          <article className="mnodr_article mnodr_delivery_infos">
-            <div className="mnodr_article_head">
-              <div className="mnodr_article_headlt">
-                <p className="mnodr_tx_desc">
-                  <strong>[본가] 부산광역시 사상구</strong>
-                </p>
-              </div>
-              <div className="mnodr_article_headrt">
-                <button
-                  type="button"
-                  className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  data-pt-click="주문서|퀵오더|배송지변경"
-                  name="btnShowTgtDiv"
-                  data-target-div="shpplocInfoDiv_1"
-                >
-                  변경
-                </button>
-              </div>
-            </div>
-          </article>
-        </li>
-        <li
           className="mnodr_article_item ordPageShpplocArea fullOrdArea"
           style={{ display: 'list-item' }}
         >
@@ -78,7 +53,6 @@ function OrderPage() {
                   할인혜택
                 </h2>
               </div>
-              <input type="hidden" id="totBsellAmt" value="0" />
             </div>
             <div className="mnodr_article_cont">
               <div className="mnodr_discount_sec ty_space discountBenefitDtlArea">
@@ -103,7 +77,7 @@ function OrderPage() {
                   </dt>
                   <dd>
                     <span className="mnodr_tx_primary">
-                      -{' '}
+                      -
                       <em className="ssg_price dispTotItemEnuriWithout10Amt">
                         5,400
                       </em>
@@ -144,7 +118,7 @@ function OrderPage() {
       <article
         id="pointArticle"
         className="mnodr_article mnodr_acdo_toggle fullOrdArea on"
-        style={{ display: 'block' }}
+        style={{ display: 'block', paddingBottom: '20px' }}
       >
         <div
           className="mnodr_article_head mnodr_acdo_btn payTracking on"
@@ -155,7 +129,7 @@ function OrderPage() {
             <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
               포인트
               <span className="totPointAmtArea">
-                : <span id="totPointAmt">20,838</span>원 보유
+                : <span id="totPointAmt">0</span>원 보유
               </span>
             </h2>
           </div>
@@ -168,7 +142,7 @@ function OrderPage() {
         <div className="mnodr_article_cont mnodr_acdo_cont ty_toggle">
           <div className="mnodr_form_sec ty10 pointUseDivArea">
             <p className="mnodr_tx_desc">
-              신세계포인트<span id="shinsegaePointBaseAmt"> : 429원</span>
+              신세계포인트<span id="shinsegaePointBaseAmt"> : 0원</span>
             </p>
             <div className="mnodr_form_cont">
               <div className="mnodr_inp_btn_grp">
@@ -179,7 +153,6 @@ function OrderPage() {
                     inputMode="numeric"
                     id="shinsegaePointUseInput"
                     name="paymtMeans[2].amt"
-                    value=""
                     placeholder="0원"
                     className="ty_txt_right pointUseInput"
                   />
@@ -192,59 +165,6 @@ function OrderPage() {
                 >
                   <span className="mnodr_btn_tx">전액사용</span>
                 </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mnodr_point_sec">
-          <div className="mnodr_form_sec ty3 mnodr_acdo_toggle ty_depth2">
-            <div className="mnodr_form_cont">
-              <span className="mnodr_chk">
-                <input
-                  type="checkbox"
-                  id="shinsegaePointCardSavingCheckbox"
-                  className="blind payTracking pointSavingCheckbox"
-                  data-pt-click="주문서|포인트|신세계포인트 카드 적립_체크"
-                  checked=""
-                />
-                <label
-                  htmlFor="shinsegaePointCardSavingCheckbox"
-                  style={{ marginTop: '15px' }}
-                >
-                  <span className="mnodr_tx_desc">신세계포인트 카드 적립</span>
-                </label>
-                <button
-                  type="button"
-                  id="shinsegaePointToggleButton"
-                  className="mnodr_acdo_btn mnodr_arrow_btn payTracking"
-                  data-pt-click="주문서|포인트|신세계포인트 카드 적립_펼침"
-                >
-                  <span className="blind">더보기</span>
-                </button>
-              </span>
-              <div className="mnodr_acdo_cont ty_toggle ty_depth2">
-                <div className="mnodr_point_dtl">
-                  <p className="mnodr_tx_desc">카드번호</p>
-                  <span className="mnodr_inp_txt">
-                    <input
-                      type="number"
-                      pattern="[0-9]*"
-                      inputMode="numeric"
-                      id="shinsegaePointCardNoInput"
-                      value="9350130104047207"
-                      placeholder="- 를 제외한 숫자만 입력해 주세요."
-                      className="pointSavingNoInput"
-                      maxLength="16"
-                    />
-                  </span>
-                  <ul className="mnodr_bullst ty5">
-                    <li>
-                      신세계·이마트 제휴카드 고객은 해당 카드로 결제하셔야
-                      신세계포인트가 0.7% 적립됩니다. (단, 신세계씨티카드는
-                      0.2%, 이마트KB/이마트SC /신세계SC 카드는 0.1% 적립)
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -264,35 +184,15 @@ function OrderPage() {
             <span className="crdDcccc" />
           </div>
         </div>
-        <div className="mnodr_article_cont ty_pull">
+        <div
+          className="mnodr_article_cont ty_pull"
+          style={{ marginTop: '20px' }}
+        >
           <div className="mnodr_ssgpay_acdo mnodr_ssgpay_acdotoggle on otherPaymtMeansArea">
-            <input
-              type="radio"
-              id="_mnodrpay_etc"
-              name="_mnodrpay_group"
-              className="mnodr_ssgpay_acdotogglerdo blind payTracking"
-              data-pt-click="주문서|결제방법_다른 결제수단|선택"
-              data-group-name="etc"
-            />
-            <label
-              htmlFor="_mnodrpay_etc"
-              aria-expanded="false"
-              aria-controls="_mnodrpay_etc_cont"
-              id="_mnodrpay_etc_toggle"
-              className="mnodr_ssgpay_acdotogglebtn"
-              aria-selected="true"
-            >
-              <div className="mnodr_ssgpay_acdohead">
-                <span className="mnodr_ssgpay_acdocol">
-                  <h3 className="mnodr_ssgpay_acdoheadtit">
-                    <span className="mnodr_ssgpay_acdoheadtx">일반결제</span>
-                  </h3>
-                </span>
-              </div>
-            </label>
             <div
               className="mnodr_ssgpay_acdocont"
               aria-labelledby="_mnodrpay_etc_toggle"
+              style={{ display: 'block' }}
             >
               <div className="mnodr_pay_bx">
                 <ul className="modr_pay_lst" role="tablist">
@@ -447,7 +347,10 @@ function OrderPage() {
                       <span className="blind">더보기</span>
                     </button>
                   </span>
-                  <div className="mnodr_togglechk_cont mnodr_acdo_cont ty_toggle">
+                  <div
+                    className="mnodr_togglechk_cont mnodr_acdo_cont ty_toggle"
+                    style={{ display: 'block' }}
+                  >
                     <div className="mnodr_tx_wrap ty_indent">
                       <span className="mnodr_tx_desc2">
                         전자금융거래 이용약관
@@ -603,7 +506,6 @@ function OrderPage() {
                       type="hidden"
                       id="deliShppMemo_0"
                       name="shpploc[0].deliShppMemo"
-                      value="문 앞에 놓고 가주세요."
                     />
                   </dd>
                 </dl>
@@ -704,7 +606,6 @@ function OrderPage() {
             </div>
           </div>
         </div>
-        <input type="hidden" id="isOrdMakeItem" value="false" />
       </div>
 
       <button

@@ -1,0 +1,94 @@
+/* modal position */
+.myssgpay_modal_addcard {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 60px 20px 0 20px;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.codr_modal_ctn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 15px;
+  background-color: white;
+}
+
+.codr_modal_head {
+  width: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+
+  .codr_modal_tit {
+    font-size: 20px;
+  }
+}
+
+.codr_info_lst {
+  margin-top: 10px;
+}
+
+.codr_tx_gray {
+  font-size: 13px;
+}
+
+.pay_modal_close_btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background: url('./../../../assets/img/btn-set.png') no-repeat;
+  background-position: -85px -20px;
+  background-size: 240px 240px;
+}
+
+/* add card layout */
+.codr_pay_cardlst {
+  padding-bottom: 30px;
+  border-bottom: 0.5px solid lightgrey;
+}
+
+.add_card_num_input_box {
+  margin: 30px 0;
+
+  .add_card_num_input {
+    padding: 0 3px;
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid lightgrey;
+    transition: all 0.1s linear;
+  }
+
+  .add_card_num_input:focus {
+    border: 1px solid black;
+  }
+
+  .card_num_err_msg {
+    margin-top: 20px;
+  }
+}
+
+.codr_btnarea {
+  margin-top: 50px;
+}
+
+.ty_inbtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  li,
+  button {
+    display: inline-block;
+    width: 50%;
+    padding: 0 4px;
+  }
+}

@@ -17,7 +17,7 @@ function HeaderPrevButton() {
     <div className="mcom_tit_lft">
       <button
         type="button"
-        to=".."
+        // to=".."
         className="btn_back clickable"
         onClick={handleClick}
       >

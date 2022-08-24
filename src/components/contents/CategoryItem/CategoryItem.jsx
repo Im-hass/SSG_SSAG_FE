@@ -1,11 +1,8 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { isCategorySelected } from '../../../recoil/states';
 import { SubCategoryList } from '../SubCategoryList';
 
-function CategoryItem({ data, imgUrl }) {
+function CategoryItem({ data, imgUrl, isSelected, setIsSelected }) {
   const { largeCategoryId, title, mediumCategoryList } = data;
-  const [isSelected, setIsSelected] = useRecoilState(isCategorySelected);
 
   const handleClick = (e) => {
     e.preventDefault();

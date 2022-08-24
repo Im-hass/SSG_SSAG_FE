@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../../store/auth-context';
 
 function CategoryFooter() {
+  const ctx = useContext(AuthContext);
+
   return (
     <div className="clnb_footer">
       <div className="clnb_renew_help">
@@ -28,22 +31,13 @@ function CategoryFooter() {
           <span>입점상담</span>
         </a>
         <Link
-          to="/login"
+          to={ctx.isLogin ? '/' : '/login'}
           className="clnb_help_link"
-          // onClick="mobileLogin('login')"
           id="lnb_loginBtn"
+          onClick={ctx.isLogin ? ctx.onLogout : ctx.onLogin}
         >
-          <span>로그인</span>
+          <span>{ctx.isLogin ? '로그아웃' : '로그인'}</span>
         </Link>
-        <a
-          href="/"
-          className="clnb_help_link"
-          // onClick="logout()"
-          id="lnb_logoutBtn"
-          style={{ display: 'none' }}
-        >
-          <span>로그아웃</span>
-        </a>
       </div>
       <div className="clnb_renew_lang">
         <a
