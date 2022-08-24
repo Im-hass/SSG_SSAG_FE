@@ -38,8 +38,8 @@ function App() {
         <Route exact path="/" element={<MainPage />} />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/search/:value" element={<SearchResultPage />} />
-        <Route path="/product" element={<ProductDetailPage />}>
-          <Route path=":productId" element={<ProductDetailPage />} />
+        <Route path="/product" element={<Product />}>
+          <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/my" element={<MyPage />} />
         <Route path="/cart" element={<CartPage />} />
@@ -53,7 +53,6 @@ function App() {
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />
         <Route path="/destination" element={<DestinationPage />} />
         <Route path="/addDestination" element={<AddDestinationPage />} />
-        <Route path="/productDetails" element={<Product />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
