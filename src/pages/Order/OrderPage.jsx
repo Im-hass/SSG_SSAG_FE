@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import { MobileHeader } from '../../components/ui/index';
 
 function OrderPage() {
+  const [destinationInfo, setDestinationInfo] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    axios
+      .get('http://13.209.26.150:9000/users/shipping-addr/default', {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        setDestinationInfo(res.data.result);
+      });
+  }, []);
+
   return (
     <div style={{ background: '#f5f5f5' }}>
       <MobileHeader title="결제하기" />
@@ -16,7 +33,7 @@ function OrderPage() {
             <div className="mnodr_article_head">
               <div className="mnodr_article_headlt">
                 <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-                  배송지 : 본가
+                  배송지 : {destinationInfo.addrName}
                 </h2>
               </div>
               <div className="mnodr_article_headrt">
@@ -31,11 +48,13 @@ function OrderPage() {
             </div>
             <div className="mnodr_article_cont ty_pull">
               <div className="mnodr_form_sec">
-                <p className="mnodr_tx_desc">[46930] 부산광역시 사상구</p>
+                <p className="mnodr_tx_desc">
+                  [{destinationInfo.zipCode}] {destinationInfo.streetAddr}
+                </p>
                 <div className="mnodr_tx_wrap ty_space">
                   <span className="mnodr_tx_size2 mnodr_tx_gray">
-                    <span id="dispRcptpeNm_0">최민정</span>/
-                    <span id="dispHpno_0">010-0000-0000</span>
+                    <span id="dispRcptpeNm_0">{destinationInfo.recipient}</span>
+                    /<span id="dispHpno_0">{destinationInfo.phone}</span>
                   </span>
                 </div>
               </div>
