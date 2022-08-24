@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {
   AddDestinationPage,
@@ -13,6 +13,7 @@ import {
   MyPage,
   ProductDetailPage,
 } from '../pages';
+import Product from '../pages/Product/Product';
 import {
   SignUpPage,
   SignUpAuthPage,
@@ -22,14 +23,23 @@ import {
 import { Login, WithdrawMember } from './contents/index';
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem(
+      'token',
+      JSON.stringify(
+        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjExNTkxMjgsImV4cCI6MTY2Mjk3MzUyOH0.p8eB4KLaH9nZpoAkF29nlDt55FLDNh_h7_hPvpxua0M',
+      ),
+    );
+  }, []);
+
   return (
     <div>
       <Routes>
         <Route exact path="/" element={<MainPage />} />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/search/:value" element={<SearchResultPage />} />
-        <Route path="/product" element={<ProductDetailPage />}>
-          <Route path=":productId" element={<ProductDetailPage />} />
+        <Route path="/product" element={<Product />}>
+          <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/my" element={<MyPage />} />
         <Route path="/cart" element={<CartPage />} />

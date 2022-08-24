@@ -43,6 +43,7 @@ export { Login } from './Login';
 export { NoDataMessage } from './NoDataMessage';
 export { PaymentMeansAddCardBtn } from './PaymentMeansAddCardBtn';
 export { PaymentMeansAddCardModal } from './PaymentMeansAddCardModal';
+export { PaymentMeansCardList } from './PaymentMeansCardList';
 export { PaymentMeansFooter } from './PaymentMeansFooter';
 export { RecentShoppingFilter } from './RecentShoppingFilter';
 export { RecentShoppingHeader } from './RecentShoppingHeader';

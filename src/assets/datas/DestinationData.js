@@ -20,19 +20,21 @@ export const MY_DES_LIST = [
 export const DES_TAB_LIST = [
   {
     id: 1,
-    listRole: 'presentation',
+    listRole: 'menuitem',
     aRole: 'tab',
     href: '/m/comm/shpplocList.ssg',
     className: 'myodr_tab_tx',
     name: 'MY배송지',
+    selected: false,
   },
   {
     id: 2,
-    listRole: 'presentation',
+    listRole: 'menuitem',
     aRole: 'tab',
     href: '/m/comm/shareShpplocList.ssg',
     className: 'myodr_tab_tx',
     name: '함께장보기 배송지',
+    selected: false,
   },
 ];
 
