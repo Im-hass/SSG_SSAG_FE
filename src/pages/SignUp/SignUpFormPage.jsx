@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  Button,
   MobileHeader,
   RequireLabel,
   WithdrawTit,
@@ -14,7 +13,6 @@ import SignUpTermTit from '../../components/ui/SignUpTermTit/SignUpTermTit';
 
 function SignUpFormPage() {
   const navigate = useNavigate();
-
   const [inputData, setInputData] = useState({
     loginId: '',
     loginPwd: '',
@@ -160,6 +158,7 @@ function SignUpFormPage() {
 
   const handleSubmitSignUpForm = (e) => {
     e.preventDefault();
+
     if (Object.values(valid).every((v) => v === true) === true) {
       axios
         .post('http://13.209.26.150:9000/comm-users/signup', {
@@ -173,7 +172,8 @@ function SignUpFormPage() {
           marketing3: inputData.marketing3,
         })
         .then((res) => {
-          if (res.data.isSuccess === true) navigate('/');
+          if (res.data.isSuccess === true)
+            navigate('/signupDone', { state: inputData.name });
           else {
             setError({
               ...error,
@@ -401,11 +401,11 @@ function SignUpFormPage() {
                 <p style={{ textAlign: 'center' }}>{error.submit}</p>
               </em>
             </span>
-            <Button
-              type="submit"
-              className="cmem_btn cmem_btn_orange2"
-              name="가입하기"
-            />
+            <div className="cmem_btn_area">
+              <button type="submit" className="cmem_btn cmem_btn_orange2">
+                가입하기
+              </button>
+            </div>
           </div>
         </div>
       </form>
