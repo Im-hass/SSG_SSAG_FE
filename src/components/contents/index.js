@@ -38,7 +38,6 @@ export { FooterButtonBox } from './FooterButtonBox';
 export { FooterMallWrap } from './FooterMallWrap';
 export { FooterNotification } from './FooterNotification';
 export { FooterService } from './FooterService';
-export { Login } from './Login';
 export { NoDataMessage } from './NoDataMessage';
 export { PaymentMeansAddCardBtn } from './PaymentMeansAddCardBtn';
 export { PaymentMeansAddCardModal } from './PaymentMeansAddCardModal';

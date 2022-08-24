@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {
   AddDestinationPage,
@@ -11,7 +11,7 @@ import {
   PaymentMeansPage,
   CategoryPage,
   MyPage,
-  ProductDetailPage,
+  LoginPage,
 } from '../pages';
 import Product from '../pages/Product/Product';
 import {
@@ -22,7 +22,7 @@ import {
   SignUpDonePage,
 } from '../pages/SignUp';
 import { ScrollToTop } from './common/ScrollToTop';
-import { Login, WithdrawMember } from './contents';
+import { WithdrawMember } from './contents';
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
         </Route>
         <Route path="/my" element={<MyPage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signupAuth" element={<SignUpAuthPage />} />
         <Route path="/signupAgreement" element={<SignUpAgreementPage />} />
