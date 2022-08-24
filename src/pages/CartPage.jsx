@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRecoilState } from 'recoil';
-import { isItemsState, isLoginState } from '../recoil/states';
+import { isItemsState } from '../recoil/states';
 import {
   CartPageControl,
   CartPageParcel,
@@ -14,9 +14,10 @@ import {
   CartPageParcelToolBar,
 } from '../components/contents';
 import { MobileHeader, CartPageBtn } from '../components/ui';
+import AuthContext from '../store/auth-context';
 
 function CartPage() {
-  const [isLogin] = useRecoilState(isLoginState);
+  const ctx = useContext(AuthContext);
   const [isItems, setIsItems] = useRecoilState(isItemsState);
 
   const handleItems = () => {
@@ -38,13 +39,13 @@ function CartPage() {
             {isItems ? '장바구니 비우기' : '장바구니 추가'}
           </button>
 
-          {!isLogin && !isItems && <CartPageNoData />}
+          {!ctx.isLogin && !isItems && <CartPageNoData />}
 
           <div className="mnodr_info">
             <CartPageLoginInfo />
           </div>
 
-          {isLogin && !isItems && <CartPageNoItems />}
+          {ctx.isLogin && !isItems && <CartPageNoItems />}
 
           {isItems && (
             <>

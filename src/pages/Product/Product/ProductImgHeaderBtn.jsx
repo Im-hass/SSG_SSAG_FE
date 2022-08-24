@@ -45,11 +45,7 @@ function ProductImgHeaderBtn() {
       </div>
       <div className="mndtl_rgt">
         <div className="mndtl_unit_thmb">
-          <a
-            // href="javascript:window.scrollTo(0,0)"
-            href="/"
-            target="_parent"
-          >
+          <a href="/" target="_parent">
             <div
               className="mndtl_unit_img"
               style={{

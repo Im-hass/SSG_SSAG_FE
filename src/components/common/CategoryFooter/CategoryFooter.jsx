@@ -1,25 +1,9 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { isLoginState } from '../../../recoil/states';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import AuthContext from '../../../store/auth-context';
 
 function CategoryFooter() {
-  const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
-
-  useEffect(() => {
-    if (localStorage.getItem('token') !== null) {
-      setIsLogin(true);
-    }
-  }, [isLogin]);
-
-  const handleIsLogin = (e) => {
-    if (e.target.textContent === '로그아웃') {
-      setIsLogin(false);
-      localStorage.removeItem('token');
-      navigate('/');
-    }
-  };
+  const ctx = useContext(AuthContext);
 
   return (
     <div className="clnb_footer">
@@ -47,12 +31,12 @@ function CategoryFooter() {
           <span>입점상담</span>
         </a>
         <Link
-          to={isLogin ? '/' : '/login'}
+          to={ctx.isLogin ? '/' : '/login'}
           className="clnb_help_link"
           id="lnb_loginBtn"
-          onClick={handleIsLogin}
+          onClick={ctx.isLogin && ctx.onLogout}
         >
-          <span>{isLogin ? '로그아웃' : '로그인'}</span>
+          <span>{ctx.isLogin ? '로그아웃' : '로그인'}</span>
         </Link>
       </div>
       <div className="clnb_renew_lang">
