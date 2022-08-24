@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductDetailEtc() {
+function ProductEtc() {
   return (
     <div id="_detailetc">
       <div className="mndtl_sec_bx">
@@ -9,7 +9,7 @@ function ProductDetailEtc() {
             <ul className="mndtl_etc_lst">
               <li>
                 <a
-                  href="/item/appItemInfoPopup.ssg?itemId=1000310147566&amp;siteNo=6004&amp;salestrNo=6005&amp;infoType=12"
+                  href="/item/appItemInfoPopup.ssg?itemId=1000304287202&amp;siteNo=6004&amp;salestrNo=6005&amp;infoType=12"
                   target="_parent"
                 >
                   <span>
@@ -23,7 +23,7 @@ function ProductDetailEtc() {
 
               <li>
                 <a
-                  href="/item/appItemInfoPopup.ssg?itemId=1000310147566&amp;siteNo=6004&amp;salestrNo=6005&amp;secondShppMthdCd=&amp;infoType=11"
+                  href="/item/appItemInfoPopup.ssg?itemId=1000304287202&amp;siteNo=6004&amp;salestrNo=6005&amp;secondShppMthdCd=&amp;infoType=11"
                   target="_parent"
                 >
                   <span>교환, 반품, A/S 안내</span>
@@ -35,7 +35,7 @@ function ProductDetailEtc() {
 
               <li>
                 <a
-                  href="/item/appItemInfoPopup.ssg?itemId=1000310147566&amp;siteNo=6004&amp;salestrNo=6005&amp;infoType=6"
+                  href="/item/appItemInfoPopup.ssg?itemId=1000304287202&amp;siteNo=6004&amp;salestrNo=6005&amp;infoType=6"
                   target="_parent"
                 >
                   <span>위탁판매자정보</span>
@@ -47,7 +47,7 @@ function ProductDetailEtc() {
 
               <li>
                 <a
-                  href="/item/appItemInfoPopup.ssg?itemId=1000310147566&amp;siteNo=6004&amp;salestrNo=6005&amp;infoType=3&amp;retShppcst=0&amp;exchShppcst=0&amp;shppcst=0&amp;shppFreeStdYn=N&amp;secondShppMthdCd=&amp;prmRetShppcst=&amp;prmExchShppcst=&amp;prmShppcst="
+                  href="/item/appItemInfoPopup.ssg?itemId=1000304287202&amp;siteNo=6004&amp;salestrNo=6005&amp;infoType=3&amp;retShppcst=2500&amp;exchShppcst=0&amp;shppcst=0&amp;shppFreeStdYn=Y&amp;secondShppMthdCd=&amp;prmRetShppcst=&amp;prmExchShppcst=&amp;prmShppcst="
                   target="_parent"
                 >
                   <span>교환/반품/환불 안내</span>
@@ -59,7 +59,7 @@ function ProductDetailEtc() {
 
               <li>
                 <a
-                  href="/item/appItemInfoPopup.ssg?itemId=1000310147566&amp;siteNo=6004&amp;salestrNo=6005&amp;secondShppMthdCd=&amp;infoType=2"
+                  href="/item/appItemInfoPopup.ssg?itemId=1000304287202&amp;siteNo=6004&amp;salestrNo=6005&amp;secondShppMthdCd=&amp;infoType=2"
                   target="_parent"
                 >
                   <span>배송안내</span>
@@ -76,4 +76,4 @@ function ProductDetailEtc() {
   );
 }
 
-export default ProductDetailEtc;
+export default ProductEtc;
