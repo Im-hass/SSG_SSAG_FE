@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { searchValueState } from '../../../recoil/states';
 import { AdInfo } from '../../ui/AdInfo';
@@ -12,10 +13,32 @@ function SearchContent() {
   const { value } = useParams();
   const [searchValue] = useRecoilState(searchValueState);
   const [hasResult, setHasResult] = useState(false);
+  const [datas, setDatas] = useState();
 
   const handleResult = () => {
     setHasResult(!hasResult);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    axios
+      .get(
+        `http://13.209.26.150:9000/${
+          token !== null ? 'users' : 'non-users'
+        }/products/search/${value}`,
+        token && {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.result);
+        setDatas(res.data.result);
+      });
+  }, []);
 
   return (
     <div id="m_wrap" className="mcom_wrap sm_v3">
