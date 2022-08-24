@@ -25,15 +25,6 @@ import { ScrollToTop } from './common/ScrollToTop';
 import { Login, WithdrawMember } from './contents';
 
 function App() {
-  useEffect(() => {
-    localStorage.setItem(
-      'token',
-      JSON.stringify(
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjExNTkxMjgsImV4cCI6MTY2Mjk3MzUyOH0.p8eB4KLaH9nZpoAkF29nlDt55FLDNh_h7_hPvpxua0M',
-      ),
-    );
-  }, []);
-
   return (
     <>
       <Routes>
