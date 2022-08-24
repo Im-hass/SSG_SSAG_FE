@@ -392,14 +392,7 @@ function ProductEctExplain() {
                   직접 상품을 전달해 드리는 프리미엄 배송 서비스
                 </strong>
                 <span className="cdtl_ly_link_area">
-                  <a
-                    href="/"
-                    onClick="location.href='//event.ssg.com/m/eventDetail.ssg?nevntId=1000000000661';"
-                    className="cdtl_ly_link_more"
-                    target=""
-                  >
-                    더보기
-                  </a>
+                  <a href="/">더보기</a>
                 </span>
               </p>
               <div className="desc_lst">
