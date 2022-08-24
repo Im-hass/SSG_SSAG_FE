@@ -20,11 +20,6 @@ export const isItemsState = atom({
   default: false,
 });
 
-export const isDestinationState = atom({
-  key: 'isDestination',
-  default: false,
-});
-
 export const isCategorySelected = atom({
   key: 'isCategorySelected',
   default: new Array(11).fill(false),
@@ -33,4 +28,9 @@ export const isCategorySelected = atom({
 export const isModalOpenState = atom({
   key: 'isModalOpen',
   default: false,
+});
+
+export const isCategorySelected2 = atom({
+  key: 'isCategorySelected2',
+  default: new Array(6).fill(false),
 });

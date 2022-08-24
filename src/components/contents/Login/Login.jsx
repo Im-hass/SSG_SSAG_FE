@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import {
   Captcha,
-  Input,
   CheckCircleInput,
   MobileHeader,
   SNSLoginBtn,
@@ -12,23 +12,6 @@ import {
 } from '../../ui/index';
 import { Footer } from '../../common/index';
 import './Login.scss';
-
-const INPUT_CONTENT = [
-  {
-    labelFor: 'inp_id',
-    type: 'text',
-    blindName: '아이디',
-    inputName: 'mbrLoginId',
-    placeholder: '아이디',
-  },
-  {
-    labelFor: 'inp_pw',
-    type: 'password',
-    blindName: '비밀번호',
-    inputName: 'password',
-    placeholder: '비밀번호',
-  },
-];
 
 const SNS_LOGIN_CONTENT = [
   {
@@ -54,32 +37,91 @@ const SNS_LOGIN_CONTENT = [
 ];
 
 function Login() {
+  const navigate = useNavigate();
+
+  const [inputData, setInputData] = useState({
+    loginId: '',
+    loginPwd: '',
+  });
+  const [error, setError] = useState('');
+
+  const handleInputData = (e) => {
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitLogin = (e) => {
+    e.preventDefault();
+
+    if (inputData.loginId.length !== 0 && inputData.loginPwd.length !== 0) {
+      axios
+        .post('http://10.10.10.174:8081/comm-users/login/user', {
+          loginId: inputData.loginId,
+          loginPwd: inputData.loginPwd,
+        })
+        .then((res) => {
+          if (res.data.isSuccess === false) setError(res.data.message);
+          else {
+            localStorage.setItem('token', JSON.stringify(res.data.result));
+            navigate('/');
+          }
+        });
+    }
+  };
+
   return (
     <div>
       <MobileHeader title="로그인" />
       <div className="cmem_ct_login v2">
         <div className="cmem_login_form">
-          <form id="login_form" method="post">
-            <input
-              type="hidden"
-              name="loginCertCode"
-              value="L6DqmLF_JvV1FQfVUTk1B10yp9WKV1xlQDy"
-            />
-            <input type="hidden" name="PCID" value="16587089474241102959881" />
+          <form id="login_form" method="post" onSubmit={handleSubmitLogin}>
             <fieldset>
               <legend>로그인</legend>
               <div className="cmem_inp_area">
-                {INPUT_CONTENT.map((input) => (
-                  <Input
-                    key={input.inputName}
-                    laberFor={input.labelFor}
-                    type={input.type}
-                    blindName={input.blindName}
-                    inputName={input.inputName}
-                    placeholder={input.placeholder}
+                <span className="cmem_inp_txt2">
+                  <label htmlFor="inp_id">
+                    <span className="blind">아이디</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="inp_id"
+                    name="loginId"
+                    placeholder="아이디"
+                    maxLength="50"
+                    // defaultValue="testId"
+                    onChange={handleInputData}
                   />
-                ))}
+                  <button type="button" className="inp_clear">
+                    <span className="sp_cmem_login cmem_ico_clear">
+                      <span className="blind">입력내용 삭제</span>
+                    </span>
+                  </button>
+                </span>
+                <span className="cmem_inp_txt2">
+                  <label htmlFor="inp_pw">
+                    <span className="blind">비밀번호</span>
+                  </label>
+                  <input
+                    type="password"
+                    id="inp_pw"
+                    name="loginPwd"
+                    // defaultValue="testPwd"
+                    placeholder="비밀번호"
+                    onChange={handleInputData}
+                  />
+                  <button type="button" className="inp_clear">
+                    <span className="sp_cmem_login cmem_ico_clear">
+                      <span className="blind">입력내용 삭제</span>
+                    </span>
+                  </button>
+                </span>
               </div>
+
+              <span className="cmem_noti">
+                <em className="usable_value">
+                  <p style={{ marginTop: '8px' }}>{error}</p>
+                </em>
+              </span>
+
               <div className="cmem_login_chk">
                 <CheckCircleInput
                   inputId="keep_id"
@@ -121,16 +163,6 @@ function Login() {
           <span>비회원 조회하기</span>
         </a>
       </div>
-      <form
-        id="snsJoin"
-        method="post"
-        action="/m/member/join/simpleJoinGuide.ssg"
-      >
-        <input type="hidden" name="mbrId" value="" />
-        <input type="hidden" name="email" value="" />
-        <input type="hidden" name="snsTypeCd" value="" />
-        <input type="hidden" name="accessToken" value="" />
-      </form>
       <Footer />
     </div>
   );

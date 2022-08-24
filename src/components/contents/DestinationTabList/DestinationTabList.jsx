@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
-import { DES_TAB_LIST } from '../../../assets/datas';
+import React from 'react';
 import './DestinationTabList.scss';
+import { Link } from 'react-router-dom';
+import { DES_TAB_LIST } from '../../../assets/datas';
 
-function DestinationTabList() {
-  const [isClassOn, setIsClassOn] = useState(0);
-
-  const hadleClassOn = (index) => {
-    setIsClassOn(index);
-  };
-
+function DestinationTabList({ handleMenu, menuName }) {
   return (
     <ul className="myodr_tab_list" role="tablist">
-      {DES_TAB_LIST.map((el, i) => (
+      {DES_TAB_LIST.map((el) => (
         <li
-          key={el.id}
+          key={el.name}
           role="menuitem"
-          onClick={() => hadleClassOn(i)}
-          onKeyDown={() => hadleClassOn(i)}
-          className={isClassOn === i ? 'on' : ''}
+          onClick={() => handleMenu(el.menuName)}
+          onKeyDown={() => handleMenu(el.menuName)}
+          className={el.menuName === menuName ? 'on' : ''}
         >
-          <a href="/destination">
-            <span className={el.className}>{el.name}</span>
-          </a>
+          <Link to={el.to}>
+            <span className="myodr_tab_tx">{el.name}</span>
+          </Link>
         </li>
       ))}
     </ul>
