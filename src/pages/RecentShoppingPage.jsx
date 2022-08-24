@@ -33,7 +33,7 @@ function RecentShoppingPage() {
         </div>
       </div>
       <ToolbarList />
-      <FloatingContents />
+      <FloatingContents pageName="recentHistory" />
     </div>
   );
 }

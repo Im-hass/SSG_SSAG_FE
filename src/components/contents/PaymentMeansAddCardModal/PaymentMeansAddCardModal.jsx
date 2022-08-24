@@ -1,386 +1,281 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './PaymentMeansAddCardModal.scss';
+import { useRecoilState } from 'recoil';
+import { isModalOpenState } from '../../../recoil/states';
 
-function PaymentMeansAddCardModal() {
+function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
+  const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
+  const [addCardInputData, setAddCardInputData] = useState({
+    cardCompany: '',
+    cardNumber: '',
+  });
+  const [inputVal, setInputVal] = useState('');
+  const [isCardNumValid, setIsCardNumValid] = useState(false);
+  const [cardNumErrMsg, setCardNumErrMsg] = useState('');
+
+  const handleModalOpen = () => {
+    setIsModalOpen(false);
+  };
+
+  const validCheck = (data) => {
+    const testData = data.split('');
+
+    if (testData.length > 16 || testData.length < 16) {
+      setIsCardNumValid(false);
+      setCardNumErrMsg('카드 번호를 올바르게 입력하세요.');
+      return false;
+    }
+    for (let i = 0; i < testData.length; i += 1) {
+      if (Number.isNaN(Number(testData[i]))) {
+        setIsCardNumValid(false);
+        setCardNumErrMsg('카드 번호를 올바르게 입력하세요.');
+        return false;
+      }
+    }
+    setIsCardNumValid(true);
+    setCardNumErrMsg('올바른 카드 번호입니다.');
+    return true;
+  };
+
+  const handleAddCardInputData = (e) => {
+    const nums = e.target.value;
+
+    setInputVal(nums);
+
+    if (validCheck(nums)) {
+      setAddCardInputData({
+        ...addCardInputData,
+        cardNumber: nums,
+      });
+    }
+  };
+
+  const handleSelectedCardData = (e) => {
+    const card = e.target.value;
+    setAddCardInputData({
+      ...addCardInputData,
+      cardCompany: card,
+    });
+  };
+
+  const generateCardNum = () => {
+    let nums = addCardInputData.cardNumber;
+    nums = nums.split('');
+    nums.splice(4, 0, '-');
+    nums.splice(9, 0, '-');
+    nums.splice(14, 0, '-');
+    return nums.join('');
+  };
+
+  const postData = () => {
+    const token = localStorage.getItem('token');
+    const data = {
+      cardCompany: addCardInputData.cardCompany,
+      cardNumber: generateCardNum(),
+    };
+    const headers = {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    };
+
+    axios
+      .post('http://13.209.26.150:9000/users/payment', data, headers)
+      .then((res) => {
+        console.log('post res:', res);
+        setIsSubmit(!isSubmit);
+      })
+      .catch((err) => console.log('post err:', err));
+  };
+
+  const resetData = () => {
+    setAddCardInputData({
+      cardCompany: '',
+      cardNumber: '',
+    });
+    setInputVal('');
+    setIsModalOpen(false);
+    setIsCardNumValid(false);
+    setCardNumErrMsg('');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isCardNumValid) return;
+
+    postData();
+    resetData();
+  };
+
   return (
     <div
-      className="codr_modal myssgpay_modal_addcard"
+      className="myssgpay_modal_addcard"
       role="dialog"
       tabIndex="-1"
       aria-hidden="false"
       id="myssgpay_modal_addcard"
+      style={{ display: isModalOpen ? 'block' : 'none' }}
     >
-      <div
+      <button
+        type="button"
+        className="pay_modal_close_btn"
+        onClick={handleModalOpen}
+      >
+        <span />
+      </button>
+
+      <form
         className="codr_modal_wrap codr_modal_focus"
         role="document"
         // tabIndex="0"
+        style={{ userSelect: 'auto' }}
+        onSubmit={handleSubmit}
       >
-        <div className="codr_modal_ctn">
-          <div className="codr_modal_head">
-            <h2 className="codr_modal_tit">카드 등록</h2>
+        <div className="codr_modal_ctn" style={{ userSelect: 'auto' }}>
+          <div className="codr_modal_head" style={{ userSelect: 'auto' }}>
+            <h2 className="codr_modal_tit" style={{ userSelect: 'auto' }}>
+              카드 등록
+            </h2>
           </div>
-          <div className="codr_modal_cont">
-            <ul className="codr_info_lst ty_noindent ty_space_btm">
-              <li>
-                <span className="codr_tx_gray">카드를 선택해주세요.</span>
+
+          <div className="codr_modal_cont" style={{ userSelect: 'auto' }}>
+            <ul
+              className="codr_info_lst ty_noindent ty_space_btm"
+              style={{ userSelect: 'auto' }}
+            >
+              <li style={{ userSelect: 'auto' }}>
+                <span className="codr_tx_gray" style={{ userSelect: 'auto' }}>
+                  카드를 선택해주세요.
+                </span>
               </li>
             </ul>
-            <ul className="codr_pay_cardlst">
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard1"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard1">SSG.COM카드 EDITION2</label>
-              </li>
 
-              <li>
+            <ul
+              className="codr_pay_cardlst"
+              style={{ userSelect: 'auto' }}
+              onChange={handleSelectedCardData}
+            >
+              <li style={{ userSelect: 'auto' }}>
                 <input
                   type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard2"
+                  name="cardCompany"
+                  id="woori_card"
                   className="blind"
+                  value="우리카드"
+                  style={{ userSelect: 'auto' }}
                 />
-                <label htmlFor="_codrPayModalCard2">SSG.COM카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard3"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard3">
-                  이마트e카드(현대카드)
+                <label htmlFor="woori_card" style={{ userSelect: 'auto' }}>
+                  우리카드
                 </label>
               </li>
 
-              <li>
+              <li style={{ userSelect: 'auto' }}>
                 <input
                   type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard4"
+                  name="cardCompany"
+                  id="hyundai_card"
                   className="blind"
+                  value="현대카드"
+                  style={{ userSelect: 'auto' }}
                 />
-                <label htmlFor="_codrPayModalCard4">현대카드</label>
+                <label htmlFor="hyundai_card" style={{ userSelect: 'auto' }}>
+                  현대카드
+                </label>
               </li>
 
-              <li>
+              <li style={{ userSelect: 'auto' }}>
                 <input
                   type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard5"
+                  name="cardCompany"
+                  id="kb_card"
                   className="blind"
+                  value="국민카드"
+                  style={{ userSelect: 'auto' }}
                 />
-                <label htmlFor="_codrPayModalCard5">이마트KB국민카드</label>
+                <label htmlFor="kb_card" style={{ userSelect: 'auto' }}>
+                  국민카드
+                </label>
               </li>
 
-              <li>
+              <li style={{ userSelect: 'auto' }}>
                 <input
                   type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard6"
+                  name="cardCompany"
+                  id="samsung_card"
                   className="blind"
+                  value="삼성카드"
+                  style={{ userSelect: 'auto' }}
                 />
-                <label htmlFor="_codrPayModalCard6">KB국민카드</label>
+                <label htmlFor="samsung_card" style={{ userSelect: 'auto' }}>
+                  삼성카드
+                </label>
               </li>
 
-              <li>
+              <li style={{ userSelect: 'auto' }}>
                 <input
                   type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard7"
+                  name="cardCompany"
+                  id="shinhan_card"
                   className="blind"
+                  value="신한카드"
+                  style={{ userSelect: 'auto' }}
                 />
-                <label htmlFor="_codrPayModalCard7">이마트삼성카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard8"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard8">SSG.COM 삼성카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard9"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard9">신세계삼성카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard10"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard10">트레이더스삼성카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard11"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard11">삼성카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard12"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard12">이마트신한카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard13"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard13">신세계신한카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard14"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard14">신한카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard15"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard15">비씨카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard16"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard16">신세계하나체크카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard17"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard17">하나카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard18"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard18">롯데카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard19"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard19">NH카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard20"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard20">카카오뱅크카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard21"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard21">신세계씨티카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard22"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard22">씨티카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard23"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard23">이마트우리체크카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard24"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard24">우리카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard25"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard25">IBK기업은행카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard26"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard26">이마트SC카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard27"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard27">신세계SC카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard28"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard28">SC은행카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard29"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard29">SSGPAY카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard30"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard30">광주카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard31"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard31">수협카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard32"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard32">제주카드</label>
-              </li>
-
-              <li>
-                <input
-                  type="radio"
-                  name="_codrPayModalCard"
-                  id="_codrPayModalCard33"
-                  className="blind"
-                />
-                <label htmlFor="_codrPayModalCard33">전북카드</label>
+                <label htmlFor="shinhan_card" style={{ userSelect: 'auto' }}>
+                  신한카드
+                </label>
               </li>
             </ul>
-            <div className="codr_btnarea">
-              <ul className="ty_inbtn">
-                <li>
-                  <a
-                    href="/"
-                    className="codr_btn codr_btn_blkline modal-close-btn"
+
+            <div className="add_card_num_input_box">
+              <span className="codr_tx_gray" style={{ userSelect: 'auto' }}>
+                카드번호를 입력해주세요.
+              </span>
+              <div className="add_card_num_inputs">
+                <input
+                  className="add_card_num_input"
+                  type="text"
+                  maxLength={16}
+                  name="input1"
+                  onChange={handleAddCardInputData}
+                  value={inputVal}
+                />
+              </div>
+              <p
+                className="card_num_err_msg"
+                style={{ color: isCardNumValid ? 'blue' : 'tomato' }}
+              >
+                {cardNumErrMsg}
+              </p>
+            </div>
+
+            <div className="codr_btnarea" style={{ userSelect: 'auto' }}>
+              <ul className="ty_inbtn" style={{ userSelect: 'auto' }}>
+                <li
+                  role="presentation"
+                  style={{ userSelect: 'auto' }}
+                  onClick={handleModalOpen}
+                >
+                  <span
+                    className="codr_btn codr_btn_blkline"
+                    style={{ userSelect: 'auto' }}
                   >
-                    <span>취소</span>
-                  </a>
+                    취소
+                  </span>
                 </li>
-                <li>
-                  <a href="/" className="codr_btn codr_btn_blkline" id="regCrd">
-                    <span>확인</span>
-                  </a>
-                </li>
+                <button type="submit" style={{ userSelect: 'auto' }}>
+                  <span
+                    className="codr_btn codr_btn_blkline"
+                    style={{ userSelect: 'auto' }}
+                  >
+                    확인
+                  </span>
+                </button>
               </ul>
             </div>
           </div>
-          <button type="button" className="codr_modal_close modal-close-btn">
-            <span className="blind">닫기</span>
-          </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

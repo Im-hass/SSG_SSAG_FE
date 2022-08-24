@@ -1,10 +1,9 @@
 import React from 'react';
-import './DestinationListNewAdd.scss';
 
-function DestinationListNewAdd() {
+function DestinationAddBtn() {
   return (
     <div className="myodr_btn_newaddr">
-      <button type="button" onClick="ShpplocList.add();">
+      <button type="button">
         <span>
           <span aria-hidden="true">+</span> 새 배송지 추가
         </span>
@@ -13,4 +12,4 @@ function DestinationListNewAdd() {
   );
 }
 
-export default DestinationListNewAdd;
+export default DestinationAddBtn;

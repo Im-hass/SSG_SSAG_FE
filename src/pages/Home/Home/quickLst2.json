@@ -1,0 +1,103 @@
+[
+
+    {
+        "id": 1,
+        "url": "https://m-shinsegaemall.ssg.com/special/chanel/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|샤넬",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217285171385923771692_663.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217285171385923771692_663.png')",
+        "txt":"샤넬"
+    },
+    {
+        "id": 2,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/salvatoreferragamo/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|페라가모",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217290217490624463162_656.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217290217490624463162_656.png')",
+        "txt":"페라가모"
+    },
+    {
+        "id": 3,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/montblanckorea/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|몽블랑",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022071408544663020208606020_479.jpg')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022071408544663020208606020_479.jpg')",
+        "txt":"몽블랑" 
+    },
+    {
+        "id": 4,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/ralphlauren/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|랄프로렌",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217291500626364175636_449.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217291500626364175636_449.png')",
+        "txt":"랄프로렌"
+    },
+    {
+        "id": 5,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/chanel/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|나이키",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217292235974324881532_737.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217292235974324881532_737.png')",
+        "txt":"나이키"
+    },
+    {
+        "id": 6,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/chanel/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|GAP",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217293106766790060779_109.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217293106766790060779_109.png')",
+        "txt":"GAP"
+    },
+    {
+        "id": 7,
+        "url": "https://m-shinsegaemall.ssg.com/special/gucci/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|구찌",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217293825100958393095_837.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217293825100958393095_837.png')",
+        "txt":"구찌"
+    },
+    {
+        "id": 8,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/chanel/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|샤넬",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217295055984869592586_907.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217295055984869592586_907.png')",
+        "txt":"버버리"
+    },
+    {
+        "id": 9,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/chanel/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|샤넬",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217295919357862288786_757.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217295919357862288786_757.png')",
+        "txt":"마시모두띠"
+    },
+    {
+        "id": 10,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/chanel/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|샤넬",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217300774619162616916_799.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217300774619162616916_799.png')",
+        "txt":"휴고보스"
+    },
+    {
+        "id": 11,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/lululemon/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|룰루레몬",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217285171385923771692_663.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217301614134541677454_258.png')",
+        "txt":"룰루레몬"
+    },
+    {
+        "id": 12,
+        "url": "https://m-shinsegaemall.ssg.com/specialStore/samsung-01/main.ssg",
+        "tarea": "홈|공식브랜드관_배너|배너_클릭|삼성",
+        "data-bg": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217302515229659906965_991.png')",
+        "backgroundImage": "url('//sui.ssgcdn.com/cmpt/banner/202207/2022072217302515229659906965_991.png')",
+        "txt":"삼성"
+    }
+
+
+   
+
+]
