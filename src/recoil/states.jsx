@@ -29,3 +29,8 @@ export const isModalOpenState = atom({
   key: 'isModalOpen',
   default: false,
 });
+
+export const isCategorySelected2 = atom({
+  key: 'isCategorySelected2',
+  default: new Array(6).fill(false),
+});
