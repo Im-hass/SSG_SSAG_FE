@@ -12,8 +12,8 @@ import {
   CategoryPage,
   MyPage,
   LoginPage,
-  OrderPage,
 } from '../pages';
+import { OrderPage, OrderDestinationChangePage } from '../pages/Order';
 import Product from '../pages/Product/Product';
 import {
   SignUpPage,
@@ -44,6 +44,10 @@ function App() {
         <Route path="/signupForm" element={<SignUpFormPage />} />
         <Route path="/signupDone" element={<SignUpDonePage />} />
         <Route path="/order" element={<OrderPage />} />
+        <Route
+          path="/orderDestination"
+          element={<OrderDestinationChangePage />}
+        />
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />

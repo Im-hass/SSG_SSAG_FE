@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { MobileHeader } from '../../components/ui/index';
 
 function OrderPage() {
@@ -18,15 +20,13 @@ function OrderPage() {
                 </h2>
               </div>
               <div className="mnodr_article_headrt">
-                <button
-                  type="button"
+                <Link
+                  to="/orderDestination"
                   className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  data-pt-click="주문서|배송지|변경"
                   name="btnShowTgtDiv"
-                  data-target-div="shpplocInfoDiv_1"
                 >
                   변경
-                </button>
+                </Link>
               </div>
             </div>
             <div className="mnodr_article_cont ty_pull">
