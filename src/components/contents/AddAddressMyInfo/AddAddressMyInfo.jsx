@@ -196,7 +196,7 @@ function AddAddressMyInfo() {
                           <div className="oi_phone_pd">
                             <span className="p_first">
                               <span className="des_select">
-                                <span className="cc_ellip_in selected">
+                                <span className="cc_ellip_in selected select_opt">
                                   010
                                 </span>
                                 <span className="sp_com sel_arrow">&nbsp;</span>
@@ -277,7 +277,9 @@ function AddAddressMyInfo() {
                           <div className="oi_phone_pd">
                             <span className="p_first">
                               <span className="des_select">
-                                <span className="cc_ellip_in">선택</span>
+                                <span className="cc_ellip_in select_opt">
+                                  선택
+                                </span>
                                 <span className="sp_com sel_arrow">&nbsp;</span>
                                 <span className="hide_select">
                                   <select id="telNum1" title="전화번호 앞자리">
