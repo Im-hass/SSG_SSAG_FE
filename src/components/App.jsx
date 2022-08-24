@@ -20,7 +20,8 @@ import {
   SignUpFormPage,
   SignUpAgreementPage,
 } from '../pages/SignUp';
-import { Login, WithdrawMember } from './contents/index';
+import { ScrollToTop } from './common/ScrollToTop';
+import { Login, WithdrawMember } from './contents';
 
 function App() {
   useEffect(() => {
@@ -33,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <>
       <Routes>
         <Route exact path="/" element={<MainPage />} />
         <Route path="/category" element={<CategoryPage />} />
@@ -51,11 +52,14 @@ function App() {
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />
-        <Route path="/destination" element={<DestinationPage />} />
+        <Route path="/destination" element={<DestinationPage />}>
+          <Route path=":menu" element={<DestinationPage />} />
+        </Route>
         <Route path="/addDestination" element={<AddDestinationPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </div>
+      <ScrollToTop />
+    </>
   );
 }
 
