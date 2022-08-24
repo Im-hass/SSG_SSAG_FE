@@ -111,19 +111,12 @@ function BrdRanking() {
                           <a
                             href="https://m-shinsegaemall.ssg.com/special/itemView.ssg?itemId=1000338899298&amp;siteNo=6004&amp;salestrNo=6005&amp;itemSsgCollectYn=N"
                             className="mnsditem_thmb_link clickable"
-                            data-info="1000338899298"
-                            data-index="0"
-                            data-position="view"
-                            data-react-tarea-dtl-cd="t00001"
                           >
                             <div className="mnsditem_thmb_imgbx">
                               <img
                                 src="//sitem.ssgcdn.com/98/92/89/item/1000338899298_i1_500.jpg"
-                                data-src="//sitem.ssgcdn.com/98/92/89/item/1000338899298_i1_500.jpg"
                                 alt="[구찌 홀스빗 1955] 미니백"
-                                onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                                 className="ssg_lazy mnsditem_thmb_img loaded"
-                                data-ll-status="loaded"
                               />
                             </div>
                           </a>
@@ -131,9 +124,6 @@ function BrdRanking() {
                             <a
                               href="https://m.ssg.com/search/image/main.ssg?searchType=img&amp;itemId=1000338899298&amp;src_area=ssglens"
                               className="mnsditem_btn_lens clickable"
-                              data-info="1000338899298"
-                              data-position="ssglens"
-                              data-react-tarea-dtl-cd="t00008"
                             >
                               <span className="blind">
                                 이 상품 이미지로 검색하기
@@ -282,7 +272,6 @@ function BrdRanking() {
                                 src="//sitem.ssgcdn.com/29/40/29/item/1000050294029_i1_500.jpg"
                                 data-src="//sitem.ssgcdn.com/29/40/29/item/1000050294029_i1_500.jpg"
                                 alt="[GG 마몽] 마틀라세 레더 수퍼 미니백"
-                                onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                                 className="ssg_lazy mnsditem_thmb_img loaded"
                                 data-ll-status="loaded"
                               />
@@ -443,7 +432,6 @@ function BrdRanking() {
                                 src="//sitem.ssgcdn.com/45/39/90/item/1000441903945_i1_500.jpg"
                                 data-src="//sitem.ssgcdn.com/45/39/90/item/1000441903945_i1_500.jpg"
                                 alt="[GG 마몽] 탑 핸들 미니백"
-                                onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                                 className="ssg_lazy mnsditem_thmb_img loaded"
                                 data-ll-status="loaded"
                               />

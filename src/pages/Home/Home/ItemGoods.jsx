@@ -21,7 +21,6 @@ function ItemGoods() {
                     className="cmitem_thmb_img"
                     src="//sitem.ssgcdn.com/56/43/16/item/1000034164356_i1_500.jpg"
                     alt="[브리치] 오늘의 베스트! 시원한 썸머 데일리룩 BEST50 원피스/반팔티 外"
-                    onError="this.onerror=this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=750&amp;h=750&amp;t=c2263a66513593c6b20520cc593b018cbac57806'"
                   />
                 </div>
               </a>
@@ -34,7 +33,6 @@ function ItemGoods() {
                       <img
                         src="https://sitem.ssgcdn.com/19/30/17/item/1000413173019_i1_150.jpg"
                         alt="다른 옵션 이미지"
-                        onError="this.onerror=this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=75&amp;h=75&amp;t=781223af222f4db27c6e21aadb6e00f614598dab'"
                       />
                     </div>
                   </a>
@@ -45,7 +43,6 @@ function ItemGoods() {
                       <img
                         src="https://sitem.ssgcdn.com/84/95/32/item/1000388329584_i1_150.jpg"
                         alt="다른 옵션 이미지"
-                        onError="this.onerror=this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=75&amp;h=75&amp;t=781223af222f4db27c6e21aadb6e00f614598dab'"
                       />
                     </div>
                   </a>
@@ -56,7 +53,6 @@ function ItemGoods() {
                       <img
                         src="https://sitem.ssgcdn.com/55/21/84/item/1000064842155_i1_150.jpg"
                         alt="다른 옵션 이미지"
-                        onError="this.onerror=this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=75&amp;h=75&amp;t=781223af222f4db27c6e21aadb6e00f614598dab'"
                       />
                     </div>
                   </a>
@@ -163,7 +159,6 @@ function ItemGoods() {
                 <button
                   type="button"
                   className="cmitem_btn_cart clickable"
-                  onClick="frontCommCart.put(this, '');"
                   data-react-tarea="홈|해피라운지_상품|상품_장바구니담기|[브리치] 오늘의 베스트! 시원한 썸머 데일리룩 BEST50 원피스/반팔티 外"
                 >
                   <span className="blind">장바구니 담기</span>

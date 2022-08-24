@@ -50,7 +50,6 @@ function ItemGrid() {
                             src="//sitem.ssgcdn.com/02/40/34/item/1000423344002_i1_500.jpg"
                             data-src="//sitem.ssgcdn.com/02/40/34/item/1000423344002_i1_500.jpg"
                             alt="  역시즌  헤비, 미들 구스다운   KHF2034  KHF2004"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img loaded"
                             data-ll-status="loaded"
                           />
@@ -181,7 +180,6 @@ function ItemGrid() {
                             src="//sitem.ssgcdn.com/43/57/14/item/1000363145743_i1_500.jpg"
                             data-src="//sitem.ssgcdn.com/43/57/14/item/1000363145743_i1_500.jpg"
                             alt="21S/S 여성  남성 주머니 포인트반바지 카고 숏팬츠 반바지 DWTB72131 DMTB71131"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img loaded"
                             data-ll-status="loaded"
                           />
@@ -331,7 +329,6 @@ function ItemGrid() {
                             src="//sitem.ssgcdn.com/15/22/53/item/1000435532215_i1_500.jpg"
                             data-src="//sitem.ssgcdn.com/15/22/53/item/1000435532215_i1_500.jpg"
                             alt="[강남점] 키플링 인기 패션백 균일가 할인 모음전"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img loaded"
                             data-ll-status="loaded"
                           />
@@ -478,7 +475,6 @@ function ItemGrid() {
                             src="//sitem.ssgcdn.com/84/09/85/item/1000400850984_i1_500.jpg"
                             data-src="//sitem.ssgcdn.com/84/09/85/item/1000400850984_i1_500.jpg"
                             alt="22년 여름 BEST 템 시즌오프 시작 BKS와이드5부세트(정상가 60000)"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img loaded"
                             data-ll-status="loaded"
                           />
@@ -610,7 +606,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/86/91/86/item/1000036869186_i1_500.jpg"
                             alt="*역시즌* 아이더 비러브드 여성 슬림 다운 아이더패딩 DWF19506 (최초가285,000)"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -758,7 +753,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/66/47/83/item/1000349834766_i1_500.jpg"
                             alt="[made by LAP] 허리스모킨 나일론 원피스 (AN2WO483)"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -907,7 +901,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/72/82/15/item/1000328158272_i1_500.jpg"
                             alt="[레드루트] 세탁세제 1L 3개"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -1056,7 +1049,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/81/29/19/item/1000305192981_i1_500.jpg"
                             alt="비앙카 HTSHE100111"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -1205,7 +1197,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/03/51/81/item/1000370815103_i1_500.jpg"
                             alt="남성 나이키 클럽 우븐 라인드 플로우 쇼츠 AS DM6830-010"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -1353,7 +1344,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/60/22/29/item/1000303292260_i1_500.jpg"
                             alt="[비밀특가] 샥즈 오픈런 골전도 블루투스 이어폰 S803"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -1500,7 +1490,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/77/80/91/item/1000272918077_i1_500.jpg"
                             alt="남성 나이키 레볼루션 6 넥스트 네이처 DC3728-001"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -1647,7 +1636,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/39/29/23/item/1000022232939_i1_500.jpg"
                             alt="남성 나이키 드라이 티 NIKE 718834-010"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -1794,7 +1782,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/31/65/92/item/1000354926531_i1_500.jpg"
                             alt="[New Performance] 듀라모 10_[GX0709,GX0711,GX0713,GW8336,GW8342,GW8348]"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -1944,7 +1931,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/75/94/35/item/1000170359475_i1_500.jpg"
                             alt=" 클래식 블리치다이 클로그 207326-6X0"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -2091,7 +2077,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/86/41/09/item/1000333094186_i1_500.jpg"
                             alt="[주문폭증으로 순차적 출고 예정] [2021년 햅쌀] 쌀가게  수향미 (특등급 )10KG"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -2239,7 +2224,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/68/56/37/item/1000075375668_i1_500.jpg"
                             alt="[여름 베스트] 클래식 H뮬 샌들 4종 택1 FHS1F1SS035"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -2388,7 +2372,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/65/01/30/item/1000288300165_i1_500.jpg"
                             alt="네파 역시즌  여성 ARTE 아르테 숏 구스 다운 자켓(고어텍스)7H82055 (기존가 459,000)"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -2427,7 +2410,6 @@ function ItemGrid() {
                             value="N"
                           />
                           <button
-                            classNa
                             type="button"
                             e="cmlike_btn _js_cmlike_btn clickable"
                             data-position="clip"
@@ -2539,7 +2521,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/95/13/26/item/1000419261395_i1_500.jpg"
                             alt="[UNISEX RUNNING] 알파컴피 (GX1789,GX1790,GX1788,GV9555,GV9551,GV9552,FY5943)"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -2675,7 +2656,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/32/02/51/item/1000048510232_i1_500.jpg"
                             alt="남여공용 인젠션 아쿠아슈즈 블럭 4color"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />
@@ -2824,7 +2804,6 @@ function ItemGrid() {
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                             data-src="//sitem.ssgcdn.com/24/73/66/item/1000435667324_i1_500.jpg"
                             alt="MUQUT481 남녀공용 여름 반팔 라운드 포켓 티셔츠 니오르 라운드 (정상가: 41,000원)"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                             className="ssg_lazy mnsditem_thmb_img"
                             data-ll-status="observed"
                           />

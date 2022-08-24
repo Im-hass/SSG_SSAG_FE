@@ -2,7 +2,7 @@ import React from 'react';
 
 function Horizontal() {
   return (
-    <div className="cmgrid_full_box" data-page-set-id="132">
+    <div className="cmgrid_full_box">
       <div className="cmhorizontal_scrollitem">
         <div className="cmhorizontal_scroll">
           <ul className="cmhorizontal_stack ty_rect">
@@ -15,19 +15,13 @@ function Horizontal() {
                   <a
                     href="/item/itemView.ssg?itemId=1000310177066&amp;siteNo=6004&amp;salestrNo=6005"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000310177066"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sitem.ssgcdn.com/66/70/17/item/1000310177066_i1_500.jpg"
-                          data-src="//sitem.ssgcdn.com/66/70/17/item/1000310177066_i1_500.jpg"
                           alt="온라인문화상품권 5만원"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img loaded"
-                          data-ll-status="loaded"
                         />
                       </div>
                     </div>
@@ -50,26 +44,17 @@ function Horizontal() {
                     </div>
                   </a>
                 </li>
-                <li
-                  className="cmhorizontal_grid_item"
-                  data-observable-item="true"
-                >
+                <li className="cmhorizontal_grid_item">
                   <a
                     href="/item/itemView.ssg?itemId=1000179980808&amp;siteNo=6004&amp;salestrNo=6005"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000179980808"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sitem.ssgcdn.com/08/08/98/item/1000179980808_i1_500.jpg"
-                          data-src="//sitem.ssgcdn.com/08/08/98/item/1000179980808_i1_500.jpg"
                           alt="[컬쳐랜드]모바일 문화상품권 5만원"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img loaded"
-                          data-ll-status="loaded"
                         />
                       </div>
                     </div>
@@ -99,19 +84,13 @@ function Horizontal() {
                   <a
                     href="https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000423344002&amp;siteNo=6009&amp;salestrNo=1004"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000423344002"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sitem.ssgcdn.com/02/40/34/item/1000423344002_i1_500.jpg"
-                          data-src="//sitem.ssgcdn.com/02/40/34/item/1000423344002_i1_500.jpg"
                           alt="  역시즌  헤비, 미들 구스다운   KHF2034  KHF2004"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img loaded"
-                          data-ll-status="loaded"
                         />
                       </div>
                     </div>
@@ -145,19 +124,13 @@ function Horizontal() {
                   <a
                     href="https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000363145743&amp;siteNo=6009&amp;salestrNo=1018"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000363145743"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sitem.ssgcdn.com/43/57/14/item/1000363145743_i1_500.jpg"
-                          data-src="//sitem.ssgcdn.com/43/57/14/item/1000363145743_i1_500.jpg"
                           alt="21S/S 여성  남성 주머니 포인트반바지 카고 숏팬츠 반바지 DWTB72131 DMTB71131"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img loaded"
-                          data-ll-status="loaded"
                         />
                       </div>
                     </div>
@@ -199,19 +172,13 @@ function Horizontal() {
                   <a
                     href="/item/itemView.ssg?itemId=1000384014294&amp;siteNo=6004&amp;salestrNo=6005"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000384014294"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sitem.ssgcdn.com/94/42/01/item/1000384014294_i1_500.jpg"
-                          data-src="//sitem.ssgcdn.com/94/42/01/item/1000384014294_i1_500.jpg"
                           alt="아이스크림 클래식 파인트 4개 골라담기 (6개 중)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img loaded"
-                          data-ll-status="loaded"
                         />
                       </div>
                     </div>
@@ -262,7 +229,6 @@ function Horizontal() {
                           src="//sitem.ssgcdn.com/75/03/27/item/1000433270375_i1_500.jpg"
                           data-src="//sitem.ssgcdn.com/75/03/27/item/1000433270375_i1_500.jpg"
                           alt="New 다이슨 에어랩™ 멀티 스타일러 컴플리트(니켈/코퍼)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img loaded"
                           data-ll-status="loaded"
                         />
@@ -298,19 +264,13 @@ function Horizontal() {
                   <a
                     href="https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000435532215&amp;siteNo=6009&amp;salestrNo=1004"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000435532215"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                          data-src="//sitem.ssgcdn.com/15/22/53/item/1000435532215_i1_500.jpg"
                           alt="[강남점] 키플링 인기 패션백 균일가 할인 모음전"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
-                          data-ll-status="observed"
                         />
                       </div>
                     </div>
@@ -349,19 +309,13 @@ function Horizontal() {
                   <a
                     href="/item/itemView.ssg?itemId=1000400104825&amp;siteNo=6004&amp;salestrNo=6005"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000400104825"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                          data-src="//sitem.ssgcdn.com/25/48/10/item/1000400104825_i1_500.jpg"
                           alt="아이스크림 신상 과일 파인트 4개 골라담기 (5개 중)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
-                          data-ll-status="observed"
                         />
                       </div>
                     </div>
@@ -395,26 +349,17 @@ function Horizontal() {
                     </div>
                   </a>
                 </li>
-                <li
-                  className="cmhorizontal_grid_item"
-                  data-observable-item="true"
-                >
+                <li className="cmhorizontal_grid_item">
                   <a
                     href="/item/itemView.ssg?itemId=1000197070534&amp;siteNo=6004&amp;salestrNo=6005"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000197070534"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                          data-src="//sitem.ssgcdn.com/34/05/07/item/1000197070534_i1_500.jpg"
                           alt="컬쳐랜드 PIN 5만원"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
-                          data-ll-status="observed"
                         />
                       </div>
                     </div>
@@ -448,19 +393,13 @@ function Horizontal() {
                   <a
                     href="https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000400850984&amp;siteNo=6009&amp;salestrNo=1004"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000400850984"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                          data-src="//sitem.ssgcdn.com/84/09/85/item/1000400850984_i1_500.jpg"
                           alt="22년 여름 BEST 템 시즌오프 시작 BKS와이드5부세트(정상가 60000)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
-                          data-ll-status="observed"
                         />
                       </div>
                     </div>
@@ -491,19 +430,13 @@ function Horizontal() {
                   <a
                     href="/item/itemView.ssg?itemId=1000035139403&amp;siteNo=6004&amp;salestrNo=6005"
                     className="cmhorizontal_unit_link clickable"
-                    data-info="1000035139403"
-                    data-index="0"
-                    data-position="view"
                   >
                     <div className="cmhorizontal_unit_thmb">
                       <div className="cmhorizontal_unit_img">
                         <img
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                          data-src="//sitem.ssgcdn.com/03/94/13/item/1000035139403_i1_500.jpg"
                           alt="[BUFFALO] 버팔로 프리미엄 블랙라벨 구명조끼"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
-                          data-ll-status="observed"
                         />
                       </div>
                     </div>
@@ -541,7 +474,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/45/88/49/item/1000049498845_i1_500.jpg"
                           alt="3웨이올인원M 구이바다 아이보리에디션 쓱디션(가방포함)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -596,7 +528,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/86/91/86/item/1000036869186_i1_500.jpg"
                           alt="*역시즌* 아이더 비러브드 여성 슬림 다운 아이더패딩 DWF19506 (최초가285,000)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -648,7 +579,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/57/62/54/item/1000057546257_i1_500.jpg"
                           alt=" 가방스티커 3종 세트 (11종 택3)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -688,7 +618,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/55/71/81/item/1000225817155_i1_500.jpg"
                           alt="[B] 더블 웨어 파운데이션 세트 (+브러쉬 &amp;디럭스3종)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -745,7 +674,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/72/82/15/item/1000328158272_i1_500.jpg"
                           alt="[레드루트] 세탁세제 1L 3개"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -798,7 +726,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/37/81/15/item/0000000158137_i1_500.jpg"
                           alt="립 글로우"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -849,7 +776,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/50/78/73/item/1000032737850_i1_500.jpg"
                           alt="상품권 모바일교환권 10만원권 [문자발송]"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -893,7 +819,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/31/57/11/item/1000316115731_i1_500.jpg"
                           alt="[SSG단독] 뗑 이돌 롱라스팅 파운데이션 30ml 세트"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -944,7 +869,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/94/12/88/item/1000247881294_i1_500.jpg"
                           alt="[블루&amp;아이보리 재입고 완료!][수영/효연/웬디 착용] 칼린 소프트 M H71307020"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -998,7 +922,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/36/34/55/item/1000271553436_i1_500.jpg"
                           alt="[주문폭증으로 순차적 출고 예정] [2021년 햅쌀] 쌀가게 수향미  (상등급)10kg"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1054,7 +977,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/62/53/31/item/1000053315362_i1_500.jpg"
                           alt="[무료배송] 제주 삼다수 2L 12병 (유라벨 / 무라벨 랜덤발송)"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1095,7 +1017,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/96/61/62/item/1000198626196_i1_500.jpg"
                           alt="압타밀 킨더밀쉬 분유 2단계 800g 리뉴얼 독일내수용"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1137,7 +1058,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/62/28/73/item/1000355732862_i1_500.jpg"
                           alt="흥양농협 해맞이쌀 새청무 상등급 10kg 2021년 햅쌀"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1191,7 +1111,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/94/59/27/item/1000446275994_i1_500.jpg"
                           alt="[SSG단독]실키 스테이 파운데이션+피팅 브러쉬(48000원상당의 본품 동일사양)+대용량 픽서+립 +파우치"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1244,7 +1163,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/05/63/62/item/1000198626305_i1_500.jpg"
                           alt="압타밀 킨더밀쉬 분유 1단계 800g 리뉴얼 독일내수용"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1286,7 +1204,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/81/29/19/item/1000305192981_i1_500.jpg"
                           alt="비앙카 HTSHE100111"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1343,7 +1260,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/31/88/52/item/1000025528831_i1_500.jpg"
                           alt="[SSG단독] 매트 아이 컬러 세트 [S]"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1396,7 +1312,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/02/94/13/item/1000035139402_i1_500.jpg"
                           alt=" 1+1 버팔로 프리미엄 블랙라벨 구명조끼"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />
@@ -1436,7 +1351,6 @@ function Horizontal() {
                           src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
                           data-src="//sitem.ssgcdn.com/06/80/43/item/1000230438006_i1_500.jpg"
                           alt="오큘러스 퀘스트2 VR 128GB [국내정발/익일배송/무료배송/1년무상AS/개선된 실리콘안면패드]"
-                          onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=500&amp;h=500&amp;t=1ec79c3423d0d0bb5cfce1a84b8605496eddb340'"
                           className="ssg_lazy cmitem_thmb_img"
                           data-ll-status="observed"
                         />

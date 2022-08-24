@@ -48,7 +48,6 @@ function RecentShoppingProductList() {
                   <img
                     className="ssg_lazy"
                     src="//sitem.ssgcdn.com/97/64/62/item/1000064626497_i1_120.jpg"
-                    onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?w=120&amp;h=120&amp;src=/ui/ssg/img/common/img_ready_500x500.jpg'"
                     alt="[엠포리오아르마니] [엠포리오아르마니] 엠보싱 로고 크루넥 티셔츠 (A511126045)"
                   />
                 </div>
@@ -155,7 +154,6 @@ function RecentShoppingProductList() {
                   <img
                     className="ssg_lazy"
                     src="//sitem.ssgcdn.com/43/57/15/item/1000349155743_i1_120.jpg"
-                    onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?w=120&amp;h=120&amp;src=/ui/ssg/img/common/img_ready_500x500.jpg'"
                     alt="[엠포리오아르마니] 로고 그래픽 이지 티셔츠 [아르마니 2022 S/S] A512126096"
                   />
                 </div>
@@ -260,7 +258,6 @@ function RecentShoppingProductList() {
                   <img
                     className="ssg_lazy"
                     src="//sitem.ssgcdn.com/08/08/98/item/1000179980808_i1_120.jpg"
-                    onError="this.onerror=null;this.src='https://simg.ssgcdn.com/trans.ssg?w=120&amp;h=120&amp;src=/ui/ssg/img/common/img_ready_500x500.jpg'"
                     alt="[기프티콘] [컬쳐랜드]모바일 문화상품권 5만원"
                   />
                 </div>

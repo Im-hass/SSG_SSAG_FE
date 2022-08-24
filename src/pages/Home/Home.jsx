@@ -21,18 +21,13 @@ import { FloatingContents } from '../../components/common';
 
 function Home() {
   return (
-    <div id="m_container" className="mcom_container" data-iframe-height>
+    <div id="m_container" className="mcom_container">
       <div className="main_wrap">
         <MainSlider />
         <TopNav />
-        <div
-          id="m_content"
-          className="react-area"
-          data-globalid="홈"
-          data-areaid="ad_list"
-        >
+        <div id="m_content" className="react-area">
           <div className="cmgrid_module">
-            <div className="cmgrid_list" data-equal-height="false">
+            <div className="cmgrid_list">
               <MainCategory />
               <HappyLounge />
               <NewService />
