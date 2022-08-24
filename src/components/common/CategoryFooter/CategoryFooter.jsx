@@ -34,7 +34,7 @@ function CategoryFooter() {
           to={ctx.isLogin ? '/' : '/login'}
           className="clnb_help_link"
           id="lnb_loginBtn"
-          onClick={ctx.isLogin ? ctx.onLogout : ctx.onLogin}
+          onClick={ctx.isLogin && ctx.onLogout}
         >
           <span>{ctx.isLogin ? '로그아웃' : '로그인'}</span>
         </Link>

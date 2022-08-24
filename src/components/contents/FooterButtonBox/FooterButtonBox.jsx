@@ -11,7 +11,7 @@ function FooterButtonBox() {
         <li id="footer_loginBtn">
           <Link
             to={ctx.isLogin ? '/' : '/login'}
-            onClick={ctx.isLogin ? ctx.onLogout : ctx.onLogin}
+            onClick={ctx.isLogin && ctx.onLogout}
             className="clickable"
             name={ctx.isLogin ? '로그아웃' : '로그인'}
           >
