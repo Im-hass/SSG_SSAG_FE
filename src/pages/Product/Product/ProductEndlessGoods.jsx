@@ -37,7 +37,6 @@ function ProductEndlessGoods() {
                           <img
                             src="//sitem.ssgcdn.com/57/04/90/item/1000057900457_i1_187.jpg"
                             alt="[파주점] 레이밴 선글라스 RB3595 9013/13"
-                            onError="this.src='https://simg.ssgcdn.com/trans.ssg?src=/ui/ssg/img/common/img_ready_500x500.jpg&amp;w=187&amp;h=187&amp;t=5d2b57804279b6fa3be78209e63e1055c6ecc968'"
                             className="ssg_lazy mnsditem_thmb_img"
                           />
                         </div>
