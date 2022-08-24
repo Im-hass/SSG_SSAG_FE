@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-function ProductExplaination() {
+function ProductExplaination({ productData }) {
+  console.log(productData);
+
+  const [discountedPrice, setDiscountedPrice] = useState(0);
+
+  const calculateDiscountedPrice = () => {
+    const data = productData;
+    let calPrice = 0;
+
+    if (data.sale === 0) {
+      calPrice = data.price * 1;
+    }
+
+    setDiscountedPrice(calPrice);
+  };
+
+  useEffect(() => {
+    calculateDiscountedPrice();
+  }, []);
+
   return (
     <div
       className="mndtl_sec mndtl_prd_wrap"
@@ -39,16 +58,18 @@ function ProductExplaination() {
             data-react-tarea-dtl-cd="t00053"
             target="_parent"
           >
-            로라로라
+            {productData.storeName}
           </a>
-          <span className="mndtl_prdtit_name">BASIC BUTTON CARDIGAN BEIGE</span>
+          <span className="mndtl_prdtit_name">{productData.name}</span>
         </h2>
         <div className="mndtl_prd_price">
           <div className="mndtl_prd_oldpr">
             <div className="old_price">
               <del>
                 <span className="blind">정상가격</span>
-                <em className="ssg_price">75,000</em>
+                <em className="ssg_price">
+                  {productData.price.toLocaleString()}
+                </em>
                 <span className="ssg_tx">원</span>
               </del>
             </div>
@@ -61,11 +82,11 @@ function ProductExplaination() {
           >
             <div className="mndtl_prd_per">
               <span className="blind">할인율</span>
-              <span>15%</span>
+              <span>{productData.sale}%</span>
             </div>
             <div className="new_price">
               <span className="blind">판매가격</span>
-              <em className="ssg_price">63,750</em>
+              <em className="ssg_price">{discountedPrice.toLocaleString()}</em>
               <span className="ssg_tx">
                 원<span className="cm_tx_opt" />
               </span>

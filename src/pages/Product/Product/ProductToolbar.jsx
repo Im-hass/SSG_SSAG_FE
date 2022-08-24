@@ -4,7 +4,7 @@ import HidePdtTool from './HidePdtTool';
 import PdtTool01 from './PdtTool01';
 import PdtTool02 from './PdtTool02';
 
-function ProductToolbar() {
+function ProductToolbar({ productData }) {
   const [buyBtn, setBuyBtn] = useState('');
   const [goBuyBtn, setGoBuyBtn] = useState('hideCom');
   const [toggleOn, setToggleOn] = useState('');
@@ -33,7 +33,11 @@ function ProductToolbar() {
           )}
         </div>
       </div>
-      <HidePdtTool toggleOn={toggleOn} handleOpenBtn={handleOpenBtn} />
+      <HidePdtTool
+        toggleOn={toggleOn}
+        handleOpenBtn={handleOpenBtn}
+        productData={productData}
+      />
     </>
   );
 }

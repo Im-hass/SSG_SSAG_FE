@@ -3,7 +3,7 @@ import './style/HidePdtTool.scss';
 
 import Swal from 'sweetalert2';
 
-function HidePdtTool({ toggleOn, handleOpenBtn }) {
+function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
   const three = () => {
     Swal.fire({
       title: '잠깐 !',
@@ -83,6 +83,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
                   >
                     <div className="mndtl_opt_selected">
                       <dl>
+                        {/* 옵션 드롭박스 만들기 attribute에 data-id 가라로 넣어서 쏘기 */}
                         <dt>[젠틀몬스터]랭 01</dt>
                         <dd className="mndtl_art_l">
                           <div
@@ -112,7 +113,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
                         <dd className="mndtl_art_r">
                           <span className="price">
                             <em className="ssg_price" data-prc="249000">
-                              {(pdtCnt * 249000).toLocaleString()}
+                              {(pdtCnt * productData.price).toLocaleString()}
                             </em>
                             <span className="ssg_tx">원</span>
                           </span>
@@ -130,7 +131,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
           <strong className="mndtl_label">총 합계</strong>
           <strong className="price">
             <em id="totalPrc" className="ssg_price">
-              {(pdtCnt * 249000).toLocaleString()}
+              {(pdtCnt * productData.price).toLocaleString()}
             </em>
             <span className="ssg_tx">원</span>
           </strong>

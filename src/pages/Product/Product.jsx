@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import ProductImgHeaderBtn from './Product/ProductImgHeaderBtn';
 import ProductSwiper from './Product/ProductSwiper';
 import ProductBrand from './Product/ProductBrand';
@@ -6,7 +7,6 @@ import ProductEtcExplain from './Product/ProductEtcExplain';
 import ProductEndlessGoods from './Product/ProductEndlessGoods';
 import ProductExplaination from './Product/ProductExplaination';
 import ProductManySee from './Product/ProductManySee';
-import ProductReview from './Product/ProductReview';
 import ProductQna from './Product/ProductQna';
 import ProductToolbar from './Product/ProductToolbar';
 import ProductOptBar from './Product/ProductOptBar';
@@ -28,6 +28,26 @@ import ProductStoreInfo from './Product/ProductStoreInfo';
 import ProductDetailCategory from './Product/ProductDetailCategory';
 
 function Product() {
+  const [productData, setProductData] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    axios
+      .get('http://13.209.26.150:9000/users/products/info/1', {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        console.log('product result: ', res);
+        const data = res.data.result;
+        setProductData(data);
+        console.log(data);
+      })
+      .catch((err) => console.log('product error: ', err));
+  }, []);
+
   return (
     <>
       <Header />
@@ -49,7 +69,7 @@ function Product() {
             <div className="mndtl_wrap ty_default">
               <ProductImgHeaderBtn />
               <ProductSwiper />
-              <ProductExplaination />
+              <ProductExplaination productData={productData} />
               <ProductInfo />
 
               <div className="mndtl_sec mndtl_cont_wrap" id="detailDescTab">
@@ -121,7 +141,7 @@ function Product() {
         <ProductBackButton />
       </div>
       <ProductOptBar />
-      <ProductToolbar />
+      <ProductToolbar productData={productData} />
       <ProductLikeCouponBtn />
       <ProductLikeCouponSection />
       <ShareBtn />

@@ -1,6 +1,4 @@
-import React, { useContext } from 'react';
-import { useRecoilState } from 'recoil';
-import { isItemsState } from '../recoil/states';
+import React, { useContext, useState } from 'react';
 import {
   CartPageControl,
   CartPageParcel,
@@ -18,11 +16,12 @@ import AuthContext from '../store/auth-context';
 
 function CartPage() {
   const ctx = useContext(AuthContext);
-  const [isItems, setIsItems] = useRecoilState(isItemsState);
+  const [isItems, setIsItems] = useState(false);
 
   const handleItems = () => {
     setIsItems(!isItems);
   };
+
   return (
     <div
       id="m_wrap"
