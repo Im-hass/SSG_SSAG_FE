@@ -75,18 +75,8 @@ function MainSlider() {
               {mainSlider &&
                 mainSlider.map((m, index) => (
                   <SwiperSlide key={m.mainBannerId}>
-                    <li
-                      className="swiper-slide swiper-slide-duplicate"
-                      data-swiper-slide-index="16"
-                    >
-                      <div
-                        className="smhero_bn gate_unit"
-                        data-unittype="banr"
-                        data-advertacctid="1005578087"
-                        data-advertbidid="1002120689"
-                        data-advertbilngtypecd="10"
-                        data-advertkindcd="50"
-                      >
+                    <li className="swiper-slide swiper-slide-duplicate">
+                      <div className="smhero_bn gate_unit">
                         <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
                           <a
                             // href="#"
@@ -181,23 +171,11 @@ function MainSlider() {
                 </button>
               </div>
               <div className="smhero_cont">
-                <ul
-                  className="smhero_bnlist"
-                  data-areaid="smhero"
-                  data-impyn="Y"
-                >
+                <ul className="smhero_bnlist">
                   <li>
-                    <div
-                      className="smhero_bn gate_unit"
-                      data-unittype="banr"
-                      data-advertacctid="1005578087"
-                      data-advertbidid="1002120686"
-                      data-advertbilngtypecd="10"
-                      data-advertkindcd="50"
-                    >
+                    <div className="smhero_bn gate_unit">
                       <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
                         <a
-                          // href="#"
                           href="/"
                           className="cmitem_btn_tt_adinfo ssg-tooltip"
                         >
@@ -213,19 +191,12 @@ function MainSlider() {
                           </button>
                         </div>
                       </div>
-                      <a
-                        href="/"
-                        className="smhero_bnlink"
-                        // href="javascript:void(0);"
-                        // onClick="ssg_ad.adClick(this, {link: 'https://www.ssg.com/plan/planShop.ssg?dispCmptId=6000432181', position: 'view'});"
-                      >
+                      <a href="/" className="smhero_bnlink">
                         <div className="smhero_thumb">
                           <img
                             className="ssg_lazy"
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                            data-src="https://simg.ssgcdn.com/trans.ssg?src=/ssgadp/6m/68/1002120686m.jpg&amp;w=750&amp;t=42fe216fbbc0744fd63f3b2699b3d377736f33d2"
                             alt="더운 여름 시원하게"
-                            data-ll-status="observed"
                           />
                         </div>
                         <div className="smhero_tit">
@@ -255,9 +226,7 @@ function MainSlider() {
                           <img
                             className="ssg_lazy"
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                            data-src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202208/2022080100044918239324907932_142.jpg&amp;w=750&amp;t=888a8898cefd98251259be028dc5d1a57315c7ab"
                             alt="메타버쓱 오픈런 사전 행사"
-                            data-ll-status="observed"
                           />
                         </div>
                         <div className="smhero_tit">
@@ -287,9 +256,7 @@ function MainSlider() {
                           <img
                             className="ssg_lazy"
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                            data-src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202207/2022072608260942820708147070_658.jpg&amp;w=750&amp;t=d65266aea064cab1c07cc2575acaede3f84664bd"
                             alt="2022 추석 신세계몰 사전예약"
-                            data-ll-status="observed"
                           />
                         </div>
                         <div className="smhero_tit">
@@ -319,9 +286,7 @@ function MainSlider() {
                           <img
                             className="ssg_lazy"
                             src="//sui.ssgcdn.com/ui/m_ssg/img/common/b.gif"
-                            data-src="https://simg.ssgcdn.com/trans.ssg?src=/cmpt/banner/202207/2022072913300030619653009965_824.jpg&amp;w=750&amp;t=7ef9de5254f174d9dd33d9f09adcd286ceaee9d2"
                             alt="오늘 스마일클럽 장보기 10%적립"
-                            data-ll-status="observed"
                           />
                         </div>
                         <div className="smhero_tit">

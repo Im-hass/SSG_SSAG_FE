@@ -23,7 +23,6 @@ function CartPageParcelContentUnitThmb() {
           id="img5092900303"
           width="75"
           height="75"
-          // onError="javascript:this.src='https://sui.ssgcdn.com/ui/sd/img/common/noImg_140.gif';this.alt='상품 이미지 준비중입니다.';"
         />
       </span>
     </div>
