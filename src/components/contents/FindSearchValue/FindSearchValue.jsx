@@ -3,11 +3,11 @@ import ProductList from '../../product/ProductList/ProductList';
 import { SearchFilter } from '../SearchFilter';
 import './FindSearchValue.scss';
 
-function FindSearchValue({ hasResult }) {
+function FindSearchValue({ datas }) {
   return (
     <>
       <SearchFilter />
-      <ProductList hasResult={hasResult} />
+      <ProductList datas={datas} />
     </>
   );
 }

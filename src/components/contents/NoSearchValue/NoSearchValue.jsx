@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductList } from '../../product/ProductList/index';
 
-function NoSearchValue({ hasResult, searchValue }) {
+function NoSearchValue({ datas, searchValue }) {
   return (
     <>
       <div className="cm_result_titbox go_link">
@@ -30,7 +30,7 @@ function NoSearchValue({ hasResult, searchValue }) {
         </div>
 
         {/* 상품 리스트 */}
-        <ProductList hasResult={hasResult} />
+        <ProductList datas={datas} />
       </div>
     </>
   );

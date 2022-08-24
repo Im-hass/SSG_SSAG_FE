@@ -1,18 +1,17 @@
 import React from 'react';
 import './ProductList.scss';
 import ProductItem from '../ProductItem/ProductItem';
-import { PRODUCT_LIST } from '../../../assets/datas';
+// import { PRODUCT_LIST } from '../../../assets/datas';
 
-function ProductList({ hasResult }) {
+function ProductList({ datas }) {
   return (
     <div className="cmitem_grid">
       <ul className="cmitem_grid_lst cmitem_ty_thmb">
-        {PRODUCT_LIST &&
-          PRODUCT_LIST.map((product) => (
+        {datas &&
+          datas.map((data) => (
             <ProductItem
-              key={product.productId}
-              datas={product}
-              hasResult={hasResult}
+              key={data.categoryProductDtoRes.productProductId}
+              data={data}
             />
           ))}
       </ul>
