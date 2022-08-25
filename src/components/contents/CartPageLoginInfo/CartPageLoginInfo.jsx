@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import { useRecoilState } from 'recoil';
-import { isLoginState, isItemsState } from '../../../recoil/states';
+import { isItemsState } from '../../../recoil/states';
+import AuthContext from '../../../store/auth-context';
 import { CartPageLogin, CartPageNotLogin, CartPageTab } from '../index';
 import './CartPageLoginInfo.scss';
 
 function CartPageLoginInfo() {
-  const [isLogin] = useRecoilState(isLoginState);
+  const ctx = useContext(AuthContext);
   const [isItems] = useRecoilState(isItemsState);
 
   return (
     <>
-      {isLogin && isItems && <CartPageTab />}
+      {ctx.isLogin && isItems && <CartPageTab />}
       <div className="mnodr_info">
-        {isLogin && isItems && <CartPageLogin />}
-        {!isLogin && isItems && <CartPageNotLogin />}
+        {ctx.isLogin && isItems && <CartPageLogin />}
+        {!ctx.isLogin && isItems && <CartPageNotLogin />}
       </div>
     </>
   );

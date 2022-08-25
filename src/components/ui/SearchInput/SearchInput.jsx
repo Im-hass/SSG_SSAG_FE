@@ -16,12 +16,13 @@ function SearchInput() {
     setSearchValue(e.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearchClose = () => {
     setIsOpen(false);
   };
 
   const handleSubmit = (e) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
       setIsOpen(false);
       navigate(`/search/${searchValue}`);
     }
@@ -31,12 +32,7 @@ function SearchInput() {
     <div className="header-util">
       <div className="search-box">
         {isOpen && (
-          <form
-            className="search-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
+          <form className="search-form" onSubmit={handleSubmit}>
             <input
               className="open-search-input"
               name="search-input"
@@ -49,7 +45,8 @@ function SearchInput() {
             <Link
               className="search-btn"
               to={`/search/${searchValue}`}
-              onClick={handleSearch}
+              onClick={handleSearchClose}
+              type="button"
             >
               <i className="search-icon" />
             </Link>
@@ -59,15 +56,23 @@ function SearchInput() {
         {!isOpen && (
           <div className="not-open-search-input-wrap">
             <div className="search-input-box">
-              <input
-                className="not-open-search-input"
-                type="text"
-                onFocus={() => handleOpenSearch('open')}
-                defaultValue={searchValue !== '' ? searchValue : ''}
-              />
-              <button className="search-btn" type="button">
-                <i className="search-icon" />
-              </button>
+              <form>
+                <input
+                  className="not-open-search-input"
+                  type="text"
+                  onFocus={() => handleOpenSearch('open')}
+                  defaultValue={searchValue !== '' ? searchValue : ''}
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleOpenSearch('open');
+                  }}
+                  className="search-btn"
+                >
+                  <i className="search-icon" />
+                </button>
+              </form>
             </div>
           </div>
         )}

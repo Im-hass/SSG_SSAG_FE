@@ -9,10 +9,8 @@ function ProductOptBar() {
       >
         <div className="mndtl_soldout_close">
           <a
-            // href="#"
             href="/"
             className="mndtl_btn_opt_close _js_mndtl_soldout_toggle_btn clickable"
-            onClick="ssg_react_v2.direct_call(this);"
             target=""
           >
             <span className="blind">열기/닫기</span>
@@ -61,7 +59,6 @@ function ProductOptBar() {
                                 // href="javascript:void(0);"
                                 href="/"
                                 className="mndtl_b_minus clickable"
-                                onClick="ItmOp.changeOrdQty(this, -1, 1, 1);"
                                 target="_parent"
                               >
                                 빼기
@@ -73,7 +70,6 @@ function ProductOptBar() {
                                 // href="javascript:void(0);"
                                 href="/"
                                 className="mndtl_b_plus clickable"
-                                onClick="ItmOp.changeOrdQty(this, 1, 1, 1);"
                                 target="_parent"
                               >
                                 더하기
@@ -134,11 +130,7 @@ function ProductOptBar() {
           </div>
         </div>
         <div className="mndtl_calendar_btm">
-          <button
-            type="button"
-            className="mndtl_btn_calendar_select clickable"
-            onClick="ssg_react_v2.direct_call(this);"
-          >
+          <button type="button" className="mndtl_btn_calendar_select clickable">
             <span>선택하기</span>
           </button>
         </div>

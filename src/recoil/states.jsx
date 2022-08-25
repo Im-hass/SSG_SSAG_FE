@@ -10,11 +10,6 @@ export const searchValueState = atom({
   default: '',
 });
 
-export const isLoginState = atom({
-  key: 'isLogin',
-  default: false,
-});
-
 export const isItemsState = atom({
   key: 'isItems',
   default: false,
