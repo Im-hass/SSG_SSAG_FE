@@ -9,7 +9,9 @@ function MainPage() {
   const [isOpen] = useRecoilState(isOpenState);
   return (
     <div id="m_wrap" className="mcom_wrap sm_v3 sm_page_main has_smhero_banner">
-      <Header />
+      <div className="header-wrap">
+        <Header />
+      </div>
       {!isOpen && (
         <>
           <Home />
