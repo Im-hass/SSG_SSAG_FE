@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { useRecoilState } from 'recoil';
-import { searchValueState } from '../../../recoil/states';
+import { isOpenState, searchValueState } from '../../../recoil/states';
 import { AdInfo } from '../../ui/AdInfo';
 import { NoSearchValue } from '../NoSearchValue';
 import { FindSearchValue } from '../FindSearchValue';
@@ -10,18 +11,39 @@ import './SearchContent.scss';
 
 function SearchContent() {
   const { value } = useParams();
+  const [isOpen] = useRecoilState(isOpenState);
   const [searchValue] = useRecoilState(searchValueState);
-  const [hasResult, setHasResult] = useState(false);
+  const [datas, setDatas] = useState();
 
-  const handleResult = () => {
-    setHasResult(!hasResult);
-  };
+  useEffect(() => {
+    if (!isOpen) {
+      const token = localStorage.getItem('token');
+      const headers = {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      };
+
+      axios
+        .get(
+          `http://13.209.26.150:9000/${
+            token !== null ? 'users' : 'non-users'
+          }/products/search/${value}`,
+          token && headers,
+        )
+        .then((res) => {
+          const response = res.data.result;
+          if (response.length !== 0) {
+            setDatas(response);
+          } else {
+            setDatas();
+          }
+        });
+    }
+  }, [isOpen]);
 
   return (
     <div id="m_wrap" className="mcom_wrap sm_v3">
-      <button type="button" onClick={handleResult}>
-        검색 결과 Test
-      </button>
       {/* 검색 결과 타이틀 */}
       <div className="mcom_tit_renew react-area search-value">
         <h2 className="mcom_tit_txt clickable">
@@ -44,8 +66,8 @@ function SearchContent() {
       </div>
 
       <div id="m_content" className="content_csrch react-area">
-        {/* 검색 결과가 있을 때 */}
-        {hasResult && <RelateSearchValue />}
+        {/* 검색 결과가 있을 때 : 연관 검색어 */}
+        {datas && <RelateSearchValue />}
 
         <div className="m_scharea seach-background">
           <div className="cm_sch_result v2">
@@ -72,13 +94,10 @@ function SearchContent() {
             {/* 검색 결과 배너 */}
             {/* 검색 결과가 있을 때 */}
             {/* 검색 결과가 없을 때 */}
-            {hasResult ? (
-              <FindSearchValue
-                hasResult={hasResult}
-                searchValue={searchValue}
-              />
+            {datas ? (
+              <FindSearchValue datas={datas} />
             ) : (
-              <NoSearchValue hasResult={hasResult} searchValue={searchValue} />
+              <NoSearchValue datas={datas} searchValue={searchValue} />
             )}
           </div>
 
