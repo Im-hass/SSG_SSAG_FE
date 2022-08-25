@@ -28,25 +28,33 @@ import ProductStoreInfo from './Product/ProductStoreInfo';
 import ProductDetailCategory from './Product/ProductDetailCategory';
 
 function Product() {
-  const [productData, setProductData] = useState({});
+  const [productData, setProductData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    axios
-      .get('http://13.209.26.150:9000/users/products/info/1', {
-        headers: {
-          Authorization: JSON.parse(token),
-        },
-      })
-      .then((res) => {
-        console.log('product result: ', res);
-        const data = res.data.result;
-        setProductData(data);
-        console.log(data);
-      })
-      .catch((err) => console.log('product error: ', err));
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          'http://13.209.26.150:9000/users/products/info/1',
+          {
+            headers: {
+              Authorization: JSON.parse(token),
+            },
+          },
+        );
+        setProductData(response.data.result);
+      } catch (err) {
+        console.log('product error', err);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
   }, []);
+
+  if (isLoading) return <div>로딩 중</div>;
+  if (!productData) return <div>데이터 없음</div>;
 
   return (
     <>

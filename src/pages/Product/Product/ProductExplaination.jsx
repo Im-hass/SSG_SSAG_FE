@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 function ProductExplaination({ productData }) {
-  console.log(productData);
-
   const [discountedPrice, setDiscountedPrice] = useState(0);
 
   const calculateDiscountedPrice = () => {
@@ -11,6 +9,8 @@ function ProductExplaination({ productData }) {
 
     if (data.sale === 0) {
       calPrice = data.price * 1;
+    } else {
+      calPrice = data.price * data.sale;
     }
 
     setDiscountedPrice(calPrice);
