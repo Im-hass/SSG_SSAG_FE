@@ -19,6 +19,7 @@ import {
   OrderChangeRecipientPage,
   OrderChangeShippingMessagePage,
 } from '../pages/Order';
+import OrderInfoPage from '../pages/OrderInfo/OrderInfoPage';
 import Product from '../pages/Product/Product';
 import {
   SignUpPage,
@@ -61,6 +62,7 @@ function App() {
           path="/orderChangeShippingMessage"
           element={<OrderChangeShippingMessagePage />}
         />
+        <Route path="/orderInfo" element={<OrderInfoPage />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />

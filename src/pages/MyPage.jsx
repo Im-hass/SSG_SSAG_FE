@@ -12,6 +12,7 @@ function MyPage() {
       <Link to="/destination">배송지 관리</Link>
       <br />
       <Link to="/paymentMeans">결제수단 관리</Link>
+      <Link to="/orderInfo">주문/배송 조회</Link>
       <Footer />
       <ToolbarList />
       <FloatingContents />
