@@ -15,7 +15,7 @@ import {
 } from '../pages';
 import {
   OrderPage,
-  OrderDestinationChangePage,
+  OrderChangeDestinationPage,
   OrderChangeRecipientPage,
   OrderChangeShippingMessagePage,
 } from '../pages/Order';
@@ -51,7 +51,7 @@ function App() {
         <Route path="/order" element={<OrderPage />} />
         <Route
           path="/orderDestination"
-          element={<OrderDestinationChangePage />}
+          element={<OrderChangeDestinationPage />}
         />
         <Route
           path="/orderChangeRecipient"

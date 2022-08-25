@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import axios from 'axios';
+
+import { orderInfoState } from '../../recoil/states';
 import { MobileHeader } from '../../components/ui/index';
 
-function OrderDestinationChangePage() {
+function OrderChangeDestinationPage() {
   const navigate = useNavigate();
 
-  const [selectDestination, setSelectDestination] = useState('');
+  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
   const [destinationArr, setDestinationArr] = useState([]);
 
   useEffect(() => {
@@ -20,18 +23,22 @@ function OrderDestinationChangePage() {
       })
       .then((res) => {
         setDestinationArr(res.data.result);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
   const handleInputClick = (e) => {
-    setSelectDestination(
-      destinationArr.find((addr) => addr.addrName === e.target.id),
+    const clickAddr = destinationArr.find(
+      (addr) => addr.addrName === e.target.id,
     );
+    setOrderInfo({ ...orderInfo, addr: clickAddr });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/order', { state: { selectDestination } });
+    navigate(-1);
   };
 
   return (
@@ -103,4 +110,4 @@ function OrderDestinationChangePage() {
   );
 }
 
-export default OrderDestinationChangePage;
+export default OrderChangeDestinationPage;
