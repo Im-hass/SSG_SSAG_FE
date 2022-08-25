@@ -1,11 +1,16 @@
 import React from 'react';
 
-function FilterList({ data }) {
+function FilterList({ data, handlePreventEvent }) {
   const { isActive, isRecommend, title, value } = data;
 
   return (
     <li className={isActive ? 'active' : ''}>
-      <a title={title} href={`/product/${title}`} className="clickable">
+      <a
+        title={title}
+        href={`/product/${title}`}
+        className="clickable"
+        onClick={handlePreventEvent}
+      >
         {value}
       </a>
       {isRecommend && (
