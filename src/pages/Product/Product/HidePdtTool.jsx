@@ -1,62 +1,42 @@
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { selectedProductCount, selectedOptions } from '../../../recoil/states';
+import { OPTION_COLORS, OPTION_SIZES } from '../../../assets/datas';
 import './style/HidePdtTool.scss';
 
-import Swal from 'sweetalert2';
-
 function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
-  const three = () => {
-    Swal.fire({
-      title: '잠깐 !',
-      text: '3개 이상 구매할 수 없습니다.',
-      icon: 'warning',
-    });
-  };
+  const [productCount, setProductCount] = useRecoilState(selectedProductCount);
+  const [selectedOption, setSelectedOption] = useRecoilState(selectedOptions);
 
-  const one = () => {
-    Swal.fire({
-      title: '잠깐 !',
-      text: '1개 이상 구매해주세요.',
-      icon: 'warning',
-    });
-  };
-
-  const [pdtCnt, setPdtCnt] = useState(1);
-  const handlePdtCnt = () => {
-    if (pdtCnt < 3) {
-      setPdtCnt((prev) => prev + 1);
-    } else if (pdtCnt > 2) {
-      three();
+  const handleProductCount = (action) => {
+    if (action === 'inc') {
+      setProductCount((prev) => prev + 1);
+    } else if (action === 'dec') {
+      if (productCount > 1) {
+        setProductCount((prev) => prev - 1);
+      }
     }
   };
 
-  const decPdtCnt = () => {
-    if (pdtCnt > 1) {
-      setPdtCnt((prev) => prev - 1);
-    } else if (pdtCnt <= 1) {
-      one();
-    }
+  const handleOptionChange = (e, action) => {
+    const { value } = e.target;
+
+    setSelectedOption({
+      ...selectedOption,
+      [action]: value,
+    });
   };
+
   return (
     <div
       id="_cdtl_opt_bar"
       className={`mndtl_opt_bar _js_mndtl_opt_bar react-area ${toggleOn}`}
-      data-react-tarea-cd="00006_000000013"
-      data-react-comm-type="item"
-      data-react-comm-id="1000045117545"
-      data-react-salestr-no="6005"
-      data-react-site-no="6004"
     >
-      <div
-        className="mndtl_opt_close"
-        data-react-unit-type="text"
-        data-react-unit-text='[{"type":"tarea_addt_val","value":"닫기"}]'
-      >
+      <div className="mndtl_opt_close">
         <button
           type="button"
           onClick={() => handleOpenBtn('close')}
           className="mndtl_btn_opt_close _js_mndtl_opt_toggle_btn clickable"
-          data-react-tarea="상품상세|옵션바|닫기"
-          data-react-tarea-dtl-cd="t00060"
           target="_parent"
         >
           <span className="blind">열기/닫기</span>
@@ -74,36 +54,56 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
               <div className="mndtl_opt_bx">
                 <div id="cdtl_opt_bx_uitem">
-                  <div
-                    className="mndtl_opt_ani add"
-                    data-optn-type="oneitem_result"
-                    data-uitem-id="00000"
-                    data-salestr-no="6005"
-                    data-salestr-nm="S.COM몰"
-                  >
+                  <div className="mndtl_opt_ani add">
                     <div className="mndtl_opt_selected">
                       <dl>
-                        {/* 옵션 드롭박스 만들기 attribute에 data-id 가라로 넣어서 쏘기 */}
-                        <dt>[젠틀몬스터]랭 01</dt>
+                        <div className="product_option_box">
+                          <div className="product_option_info">
+                            <span className="product_option_tit">색상: </span>
+                            <select
+                              onChange={(e) => handleOptionChange(e, 'color')}
+                            >
+                              <option value="default">
+                                색상을 선택해주세요
+                              </option>
+                              {OPTION_COLORS.map((color, i) => (
+                                <option key={color.id} value={color.value}>
+                                  {color.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="product_option_info">
+                            <span className="product_option_tit">사이즈: </span>
+                            <select
+                              onChange={(e) => handleOptionChange(e, 'size')}
+                            >
+                              <option value="default">
+                                사이즈를 선택해주세요
+                              </option>
+                              {OPTION_SIZES.map((size, i) => (
+                                <option key={size.id} value={size.value}>
+                                  {size.name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
                         <dd className="mndtl_art_l">
-                          <div
-                            className="mndtl_amount"
-                            data-react-unit-type="text"
-                            data-react-unit-text='[{"type":"tarea_addt_val","value":"수량선택"}]'
-                          >
+                          <div className="mndtl_amount">
                             <button
                               type="button"
-                              onClick={decPdtCnt}
                               className="mndtl_b_minus clickable"
+                              onClick={() => handleProductCount('dec')}
                             >
                               빼기
                             </button>
                             <span className="mndtl_opa_area">
-                              <span className="opa_tx">{pdtCnt}</span>
+                              <span className="opa_tx">{productCount}</span>
                             </span>
                             <button
                               type="button"
-                              onClick={handlePdtCnt}
+                              onClick={() => handleProductCount('inc')}
                               className="mndtl_b_plus clickable"
                             >
                               더하기
@@ -113,7 +113,9 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
                         <dd className="mndtl_art_r">
                           <span className="price">
                             <em className="ssg_price" data-prc="249000">
-                              {(pdtCnt * productData.price).toLocaleString()}
+                              {(
+                                productCount * productData.price
+                              ).toLocaleString()}
                             </em>
                             <span className="ssg_tx">원</span>
                           </span>
@@ -131,7 +133,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
           <strong className="mndtl_label">총 합계</strong>
           <strong className="price">
             <em id="totalPrc" className="ssg_price">
-              {(pdtCnt * productData.price).toLocaleString()}
+              {(productCount * productData.price).toLocaleString()}
             </em>
             <span className="ssg_tx">원</span>
           </strong>

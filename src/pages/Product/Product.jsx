@@ -36,7 +36,7 @@ function Product() {
       const token = localStorage.getItem('token');
       setIsLoading(true);
       try {
-        const response = await axios.get(
+        const res = await axios.get(
           'http://13.209.26.150:9000/users/products/info/1',
           {
             headers: {
@@ -44,9 +44,10 @@ function Product() {
             },
           },
         );
-        setProductData(response.data.result);
+        console.log('product response:', res);
+        setProductData(res.data.result);
       } catch (err) {
-        console.log('product error', err);
+        console.log('product error:', err);
       }
       setIsLoading(false);
     };
@@ -133,7 +134,7 @@ function Product() {
                   <ProductEtc />
                   <ProductBanners />
                   <ProductDetailCategory />
-                  <ProductStoreInfo />
+                  <ProductStoreInfo productData={productData} />
                 </div>
 
                 <div className="mndtl_recommend">

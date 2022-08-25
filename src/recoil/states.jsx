@@ -29,3 +29,16 @@ export const isCategorySelected2 = atom({
   key: 'isCategorySelected2',
   default: new Array(6).fill(false),
 });
+
+export const selectedOptions = atom({
+  key: 'selectedOptions',
+  default: {
+    size: null,
+    color: null,
+  },
+});
+
+export const selectedProductCount = atom({
+  key: 'productCount',
+  default: 1,
+});
