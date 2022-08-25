@@ -13,7 +13,12 @@ import {
   MyPage,
   LoginPage,
 } from '../pages';
-import { OrderPage, OrderDestinationChangePage } from '../pages/Order';
+import {
+  OrderPage,
+  OrderDestinationChangePage,
+  OrderChangeRecipientPage,
+  OrderChangeShippingMessagePage,
+} from '../pages/Order';
 import Product from '../pages/Product/Product';
 import {
   SignUpPage,
@@ -47,6 +52,14 @@ function App() {
         <Route
           path="/orderDestination"
           element={<OrderDestinationChangePage />}
+        />
+        <Route
+          path="/orderChangeRecipient"
+          element={<OrderChangeRecipientPage />}
+        />
+        <Route
+          path="/orderChangeShippingMessage"
+          element={<OrderChangeShippingMessagePage />}
         />
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />

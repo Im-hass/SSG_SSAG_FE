@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 import { MobileHeader } from '../../components/ui/index';
 
 function OrderPage() {
-  const [destinationInfo, setDestinationInfo] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [destinationInfo, setDestinationInfo] = useState({});
+  const [recipientInfo, setRecipientInfo] = useState({});
+  const [shippingMessageInfo, setShippingMessageInfo] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+
+    if (location.state.checkedMessage !== undefined)
+      setShippingMessageInfo(location.state.checkedMessage);
+    console.log(location.state);
 
     axios
       .get('http://13.209.26.150:9000/users/shipping-addr/default', {
@@ -19,7 +28,25 @@ function OrderPage() {
       .then((res) => {
         setDestinationInfo(res.data.result);
       });
+
+    axios
+      .get('http://13.209.26.150:9000/users/info', {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        setRecipientInfo(res.data.result);
+      });
   }, []);
+
+  const handleChangeRecipient = () => {
+    navigate('/orderChangeRecipient', { state: { recipientInfo } });
+  };
+
+  const handleChangeShippingMessage = () => {
+    navigate('/orderChangeShippingMessage');
+  };
 
   return (
     <div style={{ background: '#f5f5f5' }}>
@@ -83,16 +110,6 @@ function OrderPage() {
                     >
                       상품할인
                     </span>
-                    <button
-                      type="button"
-                      className="mnodr_btn_info_detail modal-fix-open payTracking"
-                      data-pt-click="주문서|할인혜택|상품할인금액_상세"
-                      data-layer-target="#mnodr_modal_discount_price"
-                    >
-                      <i className="mnodr_ic ic_info_detail">
-                        <span className="blind" />
-                      </i>
-                    </button>
                   </dt>
                   <dd>
                     <span className="mnodr_tx_primary">
@@ -104,90 +121,10 @@ function OrderPage() {
                     </span>
                   </dd>
                 </dl>
-
-                <dl
-                  className="mnodr_priceitem fullOrdArea"
-                  style={{ display: 'flex' }}
-                >
-                  <dt>
-                    <span className="mnodr_priceitem_stit">
-                      결제할인 (쿠폰 7장 보유)
-                    </span>
-                  </dt>
-                  <dd>
-                    <button
-                      type="button"
-                      className="mnodr_coupon_btn ty_blk payTracking fullOrdArea"
-                      id="secCpnApplyButton"
-                      data-pt-click="주문서|할인혜택|쿠폰 할인 적용하기"
-                      name="btnShowTgtDiv"
-                      data-target-div="divSecCpnArea"
-                      style={{ display: 'inline-block' }}
-                    >
-                      쿠폰선택
-                    </button>
-                  </dd>
-                </dl>
               </div>
             </div>
           </li>
         </ul>
-      </article>
-
-      <article
-        id="pointArticle"
-        className="mnodr_article mnodr_acdo_toggle fullOrdArea on"
-        style={{ display: 'block', paddingBottom: '20px' }}
-      >
-        <div
-          className="mnodr_article_head mnodr_acdo_btn payTracking on"
-          data-pt-click="주문서|포인트|펼침"
-          id="pointToggleButton"
-        >
-          <div className="mnodr_article_headlt">
-            <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-              포인트
-              <span className="totPointAmtArea">
-                : <span id="totPointAmt">0</span>원 보유
-              </span>
-            </h2>
-          </div>
-          <div className="mnodr_article_headrt">
-            <button type="button" className="mnodr_toggle_btn">
-              <span className="blind">포인트사용 보기</span>
-            </button>
-          </div>
-        </div>
-        <div className="mnodr_article_cont mnodr_acdo_cont ty_toggle">
-          <div className="mnodr_form_sec ty10 pointUseDivArea">
-            <p className="mnodr_tx_desc">
-              신세계포인트<span id="shinsegaePointBaseAmt"> : 0원</span>
-            </p>
-            <div className="mnodr_form_cont">
-              <div className="mnodr_inp_btn_grp">
-                <span className="mnodr_inp_txt">
-                  <input
-                    type="number"
-                    pattern="[0-9]*"
-                    inputMode="numeric"
-                    id="shinsegaePointUseInput"
-                    name="paymtMeans[2].amt"
-                    placeholder="0원"
-                    className="ty_txt_right pointUseInput"
-                  />
-                </span>
-                <button
-                  type="button"
-                  id="shinsegaePointUseAllButton"
-                  className="mnodr_btn mnodr_inp_btn pointUseAllButton payTracking"
-                  data-pt-click="주문서|포인트|신세계포인트_전액사용"
-                >
-                  <span className="mnodr_btn_tx">전액사용</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </article>
 
       <article
@@ -417,9 +354,8 @@ function OrderPage() {
                 <button
                   type="button"
                   className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  data-pt-click="주문서|주문자정보|변경"
                   name="btnShowTgtDiv"
-                  data-target-div="notiInfoDiv"
+                  onClick={handleChangeRecipient}
                 >
                   변경
                 </button>
@@ -436,7 +372,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeNmStr">
-                        최민정
+                        {recipientInfo.name}
                       </p>
                     </dd>
                   </dl>
@@ -448,7 +384,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeHpnoStr">
-                        010-8450-1543
+                        {recipientInfo.phone}
                       </p>
                     </dd>
                   </dl>
@@ -460,7 +396,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeEmailStr">
-                        saiani@naver.com
+                        {recipientInfo.email}
                       </p>
                     </dd>
                   </dl>
@@ -473,7 +409,8 @@ function OrderPage() {
                     <dd>
                       <p className="mnodr_tx_desc">
                         <span id="rfdMthdStrArea">
-                          주문 시 결제수단으로 환불받기
+                          {recipientInfo.refundCheck &&
+                            '주문 시 결제수단으로 환불받기'}
                         </span>
                       </p>
                     </dd>
@@ -501,9 +438,8 @@ function OrderPage() {
                 <button
                   type="button"
                   className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  data-pt-click="주문서|배송요청사항|변경"
                   name="btnShowTgtDiv"
-                  data-target-div="rcptInfoDiv_1"
+                  onClick={handleChangeShippingMessage}
                 >
                   변경
                 </button>
@@ -519,7 +455,7 @@ function OrderPage() {
                   </dt>
                   <dd>
                     <p className="mnodr_tx_desc" id="deliShppMemoTxt_0">
-                      문 앞에 놓고 가주세요.
+                      {shippingMessageInfo}
                     </p>
                     <input
                       type="hidden"

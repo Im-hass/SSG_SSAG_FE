@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { MobileHeader } from '../../components/ui/index';
 
 function OrderDestinationChangePage() {
+  const navigate = useNavigate();
+
+  const [selectDestination, setSelectDestination] = useState('');
   const [destinationArr, setDestinationArr] = useState([]);
 
   useEffect(() => {
@@ -20,8 +23,19 @@ function OrderDestinationChangePage() {
       });
   }, []);
 
+  const handleInputClick = (e) => {
+    setSelectDestination(
+      destinationArr.find((addr) => addr.addrName === e.target.id),
+    );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/order', { state: { selectDestination } });
+  };
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <MobileHeader title="배송지 선택" />
       <div className="mnodr_sec_heading">
         <h3 className="mnodr_tx_heading">어디로 보내드릴까요?</h3>
@@ -51,6 +65,7 @@ function OrderDestinationChangePage() {
                   id={addr.addrName}
                   className="blind mnodr_rdotab_inp ordShpplocRadio"
                   name="addr"
+                  onChange={handleInputClick}
                 />
                 <label htmlFor={addr.addrName} className="mnodr_rdotab_label">
                   <div className="mnodr_rdotab_head">
@@ -84,7 +99,7 @@ function OrderDestinationChangePage() {
       >
         변경하기
       </button>
-    </div>
+    </form>
   );
 }
 
