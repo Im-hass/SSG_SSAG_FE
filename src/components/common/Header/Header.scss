@@ -3,6 +3,12 @@
   padding: 0;
 }
 
+.header-wrap {
+  height: 405px;
+  top: 0;
+  position: absolute;
+}
+
 #m_header {
   position: sticky;
   z-index: 300;

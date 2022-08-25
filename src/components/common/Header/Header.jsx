@@ -9,14 +9,16 @@ function Header() {
   const [isOpen] = useRecoilState(isOpenState);
 
   return (
-    <header id="m_header" className="mcom_header react-area">
-      <div className="header-container">
-        <HeaderLeftSide />
-        <SearchInput />
-        <Cart />
-      </div>
-      {isOpen && <SearchBox />}
-    </header>
+    <div className="header-wrap">
+      <header id="m_header" className="mcom_header react-area">
+        <div className="header-container">
+          <HeaderLeftSide />
+          <SearchInput />
+          <Cart />
+        </div>
+        {isOpen && <SearchBox />}
+      </header>
+    </div>
   );
 }
 
