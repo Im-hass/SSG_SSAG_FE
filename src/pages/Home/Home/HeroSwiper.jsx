@@ -1,23 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 function HeroSwiper() {
-  // const [good, setGood] = useState([]);
-  // const getGood = async () => {
-  //   const response = await fetch(
-  //     `http://10.10.10.153:8081/api/newservice/getAll`
-  //   );
-  //   //광식씨가 준 주소 받기 -> get
-  //   const json = await response.json();
-  //   setGood(json);
-  // };
-
-  // useEffect(() => {
-  //   getGood();
-  // }, []);
-
   const settings = {
     dots: true,
     infinite: true,
@@ -28,27 +13,6 @@ function HeroSwiper() {
     autoplay: true,
   };
   const [good, setGood] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://10.10.10.153:8081/api/newservice/getAll`)
-  //     .then((Response) => {
-  //       setGood(Response.data);
-  //       console.log(Response.data);
-  //     });
-  // }, []);
-
-  // const [good, setGood] = useState([]);
-  // const getGood = async () =>{
-  //    const response1 = await fetch(`http://10.10.10.153:8081/api/newservice/getAll`);
-  //    //광식씨가 준 주소 받기 -> get
-  //    const json1 = await response1.json();
-  //    setGood(json1)
-  // }
-
-  // useEffect(()=>{
-  //    getGood();
-  // },[])
 
   return (
     <div className="cmgrid_full_box">

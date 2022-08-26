@@ -61,6 +61,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
     setSelectedColor(+value);
   };
 
+  // 색상 선택 후 사이즈 데이터 받아오기
   useEffect(() => {
     if (selectedColor !== null) {
       getSizeData();
@@ -74,16 +75,10 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
   const handleProductCount = (action) => {
     if (action === 'inc') {
-      setProductCount((prevCnt) => {
-        const currCnt = prevCnt + 1;
-        return currCnt;
-      });
+      setProductCount((prevCnt) => prevCnt + 1);
     } else if (action === 'dec') {
       if (productCount > 1) {
-        setProductCount((prevCnt) => {
-          const currCnt = prevCnt - 1;
-          return currCnt;
-        });
+        setProductCount((prevCnt) => prevCnt - 1);
       }
     }
   };

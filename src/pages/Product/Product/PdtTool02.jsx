@@ -6,7 +6,7 @@ import { selectedProductCount, productOptionId } from '../../../recoil/states';
 
 function PdtTool02({ goBuyBtn, handleOpenBtn }) {
   const [selectedProductOptionId] = useRecoilState(productOptionId);
-  const [productCount, setProductCount] = useRecoilState(selectedProductCount);
+  const [productCount] = useRecoilState(selectedProductCount);
 
   const handleAddCart = () => {
     const token = localStorage.getItem('token');
