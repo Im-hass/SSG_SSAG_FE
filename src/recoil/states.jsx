@@ -38,3 +38,16 @@ export const orderInfoState = atom({
     message: '',
   },
 });
+
+export const selectedOptions = atom({
+  key: 'selectedOptions',
+  default: {
+    size: null,
+    color: null,
+  },
+});
+
+export const selectedProductCount = atom({
+  key: 'productCount',
+  default: 1,
+});

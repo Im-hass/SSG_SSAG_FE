@@ -1,7 +1,11 @@
 import React from 'react';
 import './CartPageParcelContentUnitTit.scss';
 
-function CartPageParcelContentUnitTit() {
+function CartPageParcelContentUnitTit({ data }) {
+  const productName = data.productOption.product.name;
+  const productColor = data.productOption.color.color;
+  const productSize = data.productOption.size.size;
+
   return (
     <p className="mnodr_unit_tit">
       <a
@@ -9,11 +13,14 @@ function CartPageParcelContentUnitTit() {
         // href="javascript:void(0);"
         href="/"
         name="itemNmBtn"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
-        <strong className="mnodr_unit_brd"> 라코스테</strong>
-        <span className="mnodr_unit_name">
-          (남성)배색 립 캐주얼 양말 3족 세트(RA122B-52G)3컬러 SET
-        </span>
+        <span className="mnodr_unit_name">{productName}</span>
+        <span>색상: {productColor}</span>
+        <span>사이즈: {productSize}</span>
       </a>
     </p>
   );
