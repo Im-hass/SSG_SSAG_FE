@@ -6,7 +6,6 @@ export {
 } from './CategoryList';
 export { DES_TAB_LIST, DES_BTNS_LIST } from './DestinationData';
 export { MALL_WRAP_CONTENTS } from './MallContentsList';
-export { OPTION_COLORS, OPTION_SIZES } from './ProductOptions';
 export { RANK_OPTIONS } from './RankOptions';
 export { SERVICE_LIST_DATA } from './ServiceList';
 export { BENEFIT_CONTENT } from './SignUpPageContents';

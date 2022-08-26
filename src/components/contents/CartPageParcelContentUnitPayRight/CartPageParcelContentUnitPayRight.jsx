@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './CartPageParcelContentUnitPayRight.scss';
 import axios from 'axios';
 
@@ -7,6 +7,8 @@ function CartPageParcelContentUnitPayRight({
   cartProductCount,
   setCartProductCount,
 }) {
+  const [isCnt, setIsCnt] = useState(false);
+
   const putProductCount = (cnt) => {
     const token = localStorage.getItem('token');
     const productData = {
@@ -33,19 +35,19 @@ function CartPageParcelContentUnitPayRight({
         const currCnt = prevCnt + 1;
         return currCnt;
       });
-      putProductCount(cartProductCount);
-      console.log('db cnt', data.count);
-      console.log('cl cnt', cartProductCount);
+      setIsCnt(!isCnt);
     } else if (cartProductCount > 1) {
       setCartProductCount((prevCnt) => {
         const currCnt = prevCnt - 1;
         return currCnt;
       });
-      putProductCount(cartProductCount);
-      console.log('db cnt', data.count);
-      console.log('cl cnt', cartProductCount);
+      setIsCnt(!isCnt);
     }
   };
+
+  useEffect(() => {
+    putProductCount(cartProductCount);
+  }, [isCnt]);
 
   return (
     <div className="mnodr_unit_r">

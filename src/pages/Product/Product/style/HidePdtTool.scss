@@ -25,6 +25,10 @@
 
     select {
       width: 80%;
+
+      .out_of_Stock {
+        color: lightgrey;
+      }
     }
   }
 }
