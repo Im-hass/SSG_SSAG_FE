@@ -409,8 +409,7 @@ function OrderPage() {
                     <dd>
                       <p className="mnodr_tx_desc">
                         <span id="rfdMthdStrArea">
-                          {orderInfo.recipient.refundCheck &&
-                            '주문 시 결제수단으로 환불받기'}
+                          {orderInfo.recipient.refundCheck}
                         </span>
                       </p>
                     </dd>

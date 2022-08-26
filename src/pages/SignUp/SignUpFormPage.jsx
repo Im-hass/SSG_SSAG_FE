@@ -293,7 +293,7 @@ function SignUpFormPage() {
                         name="phone"
                         title="휴대폰번호"
                         value={inputData.phone}
-                        maxLength={20}
+                        maxLength={13}
                         placeholder="ex) 010-1234-5678"
                         onChange={handleInputData}
                       />
