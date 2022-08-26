@@ -47,7 +47,7 @@ function CategoryDetailList({ mediumCateList }) {
       setHasMid(false);
     }
 
-    if (hasMId) {
+    if (mediumCategoryId !== undefined) {
       axios
         .get(
           `http://13.209.26.150:9000/comm-users/category/small/${mediumCategoryId}`,
@@ -228,7 +228,7 @@ function CategoryDetailList({ mediumCateList }) {
             <li className="cmft_cell cmft_sort_srch ">
               <a
                 href="/"
-                className="cmft_sort_tit clickable"
+                className="cmft_sort_tit clickable sort-filter"
                 data-react-tarea="카테고리|바닥필터|필터더보기_선택"
               >
                 <span className="cmft_txt">필터</span>
