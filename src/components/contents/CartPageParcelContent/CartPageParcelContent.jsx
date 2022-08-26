@@ -5,7 +5,14 @@ import {
 } from '../index';
 import './CartPageParcelContent.scss';
 
-function CartPageParcelContent({ data, index, isPut, setIsPut }) {
+function CartPageParcelContent({
+  data,
+  index,
+  isPut,
+  setIsPut,
+  isDelete,
+  setIsDelete,
+}) {
   const [sellingPrice, setSellingPrice] = useState(0);
   const [cartProductCount, setCartProductCount] = useState(data.count);
   const totalPrice = sellingPrice * cartProductCount;
@@ -22,6 +29,8 @@ function CartPageParcelContent({ data, index, isPut, setIsPut }) {
         totalPrice={totalPrice}
         isPut={isPut}
         setIsPut={setIsPut}
+        isDelete={isDelete}
+        setIsDelete={setIsDelete}
       />
       <CartPageParcelContentSummary totalPrice={totalPrice} />
     </div>

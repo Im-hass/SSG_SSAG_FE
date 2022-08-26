@@ -19,11 +19,17 @@ function CartPageParcelContentUnitCont({
   totalPrice,
   isPut,
   setIsPut,
+  isDelete,
+  setIsDelete,
 }) {
   return (
     <div className="mnodr_unit_cont">
       <CartPageParcelContentUnitInfo />
-      <CartPageParcelContentUnitUtil />
+      <CartPageParcelContentUnitUtil
+        data={data}
+        isDelete={isDelete}
+        setIsDelete={setIsDelete}
+      />
       <CartPageParcelContentUnitTit data={data} />
 
       <div className="mnodr_unit_prdpay">
