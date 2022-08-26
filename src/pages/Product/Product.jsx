@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import ProductImgHeaderBtn from './Product/ProductImgHeaderBtn';
 import ProductSwiper from './Product/ProductSwiper';
 import ProductBrand from './Product/ProductBrand';
@@ -30,20 +31,20 @@ import ProductDetailCategory from './Product/ProductDetailCategory';
 function Product() {
   const [productData, setProductData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { productId } = useParams();
+  const loginedUrl = `http://13.209.26.150:9000/users/products/info/${productId}`;
+  const notLoginedUrl = `http://13.209.26.150:9000/non-users/products/info/${productId}`;
 
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
       setIsLoading(true);
       try {
-        const res = await axios.get(
-          'http://13.209.26.150:9000/users/products/info/1',
-          {
-            headers: {
-              Authorization: JSON.parse(token),
-            },
+        const res = await axios.get(token ? loginedUrl : notLoginedUrl, {
+          headers: {
+            Authorization: JSON.parse(token),
           },
-        );
+        });
         console.log('product response:', res);
         setProductData(res.data.result);
       } catch (err) {

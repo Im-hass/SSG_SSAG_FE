@@ -1,48 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { selectedProductCount, selectedOptions } from '../../../recoil/states';
+import { selectedProductCount, productOptionId } from '../../../recoil/states';
 
 function PdtTool02({ goBuyBtn, handleOpenBtn }) {
-  const [productOptionData, setProductOptionData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [productOptionId, setProductOptionId] = useState(null);
-  const [selectedOption, setSelectedOption] = useRecoilState(selectedOptions);
+  const [selectedProductOptionId] = useRecoilState(productOptionId);
   const [productCount, setProductCount] = useRecoilState(selectedProductCount);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem('token');
-      setIsLoading(true);
-      try {
-        const res = await axios.get(
-          'http://13.209.26.150:9000/comm-users/products/options/1',
-          {
-            headers: {
-              Authorization: JSON.parse(token),
-            },
-          },
-        );
-        console.log('option response:', res);
-        setProductOptionData(res.data.result);
-      } catch (err) {
-        console.log('option error:', err);
-      }
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
-
-  if (isLoading) return <div>로딩 중</div>;
-  if (!productOptionData) return <div>데이터 없음</div>;
-
-  const postOptionData = (id) => {
+  const handleAddCart = () => {
     const token = localStorage.getItem('token');
     const data = {
       cartList: [
         {
-          productOptionId: id,
+          productOptionId: selectedProductOptionId,
           count: productCount,
         },
       ],
@@ -59,25 +30,6 @@ function PdtTool02({ goBuyBtn, handleOpenBtn }) {
         console.log('add cart res:', res);
       })
       .catch((err) => console.log('add cart err:', err));
-  };
-
-  const handleAddCart = () => {
-    const selectedSize = selectedOption.size;
-    const selectedColor = selectedOption.color;
-
-    for (let i = 0; i < productOptionData.length; i += 1) {
-      const sizeData = productOptionData[i].size.size;
-      const colorData = productOptionData[i].color.color;
-      const matchedProductOptionId = productOptionData[i].productOptionId;
-
-      if (sizeData === selectedSize && colorData === selectedColor) {
-        setProductOptionId(matchedProductOptionId);
-      }
-    }
-
-    if (productOptionId) {
-      postOptionData(productOptionId);
-    }
   };
 
   return (
