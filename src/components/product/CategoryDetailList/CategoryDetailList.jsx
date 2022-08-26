@@ -228,7 +228,7 @@ function CategoryDetailList({ mediumCateList }) {
             <li className="cmft_cell cmft_sort_srch ">
               <a
                 href="/"
-                className="cmft_sort_tit clickable"
+                className="cmft_sort_tit clickable sort-filter"
                 data-react-tarea="카테고리|바닥필터|필터더보기_선택"
               >
                 <span className="cmft_txt">필터</span>
