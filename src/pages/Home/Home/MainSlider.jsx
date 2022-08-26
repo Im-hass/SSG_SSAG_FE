@@ -97,18 +97,18 @@ function MainSlider() {
                         </div>
                         <Link to="/" className="smhero_bnlink">
                           <div className="smhero_thumb">
-                            <img src={m.imgUrl} alt="product_img" />
+                            <img src={m.imgUrl} alt={m.originName} />
                           </div>
                           <div className="smhero_tit">
                             <h3 className="smhero_titmain">
                               <span className="smhero_titmain_tx">
-                                배너 제목
+                                {m.title}
                               </span>
                               <span className="smhero_titmain_tx" />
                             </h3>
                             <div className="smhero_titsub">
                               <span className="csmhero_titsub_tx">
-                                배너 컨텐츠
+                                {m.content}
                               </span>
                               <span className="csmhero_titsub_tx" />
                             </div>

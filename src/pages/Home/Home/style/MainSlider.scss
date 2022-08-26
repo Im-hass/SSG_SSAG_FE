@@ -1,6 +1,7 @@
 #m_topnav {
   background-color: white;
   z-index: 800;
+  animation: topnav-toleft 0.5s alternate;
 }
 
 .mcom_topnav .topnav_lnk.new .topnav_txt:after {
@@ -8,6 +9,20 @@
   background: none;
 }
 
-.smhero_banner_wrap .smhero_banner {
-  position: inherit;
+.smhero_banner_wrap {
+  margin-top: 60px;
+
+  .smhero_banner {
+    position: inherit;
+  }
+}
+
+@keyframes topnav-toleft {
+  from {
+    margin-left: 20px;
+  }
+
+  to {
+    margin-left: 0;
+  }
 }
