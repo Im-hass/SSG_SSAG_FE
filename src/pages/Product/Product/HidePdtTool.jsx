@@ -1,37 +1,90 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { selectedProductCount, selectedOptions } from '../../../recoil/states';
-import { OPTION_COLORS, OPTION_SIZES } from '../../../assets/datas';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { selectedProductCount, productOptionId } from '../../../recoil/states';
 import './style/HidePdtTool.scss';
 
 function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
+  const [, setSelectedProductOptionId] = useRecoilState(productOptionId);
   const [productCount, setProductCount] = useRecoilState(selectedProductCount);
-  const [selectedOption, setSelectedOption] = useRecoilState(selectedOptions);
+  const [colorOptions, setColorOptions] = useState(null);
+  const [sizeOptions, setSizeOptions] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const { productId } = useParams();
+
+  // 색상 data 받아오기
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      setIsLoading(true);
+      try {
+        const res = await axios.get(
+          `http://13.209.26.150:9000/comm-users/products/options/color/${productId}`,
+          {
+            headers: {
+              Authorization: JSON.parse(token),
+            },
+          },
+        );
+        setColorOptions(res.data.result);
+        console.log('color response:', res);
+      } catch (err) {
+        console.log('color error:', err);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const getSizeData = () => {
+    const token = localStorage.getItem('token');
+    axios
+      .get(
+        `http://13.209.26.150:9000/comm-users/products/options/size/${productId}/${selectedColor}`,
+        {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        },
+      )
+      .then((res) => {
+        setSizeOptions(res.data.result);
+        console.log('size response:', res);
+      })
+      .catch((err) => console.log('size error:', err));
+  };
+
+  const handleSelectColor = (e) => {
+    const { value } = e.target;
+    setSelectedColor(+value);
+  };
+
+  // 색상 선택 후 사이즈 데이터 받아오기
+  useEffect(() => {
+    if (selectedColor !== null) {
+      getSizeData();
+    }
+  }, [selectedColor]);
+
+  const handleSelectSize = (e) => {
+    const { value } = e.target;
+    setSelectedProductOptionId(+value);
+  };
 
   const handleProductCount = (action) => {
     if (action === 'inc') {
-      setProductCount((prevCnt) => {
-        const currCnt = prevCnt + 1;
-        return currCnt;
-      });
+      setProductCount((prevCnt) => prevCnt + 1);
     } else if (action === 'dec') {
       if (productCount > 1) {
-        setProductCount((prevCnt) => {
-          const currCnt = prevCnt - 1;
-          return currCnt;
-        });
+        setProductCount((prevCnt) => prevCnt - 1);
       }
     }
   };
 
-  const handleOptionChange = (e, action) => {
-    const { value } = e.target;
-
-    setSelectedOption({
-      ...selectedOption,
-      [action]: value,
-    });
-  };
+  if (isLoading) return <div>로딩 중</div>;
+  if (!colorOptions) return <div>데이터 없음</div>;
 
   return (
     <div
@@ -66,32 +119,43 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
                         <div className="product_option_box">
                           <div className="product_option_info">
                             <span className="product_option_tit">색상: </span>
-                            <select
-                              onChange={(e) => handleOptionChange(e, 'color')}
-                            >
+                            <select onChange={handleSelectColor}>
                               <option value="default">
                                 색상을 선택해주세요
                               </option>
-                              {OPTION_COLORS.map((color) => (
-                                <option key={color.id} value={color.value}>
-                                  {color.name}
-                                </option>
-                              ))}
+                              {colorOptions &&
+                                colorOptions.map((color) => (
+                                  <option
+                                    key={color.colorId}
+                                    value={color.colorId}
+                                  >
+                                    {color.color}
+                                  </option>
+                                ))}
                             </select>
                           </div>
                           <div className="product_option_info">
                             <span className="product_option_tit">사이즈: </span>
-                            <select
-                              onChange={(e) => handleOptionChange(e, 'size')}
-                            >
-                              <option value="default">
+                            <select onChange={handleSelectSize}>
+                              <option value="default" data-stock="default">
                                 사이즈를 선택해주세요
                               </option>
-                              {OPTION_SIZES.map((size) => (
-                                <option key={size.id} value={size.value}>
-                                  {size.name}
-                                </option>
-                              ))}
+                              {sizeOptions &&
+                                sizeOptions.map((size) => (
+                                  <option
+                                    key={size.sizeId}
+                                    value={size.productOptionId}
+                                    data-stock={size.stock}
+                                    className={
+                                      size.stock === 0 ? 'out_of_Stock' : ''
+                                    }
+                                    disabled={size.stock === 0}
+                                  >
+                                    {size.stock > 0
+                                      ? size.size
+                                      : `${size.size}(품절)`}
+                                  </option>
+                                ))}
                             </select>
                           </div>
                         </div>
