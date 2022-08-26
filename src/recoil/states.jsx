@@ -30,6 +30,15 @@ export const isCategorySelected2 = atom({
   default: new Array(6).fill(false),
 });
 
+export const orderInfoState = atom({
+  key: 'orderInfo',
+  default: {
+    addr: {},
+    recipient: {},
+    message: '',
+  },
+});
+
 export const selectedOptions = atom({
   key: 'selectedOptions',
   default: {

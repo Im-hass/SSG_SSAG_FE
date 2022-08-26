@@ -14,6 +14,12 @@ import {
   LoginPage,
   ProductListPage,
 } from '../pages';
+import {
+  OrderPage,
+  OrderChangeDestinationPage,
+  OrderChangeRecipientPage,
+  OrderChangeShippingMessagePage,
+} from '../pages/Order';
 import Product from '../pages/Product/Product';
 import {
   SignUpPage,
@@ -50,6 +56,19 @@ function App() {
         <Route path="/signupAgreement" element={<SignUpAgreementPage />} />
         <Route path="/signupForm" element={<SignUpFormPage />} />
         <Route path="/signupDone" element={<SignUpDonePage />} />
+        <Route path="/order" element={<OrderPage />} />
+        <Route
+          path="/orderDestination"
+          element={<OrderChangeDestinationPage />}
+        />
+        <Route
+          path="/orderChangeRecipient"
+          element={<OrderChangeRecipientPage />}
+        />
+        <Route
+          path="/orderChangeShippingMessage"
+          element={<OrderChangeShippingMessagePage />}
+        />
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="/withdrawMember" element={<WithdrawMember />} />
         <Route path="/paymentMeans" element={<PaymentMeansPage />} />

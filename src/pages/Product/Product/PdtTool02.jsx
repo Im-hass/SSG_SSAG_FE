@@ -17,7 +17,7 @@ function PdtTool02({ goBuyBtn, handleOpenBtn }) {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          'http://13.209.26.150:9000/comm-users/products/options/1',
+          'http://13.209.26.150:9000/comm-users/products/options/color/1',
           {
             headers: {
               Authorization: JSON.parse(token),

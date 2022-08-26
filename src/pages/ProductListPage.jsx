@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
 import { Header, Footer, FloatingContents } from '../components/common';
 import { ProductListContent } from '../components/contents';
 import { ProductListHeader } from '../components/product/ProductListHeader';
+import ToolbarList from '../components/toolbar/ToolbarList/ToolbarList';
+import { isOpenState } from '../recoil/states';
 
 function ProductListPage() {
+  const [isOpen] = useRecoilState(isOpenState);
   const { largeCategoryId, mediumCategoryId } = useParams();
   const [title, setTitle] = useState();
   const [subTitle, setSubTitle] = useState();
@@ -26,24 +30,26 @@ function ProductListPage() {
         );
       }
     });
-  }, [largeCategoryId, mediumCategoryId]);
+  }, [largeCategoryId, mediumCategoryId, mediumCateList]);
 
   return (
     <div id="m_wrap" className="mcom_wrap sm_v3 ">
       <Header />
-      <div id="m_container" className="mcom_container" data-iframe-height="">
-        <ProductListHeader
-          largeCategoryId={largeCategoryId}
-          title={title}
-          subTitle={subTitle}
-        />
-        {mediumCateList && (
-          <ProductListContent mediumCateList={mediumCateList} />
-        )}
-        {largeCategoryId}, {mediumCategoryId}
-        <FloatingContents />
-        <Footer />
-      </div>
+      {!isOpen && (
+        <div id="m_container" className="mcom_container" data-iframe-height="">
+          <ProductListHeader
+            largeCategoryId={largeCategoryId}
+            title={title}
+            subTitle={subTitle}
+          />
+          {mediumCateList && (
+            <ProductListContent mediumCateList={mediumCateList} />
+          )}
+          <FloatingContents />
+          <ToolbarList />
+          <Footer />
+        </div>
+      )}
     </div>
   );
 }

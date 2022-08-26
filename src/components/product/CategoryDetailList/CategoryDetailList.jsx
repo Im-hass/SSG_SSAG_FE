@@ -47,7 +47,7 @@ function CategoryDetailList({ mediumCateList }) {
       setHasMid(false);
     }
 
-    if (hasMId) {
+    if (mediumCategoryId !== undefined) {
       axios
         .get(
           `http://13.209.26.150:9000/comm-users/category/small/${mediumCategoryId}`,
