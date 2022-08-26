@@ -3,13 +3,24 @@
   padding: 0;
 }
 
-.header-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  padding-top: 8px;
-  padding-bottom: 10px;
-  margin: 0 15px;
+.header-wrap {
+  height: 405px;
+  top: 0;
+  position: absolute;
+}
+
+#m_header {
+  position: sticky;
+  z-index: 300;
+
+  .header-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    margin: 0 15px;
+  }
 }

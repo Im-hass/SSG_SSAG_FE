@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FilterList } from '../FilterList';
 import { RANK_OPTIONS } from '../../../assets/datas';
 import './SearchFilter.scss';
 
 function SearchFilter() {
+  const [isSelectedOption1, setIsSelectedOption1] = useState(false);
+  const [isSelectedOption2, setIsSelectedOption2] = useState(false);
+  const [isSelectedOption3, setIsSelectedOption3] = useState(false);
+
+  const handleOption1 = () => {
+    setIsSelectedOption1(!isSelectedOption1);
+  };
+  const handleOption2 = () => {
+    setIsSelectedOption2(!isSelectedOption2);
+  };
+  const handleOption3 = () => {
+    setIsSelectedOption3(!isSelectedOption3);
+  };
+
+  const handlePreventEvent = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="m_scharea m_scharea_malltab">
       <div className="sch_search_options">
@@ -13,9 +31,13 @@ function SearchFilter() {
               {/* 뷰 타입 */}
               <li className="view_td">
                 <div className="posr">
-                  <a href="/" id="_btn_view_type_toggle" className="btn_t">
+                  <button
+                    type="button"
+                    id="_btn_view_type_toggle"
+                    className="btn_t"
+                  >
                     <span className="sp_view ico_thmb">이미지형</span>
-                  </a>
+                  </button>
                 </div>
               </li>
 
@@ -23,7 +45,9 @@ function SearchFilter() {
               <li className="filter_td">
                 <div className="in">
                   {/* 누르면 on 클래스 추가되고 option 출력 */}
-                  <div className="cmft_sel_wrap">
+                  <div
+                    className={`cmft_sel_wrap ${isSelectedOption1 ? 'on' : ''}`}
+                  >
                     <span className="cmft_inp_chk">
                       <input
                         type="checkbox"
@@ -31,17 +55,41 @@ function SearchFilter() {
                         value="sd_store_chk"
                       />
                     </span>
-                    <a href="/" className="cmft_sort_tit cmft_sel_curent">
-                      <span className="cmft_txt ty_emart">백화점상품</span>
-                    </a>
+                    <button
+                      type="button"
+                      className="cmft_sort_tit cmft_sel_curent"
+                      onClick={handleOption1}
+                    >
+                      <span className="cmft_txt ty_emart">
+                        {isSelectedOption1 ? '매장픽업' : '백화점상품'}
+                      </span>
+                    </button>
                     <ul className="cmft_sel_lst">
-                      <li>
-                        <a href="/" id="sd_store_chk" className="chk clickable">
+                      <li
+                        role="menuitem"
+                        onClick={handleOption1}
+                        onKeyDown={handleOption1}
+                      >
+                        <a
+                          href="/"
+                          id="sd_store_chk"
+                          className="chk clickable"
+                          onClick={handlePreventEvent}
+                        >
                           <span className="cmft_txt">백화점상품</span>
                         </a>
                       </li>
-                      <li>
-                        <a href="/" id="magic_chk" className="chk clickable">
+                      <li
+                        role="menuitem"
+                        onClick={handleOption1}
+                        onKeyDown={handleOption1}
+                      >
+                        <a
+                          href="/"
+                          id="magic_chk"
+                          className="chk clickable"
+                          onClick={handlePreventEvent}
+                        >
                           <span className="cmft_txt">매장픽업</span>
                         </a>
                       </li>
@@ -51,27 +99,41 @@ function SearchFilter() {
               </li>
 
               {/* 추천순 */}
-              <li className="rank_td">
+              <li
+                className="rank_td"
+                role="menuitem"
+                onClick={handleOption2}
+                onKeyDown={handleOption2}
+              >
                 {/* 누르면 active 클래스 추가되고 option 출력 */}
-                <div className="in">
-                  <a href="/" className="btn_t">
+                <div className={`in ${isSelectedOption2 ? 'active' : ''}`}>
+                  <a href="/" className="btn_t" onClick={handlePreventEvent}>
                     추천순<span className="sp_view ico_arrow">&nbsp;</span>
                   </a>
                   <ul className="mn_layer">
                     {/* 선택된 option에 active 클래스 추가되어 있음 */}
                     {RANK_OPTIONS &&
                       RANK_OPTIONS.map((data) => (
-                        <FilterList key={data.title} data={data} />
+                        <FilterList
+                          key={data.title}
+                          data={data}
+                          handlePreventEvent={handlePreventEvent}
+                        />
                       ))}
                   </ul>
                 </div>
               </li>
 
               {/* 필터 옵션 : 카테고리/브랜드/상품유형/배송유형/혜택/백화점상품/가격 */}
-              <li className="sch_td">
+              <li
+                className="sch_td"
+                role="menuitem"
+                onClick={handleOption3}
+                onKeyDown={handleOption3}
+              >
                 {/* active 클래스 추가시 필터 option 출력 */}
-                <div className="in">
-                  <a href="/" className="btn_t">
+                <div className={`in ${isSelectedOption3 ? 'active' : ''}`}>
+                  <a href="/" className="btn_t" onClick={handlePreventEvent}>
                     필터<span className="sp_view ico_arrow">&nbsp;</span>
                   </a>
                   <div className="m_ds_pos">

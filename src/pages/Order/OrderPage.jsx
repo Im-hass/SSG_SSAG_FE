@@ -10,9 +10,9 @@ function OrderPage() {
   const navigate = useNavigate();
   const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
+  useEffect(() => {
     if (orderInfo.addr.addrName === undefined) {
       axios
         .get('http://13.209.26.150:9000/users/shipping-addr/default', {
@@ -24,8 +24,9 @@ function OrderPage() {
           setOrderInfo({ ...orderInfo, addr: res.data.result });
         });
     }
-    console.log(orderInfo.addr.addrName, orderInfo.recipient.name, orderInfo);
+  }, []);
 
+  useEffect(() => {
     if (orderInfo.recipient.name === undefined) {
       axios
         .get('http://13.209.26.150:9000/users/info', {
@@ -37,7 +38,7 @@ function OrderPage() {
           setOrderInfo({ ...orderInfo, recipient: res.data.result });
         });
     }
-  }, []);
+  });
 
   const handleChangeRecipient = () => {
     navigate('/orderChangeRecipient');
