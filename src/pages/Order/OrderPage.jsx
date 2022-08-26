@@ -454,7 +454,7 @@ function OrderPage() {
                   </dt>
                   <dd>
                     <p className="mnodr_tx_desc" id="deliShppMemoTxt_0">
-                      {orderInfo.recipient.message}
+                      {orderInfo.message}
                     </p>
                     <input
                       type="hidden"
