@@ -1,15 +1,24 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
-import { Header, Footer } from '../components/common/index';
+import { Header, Footer } from '../components/common';
 import Home from './Home/Home';
+import { isOpenState } from '../recoil/states';
 
 function MainPage() {
+  const [isOpen] = useRecoilState(isOpenState);
   return (
-    <div>
-      <Header />
-      <Home />
-      <ToolbarList />
-      <Footer pageName="main" />
+    <div id="m_wrap" className="mcom_wrap sm_v3 sm_page_main has_smhero_banner">
+      <div className="header-wrap">
+        <Header />
+      </div>
+      {!isOpen && (
+        <>
+          <Home />
+          <ToolbarList />
+          <Footer pageName="main" />
+        </>
+      )}
     </div>
   );
 }
