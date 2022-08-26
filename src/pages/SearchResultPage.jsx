@@ -4,9 +4,10 @@ import { useRecoilState } from 'recoil';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
 import { Header, Footer, FloatingContents } from '../components/common/index';
 import { SearchContent } from '../components/contents/index';
-import { searchValueState } from '../recoil/states';
+import { isOpenState, searchValueState } from '../recoil/states';
 
 function SearchResultPage() {
+  const [isOpen] = useRecoilState(isOpenState);
   const { value } = useParams();
   const [, setSearchValue] = useRecoilState(searchValueState);
 
@@ -17,10 +18,14 @@ function SearchResultPage() {
   return (
     <div>
       <Header />
-      <SearchContent />
-      <Footer />
-      <ToolbarList />
-      <FloatingContents />
+      {!isOpen && (
+        <>
+          <SearchContent />
+          <Footer />
+          <ToolbarList />
+          <FloatingContents />
+        </>
+      )}
     </div>
   );
 }
