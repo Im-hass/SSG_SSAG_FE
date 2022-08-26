@@ -9,16 +9,38 @@ import {
 } from '../index';
 import './CartPageParcelContentUnitCont.scss';
 
-function CartPageParcelContentUnitCont() {
+function CartPageParcelContentUnitCont({
+  data,
+  index,
+  sellingPrice,
+  setSellingPrice,
+  cartProductCount,
+  setCartProductCount,
+  totalPrice,
+  isPut,
+  setIsPut,
+}) {
   return (
     <div className="mnodr_unit_cont">
       <CartPageParcelContentUnitInfo />
       <CartPageParcelContentUnitUtil />
-      <CartPageParcelContentUnitTit />
+      <CartPageParcelContentUnitTit data={data} />
 
       <div className="mnodr_unit_prdpay">
-        <CartPageParcelContentUnitPayLeft />
-        <CartPageParcelContentUnitPayRight />
+        <CartPageParcelContentUnitPayLeft
+          data={data}
+          sellingPrice={sellingPrice}
+          setSellingPrice={setSellingPrice}
+          totalPrice={totalPrice}
+        />
+        <CartPageParcelContentUnitPayRight
+          data={data}
+          index={index}
+          cartProductCount={cartProductCount}
+          setCartProductCount={setCartProductCount}
+          isPut={isPut}
+          setIsPut={setIsPut}
+        />
       </div>
 
       <CartPageParcelContentUnitBtn />

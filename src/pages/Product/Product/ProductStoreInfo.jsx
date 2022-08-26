@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductStoreInfo() {
+function ProductStoreInfo({ productData }) {
   return (
     <div className="mndtl_sec_bx">
       <div className="mndtl_store mndtl_opmarket">
@@ -28,7 +28,7 @@ function ProductStoreInfo() {
               className="mndtl_store_tit clickable"
               data-react-tarea-dtl-cd="t00055"
             >
-              <span className="mndtl_store_tittx">(주)바이와이제이 스토어</span>
+              <span className="mndtl_store_tittx">{productData.storeName}</span>
               <i className="mndtl_ic_arr">
                 <span className="blind">바로가기</span>
               </i>

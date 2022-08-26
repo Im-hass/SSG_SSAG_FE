@@ -6,16 +6,16 @@ import AuthContext from '../../../store/auth-context';
 import { CartPageLogin, CartPageNotLogin, CartPageTab } from '../index';
 import './CartPageLoginInfo.scss';
 
-function CartPageLoginInfo() {
+function CartPageLoginInfo({ cartData }) {
   const ctx = useContext(AuthContext);
   const [isItems] = useRecoilState(isItemsState);
-
+  console.log(cartData);
   return (
     <>
-      {ctx.isLogin && isItems && <CartPageTab />}
+      {ctx.isLogin && cartData && <CartPageTab />}
       <div className="mnodr_info">
-        {ctx.isLogin && isItems && <CartPageLogin />}
-        {!ctx.isLogin && isItems && <CartPageNotLogin />}
+        {ctx.isLogin && cartData && <CartPageLogin />}
+        {!ctx.isLogin && cartData && <CartPageNotLogin />}
       </div>
     </>
   );
