@@ -11,7 +11,6 @@ function CartPageControl() {
             id="chk_all"
             name="btChekAll"
             className="blind cartTracking"
-            asdfasf
           />
           <label htmlFor="chk_all">
             <span className="blind">모든상품전체선택</span>

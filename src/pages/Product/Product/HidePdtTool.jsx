@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRecoilState } from 'recoil';
 import { selectedProductCount, selectedOptions } from '../../../recoil/states';
 import { OPTION_COLORS, OPTION_SIZES } from '../../../assets/datas';
@@ -10,10 +10,16 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
   const handleProductCount = (action) => {
     if (action === 'inc') {
-      setProductCount((prev) => prev + 1);
+      setProductCount((prevCnt) => {
+        const currCnt = prevCnt + 1;
+        return currCnt;
+      });
     } else if (action === 'dec') {
       if (productCount > 1) {
-        setProductCount((prev) => prev - 1);
+        setProductCount((prevCnt) => {
+          const currCnt = prevCnt - 1;
+          return currCnt;
+        });
       }
     }
   };
@@ -66,7 +72,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
                               <option value="default">
                                 색상을 선택해주세요
                               </option>
-                              {OPTION_COLORS.map((color, i) => (
+                              {OPTION_COLORS.map((color) => (
                                 <option key={color.id} value={color.value}>
                                   {color.name}
                                 </option>
@@ -81,7 +87,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
                               <option value="default">
                                 사이즈를 선택해주세요
                               </option>
-                              {OPTION_SIZES.map((size, i) => (
+                              {OPTION_SIZES.map((size) => (
                                 <option key={size.id} value={size.value}>
                                   {size.name}
                                 </option>

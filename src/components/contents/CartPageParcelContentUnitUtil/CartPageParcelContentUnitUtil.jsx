@@ -2,6 +2,10 @@ import React from 'react';
 import './CartPageParcelContentUnitUtil.scss';
 
 function CartPageParcelContentUnitUtil() {
+  const handleDeleteCartItem = () => {
+    console.log('삭제닷!');
+  };
+
   return (
     <div className="mnodr_unit_util">
       <button
@@ -17,6 +21,7 @@ function CartPageParcelContentUnitUtil() {
         type="button"
         className="mnodr_unit_del cartTracking"
         name="btnDel"
+        onClick={handleDeleteCartItem}
       >
         <i className="mnodr_ic ic_del">
           <span className="blind">상품 삭제</span>
