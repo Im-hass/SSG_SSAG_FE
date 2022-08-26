@@ -12,6 +12,7 @@ import {
   CategoryPage,
   MyPage,
   LoginPage,
+  ProductListPage,
 } from '../pages';
 import Product from '../pages/Product/Product';
 import {
@@ -30,6 +31,13 @@ function App() {
       <Routes>
         <Route exact path="/" element={<MainPage />} />
         <Route path="/category" element={<CategoryPage />} />
+        <Route path="/products" element={<ProductListPage />}>
+          <Route path=":largeCategoryId" element={<ProductListPage />}>
+            <Route path=":mediumCategoryId" element={<ProductListPage />}>
+              <Route path=":smallCategoryId" element={<ProductListPage />} />
+            </Route>
+          </Route>
+        </Route>
         <Route path="/search/:value" element={<SearchResultPage />} />
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />

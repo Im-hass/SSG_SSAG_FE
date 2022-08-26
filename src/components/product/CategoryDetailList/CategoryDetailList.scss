@@ -1,0 +1,32 @@
+.nav-modal {
+  position: fixed;
+  top: 0;
+  z-index: 500;
+}
+
+.mcom_wrap {
+  .mcom_dimmed {
+    top: 0.2px;
+    display: block;
+  }
+}
+
+.m_catelst_wrap_v2 {
+  .cmgrid_full_box {
+    width: 100%;
+  }
+
+  .m_catelst {
+    .lst_cate {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: left;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    li {
+      width: 33%;
+      border-left: 1px solid #f5f5f5;
+    }
+  }
+}
