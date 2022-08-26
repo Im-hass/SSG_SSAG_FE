@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import './RelateSearchValue.scss';
 
 function RelateSearchValue() {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleOpen = (e) => {
+    e.preventDefault();
+    setIsSelected(!isSelected);
+  };
+
   return (
     <div className="cm_sch_result">
-      <div className="csr_relate_bx">
+      <div className={`csr_relate_bx ${isSelected ? 'on' : ''}`}>
         <h2 className="csr_relate_txt">연관</h2>
         <div className="csr_text_lst react-search">
           <ul>
@@ -66,7 +74,7 @@ function RelateSearchValue() {
             </li>
           </ul>
         </div>
-        <a href="none" className="csr_open">
+        <a href="none" className="csr_open" onClick={handleOpen}>
           <span className="sp_csr">연관 검색어 펼쳐보기</span>
         </a>
       </div>

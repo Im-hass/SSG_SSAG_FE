@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BOX_HEIGHT = [
   150, 120, 150, 150, 180, 150, 90, 150, 150, 120, 150, 120, 120,
@@ -18,19 +19,19 @@ function SubCategoryList({ isSelected, largeCategoryId, mediumCategoryList }) {
       <div className="clnb_lst">
         <ul className="cate_view">
           <li>
-            <a href={`/category/${largeCategoryId}`} className="clickable">
+            <Link to={`/products/${largeCategoryId}`} className="clickable">
               상품 전체보기
-            </a>
+            </Link>
           </li>
           {mediumCategoryList &&
             mediumCategoryList.map((list) => (
               <li key={list.mediumCategoryId}>
-                <a
-                  href={`/category/${largeCategoryId}/${list.mediumCategoryId}`}
+                <Link
+                  to={`/products/${largeCategoryId}/${list.mediumCategoryId}`}
                   className="clickable"
                 >
                   {list.mediumCategoryTitle}
-                </a>
+                </Link>
               </li>
             ))}
         </ul>

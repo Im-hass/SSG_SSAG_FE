@@ -9,7 +9,7 @@ function Header() {
   const [isOpen] = useRecoilState(isOpenState);
 
   return (
-    <header>
+    <header id="m_header" className="mcom_header react-area">
       <div className="header-container">
         <HeaderLeftSide />
         <SearchInput />

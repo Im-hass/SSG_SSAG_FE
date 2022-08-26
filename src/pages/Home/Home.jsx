@@ -25,7 +25,7 @@ function Home() {
       <div className="main_wrap">
         <MainSlider />
         <TopNav />
-        <div id="m_content" className="react-area">
+        <div id="m_content" className="react-area" style={{ zIndex: '500' }}>
           <div className="cmgrid_module">
             <div className="cmgrid_list">
               <MainCategory />
