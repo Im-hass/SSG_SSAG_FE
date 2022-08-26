@@ -2,12 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { selectedProductCount, productOptionId } from '../../../recoil/states';
+import {
+  selectedProductCount,
+  productOptionId,
+  isHeaderCartCntSubmit,
+} from '../../../recoil/states';
 
 function PdtTool02({ goBuyBtn, handleOpenBtn }) {
   const [selectedProductOptionId] = useRecoilState(productOptionId);
   const [productCount] = useRecoilState(selectedProductCount);
-
+  const [isHeaderCartCnt, setIsHeaderCartCnt] = useRecoilState(
+    isHeaderCartCntSubmit,
+  );
   const handleAddCart = () => {
     const token = localStorage.getItem('token');
     const data = {
@@ -28,6 +34,7 @@ function PdtTool02({ goBuyBtn, handleOpenBtn }) {
       .post('http://13.209.26.150:9000/users/carts', data, headers)
       .then((res) => {
         console.log('add cart res:', res);
+        setIsHeaderCartCnt(!isHeaderCartCnt);
       })
       .catch((err) => console.log('add cart err:', err));
   };

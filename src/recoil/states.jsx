@@ -48,3 +48,8 @@ export const selectedProductCount = atom({
   key: 'productCount',
   default: 1,
 });
+
+export const isHeaderCartCntSubmit = atom({
+  key: 'isHeaderCartCntSubmit',
+  default: false,
+});
