@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios/index';
 import './AddAddressMyInfo.scss';
+import toast, { Toaster } from 'react-hot-toast';
 import { AddAddressZipCode } from '../index';
 
 function AddAddressMyInfo() {
@@ -26,14 +27,26 @@ function AddAddressMyInfo() {
     addrName: false,
     recipient: false,
     phone: false,
+    homePhone: false,
     zipCode: false,
   });
-  // const [error, setError] = useState({
-  //   addrName: '',
-  //   recipient: '',
-  //   phone: '',
-  //   zipCode: '',
-  // });
+  const [error, setError] = useState({
+    addrName: '',
+    recipient: '',
+    phone: '',
+    homePhone: '',
+    zipCode: '',
+    submit: '',
+  });
+
+  useEffect(() => {
+    if (selectedItem.zipCode.length !== 0) {
+      setValid({
+        ...valid,
+        zipCode: true,
+      });
+    }
+  }, [selectedItem.zipCode]);
 
   const handleIsOpen = () => {
     setIsOpen(!isOpen);
@@ -45,37 +58,60 @@ function AddAddressMyInfo() {
     setData({ ...data, [name]: number });
   };
 
-  const handleInputData = (e) => {
-    const { name, value } = e.target;
-    if (value.length !== 0) {
-      if (name === 'phone' && value.length !== 8) {
-        setValid({
-          ...valid,
-          [name]: false,
-        });
-      } else {
+  const isBlank = (value) => {
+    if (value.length === 0) return true;
+    return false;
+  };
+
+  const checkedValid = (name, value) => {
+    if (isBlank(value)) {
+      setValid({
+        ...valid,
+        [name]: false,
+      });
+      setError({
+        ...error,
+        [name]: '값을 입력해주세요.',
+      });
+
+      if (name === 'homePhone') {
         setValid({
           ...valid,
           [name]: true,
+        });
+        setError({
+          ...error,
+          [name]: '',
         });
       }
     } else {
       setValid({
         ...valid,
-        [name]: false,
+        [name]: true,
       });
+      setError({
+        ...error,
+        [name]: '',
+      });
+
+      if ((name === 'phone' || name === 'homePhone') && value.length < 8) {
+        setValid({
+          ...valid,
+          [name]: false,
+        });
+        setError({
+          ...error,
+          [name]: '값을 입력해주세요.',
+        });
+      }
     }
-    setData({ ...data, [name]: value });
   };
 
-  useEffect(() => {
-    if (selectedItem.zipCode.length !== 0) {
-      setValid({
-        ...valid,
-        zipCode: true,
-      });
-    }
-  }, [selectedItem.zipCode]);
+  const handleInputData = (e) => {
+    const { name, value } = e.target;
+    checkedValid(name, value);
+    setData({ ...data, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -100,13 +136,15 @@ function AddAddressMyInfo() {
             },
           },
         )
-        .then((res) => {
+        .then(() => {
           navigate(-1);
-          console.log(res);
+          toast.success('배송지가 추가되었습니다.');
         });
     } else {
-      alert('값을 입력해 주세요');
-      console.log('유효성 통과 못함');
+      setError({
+        ...error,
+        submit: '값을 입력해주세요',
+      });
     }
   };
 
@@ -159,7 +197,7 @@ function AddAddressMyInfo() {
                           </span>
                           <span className="cmem_noti">
                             <em className="usable_value">
-                              {/* <p>{error.addrName}</p> */}
+                              <p>{error.addrName}</p>
                             </em>
                           </span>
                         </div>
@@ -183,7 +221,7 @@ function AddAddressMyInfo() {
                           </span>
                           <span className="cmem_noti">
                             <em className="usable_value">
-                              {/* <p>{error.recipient}</p> */}
+                              <p>{error.recipient}</p>
                             </em>
                           </span>
                         </div>
@@ -263,7 +301,7 @@ function AddAddressMyInfo() {
                             </span>
                             <span className="cmem_noti">
                               <em className="usable_value">
-                                {/* <p>{error.phone}</p> */}
+                                <p>{error.phone}</p>
                               </em>
                             </span>
                           </div>
@@ -491,7 +529,9 @@ function AddAddressMyInfo() {
                               />
                             </span>
                             <span className="cmem_noti">
-                              <em className="usable_value" />
+                              <em className="usable_value">
+                                <p>{error.homePhone}</p>
+                              </em>
                             </span>
                           </div>
                         </div>
@@ -517,7 +557,7 @@ function AddAddressMyInfo() {
                                 </span>
                                 <span className="cmem_noti">
                                   <em className="usable_value">
-                                    {/* <p>{error.zipCode}</p> */}
+                                    <p>{error.zipCode}</p>
                                   </em>
                                 </span>
                               </span>
@@ -547,6 +587,11 @@ function AddAddressMyInfo() {
                       </li>
                     </ul>
                     <div className="order_btnarea2 order_btnarea3">
+                      <span className="cmem_noti">
+                        <em className="usable_value">
+                          <p style={{ textAlign: 'center' }}>{error.submit}</p>
+                        </em>
+                      </span>
                       <ul className="bnbox">
                         <li>
                           <button
@@ -595,6 +640,18 @@ function AddAddressMyInfo() {
             </div>
           </div>
         </div>
+        <Toaster
+          containerStyle={{
+            top: 30,
+          }}
+          toastOptions={{
+            success: {
+              iconTheme: {
+                primary: '#ff5b59',
+              },
+            },
+          }}
+        />
       </div>
 
       {/* 우편번호 찾기 */}
