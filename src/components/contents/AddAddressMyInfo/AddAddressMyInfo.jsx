@@ -6,7 +6,7 @@ import './AddAddressMyInfo.scss';
 import toast, { Toaster } from 'react-hot-toast';
 import { AddAddressZipCode } from '../index';
 
-function AddAddressMyInfo() {
+function AddAddressMyInfo({ state }) {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +36,32 @@ function AddAddressMyInfo() {
     phone: '',
     homePhone: '',
     zipCode: '',
-    submit: '',
   });
+
+  useEffect(() => {
+    if (state !== undefined) {
+      setData({
+        ...data,
+        addrName: state.addrName,
+        recipient: state.recipient,
+        phone: state.phone,
+        homePhone: state.homePhone,
+      });
+      setSelectedItem({
+        ...selectedItem,
+        zipCode: state.zipCode,
+        streetAddr: state.streetAddr, // 도로명
+        lotAddr: state.lotAddr, // 지번
+      });
+      setValid({
+        addrName: true,
+        recipient: true,
+        phone: true,
+        homePhone: true,
+        zipCode: true,
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (selectedItem.zipCode.length !== 0) {
@@ -64,6 +88,7 @@ function AddAddressMyInfo() {
   };
 
   const checkedValid = (name, value) => {
+    console.log(name, value);
     if (isBlank(value)) {
       setValid({
         ...valid,
@@ -116,35 +141,76 @@ function AddAddressMyInfo() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    checkedValid('addrName', data.addrName);
+    console.log(isBlank(data.addrName));
+    checkedValid('recipient', data.recipient);
+    console.log(isBlank(data.recipient));
+    checkedValid('phone', data.phone);
+    console.log(isBlank(data.phone));
+    checkedValid('homePhone', data.homePhone);
+    console.log(isBlank(data.homePhone));
+    checkedValid('zipCode', selectedItem.zipCode);
+    console.log(isBlank(selectedItem.zipCode));
+
+    if (isBlank(data.addrName)) {
+      setValid({
+        ...valid,
+        addrName: true,
+      });
+    }
+
     if (Object.values(valid).every((v) => v === true) === true) {
       const token = localStorage.getItem('token');
-      axios
-        .post(
-          'http://13.209.26.150:9000/users/shipping-addr',
-          {
-            addrName: data.addrName,
-            recipient: data.recipient,
-            phone: data.phone,
-            homePhone: data.homePhone,
-            zipCode: selectedItem.zipCode,
-            streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
-            lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
-          },
-          {
-            headers: {
-              Authorization: JSON.parse(token),
+      if (state !== undefined) {
+        axios
+          .put(
+            `http://13.209.26.150:9000/users/shipping-addr`,
+            {
+              addrId: state.addrId,
+              addrName: data.addrName,
+              recipient: data.recipient,
+              phone: data.phone,
+              homePhone: data.homePhone,
+              zipCode: selectedItem.zipCode,
+              streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
+              lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
             },
-          },
-        )
-        .then(() => {
-          navigate(-1);
-          toast.success('배송지가 추가되었습니다.');
-        });
+            {
+              headers: {
+                Authorization: JSON.parse(token),
+              },
+            },
+          )
+          .then(() => {
+            navigate(-1);
+            toast.success('배송지가 수정되었습니다.');
+          });
+      } else {
+        axios
+          .post(
+            'http://13.209.26.150:9000/users/shipping-addr',
+            {
+              addrName: data.addrName,
+              recipient: data.recipient,
+              phone: data.phone,
+              homePhone: data.homePhone,
+              zipCode: selectedItem.zipCode,
+              streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
+              lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
+            },
+            {
+              headers: {
+                Authorization: JSON.parse(token),
+              },
+            },
+          )
+          .then(() => {
+            navigate(-1);
+            toast.success('배송지가 추가되었습니다.');
+          });
+      }
     } else {
-      setError({
-        ...error,
-        submit: '값을 입력해주세요',
-      });
+      toast.error('비어있는 값이 있습니다. 값을 입력해주세요.');
     }
   };
 
@@ -163,6 +229,22 @@ function AddAddressMyInfo() {
       streetAddr: '', // 도로명
       lotAddr: '', // 지번
       detailAddr: '',
+    });
+    setValid({
+      ...valid,
+      addrName: false,
+      recipient: false,
+      phone: false,
+      homePhone: false,
+      zipCode: false,
+    });
+    setError({
+      ...error,
+      addrName: '',
+      recipient: '',
+      phone: '',
+      homePhone: '',
+      zipCode: '',
     });
   };
 
@@ -587,11 +669,6 @@ function AddAddressMyInfo() {
                       </li>
                     </ul>
                     <div className="order_btnarea2 order_btnarea3">
-                      <span className="cmem_noti">
-                        <em className="usable_value">
-                          <p style={{ textAlign: 'center' }}>{error.submit}</p>
-                        </em>
-                      </span>
                       <ul className="bnbox">
                         <li>
                           <button
@@ -611,7 +688,7 @@ function AddAddressMyInfo() {
 
                         <li>
                           <button type="submit" className="b_def5">
-                            등록
+                            {state !== undefined ? '수정완료' : '등록'}
                           </button>
                         </li>
                       </ul>

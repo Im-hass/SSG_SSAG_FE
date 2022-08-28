@@ -13,6 +13,7 @@ import {
   MyPage,
   LoginPage,
   ProductListPage,
+  ModifyDestinationPage,
 } from '../pages';
 import {
   OrderPage,
@@ -78,6 +79,7 @@ function App() {
           <Route path="withDes" element={<WithDestinations />} />
         </Route>
         <Route path="/addDestination" element={<AddDestinationPage />} />
+        <Route path="/modifyDestination" element={<ModifyDestinationPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollToTop />
