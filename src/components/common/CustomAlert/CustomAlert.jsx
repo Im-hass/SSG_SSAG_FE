@@ -2,11 +2,12 @@ import React from 'react';
 import './CustomAlert.scss';
 
 function CustomAlert(props) {
-  const { id, onDelete, onClose } = props;
+  const { title, desc, btnTitle, id, onAction, onClose } = props;
+  // 제목, 내용, 버튼 내용, 인자, confirm 함수, close 함수
   return (
     <div className="popup-overlay">
-      <h1>배송지 삭제</h1>
-      <p>배송지를 삭제하시겠습니까?</p>
+      <h1>{title}</h1>
+      <p>{desc}</p>
       <div className="btn-group">
         <button type="button" onClick={onClose} className="btn-cancel">
           취소
@@ -14,12 +15,12 @@ function CustomAlert(props) {
         <button
           type="button"
           onClick={() => {
-            onDelete(id);
+            onAction(id);
             onClose();
           }}
           className="btn-confirm"
         >
-          삭제
+          {btnTitle}
         </button>
       </div>
     </div>
