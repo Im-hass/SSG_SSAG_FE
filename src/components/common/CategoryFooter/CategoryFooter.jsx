@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import AuthContext from '../../../store/auth-context';
 
 function CategoryFooter() {
@@ -9,6 +10,7 @@ function CategoryFooter() {
   const handleLogout = () => {
     authCtx.logout();
     navigate('/');
+    toast.success('로그아웃되었습니다.');
   };
 
   return (
@@ -64,6 +66,18 @@ function CategoryFooter() {
           <span className="clnb_lang_tx ic_lang_chn">简体中文 / CN</span>
         </a>
       </div>
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#ff5b59',
+            },
+          },
+        }}
+      />
     </div>
   );
 }

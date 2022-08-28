@@ -11,6 +11,7 @@ function MainPage() {
     <div id="m_wrap" className="mcom_wrap sm_v3 sm_page_main has_smhero_banner">
       <div className="header-wrap">
         <Header />
+        <div className="header-height" />
       </div>
       {!isOpen && (
         <>

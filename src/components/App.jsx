@@ -53,7 +53,7 @@ function App() {
           <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/cart" element={<CartPage />} />
-        {authCtx.isLogin && (
+        {authCtx.isLogin ? (
           <>
             <Route path="/my" element={<MyPage />} />
             <Route path="/paymentMeans" element={<PaymentMeansPage />} />
@@ -63,8 +63,7 @@ function App() {
             </Route>
             <Route path="/addDestination" element={<AddDestinationPage />} />
           </>
-        )}
-        {!authCtx.isLogin && (
+        ) : (
           <>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />}>
