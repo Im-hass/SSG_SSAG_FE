@@ -46,7 +46,14 @@ function DestinationList({ datas, isDelete, setIsDelete, handleSelectedAddr }) {
     confirmAlert({
       // eslint-disable-next-line react/no-unstable-nested-components
       customUI: ({ onClose }) => (
-        <CustomAlert id={id} onDelete={onDelete} onClose={onClose} />
+        <CustomAlert
+          title="배송지 삭제"
+          desc="배송지를 삭제하시겠습니까?"
+          btnTitle="삭제"
+          id={id}
+          onAction={onDelete}
+          onClose={onClose}
+        />
       ),
     });
   };
