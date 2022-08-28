@@ -70,9 +70,8 @@ function LoginPage() {
         .then((res) => {
           if (res.data.isSuccess === false) setError(res.data.message);
           else {
-            authCtx.onLogin();
             if (checkedSaveId) localStorage.setItem('id', inputData.loginId);
-            localStorage.setItem('token', JSON.stringify(res.data.result));
+            authCtx.login(JSON.stringify(res.data.result));
             navigate('/');
           }
         });

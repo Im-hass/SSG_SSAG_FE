@@ -1,43 +1,40 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/destructuring-assignment */
+import React, { useState } from 'react';
 
 const AuthContext = React.createContext({
+  token: '',
   isLogin: false,
-  onLogout() {},
-  onLogin() {},
+  login: (token) => {},
+  logout: () => {},
 });
 
 export function AuthContextProvider(props) {
-  const [isLogin, setIsLogin] = useState(false);
+  const tokenData = localStorage.getItem('token');
 
-  useEffect(() => {
-    const storedUserLoggedInInformation = localStorage.getItem('isLogin');
+  const [authToken, setAuthToken] = useState(tokenData);
 
-    if (storedUserLoggedInInformation === '1') {
-      setIsLogin(true);
-    }
-  }, []);
+  const userIsLogIn = !!authToken;
 
-  const logoutHandler = () => {
-    localStorage.removeItem('isLogin');
+  const handleLogout = () => {
+    setAuthToken(null);
     localStorage.removeItem('token');
-    setIsLogin(false);
   };
 
-  const loginHandler = () => {
-    localStorage.setItem('isLogin', '1');
-    setIsLogin(true);
+  const handleLogin = (token) => {
+    setAuthToken(token);
+    localStorage.setItem('token', token);
+  };
+
+  const contextValue = {
+    token: authToken,
+    isLogin: userIsLogIn,
+    login: handleLogin,
+    logout: handleLogout,
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        isLogin,
-        onLogin: loginHandler,
-        onLogout: logoutHandler,
-      }}
-    >
+    <AuthContext.Provider value={contextValue}>
       {props.children}
     </AuthContext.Provider>
   );

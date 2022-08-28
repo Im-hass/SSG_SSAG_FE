@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import AuthContext from '../store/auth-context';
 import {
   AddDestinationPage,
   CartPage,
@@ -33,6 +34,8 @@ import { WithdrawMember, MyDestinations } from './contents';
 import WithDestinations from './contents/WithDestinations/WithDestinations';
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
   return (
     <>
       <Routes>
@@ -49,35 +52,48 @@ function App() {
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />
         </Route>
-        <Route path="/my" element={<MyPage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/signupAuth" element={<SignUpAuthPage />} />
-        <Route path="/signupAgreement" element={<SignUpAgreementPage />} />
-        <Route path="/signupForm" element={<SignUpFormPage />} />
-        <Route path="/signupDone" element={<SignUpDonePage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route
-          path="/orderDestination"
-          element={<OrderChangeDestinationPage />}
-        />
-        <Route
-          path="/orderChangeRecipient"
-          element={<OrderChangeRecipientPage />}
-        />
-        <Route
-          path="/orderChangeShippingMessage"
-          element={<OrderChangeShippingMessagePage />}
-        />
-        <Route path="/historyList" element={<RecentShoppingPage />} />
-        <Route path="/withdrawMember" element={<WithdrawMember />} />
-        <Route path="/paymentMeans" element={<PaymentMeansPage />} />
-        <Route path="/destination" element={<DestinationPage />}>
-          <Route index element={<MyDestinations />} />
-          <Route path="withDes" element={<WithDestinations />} />
+        {authCtx.isLogin && (
+          <>
+            <Route path="/my" element={<MyPage />} />
+            <Route path="/paymentMeans" element={<PaymentMeansPage />} />
+            <Route path="/destination" element={<DestinationPage />}>
+              <Route index element={<MyDestinations />} />
+              <Route path="withDes" element={<WithDestinations />} />
+            </Route>
+            <Route path="/addDestination" element={<AddDestinationPage />} />
+          </>
+        )}
+        {!authCtx.isLogin && (
+          <>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />}>
+              <Route path="/signupAuth" element={<SignUpAuthPage />} />
+              <Route
+                path="/signupAgreement"
+                element={<SignUpAgreementPage />}
+              />
+              <Route path="/signupForm" element={<SignUpFormPage />} />
+              <Route path="/signupDone" element={<SignUpDonePage />} />
+            </Route>
+            <Route path="/withdrawMember" element={<WithdrawMember />} />
+          </>
+        )}
+        <Route path="/order" element={<OrderPage />}>
+          <Route
+            path="/orderDestination"
+            element={<OrderChangeDestinationPage />}
+          />
+          <Route
+            path="/orderChangeRecipient"
+            element={<OrderChangeRecipientPage />}
+          />
+          <Route
+            path="/orderChangeShippingMessage"
+            element={<OrderChangeShippingMessagePage />}
+          />
         </Route>
-        <Route path="/addDestination" element={<AddDestinationPage />} />
+        <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollToTop />

@@ -1,18 +1,20 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../../store/auth-context';
 
 function CategoryFooter() {
-  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
+  const handleLogout = () => {
+    authCtx.logout();
+    navigate('/');
+  };
 
   return (
     <div className="clnb_footer">
       <div className="clnb_renew_help">
-        <a
-          href="/"
-          // onClick="appBroswer('http://m.ssg.com/customer/main.ssg?aplSiteNo=6004&_mpop=new','stack'); return false;"
-          className="clnb_help_link clickable"
-        >
+        <a href="/" className="clnb_help_link clickable">
           <span>고객센터</span>
         </a>
         <a
@@ -31,12 +33,12 @@ function CategoryFooter() {
           <span>입점상담</span>
         </a>
         <Link
-          to={ctx.isLogin ? '/' : '/login'}
+          to={authCtx.isLogin ? '/' : '/login'}
           className="clnb_help_link"
           id="lnb_loginBtn"
-          onClick={ctx.isLogin && ctx.onLogout}
+          onClick={authCtx.isLogin && handleLogout}
         >
-          <span>{ctx.isLogin ? '로그아웃' : '로그인'}</span>
+          <span>{authCtx.isLogin ? '로그아웃' : '로그인'}</span>
         </Link>
       </div>
       <div className="clnb_renew_lang">
