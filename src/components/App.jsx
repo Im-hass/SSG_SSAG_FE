@@ -32,6 +32,7 @@ import {
 import { ScrollToTop } from './common/ScrollToTop';
 import { WithdrawMember, MyDestinations } from './contents';
 import WithDestinations from './contents/WithDestinations/WithDestinations';
+import PrivateRoute from '../lib/PrivateRoute';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -53,17 +54,14 @@ function App() {
           <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/cart" element={<CartPage />} />
-        {authCtx.isLogin ? (
-          <>
-            <Route path="/my" element={<MyPage />} />
-            <Route path="/paymentMeans" element={<PaymentMeansPage />} />
-            <Route path="/destination" element={<DestinationPage />}>
-              <Route index element={<MyDestinations />} />
-              <Route path="withDes" element={<WithDestinations />} />
-            </Route>
-            <Route path="/addDestination" element={<AddDestinationPage />} />
-          </>
-        ) : (
+        <Route path="/my" element={<MyPage />} />
+        <Route path="/paymentMeans" element={<PaymentMeansPage />} />
+        <Route path="/destination" element={<DestinationPage />}>
+          <Route index element={<MyDestinations />} />
+          <Route path="withDes" element={<WithDestinations />} />
+        </Route>
+        <Route path="/addDestination" element={<AddDestinationPage />} />
+        {!authCtx.isLogin && (
           <>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />}>
