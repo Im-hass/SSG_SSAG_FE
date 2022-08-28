@@ -88,7 +88,6 @@ function AddAddressMyInfo({ state }) {
   };
 
   const checkedValid = (name, value) => {
-    console.log(name, value);
     if (isBlank(value)) {
       setValid({
         ...valid,
@@ -142,22 +141,10 @@ function AddAddressMyInfo({ state }) {
     e.preventDefault();
 
     checkedValid('addrName', data.addrName);
-    console.log(isBlank(data.addrName));
     checkedValid('recipient', data.recipient);
-    console.log(isBlank(data.recipient));
     checkedValid('phone', data.phone);
-    console.log(isBlank(data.phone));
     checkedValid('homePhone', data.homePhone);
-    console.log(isBlank(data.homePhone));
     checkedValid('zipCode', selectedItem.zipCode);
-    console.log(isBlank(selectedItem.zipCode));
-
-    if (isBlank(data.addrName)) {
-      setValid({
-        ...valid,
-        addrName: true,
-      });
-    }
 
     if (Object.values(valid).every((v) => v === true) === true) {
       const token = localStorage.getItem('token');
