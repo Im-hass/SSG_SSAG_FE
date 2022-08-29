@@ -25,14 +25,17 @@ export function AuthContextProvider(props) {
   };
 
   useEffect(() => {
-    if (isExpired) handleLogout();
+    if (isExpired) {
+      handleLogout();
+      console.log('토큰이 만료되었습니다.');
+    }
   }, [isExpired]);
 
-  useEffect(() => {
-    window.onbeforeunload = () => {
-      localStorage.clear();
-    };
-  });
+  // useEffect(() => {
+  //   window.onbeforeunload = () => {
+  //     localStorage.clear();
+  //   };
+  // }, []);
 
   const handleLogin = (token) => {
     setAuthToken(token);

@@ -41,6 +41,17 @@ function App() {
     <>
       <Routes>
         <Route exact path="/" element={<MainPage />} />
+        {!authCtx.isLogin && (
+          <>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signupAuth" element={<SignUpAuthPage />} />
+            <Route path="/signupAgreement" element={<SignUpAgreementPage />} />
+            <Route path="/signupForm" element={<SignUpFormPage />} />
+            <Route path="/signupDone" element={<SignUpDonePage />} />
+            <Route path="/withdrawMember" element={<WithdrawMember />} />
+          </>
+        )}
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/products" element={<ProductListPage />}>
           <Route path=":largeCategoryId" element={<ProductListPage />}>
@@ -54,6 +65,7 @@ function App() {
           <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/cart" element={<CartPage />} />
+
         <Route path="/my" element={<PrivateRoute />}>
           <Route path="/my" element={<MyPage />} />
         </Route>
@@ -69,34 +81,21 @@ function App() {
         <Route path="/addDestination" element={<PrivateRoute />}>
           <Route path="/addDestination" element={<AddDestinationPage />} />
         </Route>
-        {!authCtx.isLogin && (
-          <>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUpPage />}>
-              <Route path="/signupAuth" element={<SignUpAuthPage />} />
-              <Route
-                path="/signupAgreement"
-                element={<SignUpAgreementPage />}
-              />
-              <Route path="/signupForm" element={<SignUpFormPage />} />
-              <Route path="/signupDone" element={<SignUpDonePage />} />
-            </Route>
-            <Route path="/withdrawMember" element={<WithdrawMember />} />
-          </>
-        )}
-        <Route path="/order" element={<OrderPage />}>
-          <Route
-            path="/orderDestination"
-            element={<OrderChangeDestinationPage />}
-          />
-          <Route
-            path="/orderChangeRecipient"
-            element={<OrderChangeRecipientPage />}
-          />
-          <Route
-            path="/orderChangeShippingMessage"
-            element={<OrderChangeShippingMessagePage />}
-          />
+        <Route path="/order" element={<PrivateRoute />}>
+          <Route path="/order" element={<OrderPage />}>
+            <Route
+              path="orderDestination"
+              element={<OrderChangeDestinationPage />}
+            />
+            <Route
+              path="orderChangeRecipient"
+              element={<OrderChangeRecipientPage />}
+            />
+            <Route
+              path="orderChangeShippingMessage"
+              element={<OrderChangeShippingMessagePage />}
+            />
+          </Route>
         </Route>
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="*" element={<NotFoundPage />} />

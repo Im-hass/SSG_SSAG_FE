@@ -41,11 +41,11 @@ function OrderPage() {
   });
 
   const handleChangeRecipient = () => {
-    navigate('/orderChangeRecipient');
+    navigate('/:orderChangeRecipient');
   };
 
   const handleChangeShippingMessage = () => {
-    navigate('/orderChangeShippingMessage');
+    navigate('/:orderChangeShippingMessage');
   };
 
   return (
@@ -65,7 +65,7 @@ function OrderPage() {
               </div>
               <div className="mnodr_article_headrt">
                 <Link
-                  to="/orderDestination"
+                  to="order/orderDestination"
                   className="mnodr_btn ty_grayline ty_xxs payTracking"
                   name="btnShowTgtDiv"
                 >
