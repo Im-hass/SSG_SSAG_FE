@@ -17,6 +17,10 @@ function CartPageParcelContentUnit({
   setIsPut,
   isDelete,
   setIsDelete,
+  isModalOpen,
+  setIsModalOpen,
+  setDataId,
+  setCartId,
 }) {
   const productImgUrl = data.productOption.product.imgUrl;
 
@@ -36,6 +40,10 @@ function CartPageParcelContentUnit({
           setIsPut={setIsPut}
           isDelete={isDelete}
           setIsDelete={setIsDelete}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          setDataId={setDataId}
+          setCartId={setCartId}
         />
       </div>
     </div>

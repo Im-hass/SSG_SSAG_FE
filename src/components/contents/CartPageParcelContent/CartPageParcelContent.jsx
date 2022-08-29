@@ -12,6 +12,10 @@ function CartPageParcelContent({
   setIsPut,
   isDelete,
   setIsDelete,
+  isModalOpen,
+  setIsModalOpen,
+  setDataId,
+  setCartId,
 }) {
   const [sellingPrice, setSellingPrice] = useState(0);
   const [cartProductCount, setCartProductCount] = useState(data.count);
@@ -31,6 +35,10 @@ function CartPageParcelContent({
         setIsPut={setIsPut}
         isDelete={isDelete}
         setIsDelete={setIsDelete}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        setDataId={setDataId}
+        setCartId={setCartId}
       />
       <CartPageParcelContentSummary totalPrice={totalPrice} />
     </div>

@@ -12,6 +12,7 @@ import {
   CartPageParcelFootInfo,
   CartPageParcelToolBar,
   CartPageParcelHeader,
+  CartPageOptionModal,
 } from '../components/contents';
 import { MobileHeader, CartPageBtn } from '../components/ui';
 import AuthContext from '../store/auth-context';
@@ -21,6 +22,10 @@ function CartPage() {
   const [cartData, setCartData] = useState(null);
   const [isPut, setIsPut] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const [isChange, setIsChange] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dataId, setDataId] = useState(null);
+  const [cartId, setCartId] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -33,10 +38,11 @@ function CartPage() {
       .get('http://13.209.26.150:9000/users/carts', headers)
       .then((res) => {
         console.log('cart page response:', res);
-        setCartData(res.data.result);
+        const data = res.data.result;
+        setCartData(data);
       })
       .catch((err) => console.log('cart page error:', err));
-  }, [isDelete]);
+  }, [isDelete, isChange]);
 
   if (!cartData) return <div>데이터 없음</div>;
 
@@ -46,7 +52,15 @@ function CartPage() {
       className="reveal-left-wrap reveal-right-wrap mcom_wrap sticky_mnodr_acdo ssg scr_up v3"
     >
       <MobileHeader title="장바구니" />
-
+      {isModalOpen && (
+        <CartPageOptionModal
+          setIsModalOpen={setIsModalOpen}
+          dataId={dataId}
+          cartId={cartId}
+          isChange={isChange}
+          setIsChange={setIsChange}
+        />
+      )}
       <div
         id="m_container"
         className="reveal-left-contents reveal-right-contents mcom_container mnodr_container_step ty_headfix"
@@ -84,6 +98,10 @@ function CartPage() {
                       setIsPut={setIsPut}
                       isDelete={isDelete}
                       setIsDelete={setIsDelete}
+                      isModalOpen={isModalOpen}
+                      setIsModalOpen={setIsModalOpen}
+                      setDataId={setDataId}
+                      setCartId={setCartId}
                     />
                   ))}
                 </div>

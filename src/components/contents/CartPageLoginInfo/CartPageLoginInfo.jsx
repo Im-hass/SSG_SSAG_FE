@@ -9,7 +9,7 @@ import './CartPageLoginInfo.scss';
 function CartPageLoginInfo({ cartData }) {
   const ctx = useContext(AuthContext);
   const [isItems] = useRecoilState(isItemsState);
-  console.log(cartData);
+
   return (
     <>
       {ctx.isLogin && cartData && <CartPageTab />}

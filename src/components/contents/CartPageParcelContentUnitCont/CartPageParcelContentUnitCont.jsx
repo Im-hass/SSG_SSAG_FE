@@ -21,6 +21,10 @@ function CartPageParcelContentUnitCont({
   setIsPut,
   isDelete,
   setIsDelete,
+  isModalOpen,
+  setIsModalOpen,
+  setDataId,
+  setCartId,
 }) {
   return (
     <div className="mnodr_unit_cont">
@@ -49,7 +53,13 @@ function CartPageParcelContentUnitCont({
         />
       </div>
 
-      <CartPageParcelContentUnitBtn />
+      <CartPageParcelContentUnitBtn
+        data={data}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        setDataId={setDataId}
+        setCartId={setCartId}
+      />
     </div>
   );
 }

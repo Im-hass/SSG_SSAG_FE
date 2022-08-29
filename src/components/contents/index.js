@@ -8,6 +8,7 @@ export { CartPageLoginInfo } from './CartPageLoginInfo';
 export { CartPageNoData } from './CartPageNoData';
 export { CartPageNoItems } from './CartPageNoItems';
 export { CartPageNotLogin } from './CartPageNotLogin';
+export { CartPageOptionModal } from './CartPageOptionModal';
 export { CartPageParcel } from './CartPageParcel';
 export { CartPageParcelContent } from './CartPageParcelContent';
 export { CartPageParcelContentSummary } from './CartPageParcelContentSummary';

@@ -10,6 +10,10 @@ function CartPageParcel({
   setIsPut,
   isDelete,
   setIsDelete,
+  isModalOpen,
+  setIsModalOpen,
+  setDataId,
+  setCartId,
 }) {
   return (
     <CartPageParcelContent
@@ -19,6 +23,10 @@ function CartPageParcel({
       setIsPut={setIsPut}
       isDelete={isDelete}
       setIsDelete={setIsDelete}
+      isModalOpen={isModalOpen}
+      setIsModalOpen={setIsModalOpen}
+      setDataId={setDataId}
+      setCartId={setCartId}
     />
   );
 }

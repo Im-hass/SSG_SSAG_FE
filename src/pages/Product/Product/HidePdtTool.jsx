@@ -58,6 +58,9 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
   const handleSelectColor = (e) => {
     const { value } = e.target;
+
+    if (value === 'default') return;
+
     setSelectedColor(+value);
   };
 
@@ -70,6 +73,9 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
   const handleSelectSize = (e) => {
     const { value } = e.target;
+
+    if (value === 'default') return;
+
     setSelectedProductOptionId(+value);
   };
 
