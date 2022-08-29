@@ -28,6 +28,12 @@ export function AuthContextProvider(props) {
     if (isExpired) handleLogout();
   }, [isExpired]);
 
+  useEffect(() => {
+    window.onbeforeunload = () => {
+      localStorage.clear();
+    };
+  });
+
   const handleLogin = (token) => {
     setAuthToken(token);
     localStorage.setItem('token', token);
