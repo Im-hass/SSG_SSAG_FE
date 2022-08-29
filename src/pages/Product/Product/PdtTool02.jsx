@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import {
   selectedProductCount,
   productOptionId,
   isHeaderCartCntSubmit,
-  orderInfoState,
 } from '../../../recoil/states';
 
 function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
+  const navigate = useNavigate();
+
   const [selectedProductOptionId] = useRecoilState(productOptionId);
   const [productCount] = useRecoilState(selectedProductCount);
   const [isHeaderCartCnt, setIsHeaderCartCnt] = useRecoilState(
     isHeaderCartCntSubmit,
   );
+
+  useEffect(() => {
+    console.log(productData, selectedProductOptionId, productCount);
+  }, []);
 
   const handleAddCart = () => {
     const token = localStorage.getItem('token');
@@ -41,6 +46,17 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
       .catch((err) => console.log('add cart err:', err));
   };
 
+  const handleClickOrderBtn = () => {
+    navigate('/order', {
+      state: {
+        data: productData,
+        optionId: selectedProductOptionId,
+        count: productCount,
+      },
+    });
+    handleOpenBtn('open');
+  };
+
   return (
     <div className={`btm_bgn_in dps2 ${goBuyBtn}`}>
       <ul className="btm_bgn_bx" id="dps2_gift" style={{ display: 'none' }}>
@@ -62,11 +78,12 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
           </button>
         </li>
         <li>
-          <Link
-            to="/order"
+          <button
+            type="button"
             className="mndtl_btn type01 clickable"
             target="_parent"
-            onClick={() => handleOpenBtn('open')}
+            state={productData}
+            onClick={handleClickOrderBtn}
           >
             <span className="btn_tx ssgpay">
               <i className="ico_txt_ssgpay_btm">
@@ -74,7 +91,7 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
               </i>
               바로구매
             </span>
-          </Link>
+          </button>
         </li>
       </ul>
     </div>
