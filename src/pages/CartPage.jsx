@@ -19,31 +19,25 @@ import AuthContext from '../store/auth-context';
 function CartPage() {
   const ctx = useContext(AuthContext);
   const [cartData, setCartData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [isPut, setIsPut] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem('token');
-      setIsLoading(true);
-      try {
-        const res = await axios.get('http://13.209.26.150:9000/users/carts', {
-          headers: {
-            Authorization: JSON.parse(token),
-          },
-        });
+    const token = localStorage.getItem('token');
+    const headers = {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    };
+    axios
+      .get('http://13.209.26.150:9000/users/carts', headers)
+      .then((res) => {
         console.log('cart page response:', res);
         setCartData(res.data.result);
-      } catch (err) {
-        console.log('cart page error:', err);
-      }
-      setIsLoading(false);
-    };
-    fetchData();
+      })
+      .catch((err) => console.log('cart page error:', err));
   }, [isDelete]);
 
-  if (isLoading) return <div>로딩 중</div>;
   if (!cartData) return <div>데이터 없음</div>;
 
   return (

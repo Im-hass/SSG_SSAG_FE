@@ -18,6 +18,9 @@ function Cart() {
         Authorization: JSON.parse(token),
       },
     };
+
+    if (!token) return;
+
     axios
       .get(getCartDataUrl, headers)
       .then((res) => {
@@ -35,10 +38,8 @@ function Cart() {
     <Link to="/cart" className="cart-btn" onClick={handleClick}>
       <div className="cart-wrap">
         <i className="cart-icon" />
-        {headerCartCount && (
-          <span className="cart-cnt">
-            {headerCartCount > 0 && headerCartCount}
-          </span>
+        {headerCartCount > 0 && (
+          <span className="cart-cnt">{headerCartCount}</span>
         )}
       </div>
     </Link>

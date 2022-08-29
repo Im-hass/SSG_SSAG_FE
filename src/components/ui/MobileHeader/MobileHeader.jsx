@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import {
+  Cart,
   HeaderHomeButton,
   HeaderPrevButton,
   HeaderSearchButton,
@@ -25,10 +26,10 @@ function MobileHeader(props) {
           {!isOpen && <HeaderPrevButton />}
           {!isOpen && <HeaderTitle title={title} />}
 
-          {!isOpen && title === '장바구니' && <HeaderSearchButton />}
-
           <div className="mcom_tit_rgt">
-            {!isOpen && title === '장바구니' && <HeaderHomeButton />}
+            {!isOpen && title === '장바구니' && <HeaderSearchButton />}
+            {!isOpen && title !== '장바구니' && <Cart />}
+            {!isOpen && <HeaderHomeButton />}
           </div>
         </div>
       )}

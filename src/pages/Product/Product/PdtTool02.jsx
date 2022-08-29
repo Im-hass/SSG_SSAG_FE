@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   selectedProductCount,
   productOptionId,
@@ -35,12 +36,28 @@ function PdtTool02({ goBuyBtn, handleOpenBtn }) {
       .then((res) => {
         console.log('add cart res:', res);
         setIsHeaderCartCnt(!isHeaderCartCnt);
+        toast.success('상품을 장바구니에 추가했습니다.');
       })
-      .catch((err) => console.log('add cart err:', err));
+      .catch((err) => {
+        console.log('add cart err:', err);
+        toast.error('상품을 장바구니에 추가하지 못했습니다.');
+      });
   };
 
   return (
     <div className={`btm_bgn_in dps2 ${goBuyBtn}`}>
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#ff5b59',
+            },
+          },
+        }}
+      />
       <ul className="btm_bgn_bx" id="dps2_gift" style={{ display: 'none' }}>
         <li>
           <a href="/" className="mndtl_btn type01 clickable" target="_parent">

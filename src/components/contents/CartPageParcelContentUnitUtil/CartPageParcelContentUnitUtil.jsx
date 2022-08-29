@@ -1,10 +1,14 @@
 import React from 'react';
-import './CartPageParcelContentUnitUtil.scss';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import { confirmAlert } from 'react-confirm-alert';
+import { CustomAlert } from '../../common';
+import './CartPageParcelContentUnitUtil.scss';
 
 function CartPageParcelContentUnitUtil({ data, isDelete, setIsDelete }) {
-  const handleDeleteCartItem = () => {
-    const cartItemId = +data.cartId;
+  const cartItemId = +data.cartId;
+
+  const onDeleteCartItem = () => {
     const token = localStorage.getItem('token');
     const deleteUrl = `http://13.209.26.150:9000/users/carts/${cartItemId}`;
     const headers = {
@@ -17,13 +21,45 @@ function CartPageParcelContentUnitUtil({ data, isDelete, setIsDelete }) {
       .delete(deleteUrl, headers)
       .then((res) => {
         console.log('cart del res:', res);
+        toast.success('상품을 삭제했습니다.');
         setIsDelete(!isDelete);
       })
-      .catch((err) => console.log('cart del err', err));
+      .catch((err) => {
+        console.log('cart del err', err);
+        toast.error('상품을 삭제하지 못했습니다');
+      });
+  };
+
+  const handleDeleteCartItem = () => {
+    confirmAlert({
+      // eslint-disable-next-line react/no-unstable-nested-components
+      customUI: ({ onClose }) => (
+        <CustomAlert
+          title="배송지 삭제"
+          desc="배송지를 삭제하시겠습니까?"
+          btnTitle="삭제"
+          id={cartItemId}
+          onAction={onDeleteCartItem}
+          onClose={onClose}
+        />
+      ),
+    });
   };
 
   return (
     <div className="mnodr_unit_util">
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#ff5b59',
+            },
+          },
+        }}
+      />
       <button
         type="button"
         className="mnodr_unit_pin1 cartTracking"
