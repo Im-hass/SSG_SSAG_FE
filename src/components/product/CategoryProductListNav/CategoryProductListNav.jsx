@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LikeButton from '../../ui/LikeButton/LikeButton';
-import './ProductListHeader.scss';
+import './CategoryProductListNav.scss';
 
-function ProductListHeader({ largeCategoryId, title, subTitle }) {
+function CategoryProductListNav({ largeCategoryId, title, subTitle }) {
   return (
     <div className="mcom_tit_renew  react-area product-list-header">
       <div id="mcom_path_cate" className="mcom_category header-item">
@@ -945,4 +945,4 @@ function ProductListHeader({ largeCategoryId, title, subTitle }) {
   );
 }
 
-export default ProductListHeader;
+export default CategoryProductListNav;

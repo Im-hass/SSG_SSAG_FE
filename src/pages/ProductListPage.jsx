@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { Header, Footer, FloatingContents } from '../components/common';
 import { ProductListContent } from '../components/contents';
-import { ProductListHeader } from '../components/product/ProductListHeader';
+import { CategoryProductListNav } from '../components/product/CategoryProductListNav';
 import ToolbarList from '../components/toolbar/ToolbarList/ToolbarList';
 import { isOpenState } from '../recoil/states';
 
@@ -37,7 +37,7 @@ function ProductListPage() {
       <Header />
       {!isOpen && (
         <div id="m_container" className="mcom_container" data-iframe-height="">
-          <ProductListHeader
+          <CategoryProductListNav
             largeCategoryId={largeCategoryId}
             title={title}
             subTitle={subTitle}
