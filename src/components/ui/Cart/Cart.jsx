@@ -35,9 +35,11 @@ function Cart() {
     <Link to="/cart" className="cart-btn" onClick={handleClick}>
       <div className="cart-wrap">
         <i className="cart-icon" />
-        <span className="cart-cnt">
-          {headerCartCount > 0 && headerCartCount}
-        </span>
+        {headerCartCount && (
+          <span className="cart-cnt">
+            {headerCartCount > 0 && headerCartCount}
+          </span>
+        )}
       </div>
     </Link>
   );
