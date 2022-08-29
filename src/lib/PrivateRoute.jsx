@@ -10,7 +10,7 @@ function PrivateRoute() {
     if (!authCtx.isLogin) {
       setTimeout(() => {
         toast.error('접근권한이 없습니다.');
-      }, 300);
+      }, 100);
     }
   }, []);
 
