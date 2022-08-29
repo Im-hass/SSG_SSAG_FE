@@ -1,12 +1,36 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import AuthContext from '../store/auth-context';
 
 function PrivateRoute() {
   const authCtx = useContext(AuthContext);
-  return authCtx.isLogin() ? <Outlet /> : <Navigate to="/login" />;
+
+  useEffect(() => {
+    if (!authCtx.isLogin) {
+      setTimeout(() => {
+        toast.error('접근권한이 없습니다.');
+      }, 300);
+    }
+  }, []);
+
+  return (
+    <>
+      {authCtx.isLogin ? <Outlet /> : <Navigate to="/login" />}
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          error: {
+            iconTheme: {
+              primary: '#ff5b59',
+            },
+          },
+        }}
+      />
+    </>
+  );
 }
 
 export default PrivateRoute;
