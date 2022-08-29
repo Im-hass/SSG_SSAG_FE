@@ -51,3 +51,5 @@ export { WithdrawMember } from './WithdrawMember';
 export { SearchContent } from './SearchContent';
 export { ZipCodeSearchResult } from './ZipCodeSearchResult';
 export { ProductListContent } from './ProductListContent';
+export { MyDestinations } from './MyDestinations';
+// export { WithDestinations } from './WithDestinations';

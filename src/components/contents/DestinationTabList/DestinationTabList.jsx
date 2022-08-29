@@ -14,7 +14,7 @@ function DestinationTabList({ handleMenu, menuName }) {
           onKeyDown={() => handleMenu(el.menuName)}
           className={el.menuName === menuName ? 'on' : ''}
         >
-          <Link to={el.to}>
+          <Link to={`/destination${el.to}`}>
             <span className="myodr_tab_tx">{el.name}</span>
           </Link>
         </li>
