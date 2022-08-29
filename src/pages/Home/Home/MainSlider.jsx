@@ -30,10 +30,9 @@ function MainSlider() {
     axios
       .get('http://13.209.26.150:9000/comm-users/main-banner')
       .then((res) => {
-        console.log('get result:', res);
         setMainSlider(res.data.result);
       })
-      .catch((err) => console.log('get result:', err));
+      .catch((err) => new Error(err));
   }, []);
 
   const useScroll = () => {
