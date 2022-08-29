@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 import AuthContext from '../store/auth-context';
 import { MobileHeader, SNSLoginBtn, Button } from '../components/ui/index';
@@ -70,10 +71,10 @@ function LoginPage() {
         .then((res) => {
           if (res.data.isSuccess === false) setError(res.data.message);
           else {
-            authCtx.onLogin();
             if (checkedSaveId) localStorage.setItem('id', inputData.loginId);
-            localStorage.setItem('token', JSON.stringify(res.data.result));
+            authCtx.login(JSON.stringify(res.data.result));
             navigate('/');
+            toast.success('로그인했습니다.');
           }
         });
     }
@@ -176,6 +177,18 @@ function LoginPage() {
         </a>
       </div>
       <Footer />
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#ff5b59',
+            },
+          },
+        }}
+      />
     </div>
   );
 }

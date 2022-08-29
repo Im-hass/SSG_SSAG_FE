@@ -1,4 +1,5 @@
 import React from 'react';
+import './style/TopNav.scss';
 
 function TopNav() {
   return (
