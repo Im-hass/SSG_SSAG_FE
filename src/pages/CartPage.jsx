@@ -11,7 +11,6 @@ import {
   CartPageTotal,
   CartPageParcelFootInfo,
   CartPageParcelToolBar,
-  CartPageParcelContentSummary,
   CartPageParcelHeader,
 } from '../components/contents';
 import { MobileHeader, CartPageBtn } from '../components/ui';
@@ -22,6 +21,7 @@ function CartPage() {
   const [cartData, setCartData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isPut, setIsPut] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +41,7 @@ function CartPage() {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [isDelete]);
 
   if (isLoading) return <div>로딩 중</div>;
   if (!cartData) return <div>데이터 없음</div>;
@@ -88,6 +88,8 @@ function CartPage() {
                       index={index}
                       isPut={isPut}
                       setIsPut={setIsPut}
+                      isDelete={isDelete}
+                      setIsDelete={setIsDelete}
                     />
                   ))}
                 </div>
