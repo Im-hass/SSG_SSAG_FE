@@ -1,0 +1,19 @@
+.mcom_tit_rgt {
+  position: relative;
+}
+
+.mcom_tit_renew {
+  padding: 0 50px 0 10px;
+  border-bottom: none;
+}
+
+.mcom_tit_txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 50px;
+
+  a {
+    font-weight: 600;
+  }
+}

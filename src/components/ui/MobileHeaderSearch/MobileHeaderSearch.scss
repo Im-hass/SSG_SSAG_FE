@@ -1,0 +1,42 @@
+@use '/src/styles/base/variable';
+
+.m_head_inparea2 {
+  background-color: variable.$WHITE-001;
+  height: 50px;
+}
+
+.addr_ipbx {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.inpbx2 {
+  width: 100%;
+  margin-left: 5px;
+
+  #query {
+    width: 80%;
+  }
+
+  #query:focus {
+    border: 2px solid #e59700;
+    border-radius: 5px;
+  }
+}
+
+.addr_del {
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  width: 30px;
+  height: 30px;
+  background: url('./../../../assets/img/icon-delete.png') no-repeat 50% 50%;
+  background-size: 15px 15px;
+}
+
+.inp_ico_srch:after {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}

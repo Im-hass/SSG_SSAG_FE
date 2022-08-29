@@ -1,0 +1,9 @@
+#m_topnav {
+  background-color: white;
+  z-index: 800;
+}
+
+.mcom_topnav .topnav_lnk.new .topnav_txt:after {
+  content: '';
+  background: none;
+}

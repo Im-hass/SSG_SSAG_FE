@@ -1,0 +1,22 @@
+.inpbx {
+  height: 35px;
+
+  input {
+    width: 100%;
+    height: 17px;
+    border: 0 none;
+    background: transparent;
+    font-size: 12px;
+    line-height: 17px;
+    color: #767676;
+    vertical-align: top;
+  }
+
+  input[type="text"]:focus-visible {
+    border: none;
+  }
+}
+
+.des_select .select_opt {
+  display: block;
+}

@@ -1,0 +1,50 @@
+#m_wrap {
+  position: relative;
+  min-height: 0;
+}
+
+.search-wrap {
+  width: 100%;
+  height: calc(100% - 60px);
+  display: block;
+  position: absolute;
+  background-color: #fff;
+  z-index: 4000;
+}
+
+.search-none-result {
+  padding: 50px 0;
+
+  p {
+    position: relative;
+    padding-top: 58px;
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+
+    &::before {
+      content: "";
+      background: url(../../../assets/img/search-set.png) no-repeat;
+      background-size: 118px 160px;
+      background-position: 0 0;
+      width: 44px;
+      height: 44px;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      margin-left: -22px;
+    }
+  }
+}
+
+.cgsearch_latest_title {
+  font-weight: bold;
+}
+
+.cgsearch_recomm_tag li .cgsearch_recomm_txt {
+  font-size: 13px;
+}
+
+.recomm_title {
+  font-weight: bold;
+}

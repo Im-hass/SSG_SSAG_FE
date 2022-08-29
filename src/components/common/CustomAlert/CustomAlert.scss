@@ -1,0 +1,40 @@
+.react-confirm-alert-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.popup-overlay {
+  padding: 20px 30px;
+  background: rgb(255, 255, 255);
+  color: #222;
+
+  h1 {
+    margin-bottom: 14px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  p {
+    margin-bottom: 14px;
+  }
+
+  .btn-group {
+    text-align: right;
+
+    button {
+      padding: 2px 12px 0 12px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 30px;
+
+      &:first-child {
+        margin-right: 10px;
+      }
+
+      &.btn-confirm {
+        background-color: #ff5b59;
+        color: #fff;
+      }
+    }
+  }
+}

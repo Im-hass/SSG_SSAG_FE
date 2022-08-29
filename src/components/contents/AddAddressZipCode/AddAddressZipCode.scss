@@ -1,0 +1,9 @@
+.srchaddr_search {
+  .search_txt {
+    box-sizing: initial;
+  }
+
+  .search_txt:focus-visible {
+    border: none;
+  }
+}

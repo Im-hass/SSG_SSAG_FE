@@ -1,0 +1,44 @@
+// header-logo
+.header-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+
+  .logo-ssg {
+    display: block;
+    width: 45px;
+    height: 100%;
+    background: center / 100% no-repeat;
+    background-image: url('../../../assets/svg/icon-ssg-logo.svg');
+  }
+
+  .logo-ssg-mall {
+    display: block;
+    width: 51px;
+    height: 100%;
+    background: center / 100% no-repeat;
+    background-image: url('../../../assets/img/icon-ssg-mall-logo.png');
+  }
+
+  .open-mall-btn-icon {
+    display: block;
+    margin-left: 5px;
+    width: 14px;
+    height: 14px;
+    border: solid 1px rgba(34, 34, 34, 0.1);
+    border-radius: 50%;
+    background: center / 100% no-repeat;
+    background-image: url('../../../assets/svg/icon-down-arrow.svg');
+  }
+}
+
+// header-back-arrow
+.back-arrow-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../assets/img/search-set.png') no-repeat;
+  background-size: 115px 165px;
+  background-position: -95px -40px;
+}
