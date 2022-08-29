@@ -1,9 +1,25 @@
 import React from 'react';
 import './CartPageParcelContentUnitUtil.scss';
+import axios from 'axios';
 
-function CartPageParcelContentUnitUtil() {
+function CartPageParcelContentUnitUtil({ data, isDelete, setIsDelete }) {
   const handleDeleteCartItem = () => {
-    console.log('삭제닷!');
+    const cartItemId = +data.cartId;
+    const token = localStorage.getItem('token');
+    const deleteUrl = `http://13.209.26.150:9000/users/carts/${cartItemId}`;
+    const headers = {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    };
+
+    axios
+      .delete(deleteUrl, headers)
+      .then((res) => {
+        console.log('cart del res:', res);
+        setIsDelete(!isDelete);
+      })
+      .catch((err) => console.log('cart del err', err));
   };
 
   return (

@@ -33,10 +33,15 @@ export const isCategorySelected2 = atom({
 export const orderInfoState = atom({
   key: 'orderInfo',
   default: {
+    productDetail: {},
     addr: {},
     recipient: {},
     message: '',
   },
+});
+
+export const sendOrderState = atom({
+  key: 'sendOrder',
 });
 
 export const productOptionId = atom({
@@ -47,4 +52,9 @@ export const productOptionId = atom({
 export const selectedProductCount = atom({
   key: 'productCount',
   default: 1,
+});
+
+export const isHeaderCartCntSubmit = atom({
+  key: 'isHeaderCartCntSubmit',
+  default: false,
 });

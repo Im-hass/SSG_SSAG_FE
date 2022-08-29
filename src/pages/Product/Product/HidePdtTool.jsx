@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
 import { selectedProductCount, productOptionId } from '../../../recoil/states';
 import './style/HidePdtTool.scss';
 
@@ -184,7 +184,10 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
                           <span className="price">
                             <em className="ssg_price" data-prc="249000">
                               {(
-                                productCount * productData.price
+                                productCount *
+                                ((productData.price *
+                                  (100 - productData.sale)) /
+                                  100)
                               ).toLocaleString()}
                             </em>
                             <span className="ssg_tx">원</span>
@@ -203,7 +206,10 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
           <strong className="mndtl_label">총 합계</strong>
           <strong className="price">
             <em id="totalPrc" className="ssg_price">
-              {(productCount * productData.price).toLocaleString()}
+              {(
+                productCount *
+                ((productData.price * (100 - productData.sale)) / 100)
+              ).toLocaleString()}
             </em>
             <span className="ssg_tx">원</span>
           </strong>

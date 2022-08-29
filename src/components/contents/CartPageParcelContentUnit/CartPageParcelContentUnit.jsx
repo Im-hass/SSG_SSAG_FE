@@ -15,6 +15,8 @@ function CartPageParcelContentUnit({
   totalPrice,
   isPut,
   setIsPut,
+  isDelete,
+  setIsDelete,
 }) {
   const productImgUrl = data.productOption.product.imgUrl;
 
@@ -32,6 +34,8 @@ function CartPageParcelContentUnit({
           totalPrice={totalPrice}
           isPut={isPut}
           setIsPut={setIsPut}
+          isDelete={isDelete}
+          setIsDelete={setIsDelete}
         />
       </div>
     </div>

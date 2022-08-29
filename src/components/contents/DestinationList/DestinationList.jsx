@@ -1,13 +1,16 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
-import axios from 'axios/index';
+import axios from 'axios';
 import { DestinationListBtns } from '../index';
 import './DestinationList.scss';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { CustomAlert } from '../../common/CustomAlert';
 
 function DestinationList({ datas, isDelete, setIsDelete, handleSelectedAddr }) {
+  const navigate = useNavigate();
+
   const handleModify = (id) => {
     const token = localStorage.getItem('token');
     axios
@@ -17,7 +20,8 @@ function DestinationList({ datas, isDelete, setIsDelete, handleSelectedAddr }) {
         },
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.result);
+        navigate('/modifyDestination', { state: res.data.result });
       })
       .catch((err) => {
         console.log(err);

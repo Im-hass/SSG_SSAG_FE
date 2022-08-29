@@ -6,11 +6,15 @@ import './AddAddressMyInfo.scss';
 import toast, { Toaster } from 'react-hot-toast';
 import { AddAddressZipCode } from '../index';
 
-function AddAddressMyInfo() {
+function AddAddressMyInfo({ state }) {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isReset, setIsReset] = useState(false);
+  const [code, setCode] = useState({
+    phoneCode: '010',
+    homePhoneCode: '선택',
+  });
   const [data, setData] = useState({
     addrName: '',
     recipient: '',
@@ -36,8 +40,32 @@ function AddAddressMyInfo() {
     phone: '',
     homePhone: '',
     zipCode: '',
-    submit: '',
   });
+
+  useEffect(() => {
+    if (state !== undefined) {
+      setData({
+        ...data,
+        addrName: state.addrName,
+        recipient: state.recipient,
+        phone: state.phone,
+        homePhone: state.homePhone,
+      });
+      setSelectedItem({
+        ...selectedItem,
+        zipCode: state.zipCode,
+        streetAddr: state.streetAddr, // 도로명
+        lotAddr: state.lotAddr, // 지번
+      });
+      setValid({
+        addrName: true,
+        recipient: true,
+        phone: true,
+        homePhone: true,
+        zipCode: true,
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (selectedItem.zipCode.length !== 0) {
@@ -50,6 +78,13 @@ function AddAddressMyInfo() {
 
   const handleIsOpen = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleCodeChange = (e) => {
+    setCode({
+      ...code,
+      [e.target.id]: e.target.value,
+    });
   };
 
   const handleNumber = (e) => {
@@ -116,35 +151,66 @@ function AddAddressMyInfo() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    checkedValid('addrName', data.addrName);
+    checkedValid('recipient', data.recipient);
+    checkedValid('phone', data.phone);
+    checkedValid('homePhone', data.homePhone);
+    checkedValid('zipCode', selectedItem.zipCode);
+
     if (Object.values(valid).every((v) => v === true) === true) {
       const token = localStorage.getItem('token');
-      axios
-        .post(
-          'http://13.209.26.150:9000/users/shipping-addr',
-          {
-            addrName: data.addrName,
-            recipient: data.recipient,
-            phone: data.phone,
-            homePhone: data.homePhone,
-            zipCode: selectedItem.zipCode,
-            streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
-            lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
-          },
-          {
-            headers: {
-              Authorization: JSON.parse(token),
+      if (state !== undefined) {
+        const homeNumber = code.homePhoneCode + data.homePhone;
+        axios
+          .put(
+            `http://13.209.26.150:9000/users/shipping-addr`,
+            {
+              addrId: state.addrId,
+              addrName: data.addrName,
+              recipient: data.recipient,
+              phone: `${code.phoneCode}${data.phone}`,
+              homePhone: `${code.homePhoneCode === '선택' ? '' : homeNumber}`,
+              zipCode: selectedItem.zipCode,
+              streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
+              lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
             },
-          },
-        )
-        .then(() => {
-          navigate(-1);
-          toast.success('배송지가 추가되었습니다.');
-        });
+            {
+              headers: {
+                Authorization: JSON.parse(token),
+              },
+            },
+          )
+          .then(() => {
+            navigate(-1);
+            toast.success('배송지가 수정되었습니다.');
+          });
+      } else {
+        const homeNumber = code.homePhoneCode + data.homePhone;
+        axios
+          .post(
+            'http://13.209.26.150:9000/users/shipping-addr',
+            {
+              addrName: data.addrName,
+              recipient: data.recipient,
+              phone: `${code.phoneCode}${data.phone}`,
+              homePhone: `${code.homePhoneCode === '선택' ? '' : homeNumber}`,
+              zipCode: selectedItem.zipCode,
+              streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
+              lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
+            },
+            {
+              headers: {
+                Authorization: JSON.parse(token),
+              },
+            },
+          )
+          .then(() => {
+            navigate(-1);
+            toast.success('배송지가 추가되었습니다.');
+          });
+      }
     } else {
-      setError({
-        ...error,
-        submit: '값을 입력해주세요',
-      });
+      toast.error('비어있는 값이 있습니다. 값을 입력해주세요.');
     }
   };
 
@@ -163,6 +229,22 @@ function AddAddressMyInfo() {
       streetAddr: '', // 도로명
       lotAddr: '', // 지번
       detailAddr: '',
+    });
+    setValid({
+      ...valid,
+      addrName: false,
+      recipient: false,
+      phone: false,
+      homePhone: false,
+      zipCode: false,
+    });
+    setError({
+      ...error,
+      addrName: '',
+      recipient: '',
+      phone: '',
+      homePhone: '',
+      zipCode: '',
     });
   };
 
@@ -235,53 +317,21 @@ function AddAddressMyInfo() {
                             <span className="p_first">
                               <span className="des_select">
                                 <span className="cc_ellip_in selected select_opt">
-                                  010
+                                  {code.phoneCode}
                                 </span>
                                 <span className="sp_com sel_arrow">&nbsp;</span>
                                 <span className="hide_select">
-                                  <select id="phone" title="휴대폰 앞자리">
-                                    <option
-                                      value="010"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      010
-                                    </option>
-                                    <option
-                                      value="011"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      011
-                                    </option>
-                                    <option
-                                      value="016"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      016
-                                    </option>
-                                    <option
-                                      value="017"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      017
-                                    </option>
-                                    <option
-                                      value="018"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      018
-                                    </option>
-                                    <option
-                                      value="019"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      019
-                                    </option>
+                                  <select
+                                    id="phoneCode"
+                                    title="휴대폰 앞자리"
+                                    onChange={handleCodeChange}
+                                  >
+                                    <option value="010">010</option>
+                                    <option value="011">011</option>
+                                    <option value="016">016</option>
+                                    <option value="017">017</option>
+                                    <option value="018">018</option>
+                                    <option value="019">019</option>
                                   </select>
                                 </span>
                               </span>
@@ -316,201 +366,43 @@ function AddAddressMyInfo() {
                             <span className="p_first">
                               <span className="des_select">
                                 <span className="cc_ellip_in select_opt">
-                                  선택
+                                  {code.homePhoneCode}
                                 </span>
                                 <span className="sp_com sel_arrow">&nbsp;</span>
                                 <span className="hide_select">
-                                  <select id="telNum1" title="전화번호 앞자리">
+                                  <select
+                                    id="homePhoneCode"
+                                    title="전화번호 앞자리"
+                                    onChange={handleCodeChange}
+                                  >
                                     <option value="">선택</option>
-                                    <option
-                                      value="02"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      02
-                                    </option>
-                                    <option
-                                      value="031"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      031
-                                    </option>
-                                    <option
-                                      value="032"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      032
-                                    </option>
-                                    <option
-                                      value="033"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      033
-                                    </option>
-                                    <option
-                                      value="041"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      041
-                                    </option>
-                                    <option
-                                      value="042"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      042
-                                    </option>
-                                    <option
-                                      value="043"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      043
-                                    </option>
-                                    <option
-                                      value="051"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      051
-                                    </option>
-                                    <option
-                                      value="044"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      044
-                                    </option>
-                                    <option
-                                      value="052"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      052
-                                    </option>
-                                    <option
-                                      value="053"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      053
-                                    </option>
-                                    <option
-                                      value="054"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      054
-                                    </option>
-                                    <option
-                                      value="055"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      055
-                                    </option>
-                                    <option
-                                      value="061"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      061
-                                    </option>
-                                    <option
-                                      value="062"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      062
-                                    </option>
-                                    <option
-                                      value="063"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      063
-                                    </option>
-                                    <option
-                                      value="064"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      064
-                                    </option>
-                                    <option
-                                      value="070"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      070
-                                    </option>
-                                    <option
-                                      value="080"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      080
-                                    </option>
-                                    <option
-                                      value="0505"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      0505
-                                    </option>
-                                    <option
-                                      value="0507"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      0507
-                                    </option>
-                                    <option
-                                      value="010"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      010
-                                    </option>
-                                    <option
-                                      value="011"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      011
-                                    </option>
-                                    <option
-                                      value="016"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      016
-                                    </option>
-                                    <option
-                                      value="017"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      017
-                                    </option>
-                                    <option
-                                      value="018"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      018
-                                    </option>
-                                    <option
-                                      value="019"
-                                      addtoptnval1=""
-                                      addtoptnval2=""
-                                    >
-                                      019
-                                    </option>
+                                    <option value="02">02</option>
+                                    <option value="031">031</option>
+                                    <option value="032">032</option>
+                                    <option value="033">033</option>
+                                    <option value="041">041</option>
+                                    <option value="042">042</option>
+                                    <option value="043">043</option>
+                                    <option value="051">051</option>
+                                    <option value="044">044</option>
+                                    <option value="052">052</option>
+                                    <option value="053">053</option>
+                                    <option value="054">054</option>
+                                    <option value="055">055</option>
+                                    <option value="061">061</option>
+                                    <option value="062">062</option>
+                                    <option value="063">063</option>
+                                    <option value="064">064</option>
+                                    <option value="070">070</option>
+                                    <option value="080">080</option>
+                                    <option value="0505">0505</option>
+                                    <option value="0507">0507</option>
+                                    <option value="010">010</option>
+                                    <option value="011">011</option>
+                                    <option value="016">016</option>
+                                    <option value="017">017</option>
+                                    <option value="018">018</option>
+                                    <option value="019">019</option>
                                   </select>
                                 </span>
                               </span>
@@ -587,11 +479,6 @@ function AddAddressMyInfo() {
                       </li>
                     </ul>
                     <div className="order_btnarea2 order_btnarea3">
-                      <span className="cmem_noti">
-                        <em className="usable_value">
-                          <p style={{ textAlign: 'center' }}>{error.submit}</p>
-                        </em>
-                      </span>
                       <ul className="bnbox">
                         <li>
                           <button
@@ -611,7 +498,7 @@ function AddAddressMyInfo() {
 
                         <li>
                           <button type="submit" className="b_def5">
-                            등록
+                            {state !== undefined ? '수정완료' : '등록'}
                           </button>
                         </li>
                       </ul>

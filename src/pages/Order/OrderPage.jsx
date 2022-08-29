@@ -41,11 +41,11 @@ function OrderPage() {
   });
 
   const handleChangeRecipient = () => {
-    navigate('/:orderChangeRecipient');
+    navigate('/orderChangeRecipient');
   };
 
   const handleChangeShippingMessage = () => {
-    navigate('/:orderChangeShippingMessage');
+    navigate('/orderChangeShippingMessage');
   };
 
   return (
@@ -65,7 +65,7 @@ function OrderPage() {
               </div>
               <div className="mnodr_article_headrt">
                 <Link
-                  to="order/orderDestination"
+                  to="/orderDestination"
                   className="mnodr_btn ty_grayline ty_xxs payTracking"
                   name="btnShowTgtDiv"
                 >
@@ -158,8 +158,6 @@ function OrderPage() {
                       id="creditCardPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|신용카드"
-                      role="tab"
                     >
                       <span>신용카드</span>
                     </button>
@@ -170,8 +168,6 @@ function OrderPage() {
                       id="virtualAccountPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|무통장 입금"
-                      role="tab"
                     >
                       <span>무통장 입금</span>
                     </button>
@@ -182,8 +178,6 @@ function OrderPage() {
                       id="realBankPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|실시간 계좌이체"
-                      role="tab"
                     >
                       <span>실시간 계좌이체</span>
                     </button>
@@ -234,8 +228,7 @@ function OrderPage() {
               <li className="dispTotDcAmtWithoutCrdDcArea">
                 <span className="mnodr_paydetail_tx">상품할인</span>
                 <span className="mnodr_paydetail_money">
-                  -{' '}
-                  <em className="ssg_price dispTotDcAmtWithoutCrdDc">5,400</em>
+                  -<em className="ssg_price dispTotDcAmtWithoutCrdDc">5,400</em>
                   <span className="ssg_tx">원</span>
                 </span>
               </li>

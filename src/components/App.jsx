@@ -14,6 +14,7 @@ import {
   MyPage,
   LoginPage,
   ProductListPage,
+  ModifyDestinationPage,
 } from '../pages';
 import {
   OrderPage,
@@ -65,7 +66,6 @@ function App() {
           <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/cart" element={<CartPage />} />
-
         <Route path="/my" element={<PrivateRoute />}>
           <Route path="/my" element={<MyPage />} />
         </Route>
@@ -82,20 +82,31 @@ function App() {
           <Route path="/addDestination" element={<AddDestinationPage />} />
         </Route>
         <Route path="/order" element={<PrivateRoute />}>
-          <Route path="/order" element={<OrderPage />}>
-            <Route
-              path="orderDestination"
-              element={<OrderChangeDestinationPage />}
-            />
-            <Route
-              path="orderChangeRecipient"
-              element={<OrderChangeRecipientPage />}
-            />
-            <Route
-              path="orderChangeShippingMessage"
-              element={<OrderChangeShippingMessagePage />}
-            />
-          </Route>
+          <Route path="/order" element={<OrderPage />} />
+        </Route>
+        <Route path="/orderDestination" element={<PrivateRoute />}>
+          <Route
+            path="/orderDestination"
+            element={<OrderChangeDestinationPage />}
+          />
+        </Route>
+        <Route path="/orderChangeRecipient" element={<PrivateRoute />}>
+          <Route
+            path="/orderChangeRecipient"
+            element={<OrderChangeRecipientPage />}
+          />
+        </Route>
+        <Route path="/orderChangeShippingMessage" element={<PrivateRoute />}>
+          <Route
+            path="/orderChangeShippingMessage"
+            element={<OrderChangeShippingMessagePage />}
+          />
+        </Route>
+        <Route path="/modifyDestination" element={<PrivateRoute />}>
+          <Route
+            path="/modifyDestination"
+            element={<ModifyDestinationPage />}
+          />
         </Route>
         <Route path="/historyList" element={<RecentShoppingPage />} />
         <Route path="*" element={<NotFoundPage />} />
