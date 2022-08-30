@@ -52,13 +52,6 @@ function DestinationBtns({ selected, isDefaultChanged, setIsDefaultChanged }) {
         containerStyle={{
           top: 30,
         }}
-        toastOptions={{
-          success: {
-            iconTheme: {
-              primary: '#ff5b59',
-            },
-          },
-        }}
       />
     </div>
   );
