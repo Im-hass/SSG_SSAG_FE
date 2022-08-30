@@ -1,0 +1,85 @@
+.myssg_user_manage {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.myssg_user_manage > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 33.33%;
+  flex: 1 1 33.33%;
+  position: relative;
+  padding: 12px 0 11px;
+}
+
+.myssg_user_manage > span::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 1px;
+  height: 13px;
+  background: #e5e5e5;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: "";
+}
+
+.myssg_user_manage .myssg_manage_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 13px;
+  line-height: 20px;
+  color: #222;
+}
+
+.myssg_user_manage .myssg_manage_text::before {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5px;
+  content: "";
+}
+
+.myssg_user_manage .myssg_manage_text.ty_like::before {
+  background-image: url(https://sui.ssgcdn.com/ui/m_ssg/img/sprites/sp_myssg_main_20220329@2x.png);
+  background-position: 0px -64px;
+  background-size: 134px 110px;
+  width: 20px;
+  height: 20px;
+}
+
+.myssg_user_manage .myssg_manage_text.ty_delivery::before {
+  background-image: url(https://sui.ssgcdn.com/ui/m_ssg/img/sprites/sp_myssg_main_20220329@2x.png);
+  background-position: -30px -34px;
+  background-size: 134px 110px;
+  width: 20px;
+  height: 20px;
+}
+
+.myssg_user_manage .myssg_manage_text.ty_alert {
+  position: relative;
+}
+
+.myssg_user_manage .myssg_manage_text.ty_alert::before {
+  background-image: url(https://sui.ssgcdn.com/ui/m_ssg/img/sprites/sp_myssg_main_20220329@2x.png);
+  background-position: -34px 0px;
+  background-size: 134px 110px;
+  width: 20px;
+  height: 20px;
+}
