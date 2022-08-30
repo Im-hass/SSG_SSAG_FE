@@ -5,8 +5,8 @@ import { confirmAlert } from 'react-confirm-alert';
 import { CustomAlert } from '../../common';
 import './CartPageParcelContentUnitUtil.scss';
 
-function CartPageParcelContentUnitUtil({ data, isDelete, setIsDelete }) {
-  const cartItemId = +data.cartId;
+function CartPageParcelContentUnitUtil({ cartItem, isDelete, setIsDelete }) {
+  const cartItemId = cartItem.cartId;
 
   const onDeleteCartItem = () => {
     const token = localStorage.getItem('token');

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import './CartPageParcelContentUnitPayRight.scss';
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { isCntPut } from '../../../recoil/states';
+import './CartPageParcelContentUnitPayRight.scss';
 
-function CartPageParcelContentUnitPayRight({
-  data,
-  cartProductCount,
-  setCartProductCount,
-}) {
-  const [isCnt, setIsCnt] = useState(false);
+function CartPageParcelContentUnitPayRight({ cartItem }) {
+  const [isCnt, setIsCnt] = useRecoilState(isCntPut);
+  const [cartItemCnt, setCartItemCnt] = useState(cartItem.count);
+  const cartItemId = cartItem.cartId;
 
   const putProductCount = (cnt) => {
     const token = localStorage.getItem('token');
     const productData = {
-      cartId: data.cartId,
+      cartId: cartItemId,
       count: cnt,
     };
     const headers = {
@@ -31,13 +31,13 @@ function CartPageParcelContentUnitPayRight({
 
   const handleProductCount = (action) => {
     if (action === 'inc') {
-      setCartProductCount((prevCnt) => {
+      setCartItemCnt((prevCnt) => {
         const currCnt = prevCnt + 1;
         return currCnt;
       });
       setIsCnt(!isCnt);
-    } else if (cartProductCount > 1) {
-      setCartProductCount((prevCnt) => {
+    } else if (cartItemCnt > 1) {
+      setCartItemCnt((prevCnt) => {
         const currCnt = prevCnt - 1;
         return currCnt;
       });
@@ -46,7 +46,7 @@ function CartPageParcelContentUnitPayRight({
   };
 
   useEffect(() => {
-    putProductCount(cartProductCount);
+    putProductCount(cartItemCnt);
   }, [isCnt]);
 
   return (
@@ -54,7 +54,7 @@ function CartPageParcelContentUnitPayRight({
       <div className="mnodr_amount">
         <div className="mnodr_opa_area">
           <span className="blind">현재수량</span>
-          <span className="mnodr_opa_tx ordQty">{cartProductCount}</span>
+          <span className="mnodr_opa_tx ordQty">{cartItemCnt}</span>
         </div>
         <button
           type="button"

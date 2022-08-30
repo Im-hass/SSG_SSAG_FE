@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CartPageTotal.scss';
 
-function CartPageTotal() {
+function CartPageTotal({ data, isChange, isDelete, isCnt }) {
+  const [defaultPrice, setDefaultPrice] = useState(0);
+
   return (
     <div className="mnodr_total" id="cartInformation">
       <div className="mnodr_form_sec">
@@ -14,7 +16,7 @@ function CartPageTotal() {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              +<em className="ssg_price viewAmt_sellprc">23,000</em>
+              +<em className="ssg_price viewAmt_sellprc">기본금액</em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -25,7 +27,7 @@ function CartPageTotal() {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              -<em className="ssg_price viewAmt_dcprc">2,300</em>
+              -<em className="ssg_price viewAmt_dcprc">할인금액</em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -36,7 +38,7 @@ function CartPageTotal() {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              +<em className="ssg_price viewAmt_shppcst">3,000</em>
+              +<em className="ssg_price viewAmt_shppcst">배송비</em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -49,7 +51,7 @@ function CartPageTotal() {
           </dt>
           <dd>
             <span className="mnodr_priceitem_total">
-              <em className="ssg_price viewAmt_paymt">23,700</em>
+              <em className="ssg_price viewAmt_paymt">총 금액</em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>

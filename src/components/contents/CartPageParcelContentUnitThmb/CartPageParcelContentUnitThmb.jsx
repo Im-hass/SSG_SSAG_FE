@@ -1,7 +1,9 @@
 import React from 'react';
 import './CartPageParcelContentUnitThmb.scss';
 
-function CartPageParcelContentUnitThmb({ productImgUrl }) {
+function CartPageParcelContentUnitThmb({ cartItem }) {
+  const productImgUrl = cartItem.productOptionDto.productDto.imgUrl;
+
   return (
     <div className="mnodr_unit_thmb">
       <span className="mnodr_chk">
