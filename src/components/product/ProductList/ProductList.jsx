@@ -3,7 +3,7 @@ import './ProductList.scss';
 import ProductItem from '../ProductItem/ProductItem';
 // import { PRODUCT_LIST } from '../../../assets/datas';
 
-function ProductList({ datas }) {
+function ProductList({ datas, isLogin = false }) {
   return (
     <>
       {/* 필터 */}
@@ -323,6 +323,7 @@ function ProductList({ datas }) {
               <ProductItem
                 key={data.categoryProductDtoRes.productProductId}
                 data={data}
+                isLogin={isLogin}
               />
             ))}
         </ul>
