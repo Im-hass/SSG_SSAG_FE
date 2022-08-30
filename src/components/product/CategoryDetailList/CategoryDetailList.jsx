@@ -70,7 +70,7 @@ function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
                           Number(mdId) === data.mediumCategoryId ? 'on' : ''
                         }`}
                         onClick={() => {
-                          handleProductList(lgId, data.mdId);
+                          handleProductList(lgId, data.mediumCategoryId);
                         }}
                       >
                         <span className="cmctg_txt">
