@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -10,6 +10,7 @@ function OrderPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+  const [clickPayment, setClickPayment] = useState();
 
   const productPrice =
     orderInfo.productDetail.data.price * orderInfo.productDetail.count;
@@ -23,7 +24,6 @@ function OrderPage() {
 
   useEffect(() => {
     setOrderInfo({ ...orderInfo, productDetail: location.state });
-    console.log(orderInfo);
 
     if (orderInfo.addr.addrName === undefined) {
       axios
@@ -36,6 +36,8 @@ function OrderPage() {
           setOrderInfo({ ...orderInfo, addr: res.data.result });
         });
     }
+    console.log('오더인포', orderInfo);
+    console.log('로케이션스테이트', location.state);
   }, []);
 
   useEffect(() => {
@@ -50,7 +52,7 @@ function OrderPage() {
           setOrderInfo({ ...orderInfo, recipient: res.data.result });
         });
     }
-  });
+  }, []);
 
   const handleChangeRecipient = () => {
     navigate('/orderChangeRecipient');
@@ -167,7 +169,6 @@ function OrderPage() {
                   <li>
                     <button
                       type="button"
-                      id="creditCardPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
                     >
@@ -177,7 +178,6 @@ function OrderPage() {
                   <li>
                     <button
                       type="button"
-                      id="virtualAccountPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
                     >
@@ -187,7 +187,6 @@ function OrderPage() {
                   <li>
                     <button
                       type="button"
-                      id="realBankPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
                     >
@@ -593,7 +592,10 @@ function OrderPage() {
         className="mnodr_btn ty_point ty_m payTracking"
         style={{ position: 'fixed', bottom: 0 }}
       >
-        <span style={{ fontWeight: '600' }}>160,140원</span> 결제하기
+        <span style={{ fontWeight: '600' }}>
+          {totalPrice.toLocaleString()}원
+        </span>{' '}
+        결제하기
       </button>
     </div>
   );
