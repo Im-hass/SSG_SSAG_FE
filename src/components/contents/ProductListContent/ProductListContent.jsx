@@ -15,10 +15,10 @@ function ProductListContent() {
     let urlParams = '';
     if (Number(sId) !== 0) {
       urlParams = `/small/${sId}`;
-    } else if (Number(mId) === 0) {
-      urlParams = `/large/${lId}`;
     } else if (Number(mId) !== 0) {
       urlParams = `/medium/${mId}`;
+    } else if (Number(mId) === 0) {
+      urlParams = `/large/${lId}`;
     }
 
     let isUser = false;
@@ -52,6 +52,7 @@ function ProductListContent() {
               mdName = v.mediumCategoryTitle;
             }
           });
+          handleProductList(lgId, mdId);
         }
 
         setTitle(response.largeCategoryTitle);
