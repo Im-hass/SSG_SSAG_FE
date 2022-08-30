@@ -6,16 +6,16 @@ import HappyLounge from './Home/HappyLounge';
 import NewService from './Home/NewService';
 import CardPromo from './Home/CardPromo';
 import HotBrand from './Home/HotBrand';
-import BrandRanking from './Home/BrandRanking';
-import LetsTryOn from './Home/LetsTryOn';
-import SsgLuxury from './Home/SsgLuxury';
-import PremiumNA from './Home/PremiumNA';
-import BrandLookbook from './Home/BrandLookbook';
-import SmartOS from './Home/SmartOS';
-import SpecialGift from './Home/SpecialGift';
-import LifeMagazine from './Home/LifeMagazine';
-import DeBestItem from './Home/DeBestItem';
-import BestItem from './Home/BestItem';
+// import BrandRanking from './Home/BrandRanking';
+// import LetsTryOn from './Home/LetsTryOn';
+// import SsgLuxury from './Home/SsgLuxury';
+// import PremiumNA from './Home/PremiumNA';
+// import BrandLookbook from './Home/BrandLookbook';
+// import SmartOS from './Home/SmartOS';
+// import SpecialGift from './Home/SpecialGift';
+// import LifeMagazine from './Home/LifeMagazine';
+// import DeBestItem from './Home/DeBestItem';
+// import BestItem from './Home/BestItem';
 import './Home/style/Home.scss';
 import { FloatingContents } from '../../components/common';
 
@@ -33,7 +33,7 @@ function Home() {
               <NewService />
               <CardPromo />
               <HotBrand />
-              <BrandRanking />
+              {/* <BrandRanking />
               <LetsTryOn />
               <DeBestItem />
               <SsgLuxury />
@@ -42,7 +42,7 @@ function Home() {
               <BrandLookbook />
               <SpecialGift />
               <LifeMagazine />
-              <BestItem />
+              <BestItem /> */}
             </div>
           </div>
         </div>
