@@ -19,7 +19,7 @@ function SubCategoryList({ isSelected, largeCategoryId, mediumCategoryList }) {
       <div className="clnb_lst">
         <ul className="cate_view">
           <li>
-            <Link to={`/products/${largeCategoryId}`} className="clickable">
+            <Link to={`/products/${largeCategoryId}/0`} className="clickable">
               상품 전체보기
             </Link>
           </li>

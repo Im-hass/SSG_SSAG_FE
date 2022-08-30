@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LikeButton from '../../ui/LikeButton/LikeButton';
-import './ProductListHeader.scss';
+import './CategoryProductListNav.scss';
 
-function ProductListHeader({ largeCategoryId, title, subTitle }) {
+function CategoryProductListNav({ lgId, title, subTitle }) {
   return (
     <div className="mcom_tit_renew  react-area product-list-header">
       <div id="mcom_path_cate" className="mcom_category header-item">
         <div className="cate_path">
           <span className="depth previous">
-            <Link to={`/products/${largeCategoryId}`}>
+            <Link to={`/products/${lgId}/0`}>
               <span className="ctg_mn">
                 <span className="ctg_txt">{title}</span>
               </span>
@@ -24,7 +24,7 @@ function ProductListHeader({ largeCategoryId, title, subTitle }) {
             </button>
           </span>
         </div>
-        <div className="cate_view v2">
+        {/* <div className="cate_view v2">
           <ul className="lst_cate">
             <li className="selected">
               <a href="/" className="cate_txt">
@@ -914,7 +914,7 @@ function ProductListHeader({ largeCategoryId, title, subTitle }) {
               </div>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
       <div className="mcom_tit_lft">
         <Link to="/category" className="btn_back clickable">
@@ -945,4 +945,4 @@ function ProductListHeader({ largeCategoryId, title, subTitle }) {
   );
 }
 
-export default ProductListHeader;
+export default CategoryProductListNav;
