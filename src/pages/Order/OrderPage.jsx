@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 import { orderInfoState } from '../../recoil/states';
@@ -8,11 +8,23 @@ import { MobileHeader } from '../../components/ui/index';
 
 function OrderPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+
+  const productPrice =
+    orderInfo.productDetail.data.price * orderInfo.productDetail.count;
+  const productSalePrice =
+    orderInfo.productDetail.data.price *
+    (orderInfo.productDetail.data.sale / 100) *
+    orderInfo.productDetail.count;
+  const totalPrice = productPrice - productSalePrice + 3000;
 
   const token = localStorage.getItem('token');
 
   useEffect(() => {
+    setOrderInfo({ ...orderInfo, productDetail: location.state });
+    console.log(orderInfo);
+
     if (orderInfo.addr.addrName === undefined) {
       axios
         .get('http://13.209.26.150:9000/users/shipping-addr/default', {
@@ -113,9 +125,9 @@ function OrderPage() {
                   </dt>
                   <dd>
                     <span className="mnodr_tx_primary">
-                      -
+                      -{' '}
                       <em className="ssg_price dispTotItemEnuriWithout10Amt">
-                        5,400
+                        {productSalePrice.toLocaleString()}
                       </em>
                       <span className="ssg_tx">원</span>
                     </span>
@@ -158,8 +170,6 @@ function OrderPage() {
                       id="creditCardPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|신용카드"
-                      role="tab"
                     >
                       <span>신용카드</span>
                     </button>
@@ -170,8 +180,6 @@ function OrderPage() {
                       id="virtualAccountPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|무통장 입금"
-                      role="tab"
                     >
                       <span>무통장 입금</span>
                     </button>
@@ -182,8 +190,6 @@ function OrderPage() {
                       id="realBankPaymtMeansButton"
                       name="otherPaymtMeansCdButton"
                       className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|실시간 계좌이체"
-                      role="tab"
                     >
                       <span>실시간 계좌이체</span>
                     </button>
@@ -214,7 +220,10 @@ function OrderPage() {
               </dt>
               <dd>
                 <span className="mnodr_tx_primary">
-                  + <em className="ssg_price dispTotPayOrdAmt">180,000</em>
+                  +{' '}
+                  <em className="ssg_price dispTotPayOrdAmt">
+                    {productPrice.toLocaleString()}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </dd>
@@ -225,7 +234,11 @@ function OrderPage() {
               </dt>
               <dd>
                 <span className="mnodr_tx_point">
-                  - <em className="ssg_price dispTotDcAmt">5,400</em>
+                  -{' '}
+                  <em className="ssg_price dispTotDcAmt">
+                    {' '}
+                    {productSalePrice.toLocaleString()}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </dd>
@@ -234,8 +247,11 @@ function OrderPage() {
               <li className="dispTotDcAmtWithoutCrdDcArea">
                 <span className="mnodr_paydetail_tx">상품할인</span>
                 <span className="mnodr_paydetail_money">
-                  -{' '}
-                  <em className="ssg_price dispTotDcAmtWithoutCrdDc">5,400</em>
+                  -
+                  <em className="ssg_price dispTotDcAmtWithoutCrdDc">
+                    {' '}
+                    {productSalePrice.toLocaleString()}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </li>
@@ -276,7 +292,7 @@ function OrderPage() {
                 <strong className="mnodr_tx_primary mnodr_priceitem_total v2">
                   +
                   <em className="ssg_price paySummaryPayAmt paySummaryTgtPaymtAmt">
-                    177,600
+                    {totalPrice.toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </strong>
@@ -409,8 +425,7 @@ function OrderPage() {
                     <dd>
                       <p className="mnodr_tx_desc">
                         <span id="rfdMthdStrArea">
-                          {orderInfo.recipient.refundCheck &&
-                            '주문 시 결제수단으로 환불받기'}
+                          {orderInfo.recipient.refundCheck}
                         </span>
                       </p>
                     </dd>
@@ -501,16 +516,18 @@ function OrderPage() {
                           <i className="sm">신세계몰</i>
                         </span>
 
-                        <em id="dispSalestrNm_1">(주) 에이온코스퍼</em>
+                        <em id="dispSalestrNm_1">
+                          {orderInfo.productDetail.data.storeName}
+                        </em>
                       </div>
                       <p className="mnodr_unit_tit ">
                         <a href="/">
-                          <strong className="mnodr_unit_brd">
-                            조말론향수{' '}
+                          <strong
+                            className="mnodr_unit_brd"
+                            style={{ fontWeight: 'bold' }}
+                          >
+                            {orderInfo.productDetail.data.name}
                           </strong>
-                          <span className="mnodr_unit_name">
-                            조말론 잉글리쉬 페어 앤 프리지아 코롱 30ml★리본포장
-                          </span>
                         </a>
                       </p>
 
@@ -519,19 +536,27 @@ function OrderPage() {
                           <div className="mnodr_unit_oldprice ty2">
                             <del>
                               <span className="blind">정상가격</span>
-                              <em className="ssg_price">89,000</em>
+                              <em className="ssg_price">
+                                {productPrice.toLocaleString()}
+                              </em>
                             </del>
                             <span className="ssg_tx">원</span>
                           </div>
 
                           <div className="mnodr_unit_newprice ty2">
                             <span className="blind">판매가격</span>
-                            <em className="ssg_price">86,330</em>
+                            <em className="ssg_price">
+                              {(
+                                productPrice - productSalePrice
+                              ).toLocaleString()}
+                            </em>
                             <span className="ssg_tx">원</span>
                           </div>
                         </div>
                         <div className="mnodr_unit_r">
-                          <span className="mnodr_unit_option">수량 1개</span>
+                          <span className="mnodr_unit_option">
+                            수량 {orderInfo.productDetail.count}개
+                          </span>
                         </div>
                       </div>
                     </div>

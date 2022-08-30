@@ -7,13 +7,13 @@ import './styles/index.scss';
 
 function Root() {
   return (
-    <BrowserRouter>
-      <RecoilRoot>
-        <AuthContextProvider>
+    <AuthContextProvider>
+      <BrowserRouter>
+        <RecoilRoot>
           <App />
-        </AuthContextProvider>
-      </RecoilRoot>
-    </BrowserRouter>
+        </RecoilRoot>
+      </BrowserRouter>
+    </AuthContextProvider>
   );
 }
 

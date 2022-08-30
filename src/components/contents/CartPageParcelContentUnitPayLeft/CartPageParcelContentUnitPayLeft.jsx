@@ -16,7 +16,7 @@ function CartPageParcelContentUnitPayLeft({
     if (discountRate === 0) {
       calPrice = productPrice * 1;
     } else {
-      calPrice = productPrice * (1 - discountRate);
+      calPrice = (productPrice * (100 - discountRate)) / 100;
     }
 
     setSellingPrice(calPrice);

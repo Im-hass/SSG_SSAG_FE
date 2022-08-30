@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { orderInfoState } from '../../recoil/states';
+import { Header, FloatingContents, Footer } from '../../components/common';
+
 import ProductImgHeaderBtn from './Product/ProductImgHeaderBtn';
 import ProductSwiper from './Product/ProductSwiper';
 import ProductBrand from './Product/ProductBrand';
@@ -15,7 +19,6 @@ import ShareBtn from './Product/ShareBtn';
 import ProductBackButton from './Product/ProductBackButton';
 import ProductLikeCouponBtn from './Product/ProductLikeBtn';
 import ProductLikeCouponSection from './Product/ProductLikeCouponSection';
-import { Header, FloatingContents, Footer } from '../../components/common';
 import ProductInfo from './Product/ProductInfo';
 import ProductAlert from './Product/ProductAlert';
 import ProductDetailInfo from './Product/ProductDetailInfo';
@@ -31,6 +34,8 @@ import ProductDetailCategory from './Product/ProductDetailCategory';
 function Product() {
   const [productData, setProductData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+
   const { productId } = useParams();
   const loginedUrl = `http://13.209.26.150:9000/users/products/info/${productId}`;
   const notLoginedUrl = `http://13.209.26.150:9000/non-users/products/info/${productId}`;

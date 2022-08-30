@@ -10,7 +10,7 @@ function ProductExplaination({ productData }) {
     if (data.sale === 0) {
       calPrice = data.price * 1;
     } else {
-      calPrice = data.price * data.sale;
+      calPrice = (data.price * (100 - data.sale)) / 100;
     }
 
     setDiscountedPrice(calPrice);

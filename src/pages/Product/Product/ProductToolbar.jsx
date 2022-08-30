@@ -28,7 +28,11 @@ function ProductToolbar({ productData }) {
             <PdtTool01 buyBtn={buyBtn} handleOpenBtn={handleOpenBtn} />
           )}
           {toggleOn === 'on' && (
-            <PdtTool02 goBuyBtn={goBuyBtn} handleOpenBtn={handleOpenBtn} />
+            <PdtTool02
+              goBuyBtn={goBuyBtn}
+              productData={productData}
+              handleOpenBtn={handleOpenBtn}
+            />
           )}
         </div>
       </div>
