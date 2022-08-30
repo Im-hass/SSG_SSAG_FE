@@ -21,11 +21,16 @@ function Cart() {
 
     if (!token) return;
 
+    // setHeaderCartCount(res.data.result.storeList.);
     axios
       .get(getCartDataUrl, headers)
       .then((res) => {
         console.log('cart header cnt result:', res);
-        setHeaderCartCount(res.data.result.length);
+        const data = res.data.result.storeList;
+        for (let i = 0; i < data.length; i += 1) {
+          const storeData = data[i].cartList.length;
+          setHeaderCartCount(storeData);
+        }
       })
       .catch((err) => console.log('cart header  cnt err:', err));
   }, [isHeaderCartCnt]);

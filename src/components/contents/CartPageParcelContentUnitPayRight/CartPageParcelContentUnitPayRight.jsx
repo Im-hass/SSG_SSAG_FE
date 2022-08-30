@@ -4,13 +4,14 @@ import { useRecoilState } from 'recoil';
 import { isCntPut } from '../../../recoil/states';
 import './CartPageParcelContentUnitPayRight.scss';
 
-function CartPageParcelContentUnitPayRight({ cartItem }) {
-  const [isCnt, setIsCnt] = useRecoilState(isCntPut);
+function CartPageParcelContentUnitPayRight({ cartItem, isCnt, setIsCnt }) {
+  // const [isCnt, setIsCnt] = useRecoilState(isCntPut);
   const [cartItemCnt, setCartItemCnt] = useState(cartItem.count);
   const cartItemId = cartItem.cartId;
 
-  const putProductCount = (cnt) => {
+  const putProductCount = (cnt, action) => {
     const token = localStorage.getItem('token');
+    const putCntUrl = 'http://13.209.26.150:9000/users/carts/count';
     const productData = {
       cartId: cartItemId,
       count: cnt,
@@ -22,32 +23,23 @@ function CartPageParcelContentUnitPayRight({ cartItem }) {
     };
 
     axios
-      .put('http://13.209.26.150:9000/users/carts/count', productData, headers)
+      .put(putCntUrl, productData, headers)
       .then((res) => {
         console.log('cart cnt result:', res);
+        setIsCnt(!isCnt);
+
+        if (action === 'inc') {
+          setCartItemCnt((prevCnt) => prevCnt + 1);
+        } else if (cartItemCnt > 1 && action === 'dec') {
+          setCartItemCnt((prevCnt) => prevCnt - 1);
+        }
       })
       .catch((err) => console.log('cart cnt err:', err));
   };
 
-  const handleProductCount = (action) => {
-    if (action === 'inc') {
-      setCartItemCnt((prevCnt) => {
-        const currCnt = prevCnt + 1;
-        return currCnt;
-      });
-      setIsCnt(!isCnt);
-    } else if (cartItemCnt > 1) {
-      setCartItemCnt((prevCnt) => {
-        const currCnt = prevCnt - 1;
-        return currCnt;
-      });
-      setIsCnt(!isCnt);
-    }
+  const handleCountButton = (action) => {
+    putProductCount(cartItemCnt, action);
   };
-
-  useEffect(() => {
-    putProductCount(cartItemCnt);
-  }, [isCnt]);
 
   return (
     <div className="mnodr_unit_r">
@@ -60,7 +52,7 @@ function CartPageParcelContentUnitPayRight({ cartItem }) {
           type="button"
           name="btUpdOrdQtyMinus"
           className="mnodr_btn_minus cartTracking"
-          onClick={() => handleProductCount('dec')}
+          onClick={() => handleCountButton('dec')}
         >
           <i className="mnodr_ic ic_minus">
             <span className="blind">주문수량빼기</span>
@@ -70,7 +62,7 @@ function CartPageParcelContentUnitPayRight({ cartItem }) {
           type="button"
           name="btUpdOrdQtyPlus"
           className="mnodr_btn_plus cartTracking"
-          onClick={() => handleProductCount('inc')}
+          onClick={() => handleCountButton('inc')}
         >
           <i className="mnodr_ic ic_plus">
             <span className="blind">주문수량더하기</span>

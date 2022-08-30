@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CartPageParcelContentSummary, CartPageStoreList } from '../index';
 import './CartPageParcel.scss';
 
 function CartPageParcel({
   cartData,
+  isCnt,
+  setIsCnt,
   isDelete,
   setIsDelete,
   isModalOpen,
@@ -18,6 +20,8 @@ function CartPageParcel({
           <div key={storeList.storeId} className="mnodr_unit">
             <CartPageStoreList
               storeList={storeList}
+              isCnt={isCnt}
+              setIsCnt={setIsCnt}
               isDelete={isDelete}
               setIsDelete={setIsDelete}
               isModalOpen={isModalOpen}

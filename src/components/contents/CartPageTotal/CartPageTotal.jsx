@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import './CartPageTotal.scss';
 
-function CartPageTotal({ data, isChange, isDelete, isCnt }) {
-  const [defaultPrice, setDefaultPrice] = useState(0);
+function CartPageTotal({ cartData, isChange, isDelete, isCnt }) {
+  const defaultPrice = cartData.totalOrder;
+  const salePrice = cartData.totalSale;
+  const totalPrice = cartData.totalAmount;
+  const chargedItems = cartData.storeList.map((stores) =>
+    stores.cartList.forEach((cartItem) => {
+      const cartItemPrice = cartItem.productOptionDto.productDto.price;
+      return cartItemPrice >= 30000;
+    }),
+  ).length;
+  const deliveryFee = 3000 * chargedItems;
 
   return (
     <div className="mnodr_total" id="cartInformation">
@@ -16,7 +25,10 @@ function CartPageTotal({ data, isChange, isDelete, isCnt }) {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              +<em className="ssg_price viewAmt_sellprc">기본금액</em>
+              +
+              <em className="ssg_price viewAmt_sellprc">
+                {defaultPrice.toLocaleString()}
+              </em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -27,7 +39,10 @@ function CartPageTotal({ data, isChange, isDelete, isCnt }) {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              -<em className="ssg_price viewAmt_dcprc">할인금액</em>
+              -
+              <em className="ssg_price viewAmt_dcprc">
+                {salePrice.toLocaleString()}
+              </em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -38,7 +53,10 @@ function CartPageTotal({ data, isChange, isDelete, isCnt }) {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              +<em className="ssg_price viewAmt_shppcst">배송비</em>
+              +
+              <em className="ssg_price viewAmt_shppcst">
+                {deliveryFee.toLocaleString()}
+              </em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -51,7 +69,9 @@ function CartPageTotal({ data, isChange, isDelete, isCnt }) {
           </dt>
           <dd>
             <span className="mnodr_priceitem_total">
-              <em className="ssg_price viewAmt_paymt">총 금액</em>
+              <em className="ssg_price viewAmt_paymt">
+                {totalPrice.toLocaleString()}
+              </em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>

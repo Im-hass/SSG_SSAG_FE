@@ -11,6 +11,8 @@ import {
 
 function CartPageStoreList({
   storeList,
+  isCnt,
+  setIsCnt,
   isDelete,
   setIsDelete,
   isModalOpen,
@@ -36,8 +38,15 @@ function CartPageStoreList({
             <CartPageParcelContentUnitTit cartItem={cartItem} index={index} />
 
             <div className="mnodr_unit_prdpay">
-              <CartPageParcelContentUnitPayLeft cartItem={cartItem} />
-              <CartPageParcelContentUnitPayRight cartItem={cartItem} />
+              <CartPageParcelContentUnitPayLeft
+                cartItem={cartItem}
+                isCnt={isCnt}
+              />
+              <CartPageParcelContentUnitPayRight
+                cartItem={cartItem}
+                isCnt={isCnt}
+                setIsCnt={setIsCnt}
+              />
             </div>
 
             <CartPageParcelContentUnitBtn

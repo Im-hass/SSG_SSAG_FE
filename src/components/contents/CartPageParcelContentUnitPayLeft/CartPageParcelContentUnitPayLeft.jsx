@@ -1,8 +1,9 @@
 import React from 'react';
+
 import './CartPageParcelContentUnitPayLeft.scss';
 
 function CartPageParcelContentUnitPayLeft({ cartItem }) {
-  const netPrice = cartItem.cartTotal;
+  const defaultPrice = cartItem.cartTotal;
   const salePrice = cartItem.cartSale;
   const sellingPrice = cartItem.cartAmount;
 
@@ -12,7 +13,7 @@ function CartPageParcelContentUnitPayLeft({ cartItem }) {
         <del>
           <span className="blind">정상가격</span>
           <em className="ssg_price itemSellprc">
-            {cartItem && netPrice.toLocaleString()}
+            {cartItem && defaultPrice.toLocaleString()}
           </em>
           <span className="ssg_tx">원</span>
         </del>
@@ -41,7 +42,7 @@ function CartPageParcelContentUnitPayLeft({ cartItem }) {
                 <dd>
                   <strong className="mnodr_tx_primary">
                     <em className="ssg_price itemSellprc">
-                      {cartItem && netPrice.toLocaleString()}
+                      {cartItem && defaultPrice.toLocaleString()}
                     </em>
                     <span className="ssg_tx">원</span>
                   </strong>

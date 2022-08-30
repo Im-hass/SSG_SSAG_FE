@@ -21,11 +21,11 @@ import AuthContext from '../store/auth-context';
 
 function CartPage() {
   const ctx = useContext(AuthContext);
-  const [isCnt] = useRecoilState(isCntPut);
+  // const [isCnt] = useRecoilState(isCntPut);
+  const [isCnt, setIsCnt] = useState(false);
   const [cartData, setCartData] = useState(null);
   const [isDelete, setIsDelete] = useState(false);
   const [isChange, setIsChange] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dataId, setDataId] = useState(null);
   const [cartId, setCartId] = useState(null);
@@ -34,9 +34,7 @@ function CartPage() {
     const token = localStorage.getItem('token');
     const headers = {
       headers: {
-        // Authorization: JSON.parse(token),
-        Authorization:
-          'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NjExNTkxMjgsImV4cCI6MTY2Mjk3MzUyOH0.p8eB4KLaH9nZpoAkF29nlDt55FLDNh_h7_hPvpxua0M',
+        Authorization: JSON.parse(token),
       },
     };
     axios
@@ -49,7 +47,6 @@ function CartPage() {
       .catch((err) => console.log('cart page error:', err));
   }, [isDelete, isChange, isCnt]);
 
-  if (isLoading) return <div>로딩 중</div>;
   if (!cartData) return <div>데이터 없음</div>;
 
   return (
@@ -97,6 +94,8 @@ function CartPage() {
                   <CartPageParcelHeader />
                   <CartPageParcel
                     cartData={cartData}
+                    isCnt={isCnt}
+                    setIsCnt={setIsCnt}
                     isDelete={isDelete}
                     setIsDelete={setIsDelete}
                     isModalOpen={isModalOpen}
@@ -109,7 +108,7 @@ function CartPage() {
               <div className="mnodr_thickhr" />
 
               <CartPageTotal
-                data={cartData}
+                cartData={cartData}
                 isChange={isChange}
                 isDelete={isDelete}
                 isCnt={isCnt}
