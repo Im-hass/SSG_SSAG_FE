@@ -7,7 +7,7 @@ function CartPageTotal({ cartData, isChange, isDelete, isCnt }) {
   const totalPrice = cartData.totalAmount;
   const chargedItems = cartData.storeList.map((stores) =>
     stores.cartList.forEach((cartItem) => {
-      const cartItemPrice = cartItem.productOptionDto.productDto.price;
+      const cartItemPrice = cartItem.cartAmount;
       return cartItemPrice >= 30000;
     }),
   ).length;
