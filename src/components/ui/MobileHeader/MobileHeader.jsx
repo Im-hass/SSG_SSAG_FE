@@ -14,6 +14,7 @@ import './MobileHeader.scss';
 function MobileHeader(props) {
   const { title } = props;
   const [isOpen] = useRecoilState(isOpenState);
+  const token = localStorage.getItem('token');
 
   return (
     <header
@@ -26,11 +27,15 @@ function MobileHeader(props) {
           {!isOpen && <HeaderPrevButton />}
           {!isOpen && <HeaderTitle title={title} />}
 
-          <div className="mcom_tit_rgt">
-            {!isOpen && title === '장바구니' && <HeaderSearchButton />}
-            {!isOpen && title !== '장바구니' && <Cart />}
-            {!isOpen && <HeaderHomeButton />}
-          </div>
+          {token === null ? (
+            ''
+          ) : (
+            <div className="mcom_tit_rgt">
+              {!isOpen && title === '장바구니' && <HeaderSearchButton />}
+              {!isOpen && title !== '장바구니' && <Cart />}
+              {!isOpen && <HeaderHomeButton />}
+            </div>
+          )}
         </div>
       )}
       {isOpen && <MobileHeaderSearch />}

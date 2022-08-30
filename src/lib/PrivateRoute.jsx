@@ -9,7 +9,7 @@ function PrivateRoute() {
   useEffect(() => {
     if (!authCtx.isLogin) {
       setTimeout(() => {
-        toast.error('접근권한이 없습니다.');
+        toast.error('로그인 후 이용 가능한 서비스입니다.');
       }, 100);
     }
   }, []);
@@ -20,13 +20,6 @@ function PrivateRoute() {
       <Toaster
         containerStyle={{
           top: 30,
-        }}
-        toastOptions={{
-          error: {
-            iconTheme: {
-              primary: '#ff5b59',
-            },
-          },
         }}
       />
     </>

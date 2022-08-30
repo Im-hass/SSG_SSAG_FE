@@ -74,7 +74,7 @@ function LoginPage() {
             if (checkedSaveId) localStorage.setItem('id', inputData.loginId);
             authCtx.login(JSON.stringify(res.data.result));
             navigate('/');
-            toast.success('로그인했습니다.');
+            toast.success('환영합니다!');
           }
         });
     }
@@ -180,13 +180,6 @@ function LoginPage() {
       <Toaster
         containerStyle={{
           top: 30,
-        }}
-        toastOptions={{
-          success: {
-            iconTheme: {
-              primary: '#ff5b59',
-            },
-          },
         }}
       />
     </div>
