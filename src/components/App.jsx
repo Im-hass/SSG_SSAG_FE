@@ -55,9 +55,9 @@ function App() {
         )}
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/products" element={<ProductListPage />}>
-          <Route path=":largeCategoryId" element={<ProductListPage />}>
-            <Route path=":mediumCategoryId" element={<ProductListPage />}>
-              <Route path=":smallCategoryId" element={<ProductListPage />} />
+          <Route path=":lgId" element={<ProductListPage />}>
+            <Route path=":mdId" element={<ProductListPage />}>
+              <Route path=":smId" element={<ProductListPage />} />
             </Route>
           </Route>
         </Route>
