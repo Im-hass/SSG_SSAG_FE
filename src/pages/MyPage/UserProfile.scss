@@ -1,0 +1,109 @@
+.myssg_user_profile {
+  display: flex;
+  align-items: center;
+}
+
+.myssg_user_profile .myssg_profile_photo {
+  position: relative;
+  display: flex;
+  margin-right: 15px;
+}
+
+.myssg_user_profile .myssg_profile_photo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.myssg_user_profile .myssg_profile_setting {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 10%);
+  border-radius: 100%;
+}
+
+.myssg_user_profile .myssg_profile_setting::before {
+  display: block;
+  content: "";
+  background-image: url(https://sui.ssgcdn.com/ui/m_ssg/img/sprites/sp_myssg_main_20220329@2x.png);
+  background-position: -78px -94px;
+  background-size: 134px 110px;
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0 2px;
+}
+
+.blind {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  line-height: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+  clip: rect(0, 0, 0, 0);
+}
+
+.blind::before {
+  display: block;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  content: "\00a0";
+}
+
+.myssg_user_profile .myssg_profile_info {
+  padding-top: 1px;
+}
+
+.myssg_user_profile .myssg_profile_info .myssg_user_name {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #222;
+}
+
+.myssg_user_profile .myssg_profile_info .myssg_user_name a {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.myssg_user_profile .myssg_profile_info .myssg_user_name span::after {
+  display: inline-block;
+  background-image: url(https://sui.ssgcdn.com/ui/m_ssg/img/sprites/sp_myssg_main_20220329@2x.png);
+  background-position: 0px -34px;
+  background-size: 134px 110px;
+  width: 20px;
+  height: 20px;
+  vertical-align: top;
+  content: "";
+}
+
+.myssg_user_profile .myssg_profile_info .myssg_user_grade {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #222;
+}
+
+.myssg_user_profile .myssg_profile_info .myssg_user_grade span {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.myssg_user_profile .myssg_profile_info .myssg_user_grade span strong {
+  font-family: "Roboto-Medium", sans-serif;
+}
+
+.myssg_primary_text {
+  color: #ff3e3e;
+}

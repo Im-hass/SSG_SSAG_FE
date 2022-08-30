@@ -11,11 +11,11 @@ import {
   SearchResultPage,
   PaymentMeansPage,
   CategoryPage,
-  MyPage,
   LoginPage,
   ProductListPage,
   ModifyDestinationPage,
 } from '../pages';
+import { MyPage } from '../pages/MyPage';
 import {
   OrderPage,
   OrderChangeDestinationPage,
