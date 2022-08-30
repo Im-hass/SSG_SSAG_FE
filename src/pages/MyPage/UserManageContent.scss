@@ -1,0 +1,34 @@
+.myssg_manage_conts {
+  position: relative;
+}
+
+.myssg_manage_conts + .myssg_manage_conts {
+  margin-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 18px;
+}
+
+.myssg_manage_title {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #222;
+}
+
+.myssg_manage_list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 10px;
+  -webkit-column-gap: 15px;
+  -moz-column-gap: 15px;
+  column-gap: 15px;
+}
+
+.myssg_manage_list li span {
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  color: #777;
+}
