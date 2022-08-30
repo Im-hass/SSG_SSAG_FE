@@ -1,55 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import {
-  DestinationTit,
-  DestinationTabList,
-  DestinationNoData,
-  DestinationBanner,
-  DestinationList,
-  DestinationAddBtn,
-  DestinationBtns,
-  DestinationListInfo,
-} from '../index';
-
-function defaultAddrSort(a, b) {
-  if (a.addrDefault > b.addrDefault) {
-    return -1;
-  }
-  return 0;
-}
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import { DestinationTit, DestinationTabList } from '../index';
 
 function DestinationContent() {
-  const [datas, setDatas] = useState();
   const [menuName, setMenuName] = useState('myDes');
-  const [isDelete, setIsDelete] = useState(false);
-  const [isDefaultChanged, setIsDefaultChanged] = useState(false);
-  const [selected, setSelected] = useState();
 
   const handleMenu = (name) => {
     setMenuName(name);
   };
-
-  const handleSelectedAddr = (id) => {
-    setSelected(id);
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    axios
-      .get('http://13.209.26.150:9000/users/shipping-addr', {
-        headers: {
-          Authorization: JSON.parse(token),
-        },
-      })
-      .then((res) => {
-        const lists = res.data.result;
-        const sortLists = lists.sort(defaultAddrSort);
-        setSelected(lists[0].addrId);
-        setDatas(sortLists);
-      })
-      .catch((e) => new Error(e));
-  }, [isDelete, isDefaultChanged]);
 
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
@@ -61,53 +19,7 @@ function DestinationContent() {
             <div className="myodr_tab">
               <DestinationTabList handleMenu={handleMenu} menuName={menuName} />
 
-              {menuName === 'myDes' ? (
-                <div className="myodr_tab_cont">
-                  <div className="myodr_tab_panel" role="tabpanel">
-                    {datas && datas.length !== 0 ? (
-                      <>
-                        <DestinationList
-                          datas={datas}
-                          isDelete={isDelete}
-                          setIsDelete={setIsDelete}
-                          handleSelectedAddr={handleSelectedAddr}
-                        />
-                        <Link to="/addDestination">
-                          <DestinationAddBtn />
-                        </Link>
-                        <DestinationBtns
-                          selected={selected}
-                          isDefaultChanged={isDefaultChanged}
-                          setIsDefaultChanged={setIsDefaultChanged}
-                        />
-                        <DestinationListInfo />
-                      </>
-                    ) : (
-                      <DestinationNoData />
-                    )}
-                  </div>
-
-                  <DestinationBanner />
-                </div>
-              ) : (
-                <div className="myodr_tab_cont">
-                  <div className="myodr_tab_panel" role="tabpanel">
-                    <div className="myodr_nodata">
-                      <span className="myodr_nodata_ico">&nbsp;</span>
-                      <p className="myodr_nodata_tx">
-                        등록된 함께장보기 배송지가 없습니다.
-                      </p>
-                      <button
-                        type="button"
-                        className="myodr_btn myodr_btn_gray2"
-                        // onClick="location.href='https://pay.ssg.com/m/cartShare/create.ssg';"
-                      >
-                        <span>함께장보기 시작하기</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <Outlet />
             </div>
           </div>
         </div>

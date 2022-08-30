@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './CartPageParcelContentUnitPayLeft.scss';
 
-function CartPageParcelContentUnitPayLeft() {
+function CartPageParcelContentUnitPayLeft({
+  data,
+  sellingPrice,
+  setSellingPrice,
+  totalPrice,
+}) {
+  const productPrice = data.productOption.product.price;
+  const discountRate = data.productOption.product.sale;
+
+  const calculateSellingPrice = () => {
+    let calPrice = 0;
+
+    if (discountRate === 0) {
+      calPrice = productPrice * 1;
+    } else {
+      calPrice = (productPrice * (100 - discountRate)) / 100;
+    }
+
+    setSellingPrice(calPrice);
+  };
+
+  useEffect(() => {
+    calculateSellingPrice();
+  }, []);
+
   return (
     <div className="mnodr_unit_l">
       <div className="mnodr_unit_oldprice">
         <del>
           <span className="blind">정상가격</span>
-          <em className="ssg_price itemSellprc">23,000</em>
+          <em className="ssg_price itemSellprc">
+            {productPrice.toLocaleString()}
+          </em>
           <span className="ssg_tx">원</span>
         </del>
 
@@ -32,7 +58,7 @@ function CartPageParcelContentUnitPayLeft() {
               <h3 className="mnodr_modal_tit">할인내역 정보</h3>
               <dl className="mnodr_priceitem ty_narrow">
                 <dt>
-                  <span className="mnodr_priceitem_stit">판매가</span>
+                  <span className="mnodr_priceitem_stit">{sellingPrice}</span>
                 </dt>
                 <dd>
                   <strong className="mnodr_tx_primary">
@@ -62,7 +88,7 @@ function CartPageParcelContentUnitPayLeft() {
                 </dt>
                 <dd>
                   <strong className="mnodr_tx_primary">
-                    <em className="ssg_price itemOrdAmt">20,700</em>
+                    <em className="ssg_price itemOrdAmt">{sellingPrice}</em>
                     <span className="ssg_tx">원</span>
                   </strong>
                 </dd>
@@ -83,7 +109,7 @@ function CartPageParcelContentUnitPayLeft() {
       </div>
       <div className="mnodr_unit_newprice">
         <span className="blind">판매가격</span>
-        <em className="ssg_price itemOrdAmt">20,700</em>
+        <em className="ssg_price itemOrdAmt">{totalPrice.toLocaleString()}</em>
         <span className="ssg_tx">원</span>
       </div>
     </div>

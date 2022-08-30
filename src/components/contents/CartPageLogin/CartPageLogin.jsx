@@ -1,17 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './CartPageLogin.scss';
 
 function CartPageLogin() {
+  const [defaultDestination, setDefaultDestination] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      const defaultDestinationUrl =
+        'http://13.209.26.150:9000/users/shipping-addr/default';
+      const headers = {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      };
+      setIsLoading(true);
+      try {
+        const res = await axios.get(defaultDestinationUrl, headers);
+        console.log('cart des result:', res);
+        setDefaultDestination(res.data.result);
+      } catch (err) {
+        console.log('cart des err:', err);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  if (isLoading) return <div>로딩 중</div>;
+  if (!defaultDestination) return <div>데이터 없음</div>;
+
   return (
     <>
       <div className="mnodr_info_header">
         <div className="mnodr_info_row">
           <i className="mnodr_ic ic_location" />
-          <h3 className="mnodr_info_tit">user.name</h3>
+          <h3 className="mnodr_info_tit">{defaultDestination.recipient}</h3>
           <span className="mnodr_info_subtit">[기본배송지]</span>
         </div>
         <p className="mnodr_info_desc">
-          <span className="blind">배송지 주소</span>user.address
+          <span className="blind">배송지 주소</span>
+          {defaultDestination.streetAddr}
         </p>
         <p className="mnodr_tx_desc mnodr_tx_point" id="delicoText" />
       </div>

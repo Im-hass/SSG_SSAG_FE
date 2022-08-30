@@ -1,40 +1,89 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import {
+  selectedProductCount,
+  productOptionId,
+  isHeaderCartCntSubmit,
+} from '../../../recoil/states';
 
-function PdtTool02({ goBuyBtn, handleOpenBtn }) {
+function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
+  const navigate = useNavigate();
+
+  const [selectedProductOptionId] = useRecoilState(productOptionId);
+  const [productCount] = useRecoilState(selectedProductCount);
+  const [isHeaderCartCnt, setIsHeaderCartCnt] = useRecoilState(
+    isHeaderCartCntSubmit,
+  );
+
+  useEffect(() => {
+    console.log(productData, selectedProductOptionId, productCount);
+  }, []);
+
+  const handleAddCart = () => {
+    const token = localStorage.getItem('token');
+    const data = {
+      cartList: [
+        {
+          productOptionId: selectedProductOptionId,
+          count: productCount,
+        },
+      ],
+    };
+    const headers = {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    };
+
+    axios
+      .post('http://13.209.26.150:9000/users/carts', data, headers)
+      .then((res) => {
+        console.log('add cart res:', res);
+        setIsHeaderCartCnt(!isHeaderCartCnt);
+      })
+      .catch((err) => console.log('add cart err:', err));
+  };
+
+  const handleClickOrderBtn = () => {
+    navigate('/order', {
+      state: {
+        data: productData,
+        optionId: selectedProductOptionId,
+        count: productCount,
+      },
+    });
+    handleOpenBtn('open');
+  };
+
   return (
     <div className={`btm_bgn_in dps2 ${goBuyBtn}`}>
       <ul className="btm_bgn_bx" id="dps2_gift" style={{ display: 'none' }}>
         <li>
-          <a
-            // href="javascript:;"
-            href="/"
-            onClick="fn_giftService('10', '12');return false;"
-            className="mndtl_btn type01 clickable"
-            target="_parent"
-          >
+          <a href="/" className="mndtl_btn type01 clickable" target="_parent">
             <span className="btn_tx">선물하기</span>
           </a>
         </li>
       </ul>
       <ul className="btm_bgn_bx" id="dps2_buy">
         <li>
-          <a
-            // href="javascript:;"
-            href="/"
-            onClick="fn_SaveCart(this, 'cart', 'floating');return false;"
+          <button
+            type="button"
             className="mndtl_btn type02 clickable"
             target="_parent"
+            onClick={handleAddCart}
           >
             <span className="btn_tx">장바구니</span>
-          </a>
+          </button>
         </li>
         <li>
-          <Link
-            to="/buyPage"
+          <button
+            type="button"
             className="mndtl_btn type01 clickable"
             target="_parent"
-            onClick={() => handleOpenBtn('open')}
+            state={productData}
+            onClick={handleClickOrderBtn}
           >
             <span className="btn_tx ssgpay">
               <i className="ico_txt_ssgpay_btm">
@@ -42,7 +91,7 @@ function PdtTool02({ goBuyBtn, handleOpenBtn }) {
               </i>
               바로구매
             </span>
-          </Link>
+          </button>
         </li>
       </ul>
     </div>

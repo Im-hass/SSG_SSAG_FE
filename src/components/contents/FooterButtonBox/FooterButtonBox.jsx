@@ -1,24 +1,32 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import AuthContext from '../../../store/auth-context';
 
 function FooterButtonBox() {
-  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
+  const handleLogout = () => {
+    authCtx.logout();
+    navigate('/');
+    toast.success('로그아웃되었습니다.');
+  };
 
   return (
     <div className="mcom_btnbx_warp">
       <ul className="mcom_btnbx_list">
         <li id="footer_loginBtn">
           <Link
-            to={ctx.isLogin ? '/' : '/login'}
-            onClick={ctx.isLogin && ctx.onLogout}
+            to={authCtx.isLogin ? '/' : '/login'}
+            onClick={authCtx.isLogin && handleLogout}
             className="clickable"
-            name={ctx.isLogin ? '로그아웃' : '로그인'}
+            name={authCtx.isLogin ? '로그아웃' : '로그인'}
           >
-            {ctx.isLogin ? '로그아웃' : '로그인'}
+            {authCtx.isLogin ? '로그아웃' : '로그인'}
           </Link>
         </li>
-        {!ctx.isLogin && (
+        {!authCtx.isLogin && (
           <li id="footer_loginBtn">
             <Link to="/signup" className="clickable">
               회원가입
@@ -39,6 +47,18 @@ function FooterButtonBox() {
           </Link>
         </li>
       </ul>
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#ff5b59',
+            },
+          },
+        }}
+      />
     </div>
   );
 }

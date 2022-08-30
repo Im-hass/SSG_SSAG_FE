@@ -1,10 +1,31 @@
 import React from 'react';
-import axios from 'axios/index';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert';
+import axios from 'axios';
 import { DestinationListBtns } from '../index';
 import './DestinationList.scss';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { CustomAlert } from '../../common/CustomAlert';
 
 function DestinationList({ datas, isDelete, setIsDelete, handleSelectedAddr }) {
-  const handleDelete = (id) => {
+  const navigate = useNavigate();
+
+  const handleModify = (id) => {
+    const token = localStorage.getItem('token');
+    axios
+      .get(`http://13.209.26.150:9000/users/shipping-addr/${id}`, {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        navigate('/modifyDestination', { state: res.data.result });
+      })
+      .catch((err) => new Error(err));
+  };
+
+  const onDelete = (id) => {
     const token = localStorage.getItem('token');
     axios
       .delete(`http://13.209.26.150:9000/users/shipping-addr/${id}`, {
@@ -14,8 +35,28 @@ function DestinationList({ datas, isDelete, setIsDelete, handleSelectedAddr }) {
       })
       .then(() => {
         setIsDelete(!isDelete);
+        toast.success('배송지가 삭제되었습니다.');
       })
-      .catch((e) => new Error(e));
+      .catch((e) => {
+        (() => new Error(e))();
+        toast.error('배송지 삭제에 실패하였습니다');
+      });
+  };
+
+  const handleDelete = (id) => {
+    confirmAlert({
+      // eslint-disable-next-line react/no-unstable-nested-components
+      customUI: ({ onClose }) => (
+        <CustomAlert
+          title="배송지 삭제"
+          desc="배송지를 삭제하시겠습니까?"
+          btnTitle="삭제"
+          id={id}
+          onAction={onDelete}
+          onClose={onClose}
+        />
+      ),
+    });
   };
 
   return (
@@ -59,6 +100,7 @@ function DestinationList({ datas, isDelete, setIsDelete, handleSelectedAddr }) {
                 <DestinationListBtns
                   isDefaultAddr={addrDefault === 1}
                   id={addrId}
+                  handleModify={handleModify}
                   handleDelete={handleDelete}
                 />
               </div>

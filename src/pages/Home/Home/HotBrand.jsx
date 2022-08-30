@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import BannerTitle from './BannerTitle';
 import QuickCont from './QuickCont';
-import q2 from './quickLst2.json';
 
 function HotBrand() {
+  const [datas, setDatas] = useState();
+
+  useEffect(() => {
+    axios
+      .get('http://13.209.26.150:9000/comm-users/main/hot-brand')
+      .then((res) => {
+        setDatas(res.data.result);
+      });
+  }, []);
+
   return (
     <>
       <BannerTitle title="Hot Brand" txt="" isBtn={false} isV2={false} />
-      <QuickCont data={q2} clname="ty_view4" />
+      <QuickCont datas={datas} clname="ty_view4" />
     </>
   );
 }

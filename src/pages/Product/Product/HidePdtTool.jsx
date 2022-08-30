@@ -1,62 +1,101 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { selectedProductCount, productOptionId } from '../../../recoil/states';
 import './style/HidePdtTool.scss';
 
-import Swal from 'sweetalert2';
+function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
+  const [, setSelectedProductOptionId] = useRecoilState(productOptionId);
+  const [productCount, setProductCount] = useRecoilState(selectedProductCount);
+  const [colorOptions, setColorOptions] = useState(null);
+  const [sizeOptions, setSizeOptions] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const { productId } = useParams();
 
-function HidePdtTool({ toggleOn, handleOpenBtn }) {
-  const three = () => {
-    Swal.fire({
-      title: '잠깐 !',
-      text: '3개 이상 구매할 수 없습니다.',
-      icon: 'warning',
-    });
+  // 색상 data 받아오기
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      setIsLoading(true);
+      try {
+        const res = await axios.get(
+          `http://13.209.26.150:9000/comm-users/products/options/color/${productId}`,
+          {
+            headers: {
+              Authorization: JSON.parse(token),
+            },
+          },
+        );
+        setColorOptions(res.data.result);
+        console.log('color response:', res);
+      } catch (err) {
+        console.log('color error:', err);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const getSizeData = () => {
+    const token = localStorage.getItem('token');
+    axios
+      .get(
+        `http://13.209.26.150:9000/comm-users/products/options/size/${productId}/${selectedColor}`,
+        {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        },
+      )
+      .then((res) => {
+        setSizeOptions(res.data.result);
+        console.log('size response:', res);
+      })
+      .catch((err) => console.log('size error:', err));
   };
 
-  const one = () => {
-    Swal.fire({
-      title: '잠깐 !',
-      text: '1개 이상 구매해주세요.',
-      icon: 'warning',
-    });
+  const handleSelectColor = (e) => {
+    const { value } = e.target;
+    setSelectedColor(+value);
   };
 
-  const [pdtCnt, setPdtCnt] = useState(1);
-  const handlePdtCnt = () => {
-    if (pdtCnt < 3) {
-      setPdtCnt((prev) => prev + 1);
-    } else if (pdtCnt > 2) {
-      three();
+  // 색상 선택 후 사이즈 데이터 받아오기
+  useEffect(() => {
+    if (selectedColor !== null) {
+      getSizeData();
+    }
+  }, [selectedColor]);
+
+  const handleSelectSize = (e) => {
+    const { value } = e.target;
+    setSelectedProductOptionId(+value);
+  };
+
+  const handleProductCount = (action) => {
+    if (action === 'inc') {
+      setProductCount((prevCnt) => prevCnt + 1);
+    } else if (action === 'dec') {
+      if (productCount > 1) {
+        setProductCount((prevCnt) => prevCnt - 1);
+      }
     }
   };
 
-  const decPdtCnt = () => {
-    if (pdtCnt > 1) {
-      setPdtCnt((prev) => prev - 1);
-    } else if (pdtCnt <= 1) {
-      one();
-    }
-  };
+  if (isLoading) return <div>로딩 중</div>;
+  if (!colorOptions) return <div>데이터 없음</div>;
+
   return (
     <div
       id="_cdtl_opt_bar"
       className={`mndtl_opt_bar _js_mndtl_opt_bar react-area ${toggleOn}`}
-      data-react-tarea-cd="00006_000000013"
-      data-react-comm-type="item"
-      data-react-comm-id="1000045117545"
-      data-react-salestr-no="6005"
-      data-react-site-no="6004"
     >
-      <div
-        className="mndtl_opt_close"
-        data-react-unit-type="text"
-        data-react-unit-text='[{"type":"tarea_addt_val","value":"닫기"}]'
-      >
+      <div className="mndtl_opt_close">
         <button
           type="button"
           onClick={() => handleOpenBtn('close')}
           className="mndtl_btn_opt_close _js_mndtl_opt_toggle_btn clickable"
-          data-react-tarea="상품상세|옵션바|닫기"
-          data-react-tarea-dtl-cd="t00060"
           target="_parent"
         >
           <span className="blind">열기/닫기</span>
@@ -74,35 +113,67 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
 
               <div className="mndtl_opt_bx">
                 <div id="cdtl_opt_bx_uitem">
-                  <div
-                    className="mndtl_opt_ani add"
-                    data-optn-type="oneitem_result"
-                    data-uitem-id="00000"
-                    data-salestr-no="6005"
-                    data-salestr-nm="S.COM몰"
-                  >
+                  <div className="mndtl_opt_ani add">
                     <div className="mndtl_opt_selected">
                       <dl>
-                        <dt>[젠틀몬스터]랭 01</dt>
+                        <div className="product_option_box">
+                          <div className="product_option_info">
+                            <span className="product_option_tit">색상: </span>
+                            <select onChange={handleSelectColor}>
+                              <option value="default">
+                                색상을 선택해주세요
+                              </option>
+                              {colorOptions &&
+                                colorOptions.map((color) => (
+                                  <option
+                                    key={color.colorId}
+                                    value={color.colorId}
+                                  >
+                                    {color.color}
+                                  </option>
+                                ))}
+                            </select>
+                          </div>
+                          <div className="product_option_info">
+                            <span className="product_option_tit">사이즈: </span>
+                            <select onChange={handleSelectSize}>
+                              <option value="default" data-stock="default">
+                                사이즈를 선택해주세요
+                              </option>
+                              {sizeOptions &&
+                                sizeOptions.map((size) => (
+                                  <option
+                                    key={size.sizeId}
+                                    value={size.productOptionId}
+                                    data-stock={size.stock}
+                                    className={
+                                      size.stock === 0 ? 'out_of_Stock' : ''
+                                    }
+                                    disabled={size.stock === 0}
+                                  >
+                                    {size.stock > 0
+                                      ? size.size
+                                      : `${size.size}(품절)`}
+                                  </option>
+                                ))}
+                            </select>
+                          </div>
+                        </div>
                         <dd className="mndtl_art_l">
-                          <div
-                            className="mndtl_amount"
-                            data-react-unit-type="text"
-                            data-react-unit-text='[{"type":"tarea_addt_val","value":"수량선택"}]'
-                          >
+                          <div className="mndtl_amount">
                             <button
                               type="button"
-                              onClick={decPdtCnt}
                               className="mndtl_b_minus clickable"
+                              onClick={() => handleProductCount('dec')}
                             >
                               빼기
                             </button>
                             <span className="mndtl_opa_area">
-                              <span className="opa_tx">{pdtCnt}</span>
+                              <span className="opa_tx">{productCount}</span>
                             </span>
                             <button
                               type="button"
-                              onClick={handlePdtCnt}
+                              onClick={() => handleProductCount('inc')}
                               className="mndtl_b_plus clickable"
                             >
                               더하기
@@ -112,7 +183,12 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
                         <dd className="mndtl_art_r">
                           <span className="price">
                             <em className="ssg_price" data-prc="249000">
-                              {(pdtCnt * 249000).toLocaleString()}
+                              {(
+                                productCount *
+                                ((productData.price *
+                                  (100 - productData.sale)) /
+                                  100)
+                              ).toLocaleString()}
                             </em>
                             <span className="ssg_tx">원</span>
                           </span>
@@ -130,7 +206,10 @@ function HidePdtTool({ toggleOn, handleOpenBtn }) {
           <strong className="mndtl_label">총 합계</strong>
           <strong className="price">
             <em id="totalPrc" className="ssg_price">
-              {(pdtCnt * 249000).toLocaleString()}
+              {(
+                productCount *
+                ((productData.price * (100 - productData.sale)) / 100)
+              ).toLocaleString()}
             </em>
             <span className="ssg_tx">원</span>
           </strong>

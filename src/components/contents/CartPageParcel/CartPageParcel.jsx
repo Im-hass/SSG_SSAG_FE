@@ -1,18 +1,25 @@
 import React from 'react';
-import { CartPageParcelContent, CartPageParcelHeader } from '../index';
+import { CartPageParcelContent } from '../index';
 
 import './CartPageParcel.scss';
 
-function CartPageParcel() {
+function CartPageParcel({
+  data,
+  index,
+  isPut,
+  setIsPut,
+  isDelete,
+  setIsDelete,
+}) {
   return (
-    <div
-      id="_acdo_parcel"
-      name="progress_20"
-      className="mnodr_acdo v2 ty_parcel progress_20 addOrdTab addOrd_"
-    >
-      <CartPageParcelHeader />
-      <CartPageParcelContent />
-    </div>
+    <CartPageParcelContent
+      data={data}
+      index={index}
+      isPut={isPut}
+      setIsPut={setIsPut}
+      isDelete={isDelete}
+      setIsDelete={setIsDelete}
+    />
   );
 }
 

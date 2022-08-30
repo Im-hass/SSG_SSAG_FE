@@ -12,3 +12,5 @@ export { default as ProductDetailPage } from './ProductDetailPage';
 export { default as SignUpPage } from './SignUp/SignUpPage';
 export { default as LoginPage } from './LoginPage';
 export { default as OrderPage } from './Order/OrderPage';
+export { default as ProductListPage } from './ProductListPage';
+export { default as ModifyDestinationPage } from './ModifyDestinationPage';

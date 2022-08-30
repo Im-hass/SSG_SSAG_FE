@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import BannerTitle from './BannerTitle';
 import ItemGoods from './ItemGoods';
 
 function HappyLounge() {
+  const [datas, setDatas] = useState();
+
+  useEffect(() => {
+    axios
+      .get('http://13.209.26.150:9000/comm-users/main/happy-lounge')
+      .then((res) => {
+        setDatas(res.data.result);
+      });
+  }, []);
+
   return (
     <>
       <BannerTitle
@@ -11,7 +22,8 @@ function HappyLounge() {
         isBtn
         isV2
       />
-      <ItemGoods />
+      {datas &&
+        datas.map((data) => <ItemGoods key={data.productId} data={data} />)}
     </>
   );
 }

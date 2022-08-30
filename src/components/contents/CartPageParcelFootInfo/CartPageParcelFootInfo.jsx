@@ -12,7 +12,6 @@ function CartPageParcelFootInfo() {
           backgroundImage:
             "url('https://sui.ssgcdn.com/cmpt/banner/202207/2022071216423641510009634100_30.png')",
         }}
-        onClick="location.href='https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000000858&amp;siteNo=6005recruitmentPath=L6007001&amp;eventCode=HPG02'"
       >
         <span className="mnodr_cmplccbn_logo">
           <img
@@ -32,7 +31,6 @@ function CartPageParcelFootInfo() {
           backgroundImage:
             "url('https://sui.ssgcdn.com/cmpt/banner/202202/2022022109481447918457898845_569.png')",
         }}
-        onClick="location.href='https://m.ssg.com/event/eventDetail.ssg?promId=1100580609'"
       >
         <span className="mnodr_cmplccbn_logo">
           <img

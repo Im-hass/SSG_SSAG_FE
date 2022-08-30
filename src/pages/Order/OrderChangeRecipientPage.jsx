@@ -1,33 +1,35 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+
 import { MobileHeader } from '../../components/ui/index';
+import { orderInfoState } from '../../recoil/states';
 
 function OrderChangeRecipientPage() {
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const [recipientInfo, setRecipientInfo] = useState({
-    ...location.state.recipientInfo,
-    refundCheck: false,
-  });
+  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
 
   const handleChangeInput = (e) => {
     if (e.target.name === 'refundCheck') {
-      setRecipientInfo({
-        ...recipientInfo,
-        [e.target.name]: e.target.checked,
+      setOrderInfo({
+        ...orderInfo,
+        recipient: {
+          ...orderInfo.recipient,
+          [e.target.name]: e.target.value,
+        },
       });
     } else {
-      setRecipientInfo({
-        ...recipientInfo,
-        [e.target.name]: e.target.value,
+      setOrderInfo({
+        ...orderInfo,
+        recipient: { ...orderInfo.recipient, [e.target.name]: e.target.value },
       });
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/order', { state: { recipientInfo } });
+    navigate('/order');
   };
 
   return (
@@ -52,7 +54,7 @@ function OrderChangeRecipientPage() {
                 <input
                   type="text"
                   className="payTracking"
-                  value={recipientInfo.name}
+                  value={orderInfo.recipient.name}
                   placeholder="성명을 입력해주세요"
                   maxLength="50"
                   name="name"
@@ -72,7 +74,7 @@ function OrderChangeRecipientPage() {
                     type="tel"
                     name="phone"
                     maxLength="13"
-                    value={recipientInfo.phone}
+                    value={orderInfo.recipient.phone}
                     onChange={handleChangeInput}
                   />
                 </span>
@@ -89,7 +91,7 @@ function OrderChangeRecipientPage() {
                   type="text"
                   id="change.email"
                   name="email"
-                  value={recipientInfo.email}
+                  value={orderInfo.recipient.email}
                   className="payTracking"
                   placeholder="예) email@ssg.com"
                   maxLength="100"
@@ -111,13 +113,30 @@ function OrderChangeRecipientPage() {
                       type="radio"
                       id="change.rdoRefund_10"
                       name="refundCheck"
-                      value="10"
+                      value="주문시 결제수단으로 환불"
                       className="blind payTracking"
                       onChange={handleChangeInput}
                     />
                     <label htmlFor="change.rdoRefund_10">
                       <span className="mnodr_tx_label rfdMthdTxt">
                         주문시 결제수단으로 환불
+                      </span>
+                    </label>
+                  </span>
+                </li>
+                <li>
+                  <span className="mnodr_rdo">
+                    <input
+                      type="radio"
+                      id="change.rdoRefund_11"
+                      name="refundCheck"
+                      value="SSG MONEY로 환불"
+                      className="blind payTracking"
+                      onChange={handleChangeInput}
+                    />
+                    <label htmlFor="change.rdoRefund_11">
+                      <span className="mnodr_tx_label rfdMthdTxt">
+                        SSG MONEY로 환불
                       </span>
                     </label>
                   </span>

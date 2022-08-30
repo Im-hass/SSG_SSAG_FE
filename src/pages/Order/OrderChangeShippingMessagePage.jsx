@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+
 import { MobileHeader } from '../../components/ui/index';
+import { orderInfoState } from '../../recoil/states';
 
 function OrderChangeShippingMessagePage() {
   const navigate = useNavigate();
 
-  const [checkedMessage, setCheckedMessage] = useState('');
+  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
 
   const handleClickInput = (e) => {
-    setCheckedMessage(e.target.value);
+    setOrderInfo({
+      ...orderInfo,
+      message: e.target.value,
+    });
   };
 
   const handleChangeMessage = (e) => {
-    setCheckedMessage(e.target.value);
+    setOrderInfo({
+      ...orderInfo,
+      message: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/order', { state: { checkedMessage } });
+    navigate('/order');
   };
 
   return (

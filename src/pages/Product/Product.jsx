@@ -1,4 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { orderInfoState } from '../../recoil/states';
+import { Header, FloatingContents, Footer } from '../../components/common';
+
 import ProductImgHeaderBtn from './Product/ProductImgHeaderBtn';
 import ProductSwiper from './Product/ProductSwiper';
 import ProductBrand from './Product/ProductBrand';
@@ -6,7 +12,6 @@ import ProductEtcExplain from './Product/ProductEtcExplain';
 import ProductEndlessGoods from './Product/ProductEndlessGoods';
 import ProductExplaination from './Product/ProductExplaination';
 import ProductManySee from './Product/ProductManySee';
-import ProductReview from './Product/ProductReview';
 import ProductQna from './Product/ProductQna';
 import ProductToolbar from './Product/ProductToolbar';
 import ProductOptBar from './Product/ProductOptBar';
@@ -14,7 +19,6 @@ import ShareBtn from './Product/ShareBtn';
 import ProductBackButton from './Product/ProductBackButton';
 import ProductLikeCouponBtn from './Product/ProductLikeBtn';
 import ProductLikeCouponSection from './Product/ProductLikeCouponSection';
-import { Header, FloatingContents, Footer } from '../../components/common';
 import ProductInfo from './Product/ProductInfo';
 import ProductAlert from './Product/ProductAlert';
 import ProductDetailInfo from './Product/ProductDetailInfo';
@@ -28,6 +32,37 @@ import ProductStoreInfo from './Product/ProductStoreInfo';
 import ProductDetailCategory from './Product/ProductDetailCategory';
 
 function Product() {
+  const [productData, setProductData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+
+  const { productId } = useParams();
+  const loginedUrl = `http://13.209.26.150:9000/users/products/info/${productId}`;
+  const notLoginedUrl = `http://13.209.26.150:9000/non-users/products/info/${productId}`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      setIsLoading(true);
+      try {
+        const res = await axios.get(token ? loginedUrl : notLoginedUrl, {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        });
+        console.log('product response:', res);
+        setProductData(res.data.result);
+      } catch (err) {
+        console.log('product error:', err);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  if (isLoading) return <div>로딩 중</div>;
+  if (!productData) return <div>데이터 없음</div>;
+
   return (
     <>
       <Header />
@@ -49,7 +84,7 @@ function Product() {
             <div className="mndtl_wrap ty_default">
               <ProductImgHeaderBtn />
               <ProductSwiper />
-              <ProductExplaination />
+              <ProductExplaination productData={productData} />
               <ProductInfo />
 
               <div className="mndtl_sec mndtl_cont_wrap" id="detailDescTab">
@@ -105,7 +140,7 @@ function Product() {
                   <ProductEtc />
                   <ProductBanners />
                   <ProductDetailCategory />
-                  <ProductStoreInfo />
+                  <ProductStoreInfo productData={productData} />
                 </div>
 
                 <div className="mndtl_recommend">
@@ -121,7 +156,7 @@ function Product() {
         <ProductBackButton />
       </div>
       <ProductOptBar />
-      <ProductToolbar />
+      <ProductToolbar productData={productData} />
       <ProductLikeCouponBtn />
       <ProductLikeCouponSection />
       <ShareBtn />

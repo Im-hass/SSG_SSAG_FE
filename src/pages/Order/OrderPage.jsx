@@ -1,47 +1,74 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable prefer-template */
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
+import { orderInfoState } from '../../recoil/states';
 import { MobileHeader } from '../../components/ui/index';
 
 function OrderPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+  const [clickPayment, setClickPayment] = useState({
+    credit: false,
+    deposit: false,
+    account: false,
+  });
 
-  const [destinationInfo, setDestinationInfo] = useState({});
-  const [recipientInfo, setRecipientInfo] = useState({});
-  const [shippingMessageInfo, setShippingMessageInfo] = useState('');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    setOrderInfo({ ...orderInfo, productDetail: location.state });
 
-    if (location.state.checkedMessage !== undefined)
-      setShippingMessageInfo(location.state.checkedMessage);
-    console.log(location.state);
-
-    axios
-      .get('http://13.209.26.150:9000/users/shipping-addr/default', {
-        headers: {
-          Authorization: JSON.parse(token),
-        },
-      })
-      .then((res) => {
-        setDestinationInfo(res.data.result);
-      });
-
-    axios
-      .get('http://13.209.26.150:9000/users/info', {
-        headers: {
-          Authorization: JSON.parse(token),
-        },
-      })
-      .then((res) => {
-        setRecipientInfo(res.data.result);
-      });
+    if (orderInfo.addr.addrName === undefined) {
+      axios
+        .get('http://13.209.26.150:9000/users/shipping-addr/default', {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        })
+        .then((res) => {
+          setOrderInfo({ ...orderInfo, addr: res.data.result });
+        });
+    }
+    console.log('오더인포', orderInfo);
+    console.log('로케이션스테이트', location.state);
   }, []);
 
+  useEffect(() => {
+    if (orderInfo.recipient.name === undefined) {
+      axios
+        .get('http://13.209.26.150:9000/users/info', {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        })
+        .then((res) => {
+          setOrderInfo({ ...orderInfo, recipient: res.data.result });
+        });
+    }
+  }, []);
+
+  // const productPrice =
+  //   orderInfo.productDetail.data.price * orderInfo.productDetail.count;
+  // const productSalePrice =
+  //   orderInfo.productDetail.data.price *
+  //   (orderInfo.productDetail.data.sale / 100) *
+  //   orderInfo.productDetail.count;
+  // const totalPrice = productPrice - productSalePrice + 3000;
+
+  const handleClickPayment = (e) => {
+    setClickPayment({
+      ...clickPayment,
+      [e.target.name]: !clickPayment[e.target.name],
+    });
+    console.log(clickPayment);
+  };
+
   const handleChangeRecipient = () => {
-    navigate('/orderChangeRecipient', { state: { recipientInfo } });
+    navigate('/orderChangeRecipient');
   };
 
   const handleChangeShippingMessage = () => {
@@ -60,7 +87,7 @@ function OrderPage() {
             <div className="mnodr_article_head">
               <div className="mnodr_article_headlt">
                 <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-                  배송지 : {destinationInfo.addrName}
+                  배송지 : {orderInfo.addr.addrName}
                 </h2>
               </div>
               <div className="mnodr_article_headrt">
@@ -76,12 +103,12 @@ function OrderPage() {
             <div className="mnodr_article_cont ty_pull">
               <div className="mnodr_form_sec">
                 <p className="mnodr_tx_desc">
-                  [{destinationInfo.zipCode}] {destinationInfo.streetAddr}
+                  [{orderInfo.addr.zipCode}] {orderInfo.addr.streetAddr}
                 </p>
                 <div className="mnodr_tx_wrap ty_space">
                   <span className="mnodr_tx_size2 mnodr_tx_gray">
-                    <span id="dispRcptpeNm_0">{destinationInfo.recipient}</span>
-                    /<span id="dispHpno_0">{destinationInfo.phone}</span>
+                    <span id="dispRcptpeNm_0">{orderInfo.addr.recipient}</span>/
+                    <span id="dispHpno_0">{orderInfo.addr.phone}</span>
                   </span>
                 </div>
               </div>
@@ -113,9 +140,9 @@ function OrderPage() {
                   </dt>
                   <dd>
                     <span className="mnodr_tx_primary">
-                      -
+                      -{' '}
                       <em className="ssg_price dispTotItemEnuriWithout10Amt">
-                        5,400
+                        {/* {productSalePrice.toLocaleString()} */}
                       </em>
                       <span className="ssg_tx">원</span>
                     </span>
@@ -155,40 +182,276 @@ function OrderPage() {
                   <li>
                     <button
                       type="button"
-                      id="creditCardPaymtMeansButton"
-                      name="otherPaymtMeansCdButton"
-                      className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|신용카드"
-                      role="tab"
+                      name="credit"
+                      className={
+                        'mnodr_pay_tab payTracking' +
+                        (clickPayment.credit ? ' on' : '')
+                      }
+                      onClick={handleClickPayment}
                     >
-                      <span>신용카드</span>
+                      신용카드
                     </button>
                   </li>
                   <li>
                     <button
                       type="button"
-                      id="virtualAccountPaymtMeansButton"
-                      name="otherPaymtMeansCdButton"
-                      className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|무통장 입금"
-                      role="tab"
+                      name="deposit"
+                      className={
+                        'mnodr_pay_tab payTracking' +
+                        (clickPayment.deposit ? ' on' : '')
+                      }
+                      onClick={handleClickPayment}
                     >
-                      <span>무통장 입금</span>
+                      무통장 입금
                     </button>
                   </li>
                   <li>
                     <button
                       type="button"
-                      id="realBankPaymtMeansButton"
-                      name="otherPaymtMeansCdButton"
-                      className="mnodr_pay_tab payTracking"
-                      data-pt-click="주문서|결제방법_다른 결제수단|실시간 계좌이체"
-                      role="tab"
+                      name="account"
+                      className={
+                        'mnodr_pay_tab payTracking' +
+                        (clickPayment.account ? ' on' : '')
+                      }
+                      onClick={handleClickPayment}
                     >
-                      <span>실시간 계좌이체</span>
+                      실시간 계좌이체
                     </button>
                   </li>
                 </ul>
+                {clickPayment.credit && (
+                  <div
+                    className="mnodr_panel_sec paymtMeansArea creditCrdPaymtMeansArea"
+                    style={{ display: 'block' }}
+                  >
+                    <div className="mnodr_form_cont">
+                      <span className="mnodr_inp_sel ty_black">
+                        <select
+                          id="creditCrdCdSelect"
+                          title="카드를 선택하세요."
+                        >
+                          <option value="">카드를 선택하세요.</option>
+                          <option
+                            value="07"
+                            isptype=""
+                            title="신한카드(925*)"
+                            cardseq="2021092517170821"
+                            hyundaimpointyn="Y"
+                          >
+                            신한카드(925*) / 4518 **** **** 925*
+                          </option>
+                          <option
+                            value="76"
+                            isptype="20"
+                            title="SSG.COM카드 EDITION2"
+                          >
+                            SSG.COM카드 EDITION2
+                          </option>
+                          <option value="74" isptype="20" title="SSG.COM카드">
+                            SSG.COM카드
+                          </option>
+                          <option
+                            value="66"
+                            isptype="20"
+                            title="이마트e카드(현대카드)"
+                          >
+                            이마트e카드(현대카드)
+                          </option>
+                          <option value="08" isptype="20" title="현대카드">
+                            현대카드
+                          </option>
+                          <option
+                            value="64"
+                            isptype="10"
+                            title="이마트KB국민카드"
+                          >
+                            이마트KB국민카드
+                          </option>
+                          <option value="02" isptype="10" title="KB국민카드">
+                            KB국민카드
+                          </option>
+                          <option
+                            value="62"
+                            isptype="20"
+                            title="이마트삼성카드"
+                          >
+                            이마트삼성카드
+                          </option>
+                          <option
+                            value="75"
+                            isptype="20"
+                            title="SSG.COM 삼성카드"
+                          >
+                            SSG.COM 삼성카드
+                          </option>
+                          <option
+                            value="61"
+                            isptype="20"
+                            title="신세계삼성카드"
+                          >
+                            신세계삼성카드
+                          </option>
+                          <option
+                            value="67"
+                            isptype="20"
+                            title="트레이더스삼성카드"
+                          >
+                            트레이더스삼성카드
+                          </option>
+                          <option value="06" isptype="20" title="삼성카드">
+                            삼성카드
+                          </option>
+                          <option
+                            value="63"
+                            isptype="20"
+                            title="이마트신한카드"
+                          >
+                            이마트신한카드
+                          </option>
+                          <option
+                            value="70"
+                            isptype="20"
+                            title="신세계신한카드"
+                          >
+                            신세계신한카드
+                          </option>
+                          <option value="07" isptype="20" title="신한카드">
+                            신한카드
+                          </option>
+                          <option value="01" isptype="10" title="비씨카드">
+                            비씨카드
+                          </option>
+                          <option
+                            value="73"
+                            isptype="20"
+                            title="신세계하나체크카드"
+                          >
+                            신세계하나체크카드
+                          </option>
+                          <option value="03" isptype="20" title="하나카드">
+                            하나카드
+                          </option>
+                          <option value="38" isptype="20" title="롯데카드">
+                            롯데카드
+                          </option>
+                          <option value="11" isptype="20" title="NH카드">
+                            NH카드
+                          </option>
+                          <option
+                            value="72"
+                            isptype="10"
+                            title="카카오뱅크카드"
+                          >
+                            카카오뱅크카드
+                          </option>
+                          <option
+                            value="89"
+                            isptype="20"
+                            title="신세계씨티카드"
+                          >
+                            신세계씨티카드
+                          </option>
+                          <option value="16" isptype="20" title="씨티카드">
+                            씨티카드
+                          </option>
+                          <option
+                            value="65"
+                            isptype="10"
+                            title="이마트우리체크카드"
+                          >
+                            이마트우리체크카드
+                          </option>
+                          <option value="15" isptype="10" title="우리카드">
+                            우리카드
+                          </option>
+                          <option
+                            value="18"
+                            isptype="10"
+                            title="IBK기업은행카드"
+                          >
+                            IBK기업은행카드
+                          </option>
+                          <option value="69" isptype="10" title="이마트SC카드">
+                            이마트SC카드
+                          </option>
+                          <option value="68" isptype="10" title="신세계SC카드">
+                            신세계SC카드
+                          </option>
+                          <option value="17" isptype="10" title="SC은행카드">
+                            SC은행카드
+                          </option>
+                          <option value="71" isptype="10" title="SSGPAY카드">
+                            SSGPAY카드
+                          </option>
+                          <option value="22" isptype="10" title="광주카드">
+                            광주카드
+                          </option>
+                          <option value="13" isptype="10" title="수협카드">
+                            수협카드
+                          </option>
+                          <option value="21" isptype="10" title="제주카드">
+                            제주카드
+                          </option>
+                          <option value="23" isptype="10" title="전북카드">
+                            전북카드
+                          </option>
+                        </select>
+                      </span>
+                    </div>
+                    <div className="mnodr_form_cont">
+                      <span className="mnodr_inp_sel ty_black">
+                        <select
+                          id="creditCrdInstallmentSelect"
+                          title="카드 할부를 선택하세요."
+                        >
+                          <option value="">일시불</option>
+                          <option
+                            value="2"
+                            data-noint="Y"
+                            data-insm-div-cd="10"
+                          >
+                            2개월 무이자
+                          </option>
+                          <option
+                            value="3"
+                            data-noint="Y"
+                            data-insm-div-cd="10"
+                          >
+                            3개월 무이자
+                          </option>
+                          <option
+                            value="4"
+                            data-noint="Y"
+                            data-insm-div-cd="10"
+                          >
+                            4개월 무이자
+                          </option>
+                          <option
+                            value="5"
+                            data-noint="Y"
+                            data-insm-div-cd="10"
+                          >
+                            5개월 무이자
+                          </option>
+                          <option
+                            value="6"
+                            data-noint="Y"
+                            data-insm-div-cd="10"
+                          >
+                            6개월 무이자
+                          </option>
+                          <option
+                            value="7"
+                            data-noint="Y"
+                            data-insm-div-cd="10"
+                          >
+                            7개월 무이자
+                          </option>
+                        </select>
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -214,7 +477,10 @@ function OrderPage() {
               </dt>
               <dd>
                 <span className="mnodr_tx_primary">
-                  + <em className="ssg_price dispTotPayOrdAmt">180,000</em>
+                  +{' '}
+                  <em className="ssg_price dispTotPayOrdAmt">
+                    {/* {productPrice.toLocaleString()} */}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </dd>
@@ -225,7 +491,11 @@ function OrderPage() {
               </dt>
               <dd>
                 <span className="mnodr_tx_point">
-                  - <em className="ssg_price dispTotDcAmt">5,400</em>
+                  -{' '}
+                  <em className="ssg_price dispTotDcAmt">
+                    {' '}
+                    {/* {productSalePrice.toLocaleString()} */}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </dd>
@@ -234,8 +504,11 @@ function OrderPage() {
               <li className="dispTotDcAmtWithoutCrdDcArea">
                 <span className="mnodr_paydetail_tx">상품할인</span>
                 <span className="mnodr_paydetail_money">
-                  -{' '}
-                  <em className="ssg_price dispTotDcAmtWithoutCrdDc">5,400</em>
+                  -
+                  <em className="ssg_price dispTotDcAmtWithoutCrdDc">
+                    {' '}
+                    {/* {productSalePrice.toLocaleString()} */}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </li>
@@ -276,7 +549,7 @@ function OrderPage() {
                 <strong className="mnodr_tx_primary mnodr_priceitem_total v2">
                   +
                   <em className="ssg_price paySummaryPayAmt paySummaryTgtPaymtAmt">
-                    177,600
+                    {/* {totalPrice.toLocaleString()} */}
                   </em>
                   <span className="ssg_tx">원</span>
                 </strong>
@@ -372,7 +645,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeNmStr">
-                        {recipientInfo.name}
+                        {orderInfo.recipient.name}
                       </p>
                     </dd>
                   </dl>
@@ -384,7 +657,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeHpnoStr">
-                        {recipientInfo.phone}
+                        {orderInfo.recipient.phone}
                       </p>
                     </dd>
                   </dl>
@@ -396,7 +669,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeEmailStr">
-                        {recipientInfo.email}
+                        {orderInfo.recipient.email}
                       </p>
                     </dd>
                   </dl>
@@ -409,8 +682,7 @@ function OrderPage() {
                     <dd>
                       <p className="mnodr_tx_desc">
                         <span id="rfdMthdStrArea">
-                          {recipientInfo.refundCheck &&
-                            '주문 시 결제수단으로 환불받기'}
+                          {orderInfo.recipient.refundCheck}
                         </span>
                       </p>
                     </dd>
@@ -455,7 +727,7 @@ function OrderPage() {
                   </dt>
                   <dd>
                     <p className="mnodr_tx_desc" id="deliShppMemoTxt_0">
-                      {shippingMessageInfo}
+                      {orderInfo.message}
                     </p>
                     <input
                       type="hidden"
@@ -501,16 +773,18 @@ function OrderPage() {
                           <i className="sm">신세계몰</i>
                         </span>
 
-                        <em id="dispSalestrNm_1">(주) 에이온코스퍼</em>
+                        <em id="dispSalestrNm_1">
+                          {/* {orderInfo.productDetail.data.storeName} */}
+                        </em>
                       </div>
                       <p className="mnodr_unit_tit ">
                         <a href="/">
-                          <strong className="mnodr_unit_brd">
-                            조말론향수{' '}
+                          <strong
+                            className="mnodr_unit_brd"
+                            style={{ fontWeight: 'bold' }}
+                          >
+                            {/* {orderInfo.productDetail.data.name} */}
                           </strong>
-                          <span className="mnodr_unit_name">
-                            조말론 잉글리쉬 페어 앤 프리지아 코롱 30ml★리본포장
-                          </span>
                         </a>
                       </p>
 
@@ -519,19 +793,27 @@ function OrderPage() {
                           <div className="mnodr_unit_oldprice ty2">
                             <del>
                               <span className="blind">정상가격</span>
-                              <em className="ssg_price">89,000</em>
+                              <em className="ssg_price">
+                                {/* {productPrice.toLocaleString()} */}
+                              </em>
                             </del>
                             <span className="ssg_tx">원</span>
                           </div>
 
                           <div className="mnodr_unit_newprice ty2">
                             <span className="blind">판매가격</span>
-                            <em className="ssg_price">86,330</em>
+                            <em className="ssg_price">
+                              {/* {(
+                                productPrice - productSalePrice
+                              ).toLocaleString()} */}
+                            </em>
                             <span className="ssg_tx">원</span>
                           </div>
                         </div>
                         <div className="mnodr_unit_r">
-                          <span className="mnodr_unit_option">수량 1개</span>
+                          <span className="mnodr_unit_option">
+                            {/* 수량 {orderInfo.productDetail.count}개 */}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -568,7 +850,10 @@ function OrderPage() {
         className="mnodr_btn ty_point ty_m payTracking"
         style={{ position: 'fixed', bottom: 0 }}
       >
-        <span style={{ fontWeight: '600' }}>160,140원</span> 결제하기
+        <span style={{ fontWeight: '600' }}>
+          {/* {totalPrice.toLocaleString()}원 */}
+        </span>{' '}
+        결제하기
       </button>
     </div>
   );

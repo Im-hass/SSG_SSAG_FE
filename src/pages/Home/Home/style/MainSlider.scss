@@ -1,14 +1,7 @@
-#m_topnav {
-  background-color: white;
-  margin: 0;
-  padding-left: 20px;
-}
+.smhero_banner_wrap {
+  margin-top: 60px;
 
-.mcom_topnav .topnav_lnk.new .topnav_txt:after {
-  content: '';
-  background: none;
-}
-
-.smhero_banner_wrap .smhero_banner {
-  position: inherit;
+  .smhero_banner {
+    position: inherit;
+  }
 }

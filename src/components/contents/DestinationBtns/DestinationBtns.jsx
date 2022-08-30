@@ -1,11 +1,12 @@
 import React from 'react';
 import './DestinationBtns.scss';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 import { DES_BTNS_LIST } from '../../../assets/datas';
 
 function DestinationBtns({ selected, isDefaultChanged, setIsDefaultChanged }) {
   const handleTempAddr = () => {
-    console.log('이번만 배송지 설정');
+    // 이번만 배송지 설정
   };
 
   const handleDefaultAddr = () => {
@@ -24,8 +25,12 @@ function DestinationBtns({ selected, isDefaultChanged, setIsDefaultChanged }) {
       )
       .then(() => {
         setIsDefaultChanged(!isDefaultChanged);
+        toast.success('기본 배송지가 변경되었습니다.');
       })
-      .catch((e) => new Error(e));
+      .catch((e) => {
+        (() => new Error(e))();
+        toast.error('기본 배송지 변경에 실패하였습니다');
+      });
   };
 
   return (
@@ -43,6 +48,18 @@ function DestinationBtns({ selected, isDefaultChanged, setIsDefaultChanged }) {
           </li>
         ))}
       </ul>
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#ff5b59',
+            },
+          },
+        }}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './CartPageParcelContentUnitThmb.scss';
 
-function CartPageParcelContentUnitThmb() {
+function CartPageParcelContentUnitThmb({ productImgUrl }) {
   return (
     <div className="mnodr_unit_thmb">
       <span className="mnodr_chk">
@@ -18,7 +18,7 @@ function CartPageParcelContentUnitThmb() {
       </span>
       <span className="mnodr_unit_img" aria-hidden="true">
         <img
-          src="https://sitem.ssgcdn.com/13/55/82/item/1000312825513_i1_140.jpg"
+          src={productImgUrl}
           alt="(남성)배색 립 캐주얼 양말 3족 세트(RA122B-52G)3컬러 SET"
           id="img5092900303"
           width="75"

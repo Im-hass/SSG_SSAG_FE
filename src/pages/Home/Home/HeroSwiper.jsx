@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import './style/HeroSwiper.scss';
 
-function HeroSwiper() {
-  // const [good, setGood] = useState([]);
-  // const getGood = async () => {
-  //   const response = await fetch(
-  //     `http://10.10.10.153:8081/api/newservice/getAll`
-  //   );
-  //   //광식씨가 준 주소 받기 -> get
-  //   const json = await response.json();
-  //   setGood(json);
-  // };
-
-  // useEffect(() => {
-  //   getGood();
-  // }, []);
-
+function HeroSwiper({ datas }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -27,38 +13,26 @@ function HeroSwiper() {
     autoplaySpeed: 1000,
     autoplay: true,
   };
-  const [good, setGood] = useState([]);
+  const [progress, setProgress] = useState(0);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://10.10.10.153:8081/api/newservice/getAll`)
-  //     .then((Response) => {
-  //       setGood(Response.data);
-  //       console.log(Response.data);
-  //     });
-  // }, []);
-
-  // const [good, setGood] = useState([]);
-  // const getGood = async () =>{
-  //    const response1 = await fetch(`http://10.10.10.153:8081/api/newservice/getAll`);
-  //    //광식씨가 준 주소 받기 -> get
-  //    const json1 = await response1.json();
-  //    setGood(json1)
-  // }
-
-  // useEffect(()=>{
-  //    getGood();
-  // },[])
+  const handleChange = (e) => {
+    setProgress(e.activeIndex * 0.333);
+  };
 
   return (
     <div className="cmgrid_full_box">
       <div className="cmhero_banner cmhero_banner_ty_sd_scroll ty_bn100">
         <div className="cmhero_swiper" id="_cmhero_swiper">
-          <div className="swiper-container swiper-container-horizontal">
-            <Swiper style={{ ...settings }}>
-              {good &&
-                good.map((d) => (
-                  <SwiperSlide key={d.id}>
+          <div className="swiper-container swiper-container-horizontal custom-swiper">
+            <Swiper
+              style={{ ...settings }}
+              onSlideChange={(e) => {
+                handleChange(e);
+              }}
+            >
+              {datas &&
+                datas.map((data) => (
+                  <SwiperSlide key={data.priority}>
                     <li className="swiper-slide">
                       <div className="cmhero_bn">
                         <Link
@@ -67,8 +41,8 @@ function HeroSwiper() {
                         >
                           <img
                             className="ssg_lazy"
-                            src={d.productNewPhotoPath}
-                            alt="명절"
+                            src={data.imgUrl}
+                            alt={data.title}
                           />
                         </Link>
                       </div>
@@ -79,12 +53,12 @@ function HeroSwiper() {
                         >
                           <h3 className="cmhero_titmain">
                             <span className="cmhero_titmain_tx">
-                              2022 추석 명절
+                              {data.title}
                             </span>
                           </h3>
                           <div className="cmhero_titsub">
                             <span className="ccmhero_titsub_tx">
-                              미리 준비하는 올 추석 명절 선물
+                              {data.subTitle}
                             </span>
                           </div>
                         </Link>
@@ -96,7 +70,15 @@ function HeroSwiper() {
           </div>
           <div className="swiper-ctrls">
             <div className="swiper-pagination swiper-pagination-progressbar">
-              <span className="swiper-pagination-progressbar-fill" />
+              <span
+                className="swiper-pagination-progressbar-fill"
+                style={{
+                  transform: `translate3d(0px, 0px, 0px) scaleX(${
+                    progress + 0.333
+                  }) scaleY(1)`,
+                  transitionDuration: '300ms',
+                }}
+              />
             </div>
           </div>
         </div>
