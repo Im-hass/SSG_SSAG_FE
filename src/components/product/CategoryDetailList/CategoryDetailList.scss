@@ -31,10 +31,6 @@
   }
 }
 
-.m_catelst_wrap_v2+.cmft_sort.v2 {
-  padding-top: 13px;
-}
-
 .cmft_sort.v2 .cmft_cell.cmft_sort_srch {
   width: 100px;
 }
@@ -43,4 +39,8 @@
 .cmft_sort.v2 .cmft_sort_tit.cmft_label_curent,
 .cmft_sort.v2 .cmft_cell.cmft_sort_rank .cmft_sel_curent {
   height: 50px;
+}
+
+.clickable.smallCate.on {
+  background-color: #f5f5f5;
 }
