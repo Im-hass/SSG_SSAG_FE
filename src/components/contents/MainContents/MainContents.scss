@@ -1,0 +1,15 @@
+@use '/src/styles/base/variable';
+
+.has_smhero_banner #m_content {
+  position: relative;
+  background-color: #fff;
+}
+
+.cmgrid_module {
+  .cmgrid_list {
+    display: grid;
+    margin: 0;
+    grid-template-columns: repeat(auto-fill, minmax(calc(50% - 5px), 1fr));
+    grid-gap: 0 5px;
+  }
+}
