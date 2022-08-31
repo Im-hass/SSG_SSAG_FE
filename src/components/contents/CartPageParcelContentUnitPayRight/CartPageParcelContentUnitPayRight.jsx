@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
-import { isCntPut } from '../../../recoil/states';
 import './CartPageParcelContentUnitPayRight.scss';
 
 function CartPageParcelContentUnitPayRight({ cartItem, isCnt, setIsCnt }) {
-  // const [isCnt, setIsCnt] = useRecoilState(isCntPut);
-  const [cartItemCnt, setCartItemCnt] = useState(cartItem.count);
   const cartItemId = cartItem.cartId;
+  const cartItemCnt = cartItem.count;
 
-  const putProductCount = (cnt, action) => {
+  const putProductCount = (cnt, act) => {
+    if (cartItemCnt === 1 && act === 'dec') return;
     const token = localStorage.getItem('token');
     const putCntUrl = 'http://13.209.26.150:9000/users/carts/count';
     const productData = {
       cartId: cartItemId,
-      count: cnt,
+      count: cartItemCnt + cnt,
     };
     const headers = {
       headers: {
@@ -27,18 +25,8 @@ function CartPageParcelContentUnitPayRight({ cartItem, isCnt, setIsCnt }) {
       .then((res) => {
         console.log('cart cnt result:', res);
         setIsCnt(!isCnt);
-
-        if (action === 'inc') {
-          setCartItemCnt((prevCnt) => prevCnt + 1);
-        } else if (cartItemCnt > 1 && action === 'dec') {
-          setCartItemCnt((prevCnt) => prevCnt - 1);
-        }
       })
       .catch((err) => console.log('cart cnt err:', err));
-  };
-
-  const handleCountButton = (action) => {
-    putProductCount(cartItemCnt, action);
   };
 
   return (
@@ -52,7 +40,7 @@ function CartPageParcelContentUnitPayRight({ cartItem, isCnt, setIsCnt }) {
           type="button"
           name="btUpdOrdQtyMinus"
           className="mnodr_btn_minus cartTracking"
-          onClick={() => handleCountButton('dec')}
+          onClick={() => putProductCount(-1, 'dec')}
         >
           <i className="mnodr_ic ic_minus">
             <span className="blind">주문수량빼기</span>
@@ -62,7 +50,7 @@ function CartPageParcelContentUnitPayRight({ cartItem, isCnt, setIsCnt }) {
           type="button"
           name="btUpdOrdQtyPlus"
           className="mnodr_btn_plus cartTracking"
-          onClick={() => handleCountButton('inc')}
+          onClick={() => putProductCount(1, 'inc')}
         >
           <i className="mnodr_ic ic_plus">
             <span className="blind">주문수량더하기</span>

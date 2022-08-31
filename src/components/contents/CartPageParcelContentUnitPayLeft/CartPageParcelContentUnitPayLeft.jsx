@@ -2,10 +2,22 @@ import React from 'react';
 
 import './CartPageParcelContentUnitPayLeft.scss';
 
-function CartPageParcelContentUnitPayLeft({ cartItem }) {
+function CartPageParcelContentUnitPayLeft({
+  cartItem,
+  setIsSaleInfoModalOpen,
+  isAriaHidden,
+  setIsAriaHidden,
+  setSaleInfoItem,
+}) {
   const defaultPrice = cartItem.cartTotal;
   const salePrice = cartItem.cartSale;
   const sellingPrice = cartItem.cartAmount;
+
+  const handleSaleInfoModalOpen = () => {
+    setIsAriaHidden(!isAriaHidden);
+    setIsSaleInfoModalOpen('show');
+    setSaleInfoItem(cartItem);
+  };
 
   return (
     <div className="mnodr_unit_l">
@@ -18,7 +30,11 @@ function CartPageParcelContentUnitPayLeft({ cartItem }) {
           <span className="ssg_tx">원</span>
         </del>
 
-        <button type="button" className="mnodr_btn_detail modal-alert-open">
+        <button
+          type="button"
+          className="mnodr_btn_detail modal-alert-open"
+          onClick={handleSaleInfoModalOpen}
+        >
           <i className="mnodr_ic ic_detail">
             <span className="blind">자세히 보기</span>
           </i>
@@ -82,8 +98,9 @@ function CartPageParcelContentUnitPayLeft({ cartItem }) {
             <footer className="mnodr_modal_foot">
               <div className="mnodr_btn_area">
                 <button
-                  className="mnodr_btn ty_gray ty_sm modal-close-btn"
                   type="button"
+                  className="mnodr_btn ty_gray ty_sm modal-close-btn"
+                  onClick={handleSaleInfoModalOpen}
                 >
                   닫기
                 </button>

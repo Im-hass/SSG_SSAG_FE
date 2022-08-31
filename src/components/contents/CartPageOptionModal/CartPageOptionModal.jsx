@@ -3,8 +3,8 @@ import axios from 'axios';
 import './CartPageOptionModal.scss';
 
 function CartPageOptionModal({
-  setIsModalOpen,
-  dataId,
+  setIsOptionModalOpen,
+  productId,
   cartId,
   isChange,
   setIsChange,
@@ -27,7 +27,7 @@ function CartPageOptionModal({
       setIsLoading(true);
       try {
         const res = await axios.get(
-          `http://13.209.26.150:9000/comm-users/products/options/color/${dataId}`,
+          `http://13.209.26.150:9000/comm-users/products/options/color/${productId}`,
           headers,
         );
         setColorOptions(res.data.result);
@@ -49,7 +49,7 @@ function CartPageOptionModal({
     };
     axios
       .get(
-        `http://13.209.26.150:9000/comm-users/products/options/size/${dataId}/${selectedColor}`,
+        `http://13.209.26.150:9000/comm-users/products/options/size/${productId}/${selectedColor}`,
         headers,
       )
       .then((res) => {
@@ -100,13 +100,13 @@ function CartPageOptionModal({
       .then((res) => {
         console.log('change opt res:', res);
         setIsChange(!isChange);
-        setIsModalOpen(false);
+        setIsOptionModalOpen(false);
       })
       .catch((err) => console.log('change opt err:', err));
   };
 
   const handleOptionModalClose = () => {
-    setIsModalOpen(false);
+    setIsOptionModalOpen(false);
   };
 
   if (isLoading) return <div>로딩 중</div>;

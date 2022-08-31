@@ -91,7 +91,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
   if (isLoading) return <div>로딩 중</div>;
   if (!colorOptions) return <div>데이터 없음</div>;
-
+  console.log(colorOptions);
   return (
     <div
       id="_cdtl_opt_bar"

@@ -15,10 +15,14 @@ function CartPageStoreList({
   setIsCnt,
   isDelete,
   setIsDelete,
-  isModalOpen,
-  setIsModalOpen,
-  setDataId,
+  isOptionModalOpen,
+  setIsOptionModalOpen,
+  setIsSaleInfoModalOpen,
+  isAriaHidden,
+  setIsAriaHidden,
+  setProductId,
   setCartId,
+  setSaleInfoItem,
 }) {
   const cartItems = storeList.cartList;
 
@@ -41,6 +45,10 @@ function CartPageStoreList({
               <CartPageParcelContentUnitPayLeft
                 cartItem={cartItem}
                 isCnt={isCnt}
+                setIsSaleInfoModalOpen={setIsSaleInfoModalOpen}
+                isAriaHidden={isAriaHidden}
+                setIsAriaHidden={setIsAriaHidden}
+                setSaleInfoItem={setSaleInfoItem}
               />
               <CartPageParcelContentUnitPayRight
                 cartItem={cartItem}
@@ -51,9 +59,9 @@ function CartPageStoreList({
 
             <CartPageParcelContentUnitBtn
               cartItem={cartItem}
-              isModalOpen={isModalOpen}
-              setIsModalOpen={setIsModalOpen}
-              setDataId={setDataId}
+              isOptionModalOpen={isOptionModalOpen}
+              setIsOptionModalOpen={setIsOptionModalOpen}
+              setProductId={setProductId}
               setCartId={setCartId}
             />
           </div>

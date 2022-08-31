@@ -53,8 +53,3 @@ export const isHeaderCartCntSubmit = atom({
   key: 'isHeaderCartCntSubmit',
   default: false,
 });
-
-export const isCntPut = atom({
-  key: 'isCntPut',
-  default: false,
-});

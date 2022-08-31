@@ -21,6 +21,7 @@ export { CartPageParcelContentUnitUtil } from './CartPageParcelContentUnitUtil';
 export { CartPageParcelFootInfo } from './CartPageParcelFootInfo';
 export { CartPageParcelHeader } from './CartPageParcelHeader';
 export { CartPageParcelToolBar } from './CartPageParcelToolBar';
+export { CartPageSaleInfoModal } from './CartPageSaleInfoModal';
 export { CartPageStoreList } from './CartPageStoreList';
 export { CartPageTab } from './CartPageTab';
 export { CartPageTotal } from './CartPageTotal';

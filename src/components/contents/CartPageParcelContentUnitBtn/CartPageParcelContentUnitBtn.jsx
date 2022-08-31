@@ -2,18 +2,17 @@ import React from 'react';
 import './CartPageParcelContentUnitBtn.scss';
 
 function CartPageParcelContentUnitBtn({
-  data,
-  isModalOpen,
-  setIsModalOpen,
-  setDataId,
+  cartItem,
+  setIsOptionModalOpen,
+  setProductId,
   setCartId,
 }) {
   const handleOptionModalOpen = () => {
-    const dataId = data.productOption.product.productId;
-    const { cartId } = data;
+    const dataId = cartItem.productOptionDto.productDto.productId;
+    const { cartId } = cartItem;
 
-    setIsModalOpen(true);
-    setDataId(dataId);
+    setIsOptionModalOpen(true);
+    setProductId(dataId);
     setCartId(cartId);
   };
 

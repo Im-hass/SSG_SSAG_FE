@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import './CartPageTotal.scss';
 
-function CartPageTotal({ cartData, isChange, isDelete, isCnt }) {
+function CartPageTotal({ cartData }) {
   const defaultPrice = cartData.totalOrder;
   const salePrice = cartData.totalSale;
   const totalPrice = cartData.totalAmount;
-  const chargedItems = cartData.storeList.map((stores) =>
-    stores.cartList.forEach((cartItem) => {
-      const cartItemPrice = cartItem.cartAmount;
-      return cartItemPrice >= 30000;
-    }),
-  ).length;
-  const deliveryFee = 3000 * chargedItems;
+  const overItems = cartData.storeList.filter((store) => {
+    const eachStoreTotal = store.storeAmount;
+    return eachStoreTotal <= 30000;
+  }).length;
+  const deliveryFee = 3000 * overItems;
 
   return (
     <div className="mnodr_total" id="cartInformation">

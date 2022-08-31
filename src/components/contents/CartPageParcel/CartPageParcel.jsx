@@ -8,11 +8,16 @@ function CartPageParcel({
   setIsCnt,
   isDelete,
   setIsDelete,
-  isModalOpen,
-  setIsModalOpen,
-  setDataId,
+  isOptionModalOpen,
+  setIsOptionModalOpen,
+  setIsSaleInfoModalOpen,
+  isAriaHidden,
+  setIsAriaHidden,
+  setProductId,
   setCartId,
+  setSaleInfoItem,
 }) {
+  console.log(cartData);
   return (
     <div className="mnodr_acdo_cont">
       {cartData &&
@@ -24,10 +29,14 @@ function CartPageParcel({
               setIsCnt={setIsCnt}
               isDelete={isDelete}
               setIsDelete={setIsDelete}
-              isModalOpen={isModalOpen}
-              setIsModalOpen={setIsModalOpen}
-              setDataId={setDataId}
+              isOptionModalOpen={isOptionModalOpen}
+              setIsOptionModalOpen={setIsOptionModalOpen}
+              setIsSaleInfoModalOpen={setIsSaleInfoModalOpen}
+              isAriaHidden={isAriaHidden}
+              setIsAriaHidden={setIsAriaHidden}
+              setProductId={setProductId}
               setCartId={setCartId}
+              setSaleInfoItem={setSaleInfoItem}
             />
             <CartPageParcelContentSummary storeList={storeList} />
           </div>
