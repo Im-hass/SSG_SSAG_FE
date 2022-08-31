@@ -5,12 +5,13 @@ import './CartPageTotal.scss';
 function CartPageTotal({ cartData }) {
   const defaultPrice = cartData.totalOrder;
   const salePrice = cartData.totalSale;
-  const totalPrice = cartData.totalAmount;
+  const netPrice = cartData.totalAmount;
   const overItems = cartData.storeList.filter((store) => {
     const eachStoreTotal = store.storeAmount;
     return eachStoreTotal <= 30000;
   }).length;
   const deliveryFee = 3000 * overItems;
+  const totalPrice = netPrice + deliveryFee;
 
   return (
     <div className="mnodr_total" id="cartInformation">

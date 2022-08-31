@@ -15,7 +15,7 @@ import {
   CartPageOptionModal,
   CartPageSaleInfoModal,
 } from '../components/contents';
-import { MobileHeader, CartPageBtn } from '../components/ui';
+import { MobileHeader } from '../components/ui';
 import AuthContext from '../store/auth-context';
 
 function CartPage() {
@@ -130,12 +130,7 @@ function CartPage() {
             <CartPageCartInfo />
           </div>
 
-          {cartData && (
-            <div className="mnodr_toolbar2">
-              <CartPageParcelToolBar />
-              <CartPageBtn />
-            </div>
-          )}
+          {cartData && <CartPageParcelToolBar cartData={cartData} />}
 
           <CartPageFooter />
         </div>
