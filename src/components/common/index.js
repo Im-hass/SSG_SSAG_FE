@@ -7,3 +7,4 @@ export { FloatingTalk } from './FloatingTalk';
 export { FloatingTopButton } from './FloatingTopButton';
 export { CategoryFooter } from './CategoryFooter';
 export { NotFound } from './NotFound';
+export { CustomAlert } from './CustomAlert';

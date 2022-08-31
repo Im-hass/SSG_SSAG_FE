@@ -1,30 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+
 import './CartPageParcelContentUnitPayLeft.scss';
 
 function CartPageParcelContentUnitPayLeft({
-  data,
-  sellingPrice,
-  setSellingPrice,
-  totalPrice,
+  cartItem,
+  setIsSaleInfoModalOpen,
+  isAriaHidden,
+  setIsAriaHidden,
+  setSaleInfoItem,
 }) {
-  const productPrice = data.productOption.product.price;
-  const discountRate = data.productOption.product.sale;
+  const defaultPrice = cartItem.cartTotal;
+  const salePrice = cartItem.cartSale;
+  const sellingPrice = cartItem.cartAmount;
 
-  const calculateSellingPrice = () => {
-    let calPrice = 0;
-
-    if (discountRate === 0) {
-      calPrice = productPrice * 1;
-    } else {
-      calPrice = (productPrice * (100 - discountRate)) / 100;
-    }
-
-    setSellingPrice(calPrice);
+  const handleSaleInfoModalOpen = () => {
+    setIsAriaHidden(!isAriaHidden);
+    setIsSaleInfoModalOpen('show');
+    setSaleInfoItem(cartItem);
   };
-
-  useEffect(() => {
-    calculateSellingPrice();
-  }, []);
 
   return (
     <div className="mnodr_unit_l">
@@ -32,12 +25,16 @@ function CartPageParcelContentUnitPayLeft({
         <del>
           <span className="blind">정상가격</span>
           <em className="ssg_price itemSellprc">
-            {productPrice.toLocaleString()}
+            {cartItem && defaultPrice.toLocaleString()}
           </em>
           <span className="ssg_tx">원</span>
         </del>
 
-        <button type="button" className="mnodr_btn_detail modal-alert-open">
+        <button
+          type="button"
+          className="mnodr_btn_detail modal-alert-open"
+          onClick={handleSaleInfoModalOpen}
+        >
           <i className="mnodr_ic ic_detail">
             <span className="blind">자세히 보기</span>
           </i>
@@ -49,20 +46,20 @@ function CartPageParcelContentUnitPayLeft({
           aria-hidden="true"
           id="_layerDiscountInfo_5092900303"
         >
-          <div
-            className="mnodr_modal_wrap"
-            role="document"
-            // tabIndex="0"
-          >
+          <div className="mnodr_modal_wrap" role="document">
             <div className="mnodr_modal_cont">
               <h3 className="mnodr_modal_tit">할인내역 정보</h3>
               <dl className="mnodr_priceitem ty_narrow">
                 <dt>
-                  <span className="mnodr_priceitem_stit">{sellingPrice}</span>
+                  <span className="mnodr_priceitem_stit">
+                    {cartItem && salePrice.toLocaleString()}
+                  </span>
                 </dt>
                 <dd>
                   <strong className="mnodr_tx_primary">
-                    <em className="ssg_price itemSellprc">23,000</em>
+                    <em className="ssg_price itemSellprc">
+                      {cartItem && defaultPrice.toLocaleString()}
+                    </em>
                     <span className="ssg_tx">원</span>
                   </strong>
                 </dd>
@@ -75,7 +72,9 @@ function CartPageParcelContentUnitPayLeft({
                   </dt>
                   <dd>
                     <strong className="mnodr_tx_point">
-                      <em className="ssg_price">-2,300</em>
+                      <em className="ssg_price">
+                        {cartItem && salePrice.toLocaleString()}
+                      </em>
                       <span className="ssg_tx">원</span>
                     </strong>
                   </dd>
@@ -88,7 +87,9 @@ function CartPageParcelContentUnitPayLeft({
                 </dt>
                 <dd>
                   <strong className="mnodr_tx_primary">
-                    <em className="ssg_price itemOrdAmt">{sellingPrice}</em>
+                    <em className="ssg_price itemOrdAmt">
+                      {cartItem && sellingPrice.toLocaleString()}
+                    </em>
                     <span className="ssg_tx">원</span>
                   </strong>
                 </dd>
@@ -97,8 +98,9 @@ function CartPageParcelContentUnitPayLeft({
             <footer className="mnodr_modal_foot">
               <div className="mnodr_btn_area">
                 <button
-                  className="mnodr_btn ty_gray ty_sm modal-close-btn"
                   type="button"
+                  className="mnodr_btn ty_gray ty_sm modal-close-btn"
+                  onClick={handleSaleInfoModalOpen}
                 >
                   닫기
                 </button>
@@ -109,7 +111,9 @@ function CartPageParcelContentUnitPayLeft({
       </div>
       <div className="mnodr_unit_newprice">
         <span className="blind">판매가격</span>
-        <em className="ssg_price itemOrdAmt">{totalPrice.toLocaleString()}</em>
+        <em className="ssg_price itemOrdAmt">
+          {cartItem && sellingPrice.toLocaleString()}
+        </em>
         <span className="ssg_tx">원</span>
       </div>
     </div>

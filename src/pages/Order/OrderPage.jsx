@@ -59,6 +59,13 @@ function OrderPage() {
   //   orderInfo.productDetail.count;
   // const totalPrice = productPrice - productSalePrice + 3000;
 
+  /* 장바구니 페이지 -> 주문 페이지로 받아온 데이터입니다. */
+  const orderPrice = location.state.data.totalOrder;
+  const salePrice = location.state.data.totalSale;
+  const netPrice = location.state.data.totalAmount;
+  const deliveryFee = location.state.delivery;
+  const totalPrice = netPrice + deliveryFee;
+
   const handleClickPayment = (e) => {
     setClickPayment({
       ...clickPayment,
@@ -87,7 +94,8 @@ function OrderPage() {
             <div className="mnodr_article_head">
               <div className="mnodr_article_headlt">
                 <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-                  배송지 : {orderInfo.addr.addrName}
+                  {/* undefined err 떠서 && 추가 */}
+                  배송지 : {orderInfo.addr.addrName && orderInfo.addr.addrName}
                 </h2>
               </div>
               <div className="mnodr_article_headrt">
@@ -103,12 +111,20 @@ function OrderPage() {
             <div className="mnodr_article_cont ty_pull">
               <div className="mnodr_form_sec">
                 <p className="mnodr_tx_desc">
-                  [{orderInfo.addr.zipCode}] {orderInfo.addr.streetAddr}
+                  {/* undefined err 떠서 && 추가 */}[{orderInfo.addr.zipCode}]{' '}
+                  {orderInfo.addr.streetAddr}
                 </p>
                 <div className="mnodr_tx_wrap ty_space">
                   <span className="mnodr_tx_size2 mnodr_tx_gray">
-                    <span id="dispRcptpeNm_0">{orderInfo.addr.recipient}</span>/
-                    <span id="dispHpno_0">{orderInfo.addr.phone}</span>
+                    <span id="dispRcptpeNm_0">
+                      {/* undefined err 떠서 && 추가 */}
+                      {orderInfo.addr.recipient}
+                    </span>
+                    /
+                    <span id="dispHpno_0">
+                      {/* undefined err 떠서 && 추가 */}
+                      {orderInfo.addr.phone}
+                    </span>
                   </span>
                 </div>
               </div>
@@ -143,6 +159,7 @@ function OrderPage() {
                       -{' '}
                       <em className="ssg_price dispTotItemEnuriWithout10Amt">
                         {/* {productSalePrice.toLocaleString()} */}
+                        {salePrice.toLocaleString()}
                       </em>
                       <span className="ssg_tx">원</span>
                     </span>
@@ -480,6 +497,7 @@ function OrderPage() {
                   +{' '}
                   <em className="ssg_price dispTotPayOrdAmt">
                     {/* {productPrice.toLocaleString()} */}
+                    {orderPrice.toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </span>
@@ -495,6 +513,7 @@ function OrderPage() {
                   <em className="ssg_price dispTotDcAmt">
                     {' '}
                     {/* {productSalePrice.toLocaleString()} */}
+                    {salePrice.toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </span>
@@ -508,6 +527,7 @@ function OrderPage() {
                   <em className="ssg_price dispTotDcAmtWithoutCrdDc">
                     {' '}
                     {/* {productSalePrice.toLocaleString()} */}
+                    {salePrice.toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </span>
@@ -519,7 +539,10 @@ function OrderPage() {
               </dt>
               <dd>
                 <span className="mnodr_tx_primary">
-                  +<em className="ssg_price paySummaryTotOrdCstAmt">3,000</em>
+                  +
+                  <em className="ssg_price paySummaryTotOrdCstAmt">
+                    {deliveryFee.toLocaleString()}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </dd>
@@ -531,7 +554,10 @@ function OrderPage() {
               <li>
                 <span className="mnodr_paydetail_tx">배송비</span>
                 <span className="mnodr_paydetail_money">
-                  +<em className="ssg_price paySummaryOrdCstAmt">3,000</em>
+                  +
+                  <em className="ssg_price paySummaryOrdCstAmt">
+                    {deliveryFee.toLocaleString()}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </li>
@@ -550,6 +576,7 @@ function OrderPage() {
                   +
                   <em className="ssg_price paySummaryPayAmt paySummaryTgtPaymtAmt">
                     {/* {totalPrice.toLocaleString()} */}
+                    {totalPrice.toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </strong>
@@ -645,7 +672,8 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeNmStr">
-                        {orderInfo.recipient.name}
+                        {/* undefined err 떠서 && 추가 */}
+                        {orderInfo.recipient.name && orderInfo.recipient.name}
                       </p>
                     </dd>
                   </dl>
@@ -657,7 +685,8 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeHpnoStr">
-                        {orderInfo.recipient.phone}
+                        {/* undefined err 떠서 && 추가 */}
+                        {orderInfo.recipient.phone && orderInfo.recipient.phone}
                       </p>
                     </dd>
                   </dl>
@@ -669,7 +698,8 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeEmailStr">
-                        {orderInfo.recipient.email}
+                        {/* undefined err 떠서 && 추가 */}
+                        {orderInfo.recipient.email && orderInfo.recipient.email}
                       </p>
                     </dd>
                   </dl>
@@ -852,7 +882,8 @@ function OrderPage() {
       >
         <span style={{ fontWeight: '600' }}>
           {/* {totalPrice.toLocaleString()}원 */}
-        </span>{' '}
+          {`${totalPrice.toLocaleString()}원`}
+        </span>
         결제하기
       </button>
     </div>
