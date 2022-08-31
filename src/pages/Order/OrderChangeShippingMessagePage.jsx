@@ -1,37 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-
-import { MobileHeader } from '../../components/ui/index';
-import { orderInfoState } from '../../recoil/states';
 
 function OrderChangeShippingMessagePage() {
-  const navigate = useNavigate();
-
-  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
-
-  const handleClickInput = (e) => {
-    setOrderInfo({
-      ...orderInfo,
-      message: e.target.value,
-    });
-  };
-
-  const handleChangeMessage = (e) => {
-    setOrderInfo({
-      ...orderInfo,
-      message: e.target.value,
-    });
-  };
+  const handleClickInput = (e) => {};
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/order');
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <MobileHeader title="수령위치 선택" />
       <div id="ordShppRcptInfoDiv">
         <div name="divOrdStep" id="rcptInfoDiv_1" className="fullOrdArea">
           <div className="mnodr_form_sec ty3">
@@ -127,7 +104,7 @@ function OrderChangeShippingMessagePage() {
                       cols="30"
                       rows="2"
                       maxLength="50"
-                      onChange={handleChangeMessage}
+                      // onChange={handleChangeMessage}
                     />
                     <span className="mnodr_inp_txtcount">
                       <span className="mnodr_inp_current">0</span>/

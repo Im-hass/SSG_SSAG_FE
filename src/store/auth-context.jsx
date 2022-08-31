@@ -2,6 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import { useJwt } from 'react-jwt';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AuthContext = React.createContext({
   token: '',
@@ -27,7 +28,7 @@ export function AuthContextProvider(props) {
   useEffect(() => {
     if (isExpired) {
       handleLogout();
-      console.log('토큰이 만료되었습니다.');
+      toast.error('토큰이 만료되었습니다.');
     }
   }, [isExpired]);
 
@@ -53,6 +54,11 @@ export function AuthContextProvider(props) {
   return (
     <AuthContext.Provider value={contextValue}>
       {props.children}
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+      />
     </AuthContext.Provider>
   );
 }

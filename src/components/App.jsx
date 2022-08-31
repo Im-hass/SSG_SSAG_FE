@@ -14,15 +14,10 @@ import {
   LoginPage,
   ProductListPage,
   ModifyDestinationPage,
+  OrderPage,
+  OrderInfoPage,
 } from '../pages';
 import { MyPage } from '../pages/MyPage';
-import {
-  OrderPage,
-  OrderChangeDestinationPage,
-  OrderChangeRecipientPage,
-  OrderChangeShippingMessagePage,
-} from '../pages/Order';
-import OrderInfoPage from '../pages/OrderInfo/OrderInfoPage';
 import Product from '../pages/Product/Product';
 import {
   SignUpPage,
@@ -85,23 +80,8 @@ function App() {
         <Route path="/order" element={<PrivateRoute />}>
           <Route path="/order" element={<OrderPage />} />
         </Route>
-        <Route path="/orderDestination" element={<PrivateRoute />}>
-          <Route
-            path="/orderDestination"
-            element={<OrderChangeDestinationPage />}
-          />
-        </Route>
-        <Route path="/orderChangeRecipient" element={<PrivateRoute />}>
-          <Route
-            path="/orderChangeRecipient"
-            element={<OrderChangeRecipientPage />}
-          />
-        </Route>
-        <Route path="/orderChangeShippingMessage" element={<PrivateRoute />}>
-          <Route
-            path="/orderChangeShippingMessage"
-            element={<OrderChangeShippingMessagePage />}
-          />
+        <Route path="/orderInfo" element={<PrivateRoute />}>
+          <Route path="/orderInfo" element={<OrderInfoPage />} />
         </Route>
         <Route path="/modifyDestination" element={<PrivateRoute />}>
           <Route

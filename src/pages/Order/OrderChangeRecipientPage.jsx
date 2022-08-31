@@ -1,40 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
 
-import { MobileHeader } from '../../components/ui/index';
-import { orderInfoState } from '../../recoil/states';
-
-function OrderChangeRecipientPage() {
-  const navigate = useNavigate();
-
-  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
-
-  const handleChangeInput = (e) => {
-    if (e.target.name === 'refundCheck') {
-      setOrderInfo({
-        ...orderInfo,
-        recipient: {
-          ...orderInfo.recipient,
-          [e.target.name]: e.target.value,
-        },
-      });
-    } else {
-      setOrderInfo({
-        ...orderInfo,
-        recipient: { ...orderInfo.recipient, [e.target.name]: e.target.value },
-      });
-    }
-  };
+function OrderChangeRecipientPage({ props }) {
+  const handleChangeInput = (e) => {};
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/order');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <MobileHeader title="주문자정보 변경" />
+    <form
+      onSubmit={handleSubmit}
+      style={{ background: '#fff', overflow: 'scroll' }}
+    >
       <div id="ordNotiInfoDiv">
         <div name="divOrdStep" id="notiInfoDiv">
           <div className="mnodr_sec_heading">
@@ -54,7 +31,7 @@ function OrderChangeRecipientPage() {
                 <input
                   type="text"
                   className="payTracking"
-                  value={orderInfo.recipient.name}
+                  // value={orderInfo.recipient.name}
                   placeholder="성명을 입력해주세요"
                   maxLength="50"
                   name="name"
@@ -74,7 +51,7 @@ function OrderChangeRecipientPage() {
                     type="tel"
                     name="phone"
                     maxLength="13"
-                    value={orderInfo.recipient.phone}
+                    // value={orderInfo.recipient.phone}
                     onChange={handleChangeInput}
                   />
                 </span>
@@ -91,7 +68,7 @@ function OrderChangeRecipientPage() {
                   type="text"
                   id="change.email"
                   name="email"
-                  value={orderInfo.recipient.email}
+                  // value={orderInfo.recipient.email}
                   className="payTracking"
                   placeholder="예) email@ssg.com"
                   maxLength="100"

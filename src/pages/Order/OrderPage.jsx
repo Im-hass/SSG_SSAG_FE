@@ -1,83 +1,109 @@
 /* eslint-disable prefer-template */
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
 
-import { orderInfoState } from '../../recoil/states';
 import { MobileHeader } from '../../components/ui/index';
+import {
+  OrderChangeDestinationPage,
+  OrderChangeRecipientPage,
+  OrderChangeShippingMessagePage,
+} from './index';
 
 function OrderPage() {
-  const navigate = useNavigate();
+  const date = new Date();
   const location = useLocation();
-  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+
+  const productCnt = location.state.count;
+  const productPrice = location.state.data.price;
+  const salePrice = productPrice * (location.state.data.sale / 100);
+  const totalPrice = productPrice - salePrice;
+
+  const [changeTitle, setChangeTitle] = useState('결제하기');
+  const [submitForm, setSubmitForm] = useState({
+    refundType: 0,
+    recipient: '',
+    recipientPhone: '',
+    addrName: '',
+    streetAddr: '',
+    zipCode: '',
+    shippingMsg: '',
+    orderDtoReq: [0, 0, 0],
+  });
+  const [clickBtn, setClickBtn] = useState({
+    destination: false,
+    recipient: false,
+    message: false,
+  });
   const [clickPayment, setClickPayment] = useState({
     credit: false,
     deposit: false,
-    account: false,
   });
 
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    setOrderInfo({ ...orderInfo, productDetail: location.state });
+    console.log(location.state);
+    // setSubmitForm({
+    //   ...submitForm,
+    // });
 
-    if (orderInfo.addr.addrName === undefined) {
-      axios
-        .get('http://13.209.26.150:9000/users/shipping-addr/default', {
+    axios
+      .all([
+        axios.get('http://13.209.26.150:9000/users/shipping-addr/default', {
           headers: {
             Authorization: JSON.parse(token),
           },
-        })
-        .then((res) => {
-          setOrderInfo({ ...orderInfo, addr: res.data.result });
-        });
-    }
-    console.log('오더인포', orderInfo);
-    console.log('로케이션스테이트', location.state);
-  }, []);
-
-  useEffect(() => {
-    if (orderInfo.recipient.name === undefined) {
-      axios
-        .get('http://13.209.26.150:9000/users/info', {
+        }),
+        axios.get('http://13.209.26.150:9000/users/info', {
           headers: {
             Authorization: JSON.parse(token),
           },
-        })
-        .then((res) => {
-          setOrderInfo({ ...orderInfo, recipient: res.data.result });
-        });
-    }
+        }),
+      ])
+      .then((res) => {
+        console.log(res);
+      });
   }, []);
-
-  // const productPrice =
-  //   orderInfo.productDetail.data.price * orderInfo.productDetail.count;
-  // const productSalePrice =
-  //   orderInfo.productDetail.data.price *
-  //   (orderInfo.productDetail.data.sale / 100) *
-  //   orderInfo.productDetail.count;
-  // const totalPrice = productPrice - productSalePrice + 3000;
 
   const handleClickPayment = (e) => {
-    setClickPayment({
-      ...clickPayment,
-      [e.target.name]: !clickPayment[e.target.name],
-    });
-    console.log(clickPayment);
+    if (e.target.name === 'credit') {
+      setClickPayment({
+        credit: true,
+        deposit: false,
+      });
+    }
+    if (e.target.name === 'deposit') {
+      setClickPayment({
+        credit: false,
+        deposit: true,
+      });
+    }
   };
 
-  const handleChangeRecipient = () => {
-    navigate('/orderChangeRecipient');
-  };
-
-  const handleChangeShippingMessage = () => {
-    navigate('/orderChangeShippingMessage');
+  const handleClickBtn = (e) => {
+    if (e.target.name === 'destination') setChangeTitle('배송지 선택');
+    if (e.target.name === 'recipient') setChangeTitle('주문자정보 변경');
+    if (e.target.name === 'message') setChangeTitle('수령위치 선택');
+    setClickBtn({ ...clickBtn, [e.target.name]: !clickBtn[e.target.name] });
+    if (Object.values(clickBtn).every((v) => v === false) === true) {
+      setChangeTitle('결제하기');
+    }
+    console.log();
   };
 
   return (
     <div style={{ background: '#f5f5f5' }}>
-      <MobileHeader title="결제하기" />
+      <MobileHeader title={changeTitle} />
+      {clickBtn.destination && (
+        <OrderChangeDestinationPage setClickBtn={setClickBtn} />
+      )}
+      {clickBtn.recipient && (
+        <OrderChangeRecipientPage setClickBtn={setClickBtn} />
+      )}
+      {clickBtn.message && (
+        <OrderChangeShippingMessagePage setClickBtn={setClickBtn} />
+      )}
       <ul className="mnodr_article_list" id="ordPageShpplocInfoDiv_1">
         <li
           className="mnodr_article_item ordPageShpplocArea fullOrdArea"
@@ -87,28 +113,29 @@ function OrderPage() {
             <div className="mnodr_article_head">
               <div className="mnodr_article_headlt">
                 <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-                  배송지 : {orderInfo.addr.addrName}
+                  {/* 배송지 : {orderInfo.addr.addrName} */}
                 </h2>
               </div>
               <div className="mnodr_article_headrt">
-                <Link
-                  to="/orderDestination"
+                <button
+                  type="button"
                   className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  name="btnShowTgtDiv"
+                  name="destination"
+                  onClick={handleClickBtn}
                 >
                   변경
-                </Link>
+                </button>
               </div>
             </div>
             <div className="mnodr_article_cont ty_pull">
               <div className="mnodr_form_sec">
                 <p className="mnodr_tx_desc">
-                  [{orderInfo.addr.zipCode}] {orderInfo.addr.streetAddr}
+                  {/* [{orderInfo.addr.zipCode}] {orderInfo.addr.streetAddr} */}
                 </p>
                 <div className="mnodr_tx_wrap ty_space">
                   <span className="mnodr_tx_size2 mnodr_tx_gray">
-                    <span id="dispRcptpeNm_0">{orderInfo.addr.recipient}</span>/
-                    <span id="dispHpno_0">{orderInfo.addr.phone}</span>
+                    {/* <span id="dispRcptpeNm_0">{orderInfo.addr.recipient}</span>/
+                    <span id="dispHpno_0">{orderInfo.addr.phone}</span> */}
                   </span>
                 </div>
               </div>
@@ -142,7 +169,7 @@ function OrderPage() {
                     <span className="mnodr_tx_primary">
                       -{' '}
                       <em className="ssg_price dispTotItemEnuriWithout10Amt">
-                        {/* {productSalePrice.toLocaleString()} */}
+                        {salePrice.toLocaleString()}
                       </em>
                       <span className="ssg_tx">원</span>
                     </span>
@@ -203,19 +230,6 @@ function OrderPage() {
                       onClick={handleClickPayment}
                     >
                       무통장 입금
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      name="account"
-                      className={
-                        'mnodr_pay_tab payTracking' +
-                        (clickPayment.account ? ' on' : '')
-                      }
-                      onClick={handleClickPayment}
-                    >
-                      실시간 계좌이체
                     </button>
                   </li>
                 </ul>
@@ -452,6 +466,49 @@ function OrderPage() {
                     </div>
                   </div>
                 )}
+                {clickPayment.deposit && (
+                  <div className="mnodr_panel_sec paymtMeansArea virtualAccountPaymtMeansArea">
+                    <div className="mnodr_form_cont">
+                      <span className="mnodr_inp_sel ty_black">
+                        <select
+                          id="virtualAccountBankSelect"
+                          title="입금은행을 선택하세요."
+                        >
+                          <option value="">입금은행을 선택하세요.</option>
+                          <option value="03">기업은행</option>
+                          <option value="04">국민은행</option>
+                          <option value="11">농협중앙회</option>
+                          <option value="20">우리은행</option>
+                          <option value="23">SC제일은행</option>
+                          <option value="26">신한은행</option>
+                          <option value="31">대구은행</option>
+                          <option value="32">부산은행</option>
+                          <option value="71">우체국</option>
+                          <option value="81">하나은행</option>
+                        </select>
+                      </span>
+                    </div>
+                    <div className="mnodr_form_cont ty_space">
+                      <span className="mnodr_inp_txt">
+                        <input
+                          type="text"
+                          placeholder="입금자명을 입력해 주세요."
+                          title="입금자명을 입력해 주세요."
+                        />
+                      </span>
+                    </div>
+                    <div className="mnodr_form_cont ty_space">
+                      <p className="mnodr_tx_desc">
+                        입금기한 :{' '}
+                        <span className="mnodr_tx_point">
+                          {date.getFullYear()}년 {date.getMonth() + 1}월{' '}
+                          {date.getDate() + 1}일까지{' '}
+                        </span>
+                        미입금시 자동취소
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -479,7 +536,7 @@ function OrderPage() {
                 <span className="mnodr_tx_primary">
                   +{' '}
                   <em className="ssg_price dispTotPayOrdAmt">
-                    {/* {productPrice.toLocaleString()} */}
+                    {(productPrice * productCnt).toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </span>
@@ -494,7 +551,7 @@ function OrderPage() {
                   -{' '}
                   <em className="ssg_price dispTotDcAmt">
                     {' '}
-                    {/* {productSalePrice.toLocaleString()} */}
+                    {(salePrice * productCnt).toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </span>
@@ -507,7 +564,7 @@ function OrderPage() {
                   -
                   <em className="ssg_price dispTotDcAmtWithoutCrdDc">
                     {' '}
-                    {/* {productSalePrice.toLocaleString()} */}
+                    {(salePrice * productCnt).toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </span>
@@ -549,7 +606,7 @@ function OrderPage() {
                 <strong className="mnodr_tx_primary mnodr_priceitem_total v2">
                   +
                   <em className="ssg_price paySummaryPayAmt paySummaryTgtPaymtAmt">
-                    {/* {totalPrice.toLocaleString()} */}
+                    {(totalPrice * productCnt + 3000).toLocaleString()}
                   </em>
                   <span className="ssg_tx">원</span>
                 </strong>
@@ -627,8 +684,8 @@ function OrderPage() {
                 <button
                   type="button"
                   className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  name="btnShowTgtDiv"
-                  onClick={handleChangeRecipient}
+                  name="recipient"
+                  onClick={handleClickBtn}
                 >
                   변경
                 </button>
@@ -645,7 +702,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeNmStr">
-                        {orderInfo.recipient.name}
+                        {/* {orderInfo.recipient.name} */}
                       </p>
                     </dd>
                   </dl>
@@ -657,7 +714,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeHpnoStr">
-                        {orderInfo.recipient.phone}
+                        {/* {orderInfo.recipient.phone} */}
                       </p>
                     </dd>
                   </dl>
@@ -669,7 +726,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeEmailStr">
-                        {orderInfo.recipient.email}
+                        {/* {orderInfo.recipient.email} */}
                       </p>
                     </dd>
                   </dl>
@@ -682,7 +739,7 @@ function OrderPage() {
                     <dd>
                       <p className="mnodr_tx_desc">
                         <span id="rfdMthdStrArea">
-                          {orderInfo.recipient.refundCheck}
+                          {/* {orderInfo.recipient.refundCheck} */}
                         </span>
                       </p>
                     </dd>
@@ -710,8 +767,8 @@ function OrderPage() {
                 <button
                   type="button"
                   className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  name="btnShowTgtDiv"
-                  onClick={handleChangeShippingMessage}
+                  name="message"
+                  onClick={handleClickBtn}
                 >
                   변경
                 </button>
@@ -727,7 +784,7 @@ function OrderPage() {
                   </dt>
                   <dd>
                     <p className="mnodr_tx_desc" id="deliShppMemoTxt_0">
-                      {orderInfo.message}
+                      {/* {orderInfo.message} */}
                     </p>
                     <input
                       type="hidden"
@@ -774,7 +831,7 @@ function OrderPage() {
                         </span>
 
                         <em id="dispSalestrNm_1">
-                          {/* {orderInfo.productDetail.data.storeName} */}
+                          {location.state.data.storeName}
                         </em>
                       </div>
                       <p className="mnodr_unit_tit ">
@@ -783,7 +840,7 @@ function OrderPage() {
                             className="mnodr_unit_brd"
                             style={{ fontWeight: 'bold' }}
                           >
-                            {/* {orderInfo.productDetail.data.name} */}
+                            {location.state.data.name}
                           </strong>
                         </a>
                       </p>
@@ -794,7 +851,7 @@ function OrderPage() {
                             <del>
                               <span className="blind">정상가격</span>
                               <em className="ssg_price">
-                                {/* {productPrice.toLocaleString()} */}
+                                {productPrice.toLocaleString()}
                               </em>
                             </del>
                             <span className="ssg_tx">원</span>
@@ -803,16 +860,14 @@ function OrderPage() {
                           <div className="mnodr_unit_newprice ty2">
                             <span className="blind">판매가격</span>
                             <em className="ssg_price">
-                              {/* {(
-                                productPrice - productSalePrice
-                              ).toLocaleString()} */}
+                              {(productPrice - salePrice).toLocaleString()}
                             </em>
                             <span className="ssg_tx">원</span>
                           </div>
                         </div>
                         <div className="mnodr_unit_r">
                           <span className="mnodr_unit_option">
-                            {/* 수량 {orderInfo.productDetail.count}개 */}
+                            수량 {productCnt}개
                           </span>
                         </div>
                       </div>
@@ -851,9 +906,9 @@ function OrderPage() {
         style={{ position: 'fixed', bottom: 0 }}
       >
         <span style={{ fontWeight: '600' }}>
-          {/* {totalPrice.toLocaleString()}원 */}
-        </span>{' '}
-        결제하기
+          {(totalPrice * productCnt + 3000).toLocaleString()}
+        </span>
+        원 결제하기
       </button>
     </div>
   );
