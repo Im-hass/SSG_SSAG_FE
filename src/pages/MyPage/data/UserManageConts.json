@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "나의 주문관리",
+    "list": [
+      { "id": 1, "name": "주문/배송조회", "path": "" },
+      { "id": 2, "name": "구매내역", "path": "" },
+      { "id": 3, "name": "자주구매 상품", "path": "" },
+      { "id": 4, "name": "정기배송 설정 관리", "path": "" },
+      { "id": 5, "name": "항공권 예약조회", "path": "" },
+      { "id": 6, "name": "호텔 예약 조회", "path": "" }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "나의 혜택 관리",
+    "list": [
+      { "id": 1, "name": "쿠폰", "path": "" },
+      { "id": 2, "name": "SSG MONEY", "path": "" },
+      { "id": 3, "name": "신세계포인트", "path": "" },
+      { "id": 4, "name": "국민용돈", "path": "" },
+      { "id": 5, "name": "SSG VOUCHER", "path": "" }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "나의 활동관리",
+    "list": [
+      { "id": 1, "name": "좋아요", "path": "" },
+      { "id": 2, "name": "마이리뷰", "path": "" },
+      { "id": 3, "name": "새벽배송 알비백 관리", "path": "" },
+      { "id": 4, "name": "스탬프 내역", "path": "" },
+      { "id": 5, "name": "이벤트 참여현황", "path": "" },
+      { "id": 6, "name": "e-mail 답변확인", "path": "" },
+      { "id": 7, "name": "상품 Q&A", "path": "" },
+      { "id": 8, "name": "입고알림내역", "path": "" },
+      { "id": 9, "name": "우르르 앵콜내역", "path": "" },
+      { "id": 10, "name": "행사알림내역", "path": "" }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "나의 선물함",
+    "list": [
+      { "id": 1, "name": "받은선물", "path": "" },
+      { "id": 2, "name": "보낸선물", "path": "" },
+      { "id": 3, "name": "히스토리", "path": "" }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "나의 정보관리",
+    "list": [
+      { "id": 1, "name": "회원정보 변경", "path": "" },
+      { "id": 2, "name": "비밀번호 변경", "path": "" },
+      { "id": 3, "name": "배송지 관리", "path": "/destination" },
+      { "id": 4, "name": "결제수단 관리", "path": "/paymentMeans" },
+      { "id": 5, "name": "신발 사이즈 설정", "path": "" },
+      { "id": 6, "name": "이메일/문자 수신 동의", "path": "" },
+      { "id": 7, "name": "제휴 멤버십 관리", "path": "" },
+      { "id": 8, "name": "로그인 정보 관리", "path": "" },
+      { "id": 9, "name": "SNS 연결 설정", "path": "" },
+      { "id": 10, "name": "회원 탈퇴", "path": "" }
+    ]
+  }
+]

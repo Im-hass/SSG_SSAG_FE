@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import toast, { Toaster } from 'react-hot-toast';
 import {
@@ -9,12 +9,19 @@ import {
   isHeaderCartCntSubmit,
 } from '../../../recoil/states';
 
-function PdtTool02({ goBuyBtn, handleOpenBtn }) {
+function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
+  const navigate = useNavigate();
+
   const [selectedProductOptionId] = useRecoilState(productOptionId);
   const [productCount] = useRecoilState(selectedProductCount);
   const [isHeaderCartCnt, setIsHeaderCartCnt] = useRecoilState(
     isHeaderCartCntSubmit,
   );
+
+  useEffect(() => {
+    console.log(productData, selectedProductOptionId, productCount);
+  }, []);
+
   const handleAddCart = () => {
     const token = localStorage.getItem('token');
     const data = {
@@ -42,6 +49,17 @@ function PdtTool02({ goBuyBtn, handleOpenBtn }) {
         console.log('add cart err:', err);
         toast.error('상품을 장바구니에 추가하지 못했습니다.');
       });
+  };
+
+  const handleClickOrderBtn = () => {
+    navigate('/order', {
+      state: {
+        data: productData,
+        optionId: selectedProductOptionId,
+        count: productCount,
+      },
+    });
+    handleOpenBtn('open');
   };
 
   return (
@@ -77,11 +95,12 @@ function PdtTool02({ goBuyBtn, handleOpenBtn }) {
           </button>
         </li>
         <li>
-          <Link
-            to="/buyPage"
+          <button
+            type="button"
             className="mndtl_btn type01 clickable"
             target="_parent"
-            onClick={() => handleOpenBtn('open')}
+            state={productData}
+            onClick={handleClickOrderBtn}
           >
             <span className="btn_tx ssgpay">
               <i className="ico_txt_ssgpay_btm">
@@ -89,7 +108,7 @@ function PdtTool02({ goBuyBtn, handleOpenBtn }) {
               </i>
               바로구매
             </span>
-          </Link>
+          </button>
         </li>
       </ul>
     </div>

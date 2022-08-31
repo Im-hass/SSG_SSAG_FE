@@ -16,7 +16,7 @@ function OrderChangeRecipientPage() {
         ...orderInfo,
         recipient: {
           ...orderInfo.recipient,
-          [e.target.name]: e.target.checked,
+          [e.target.name]: e.target.value,
         },
       });
     } else {
@@ -110,17 +110,33 @@ function OrderChangeRecipientPage() {
                 <li>
                   <span className="mnodr_rdo">
                     <input
-                      type="checkbox"
+                      type="radio"
                       id="change.rdoRefund_10"
                       name="refundCheck"
-                      value="10"
+                      value="주문시 결제수단으로 환불"
                       className="blind payTracking"
                       onChange={handleChangeInput}
-                      checked={orderInfo.recipient.refundCheck}
                     />
                     <label htmlFor="change.rdoRefund_10">
                       <span className="mnodr_tx_label rfdMthdTxt">
                         주문시 결제수단으로 환불
+                      </span>
+                    </label>
+                  </span>
+                </li>
+                <li>
+                  <span className="mnodr_rdo">
+                    <input
+                      type="radio"
+                      id="change.rdoRefund_11"
+                      name="refundCheck"
+                      value="SSG MONEY로 환불"
+                      className="blind payTracking"
+                      onChange={handleChangeInput}
+                    />
+                    <label htmlFor="change.rdoRefund_11">
+                      <span className="mnodr_tx_label rfdMthdTxt">
+                        SSG MONEY로 환불
                       </span>
                     </label>
                   </span>

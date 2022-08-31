@@ -1,43 +1,57 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
+import { useJwt } from 'react-jwt';
 
 const AuthContext = React.createContext({
+  token: '',
   isLogin: false,
-  onLogout() {},
-  onLogin() {},
+  login: () => {},
+  logout: () => {},
+  isExpired: false,
 });
 
 export function AuthContextProvider(props) {
-  const [isLogin, setIsLogin] = useState(false);
+  const tokenData = localStorage.getItem('token');
 
-  useEffect(() => {
-    const storedUserLoggedInInformation = localStorage.getItem('isLogin');
+  const [authToken, setAuthToken] = useState(tokenData);
+  const { isExpired } = useJwt(tokenData);
 
-    if (storedUserLoggedInInformation === '1') {
-      setIsLogin(true);
-    }
-  }, []);
+  const userIsLogIn = !!authToken;
 
-  const logoutHandler = () => {
-    localStorage.removeItem('isLogin');
+  const handleLogout = () => {
+    setAuthToken(null);
     localStorage.removeItem('token');
-    setIsLogin(false);
   };
 
-  const loginHandler = () => {
-    localStorage.setItem('isLogin', '1');
-    setIsLogin(true);
+  useEffect(() => {
+    if (isExpired) {
+      handleLogout();
+      console.log('토큰이 만료되었습니다.');
+    }
+  }, [isExpired]);
+
+  // useEffect(() => {
+  //   window.onbeforeunload = () => {
+  //     localStorage.clear();
+  //   };
+  // }, []);
+
+  const handleLogin = (token) => {
+    setAuthToken(token);
+    localStorage.setItem('token', token);
+  };
+
+  const contextValue = {
+    token: authToken,
+    isLogin: userIsLogIn,
+    login: handleLogin,
+    logout: handleLogout,
+    isExpired,
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        isLogin,
-        onLogin: loginHandler,
-        onLogout: logoutHandler,
-      }}
-    >
+    <AuthContext.Provider value={contextValue}>
       {props.children}
     </AuthContext.Provider>
   );

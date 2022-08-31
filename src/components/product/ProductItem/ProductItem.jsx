@@ -67,12 +67,13 @@ function ProductItem({ data }) {
                   <span className="mnsditem_goods_tit">{productName}</span>
                 </div>
                 <div className="mnsditem_pricewrap">
-                  {/* {discountPrice === 0 ? ( */}
                   {productSale === 0 ? (
                     <div className="mnsditem_price_row mnsditem_ty_newpr">
                       <div className="new_price">
                         <span className="blind">판매가격</span>
-                        <em className="ssg_price">{productPrice}</em>
+                        <em className="ssg_price">
+                          {productPrice.toLocaleString()}
+                        </em>
                         <span className="ssg_tx">원</span>
                       </div>
                     </div>
@@ -82,7 +83,9 @@ function ProductItem({ data }) {
                         <div className="old_price">
                           <del>
                             <span className="blind">정상가격</span>
-                            <em className="ssg_price">{productPrice}</em>
+                            <em className="ssg_price">
+                              {productPrice.toLocaleString()}
+                            </em>
                             <span className="ssg_tx">원</span>
                           </del>
                         </div>
@@ -90,15 +93,16 @@ function ProductItem({ data }) {
                       <div className="mnsditem_price_row mnsditem_ty_newpr">
                         <div className="new_price">
                           <span className="blind">판매가격</span>
-                          {/* <em className="ssg_price">{discountPrice}</em> */}
                           <em className="ssg_price">
-                            {(productPrice * (100 - productSale)) / 100}
+                            {(
+                              (productPrice * (100 - productSale)) /
+                              100
+                            ).toLocaleString()}
                           </em>
                           <span className="ssg_tx">원</span>
                         </div>
                         <div className="discount_rate">
                           <span className="blind">할인율</span>
-                          {/* <span>{discountRate}%</span> */}
                           <span>{productSale}%</span>
                         </div>
                       </div>
