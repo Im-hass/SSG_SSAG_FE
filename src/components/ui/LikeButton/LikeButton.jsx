@@ -1,20 +1,108 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './LikeButton.scss';
 
-function LikeButton({ wishDto }) {
+function LikeButton({ wishDto, productId, isLogin }) {
+  const [isWish, setIsWish] = useState(false);
+
+  // useEffect(() => {
+  //   console.log(wishDto);
+  //   if (productId !== undefined) {
+  //     if (wishDto !== null || wishDto !== undefined) {
+  //       setWishId(wishDto.wishId);
+  //       setIsWish(!isWish);
+  //     }
+  //   }
+  // }, [isWish]);
+
+  // const handleLike = () => {
+  //   if (productId !== undefined) {
+  //     const token = localStorage.getItem('token');
+  //     const headers = {
+  //       headers: {
+  //         Authorization: JSON.parse(token),
+  //       },
+  //     };
+  //     if (!isWish) {
+  //       axios
+  //         .post('http://13.209.26.150:9000/users/wish', { productId }, headers)
+  //         .then((res) => {
+  //           console.log(res.data);
+  //         });
+  //     } else {
+  //       axios
+  //         .delete(
+  //           `http://13.209.26.150:9000/users/wish/${wishDto.wishId}`,
+  //           headers,
+  //         )
+  //         .then((res) => {
+  //           console.log(res.data);
+  //         });
+  //     }
+  //     setIsWish(!isWish);
+  //   }
+  // };
+
+  useEffect(() => {
+    if (isLogin) {
+      if (wishDto !== null) {
+        setIsWish(true);
+      } else {
+        setIsWish(false);
+      }
+    } else {
+      setIsWish(false);
+    }
+  }, []);
+
+  const handleLike = () => {
+    if (isLogin) {
+      const token = localStorage.getItem('token');
+      const headers = {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      };
+
+      console.log(`${isWish ? '위시 삭제 요청' : '위시 등록 요청'}`);
+      if (isWish) {
+        axios
+          .delete(
+            `http://13.209.26.150:9000/users/wish/${wishDto.wishId}`,
+            headers,
+          )
+          .then((res) => {
+            console.log(res.data);
+          });
+      } else {
+        axios
+          .post('http://13.209.26.150:9000/users/wish', { productId }, headers)
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
+
+      setIsWish(!isWish);
+    }
+    console.log(
+      `프로덕트 ID: ${productId}, 위시인가: ${isWish}, ${
+        wishDto !== null ? wishDto.wishId : ''
+      }`,
+    );
+  };
+
   return (
     <div className="mnsditem_btn_like">
       <span className="cmlike _js_cmlike interestIt">
         <button
           type="button"
           className="cmlike_btn _js_cmlike_btn clickable"
-          // onClick="ssg_ad.adClick(this, {position: 'clip'});"
+          onClick={handleLike}
         >
           <span className="cmlike_ico">
             <i
-              className="cmlike_primary_m"
-              // style={{
-              //   backgroundImage: `url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M12 21.4l-8.3-9.2c-.8-1-1.3-2.2-1.3-3.5 0-2.8 2.3-5 5-5 1.9 0 3.6 1.1 4.6 2.8.8-1.7 2.5-2.8 4.6-2.8 2.8 0 5 2.3 5 5 0 1.3-.5 2.5-1.3 3.4L12 21.4z' fill='%23ff3e3e' stroke-width='0' stroke='%23ff3e3e'/%3E%3C/svg%3E")`,
-              // }}
+              className={`cmlike_primary_m `}
+              id={`${isWish ? 'clicked' : ''}`}
             />
             <span className="sr_off">
               <span className="blind">관심상품 취소</span>

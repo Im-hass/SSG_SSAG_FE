@@ -23,17 +23,32 @@ function ProductListContent() {
 
     let isUser = false;
     const token = localStorage.getItem('token');
+    const headers = {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    };
     if (token !== null) isUser = true;
     axios
       .get(
         `http://13.209.26.150:9000/${
           isUser ? 'users' : 'non-users'
         }/products${urlParams}`,
+        headers,
       )
       .then((res) => {
         const respones = res.data.result;
         setDatas(respones);
+        // console.log(res);
       });
+
+    // console.log(lgId, mdId);
+    // console.log(
+    //   `http://13.209.26.150:9000/${
+    //     isUser ? 'users' : 'non-users'
+    //   }/products${urlParams}`,
+    //   headers,
+    // );
   };
 
   useEffect(() => {

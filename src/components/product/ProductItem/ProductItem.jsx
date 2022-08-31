@@ -4,7 +4,7 @@ import { LikeButton } from '../../ui/LikeButton';
 // import { AdInfo } from '../../ui/AdInfo';
 import './ProductItem.scss';
 
-function ProductItem({ data }) {
+function ProductItem({ data, isLogin }) {
   const {
     productImgOriginName, // 이미지 원본 이름
     // productImgSaveName, // 이미지 저장 이름
@@ -33,7 +33,6 @@ function ProductItem({ data }) {
           <div className="mnsditem_thmb">
             <Link
               to={`/product/${productProductId}`}
-              // onClick="ssg_ad.adClick(this, {position:'view'});"
               className="mnsditem_thmb_link clickable"
             >
               <div className="mnsditem_thmb_imgbx">
@@ -47,7 +46,11 @@ function ProductItem({ data }) {
 
             {/* {isAd && <AdInfo />} */}
 
-            <LikeButton wishDto={data.wishDto} />
+            <LikeButton
+              wishDto={data.wishDto}
+              productId={productProductId}
+              isLogin={isLogin}
+            />
           </div>
 
           {/* 상세 정보 */}
