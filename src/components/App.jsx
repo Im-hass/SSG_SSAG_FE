@@ -6,7 +6,6 @@ import {
   CartPage,
   DestinationPage,
   MainPage,
-  MyPage,
   NotFoundPage,
   RecentShoppingPage,
   SearchResultPage,
