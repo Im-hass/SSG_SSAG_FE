@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { ProductList } from '../../product/ProductList/index';
-import AuthContext from '../../../store/auth-context';
 
-function NoSearchValue({ datas, searchValue }) {
-  const ctx = useContext(AuthContext);
-
+function NoSearchValue({ datas, searchValue, isWishChange, setIsWishChange }) {
   return (
     <>
       <div className="cm_result_titbox go_link">
@@ -33,7 +30,11 @@ function NoSearchValue({ datas, searchValue }) {
         </div>
 
         {/* 상품 리스트 */}
-        <ProductList datas={datas} isLogin={ctx.isLogin} />
+        <ProductList
+          datas={datas}
+          isWishChange={isWishChange}
+          setIsWishChange={setIsWishChange}
+        />
       </div>
     </>
   );

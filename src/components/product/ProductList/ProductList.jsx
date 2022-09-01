@@ -1,9 +1,8 @@
 import React from 'react';
 import './ProductList.scss';
 import ProductItem from '../ProductItem/ProductItem';
-// import { PRODUCT_LIST } from '../../../assets/datas';
 
-function ProductList({ datas, isLogin = false }) {
+function ProductList({ datas, isWishChange, setIsWishChange }) {
   return (
     <>
       {/* 필터 */}
@@ -323,7 +322,8 @@ function ProductList({ datas, isLogin = false }) {
               <ProductItem
                 key={data.categoryProductDtoRes.productProductId}
                 data={data}
-                isLogin={isLogin}
+                isWishChange={isWishChange}
+                setIsWishChange={setIsWishChange}
               />
             ))}
         </ul>

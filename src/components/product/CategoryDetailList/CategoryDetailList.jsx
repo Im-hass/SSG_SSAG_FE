@@ -1,13 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import AuthContext from '../../../store/auth-context';
 import './CategoryDetailList.scss';
 import { ProductList } from '../ProductList';
 
-function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
-  const ctx = useContext(AuthContext);
-
+function CategoryDetailList({
+  mediumCategoryList,
+  datas,
+  handleProductList,
+  isWishChange,
+  setIsWishChange,
+}) {
   const { lgId, mdId, smId } = useParams();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [smallCategoryList, setSmallCategoryList] = useState();
@@ -111,7 +114,13 @@ function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
         <div id="m_dimmed" className={`${isNavOpen ? 'mcom_dimmed' : ''}`} />
       </div>
 
-      <ProductList datas={datas} isLogin={ctx.isLogin} />
+      {datas && (
+        <ProductList
+          datas={datas}
+          isWishChange={isWishChange}
+          setIsWishChange={setIsWishChange}
+        />
+      )}
     </>
   );
 }
