@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios/index';
 import './AddAddressMyInfo.scss';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { AddAddressZipCode } from '../index';
 
 function AddAddressMyInfo({ state }) {
@@ -116,7 +115,6 @@ function AddAddressMyInfo({ state }) {
       });
 
       if (name === 'homePhone') {
-        console.log(name, value);
         setValid({
           ...valid,
           [name]: true,
@@ -137,7 +135,12 @@ function AddAddressMyInfo({ state }) {
       });
 
       if (name === 'homePhone') {
-        if (value.length === 0 || (value.length > 0 && value.length > 7)) {
+        if (
+          value.length === 0 ||
+          (value.length > 0 &&
+            value.length > 7 &&
+            code.homePhoneCode !== '선택')
+        ) {
           setValid({
             ...valid,
             [name]: true,
@@ -187,9 +190,9 @@ function AddAddressMyInfo({ state }) {
     checkedValid('zipCode', selectedItem.zipCode);
 
     if (Object.values(valid).every((v) => v === true) === true) {
+      const homeNumber = code.homePhoneCode + data.homePhone;
       const token = localStorage.getItem('token');
       if (state !== undefined) {
-        const homeNumber = code.homePhoneCode + data.homePhone;
         axios
           .put(
             `http://13.209.26.150:9000/users/shipping-addr`,
@@ -214,7 +217,6 @@ function AddAddressMyInfo({ state }) {
             toast.success('배송지가 수정되었습니다.');
           });
       } else {
-        const homeNumber = code.homePhoneCode + data.homePhone;
         axios
           .post(
             'http://13.209.26.150:9000/users/shipping-addr',
@@ -222,7 +224,12 @@ function AddAddressMyInfo({ state }) {
               addrName: data.addrName,
               recipient: data.recipient,
               phone: `${code.phoneCode}${data.phone}`,
-              homePhone: `${code.homePhoneCode === '선택' ? '' : homeNumber}`,
+              homePhone: `${
+                code.homePhoneCode === '선택' ||
+                (data.homePhone.length > 0 && data.homePhone.length < 7)
+                  ? ''
+                  : `${code.homePhoneCode}${data.homeNumber}`
+              }`,
               zipCode: selectedItem.zipCode,
               streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
               lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
@@ -239,13 +246,14 @@ function AddAddressMyInfo({ state }) {
           });
       }
     } else {
-      Object.entries(valid).map((v, key) => console.log(v, key));
       toast.error('비어있는 값이 있습니다. 값을 입력해주세요.');
     }
   };
 
   const onReset = () => {
     setIsReset(!isReset);
+    handleCodeChange('phoneCode', '010');
+    handleCodeChange('homePhoneCode', '선택');
     setData({
       ...data,
       addrName: '',
@@ -533,35 +541,12 @@ function AddAddressMyInfo({ state }) {
                         </li>
                       </ul>
                     </div>
-
-                    {/* <input type="hidden" name="shpplocSeq" defaultValue="" />
-                  <input type="hidden" name="bascShpplocYn" defaultValue="" />
-                  <input type="hidden" name="oldzipCode" defaultValue="" />
-                  <input type="hidden" name="roadNmBascAddr" defaultValue="" />
-                  <input type="hidden" name="roadNmDtlAddr" defaultValue="" />
-                  <input type="hidden" name="lotnoBascAddr" defaultValue="" />
-                  <input type="hidden" name="lotnoDtlAddr" defaultValue="" />
-                  <input
-                    type="hidden"
-                    name="mbrIptAddrTypeCd"
-                    defaultValue=""
-                  />
-                  <input type="hidden" name="mbrIptAddr" defaultValue="" />
-                  <input type="hidden" name="shpplocRegPstCd" defaultValue="" />
-                  <input type="hidden" name="addrExamRstCd" defaultValue="" />
-                  <input type="hidden" name="rcptpeTelno" defaultValue="" />
-                  <input type="hidden" name="rcptpeHpno" defaultValue="" /> */}
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <Toaster
-          containerStyle={{
-            top: 30,
-          }}
-        />
       </div>
 
       {/* 우편번호 찾기 */}
