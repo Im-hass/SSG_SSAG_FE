@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import MobileHeader from '../../components/ui/MobileHeader/MobileHeader';
 
 function CompleteOrderAccount() {
+  const location = useLocation();
+
   return (
     <div id="m_content" className="mnodr_order_completed">
       <MobileHeader title="결제완료" />
@@ -21,11 +23,10 @@ function CompleteOrderAccount() {
         <div className="mnodr_section_content">
           <div className="mnodr_orderer_info">
             <strong>
-              최민정 / <span>010-8450-1543</span>
+              {location.state.name} / <span>{location.state.phone}</span>
             </strong>
             <p className="orderer-address">
-              [46930] 부산광역시 사상구 백양대로 879, 105동 1306호 (모라동,
-              동원아파트)
+              [{location.state.zipCode}] {location.state.streetAddr}
             </p>
           </div>
         </div>
@@ -37,44 +38,9 @@ function CompleteOrderAccount() {
           <div className="mnodr_form_sec">
             <div className="mnodr_acdo_titarea">
               <h3 className="mnodr_tx_tit">
-                결제금액 <span>: 32,200</span>원
+                결제금액{' '}
+                <span>: {location.state.totalPrice.toLocaleString()}</span>원
               </h3>
-              <button type="button" className="mnodr_acdo_btn">
-                <span className="mnodr_ico_toggle">
-                  <i
-                    className="icon ty_sm icon_chevron_down"
-                    aria-hidden="true"
-                  />
-                  <span className="blind">
-                    <span className="sr_off">결제금액 상세 펼치기</span>
-                    <span className="sr_on">결제금액 상세 접기</span>
-                  </span>
-                </span>
-              </button>
-            </div>
-          </div>
-          <div className="mnodr_acdo_cont ty_toggle">
-            <div className="mnodr_table">
-              <dl className="mnodr_table_row">
-                <dt className="mnodr_table_cell">주문금액</dt>
-                <dd className="mnodr_table_cell">
-                  <span>33,000</span>원
-                </dd>
-              </dl>
-
-              <dl className="mnodr_table_row">
-                <dt className="mnodr_table_cell">결제할인</dt>
-                <dd className="mnodr_table_cell">
-                  <span>-3,300</span>원
-                </dd>
-              </dl>
-
-              <dl className="mnodr_table_row">
-                <dt className="mnodr_table_cell">배송비</dt>
-                <dd className="mnodr_table_cell">
-                  <span>+2,500</span>원
-                </dd>
-              </dl>
             </div>
           </div>
         </div>
@@ -87,15 +53,8 @@ function CompleteOrderAccount() {
               </dt>
               <dd className="mnodr_table_cell">
                 <strong>
-                  <span>32,200</span>원
+                  <span>{location.state.totalPrice.toLocaleString()}</span>원
                 </strong>
-                <span className="codr_tx_point">(입금대기)</span>
-              </dd>
-            </dl>
-            <dl className="mnodr_table_row">
-              <dt className="mnodr_table_cell">신한카드</dt>
-              <dd className="mnodr_table_cell">
-                <span>08207795397916</span>
               </dd>
             </dl>
           </div>

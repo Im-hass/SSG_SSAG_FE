@@ -35,6 +35,14 @@ function OrderPage() {
   const [userPaymentData, setUserPaymentData] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [clickPayment, setClickPayment] = useState(false);
+  const sendNextPageData = {
+    name: recipientData.name,
+    phone: recipientData.phone,
+    zipCode: destinationData.zipCode,
+    streetAddr: destinationData.streetAddr,
+    totalPrice: totalPrice * productCnt + deliveryFee,
+  };
+  console.log(recipientData, destinationData, location.state);
 
   const [clickBtn, setClickBtn] = useState({
     destination: false,
@@ -43,16 +51,6 @@ function OrderPage() {
   });
 
   const token = localStorage.getItem('token');
-
-  // const changeCardNum = (num) => {
-  //   const cardNum = num;
-  //   for (let i = 0; i < cardNum.length; i += 1) {
-  //     if (i === 7 || i === 8 || i === 10 || i === 11 || i === 12 || i === 13) {
-  //       cardNum[i] = '*';
-  //     }
-  //   }
-  //   return cardNum.join('');
-  // };
 
   useEffect(() => {
     if (userPaymentData.refundCheck === '주문 시 결제수단으로 환불')
@@ -132,36 +130,36 @@ function OrderPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post(
-        'http://13.209.26.150:9000/users/order',
-        {
-          refundType: refundTypeData,
-          recipient: recipientData.name,
-          recipientPhone: recipientData.phone,
-          addrName: destinationData.addrName,
-          streetAddr: destinationData.streetAddr,
-          zipCode: destinationData.zipCode,
-          shippingMsg: shippingMessageData,
-          orderDtoReq: [
-            location.state.optionId,
-            productCnt,
-            totalPrice * productCnt + deliveryFee,
-          ],
-        },
-        {
-          headers: {
-            Authorization: JSON.parse(token),
-          },
-        },
-      )
-      .then((res) => {
-        console.log(res);
-        navigate('/completeOrder');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axios
+    //   .post(
+    //     'http://13.209.26.150:9000/users/order',
+    //     {
+    //       refundType: refundTypeData,
+    //       recipient: recipientData.name,
+    //       recipientPhone: recipientData.phone,
+    //       addrName: destinationData.addrName,
+    //       streetAddr: destinationData.streetAddr,
+    //       zipCode: destinationData.zipCode,
+    //       shippingMsg: shippingMessageData,
+    //       orderDtoReq: [
+    //         location.state.optionId,
+    //         productCnt,
+    //         totalPrice * productCnt + deliveryFee,
+    //       ],
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: JSON.parse(token),
+    //       },
+    //     },
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    navigate('/completeOrder', { state: sendNextPageData });
   };
 
   return (
@@ -455,7 +453,7 @@ function OrderPage() {
                   <span className="mnodr_tx_primary">
                     +
                     <em className="ssg_price paySummaryTotOrdCstAmt">
-                      {deliveryFee}
+                      {deliveryFee.toLocaleString()}
                     </em>
                     <span className="ssg_tx">원</span>
                   </span>
@@ -471,7 +469,7 @@ function OrderPage() {
                     +
                     <em className="ssg_price paySummaryOrdCstAmt">
                       {' '}
-                      {deliveryFee}
+                      {deliveryFee.toLocaleString()}
                     </em>
                     <span className="ssg_tx">원</span>
                   </span>
@@ -542,7 +540,7 @@ function OrderPage() {
           <div className="mnodr_article_foot">
             <div className="mnodr_btn_area">
               <button
-                type="button"
+                type="submit"
                 name="processPaymtButton"
                 className="mnodr_btn ty_point ty_m payTracking"
                 data-pt-click="주문서|결제예정금액|결제하기"
