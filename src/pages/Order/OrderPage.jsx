@@ -1,18 +1,24 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable prefer-template */
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert';
+import { useRecoilState } from 'recoil';
+import { isModalOpenState } from '../../recoil/states';
 
-import './OrderPage.scss';
+import { PaymentMeansAddCardModal } from '../../components/contents/index';
+import { CustomAlert } from '../../components/common/index';
 import { MobileHeader } from '../../components/ui/index';
 import {
   OrderChangeDestinationPage,
   OrderChangeRecipientPage,
   OrderChangeShippingMessagePage,
 } from './index';
+import './OrderPage.scss';
 
 function OrderPage() {
-  const date = new Date();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const productCnt = location.state.count;
@@ -21,10 +27,13 @@ function OrderPage() {
   const totalPrice = productPrice - salePrice;
   // const deliveryFee = location.state.delivery;
 
+  const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
   const [destinationData, setDestinationData] = useState({});
   const [recipientData, setRecipientData] = useState({});
   const [shippingMessageData, setShippingMessageData] = useState('');
+  const [userPaymentData, setUserPaymentData] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [clickPayment, setClickPayment] = useState(false);
   const [submitForm, setSubmitForm] = useState({
     refundType: 0,
     recipient: '',
@@ -42,12 +51,17 @@ function OrderPage() {
     message: false,
   });
 
-  const [clickPayment, setClickPayment] = useState({
-    credit: false,
-    deposit: false,
-  });
-
   const token = localStorage.getItem('token');
+
+  // const changeCardNum = (num) => {
+  //   const cardNum = num;
+  //   for (let i = 0; i < cardNum.length; i += 1) {
+  //     if (i === 7 || i === 8 || i === 10 || i === 11 || i === 12 || i === 13) {
+  //       cardNum[i] = '*';
+  //     }
+  //   }
+  //   return cardNum.join('');
+  // };
 
   useEffect(() => {
     axios
@@ -71,19 +85,37 @@ function OrderPage() {
       });
   }, []);
 
-  const handleClickPayment = (e) => {
-    if (e.target.name === 'credit') {
-      setClickPayment({
-        credit: true,
-        deposit: false,
+  const handleAddPaymentModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleClickPayment = () => {
+    setClickPayment((prev) => !prev);
+    axios
+      .get('http://13.209.26.150:9000/users/payment', {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.data.result.cardNumber === undefined) {
+          confirmAlert({
+            // eslint-disable-next-line react/no-unstable-nested-components
+            customUI: ({ onClose }) => (
+              <CustomAlert
+                title="등록된 결ㅈ"
+                desc="결제수단을 등록하시겠습니까?"
+                btnTitle="등록"
+                onAction={handleAddPaymentModal}
+                onClose={onClose}
+              />
+            ),
+          });
+        } else setUserPaymentData(res.data.result);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    }
-    if (e.target.name === 'deposit') {
-      setClickPayment({
-        credit: false,
-        deposit: true,
-      });
-    }
   };
 
   const handleClickBtn = (e) => {
@@ -94,6 +126,11 @@ function OrderPage() {
     if (e.target.name === 'message')
       setClickBtn({ ...clickBtn, message: true });
     console.log(e.target.name, clickBtn);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/completeOrder');
   };
 
   return (
@@ -117,7 +154,11 @@ function OrderPage() {
           setShippingMessageData={setShippingMessageData}
         />
       )}
-      <div style={{ background: '#f5f5f5', position: 'relative' }}>
+      {isModalOpen && <PaymentMeansAddCardModal />}
+      <form
+        style={{ background: '#f5f5f5', position: 'relative' }}
+        onSubmit={handleSubmit}
+      >
         <MobileHeader title="결제하기" />
         {isFetching && (
           <ul className="mnodr_article_list" id="ordPageShpplocInfoDiv_1">
@@ -231,28 +272,14 @@ function OrderPage() {
                         name="credit"
                         className={
                           'mnodr_pay_tab payTracking' +
-                          (clickPayment.credit ? ' on' : '')
+                          (clickPayment ? ' on' : '')
                         }
-                        onClick={handleClickPayment}
                       >
                         신용카드
                       </button>
                     </li>
-                    <li>
-                      <button
-                        type="button"
-                        name="deposit"
-                        className={
-                          'mnodr_pay_tab payTracking' +
-                          (clickPayment.deposit ? ' on' : '')
-                        }
-                        onClick={handleClickPayment}
-                      >
-                        무통장 입금
-                      </button>
-                    </li>
                   </ul>
-                  {clickPayment.credit && (
+                  {clickPayment && (
                     <div
                       className="mnodr_panel_sec paymtMeansArea creditCrdPaymtMeansArea"
                       style={{ display: 'block' }}
@@ -262,180 +289,15 @@ function OrderPage() {
                           <select
                             id="creditCrdCdSelect"
                             title="카드를 선택하세요."
+                            onClick={handleClickPayment}
                           >
                             <option value="">카드를 선택하세요.</option>
-                            <option
-                              value="07"
-                              isptype=""
-                              title="신한카드(925*)"
-                              cardseq="2021092517170821"
-                              hyundaimpointyn="Y"
-                            >
-                              신한카드(925*) / 4518 **** **** 925*
-                            </option>
-                            <option
-                              value="76"
-                              isptype="20"
-                              title="SSG.COM카드 EDITION2"
-                            >
-                              SSG.COM카드 EDITION2
-                            </option>
-                            <option value="74" isptype="20" title="SSG.COM카드">
-                              SSG.COM카드
-                            </option>
-                            <option
-                              value="66"
-                              isptype="20"
-                              title="이마트e카드(현대카드)"
-                            >
-                              이마트e카드(현대카드)
-                            </option>
-                            <option value="08" isptype="20" title="현대카드">
-                              현대카드
-                            </option>
-                            <option
-                              value="64"
-                              isptype="10"
-                              title="이마트KB국민카드"
-                            >
-                              이마트KB국민카드
-                            </option>
-                            <option value="02" isptype="10" title="KB국민카드">
-                              KB국민카드
-                            </option>
-                            <option
-                              value="62"
-                              isptype="20"
-                              title="이마트삼성카드"
-                            >
-                              이마트삼성카드
-                            </option>
-                            <option
-                              value="75"
-                              isptype="20"
-                              title="SSG.COM 삼성카드"
-                            >
-                              SSG.COM 삼성카드
-                            </option>
-                            <option
-                              value="61"
-                              isptype="20"
-                              title="신세계삼성카드"
-                            >
-                              신세계삼성카드
-                            </option>
-                            <option
-                              value="67"
-                              isptype="20"
-                              title="트레이더스삼성카드"
-                            >
-                              트레이더스삼성카드
-                            </option>
-                            <option value="06" isptype="20" title="삼성카드">
-                              삼성카드
-                            </option>
-                            <option
-                              value="63"
-                              isptype="20"
-                              title="이마트신한카드"
-                            >
-                              이마트신한카드
-                            </option>
-                            <option
-                              value="70"
-                              isptype="20"
-                              title="신세계신한카드"
-                            >
-                              신세계신한카드
-                            </option>
-                            <option value="07" isptype="20" title="신한카드">
-                              신한카드
-                            </option>
-                            <option value="01" isptype="10" title="비씨카드">
-                              비씨카드
-                            </option>
-                            <option
-                              value="73"
-                              isptype="20"
-                              title="신세계하나체크카드"
-                            >
-                              신세계하나체크카드
-                            </option>
-                            <option value="03" isptype="20" title="하나카드">
-                              하나카드
-                            </option>
-                            <option value="38" isptype="20" title="롯데카드">
-                              롯데카드
-                            </option>
-                            <option value="11" isptype="20" title="NH카드">
-                              NH카드
-                            </option>
-                            <option
-                              value="72"
-                              isptype="10"
-                              title="카카오뱅크카드"
-                            >
-                              카카오뱅크카드
-                            </option>
-                            <option
-                              value="89"
-                              isptype="20"
-                              title="신세계씨티카드"
-                            >
-                              신세계씨티카드
-                            </option>
-                            <option value="16" isptype="20" title="씨티카드">
-                              씨티카드
-                            </option>
-                            <option
-                              value="65"
-                              isptype="10"
-                              title="이마트우리체크카드"
-                            >
-                              이마트우리체크카드
-                            </option>
-                            <option value="15" isptype="10" title="우리카드">
-                              우리카드
-                            </option>
-                            <option
-                              value="18"
-                              isptype="10"
-                              title="IBK기업은행카드"
-                            >
-                              IBK기업은행카드
-                            </option>
-                            <option
-                              value="69"
-                              isptype="10"
-                              title="이마트SC카드"
-                            >
-                              이마트SC카드
-                            </option>
-                            <option
-                              value="68"
-                              isptype="10"
-                              title="신세계SC카드"
-                            >
-                              신세계SC카드
-                            </option>
-                            <option value="17" isptype="10" title="SC은행카드">
-                              SC은행카드
-                            </option>
-                            <option value="71" isptype="10" title="SSGPAY카드">
-                              SSGPAY카드
-                            </option>
-                            <option value="22" isptype="10" title="광주카드">
-                              광주카드
-                            </option>
-                            <option value="13" isptype="10" title="수협카드">
-                              수협카드
-                            </option>
-                            <option value="21" isptype="10" title="제주카드">
-                              제주카드
-                            </option>
-                            <option value="23" isptype="10" title="전북카드">
-                              전북카드
-                            </option>
+                            {userPaymentData &&
+                              userPaymentData.map((data, i) => (
+                                <option key={`data-${i}`}>
+                                  {data.cardCompany} / {data.cardNumber}
+                                </option>
+                              ))}
                           </select>
                         </span>
                       </div>
@@ -490,49 +352,6 @@ function OrderPage() {
                             </option>
                           </select>
                         </span>
-                      </div>
-                    </div>
-                  )}
-                  {clickPayment.deposit && (
-                    <div className="mnodr_panel_sec paymtMeansArea virtualAccountPaymtMeansArea">
-                      <div className="mnodr_form_cont">
-                        <span className="mnodr_inp_sel ty_black">
-                          <select
-                            id="virtualAccountBankSelect"
-                            title="입금은행을 선택하세요."
-                          >
-                            <option value="">입금은행을 선택하세요.</option>
-                            <option value="03">기업은행</option>
-                            <option value="04">국민은행</option>
-                            <option value="11">농협중앙회</option>
-                            <option value="20">우리은행</option>
-                            <option value="23">SC제일은행</option>
-                            <option value="26">신한은행</option>
-                            <option value="31">대구은행</option>
-                            <option value="32">부산은행</option>
-                            <option value="71">우체국</option>
-                            <option value="81">하나은행</option>
-                          </select>
-                        </span>
-                      </div>
-                      <div className="mnodr_form_cont ty_space">
-                        <span className="mnodr_inp_txt">
-                          <input
-                            type="text"
-                            placeholder="입금자명을 입력해 주세요."
-                            title="입금자명을 입력해 주세요."
-                          />
-                        </span>
-                      </div>
-                      <div className="mnodr_form_cont ty_space">
-                        <p className="mnodr_tx_desc">
-                          입금기한 :{' '}
-                          <span className="mnodr_tx_point">
-                            {date.getFullYear()}년 {date.getMonth() + 1}월{' '}
-                            {date.getDate() + 1}일까지{' '}
-                          </span>
-                          미입금시 자동취소
-                        </p>
                       </div>
                     </div>
                   )}
@@ -939,7 +758,7 @@ function OrderPage() {
           </span>
           원 결제하기
         </button>
-      </div>
+      </form>
     </>
   );
 }
