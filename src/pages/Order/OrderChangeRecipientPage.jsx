@@ -1,18 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { MobileHeader } from '../../components/ui/index';
 
-function OrderChangeRecipientPage({ props }) {
-  const { setClickBtn, setRecipientData } = props;
-  const handleChangeInput = (e) => {};
+function OrderChangeRecipientPage(props) {
+  const { setClickBtn, recipientData, setRecipientData } = props;
+  const [checkRefund, setCheckRefund] = useState(false);
+
+  const handleChangeInput = (e) => {
+    if (e.target.value !== undefined)
+      setRecipientData({ ...recipientData, [e.target.name]: e.target.value });
+    if (e.target.checked) setCheckRefund(true);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!checkRefund) {
+      toast.error('환불 받으실 수단을 체크해주세요.');
+    } else {
+      setClickBtn({
+        destination: false,
+        recipient: false,
+        message: false,
+      });
+    }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
       style={{ background: '#fff', overflow: 'scroll' }}
+      className="wrap"
     >
+      <MobileHeader title="주문자정보 변경" />
       <div id="ordNotiInfoDiv">
         <div name="divOrdStep" id="notiInfoDiv">
           <div className="mnodr_sec_heading">
@@ -32,7 +55,7 @@ function OrderChangeRecipientPage({ props }) {
                 <input
                   type="text"
                   className="payTracking"
-                  // value={orderInfo.recipient.name}
+                  value={recipientData.name}
                   placeholder="성명을 입력해주세요"
                   maxLength="50"
                   name="name"
@@ -52,7 +75,7 @@ function OrderChangeRecipientPage({ props }) {
                     type="tel"
                     name="phone"
                     maxLength="13"
-                    // value={orderInfo.recipient.phone}
+                    value={recipientData.phone}
                     onChange={handleChangeInput}
                   />
                 </span>
@@ -69,7 +92,7 @@ function OrderChangeRecipientPage({ props }) {
                   type="text"
                   id="change.email"
                   name="email"
-                  // value={orderInfo.recipient.email}
+                  value={recipientData.email}
                   className="payTracking"
                   placeholder="예) email@ssg.com"
                   maxLength="100"
@@ -131,6 +154,11 @@ function OrderChangeRecipientPage({ props }) {
       >
         변경하기
       </button>
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+      />
     </form>
   );
 }

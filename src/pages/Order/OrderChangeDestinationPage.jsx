@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './OrderChangeDestinationPage.scss';
+import { MobileHeader } from '../../components/ui/index';
 
-function OrderChangeDestinationPage({ props }) {
+function OrderChangeDestinationPage(props) {
   const { setClickBtn, setDestinationData } = props;
   const [destinationArr, setDestinationArr] = useState([]);
 
@@ -29,7 +29,6 @@ function OrderChangeDestinationPage({ props }) {
       (addr) => addr.addrName === e.target.id,
     );
     setDestinationData(clickAddr);
-    console.log(clickAddr);
   };
 
   const handleSubmit = (e) => {
@@ -42,7 +41,8 @@ function OrderChangeDestinationPage({ props }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="destination_wrap">
+    <form onSubmit={handleSubmit} className="wrap">
+      <MobileHeader title="배송지 선택" />
       <div className="mnodr_sec_heading">
         <h3 className="mnodr_tx_heading">어디로 보내드릴까요?</h3>
       </div>

@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { MobileHeader } from '../../components/ui/index';
 
-function OrderChangeShippingMessagePage({ props }) {
+function OrderChangeShippingMessagePage(props) {
   const { setClickBtn, setShippingMessageData } = props;
   const [clickMessage, setClickMessage] = useState('');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleClickInput = (e) => {
     setClickMessage(e.target.value);
@@ -15,11 +20,16 @@ function OrderChangeShippingMessagePage({ props }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShippingMessageData(clickMessage);
-    setClickBtn(false);
+    setClickBtn({
+      destination: false,
+      recipient: false,
+      message: false,
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="wrap">
+      <MobileHeader title="수령위치 선택" />
       <div id="ordShppRcptInfoDiv">
         <div name="divOrdStep" id="rcptInfoDiv_1" className="fullOrdArea">
           <div className="mnodr_form_sec ty3">
