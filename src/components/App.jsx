@@ -15,6 +15,7 @@ import {
   LoginPage,
   ProductListPage,
   ModifyDestinationPage,
+  WishListPage,
 } from '../pages';
 import { MyPage } from '../pages/MyPage';
 import {
@@ -43,7 +44,35 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="*" element={<NotFoundPage />} />
         <Route exact path="/" element={<MainPage />} />
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/my" element={<MyPage />} />
+          <Route path="/wishList" element={<WishListPage />} />
+          <Route path="/paymentMeans" element={<PaymentMeansPage />} />
+          <Route path="/destination" element={<DestinationPage />}>
+            <Route index element={<MyDestinations />} />
+            <Route path="withDes" element={<WithDestinations />} />
+          </Route>
+          <Route path="/addDestination" element={<AddDestinationPage />} />
+          <Route path="/order" element={<OrderPage />} />
+          <Route
+            path="/orderDestination"
+            element={<OrderChangeDestinationPage />}
+          />
+          <Route
+            path="/orderChangeRecipient"
+            element={<OrderChangeRecipientPage />}
+          />
+          <Route
+            path="/orderChangeShippingMessage"
+            element={<OrderChangeShippingMessagePage />}
+          />
+          <Route
+            path="/modifyDestination"
+            element={<ModifyDestinationPage />}
+          />
+        </Route>
         {!authCtx.isLogin && (
           <>
             <Route path="/login" element={<LoginPage />} />
@@ -68,50 +97,7 @@ function App() {
           <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/my" element={<PrivateRoute />}>
-          <Route path="/my" element={<MyPage />} />
-        </Route>
-        <Route path="/paymentMeans" element={<PrivateRoute />}>
-          <Route path="/paymentMeans" element={<PaymentMeansPage />} />
-        </Route>
-        <Route path="/destination" element={<PrivateRoute />}>
-          <Route path="/destination" element={<DestinationPage />}>
-            <Route index element={<MyDestinations />} />
-            <Route path="withDes" element={<WithDestinations />} />
-          </Route>
-        </Route>
-        <Route path="/addDestination" element={<PrivateRoute />}>
-          <Route path="/addDestination" element={<AddDestinationPage />} />
-        </Route>
-        <Route path="/order" element={<PrivateRoute />}>
-          <Route path="/order" element={<OrderPage />} />
-        </Route>
-        <Route path="/orderDestination" element={<PrivateRoute />}>
-          <Route
-            path="/orderDestination"
-            element={<OrderChangeDestinationPage />}
-          />
-        </Route>
-        <Route path="/orderChangeRecipient" element={<PrivateRoute />}>
-          <Route
-            path="/orderChangeRecipient"
-            element={<OrderChangeRecipientPage />}
-          />
-        </Route>
-        <Route path="/orderChangeShippingMessage" element={<PrivateRoute />}>
-          <Route
-            path="/orderChangeShippingMessage"
-            element={<OrderChangeShippingMessagePage />}
-          />
-        </Route>
-        <Route path="/modifyDestination" element={<PrivateRoute />}>
-          <Route
-            path="/modifyDestination"
-            element={<ModifyDestinationPage />}
-          />
-        </Route>
         <Route path="/historyList" element={<RecentShoppingPage />} />
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollToTop />
       <Toaster
