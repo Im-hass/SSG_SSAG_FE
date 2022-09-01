@@ -3,14 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../../../store/auth-context';
 import './CategoryDetailList.scss';
-import { ProductList } from '../ProductList/index';
+import { ProductList } from '../ProductList';
 
 function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
   const ctx = useContext(AuthContext);
 
   const { lgId, mdId, smId } = useParams();
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [smallCateList, setSmallCateList] = useState();
+  const [smallCategoryList, setSmallCategoryList] = useState();
   const [hasMId, setHasMid] = useState(false);
 
   const handleNavOpen = () => {
@@ -25,7 +25,7 @@ function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
       axios
         .get(`http://13.209.26.150:9000/comm-users/category/small/${mdId}`)
         .then((res) => {
-          setSmallCateList(res.data.result.smallCategoryList);
+          setSmallCategoryList(res.data.result.smallCategoryList);
         });
     }
   }, [hasMId, mdId, smId]);
@@ -87,10 +87,10 @@ function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
           </div>
         </div>
 
-        {hasMId && smallCateList && (
+        {hasMId && smallCategoryList && (
           <div className="m_catelst">
             <ul className="lst_cate">
-              {smallCateList.map((data) => (
+              {smallCategoryList.map((data) => (
                 <li key={data.smallCategoryId}>
                   <Link
                     to={`/products/${lgId}/${mdId}/${data.smallCategoryId}`}
@@ -110,6 +110,7 @@ function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
         )}
         <div id="m_dimmed" className={`${isNavOpen ? 'mcom_dimmed' : ''}`} />
       </div>
+
       <ProductList datas={datas} isLogin={ctx.isLogin} />
     </>
   );
