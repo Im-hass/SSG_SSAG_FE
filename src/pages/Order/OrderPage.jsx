@@ -21,6 +21,8 @@ function OrderPage() {
   // const deliveryFee = location.state.delivery;
 
   const [changeTitle, setChangeTitle] = useState('결제하기');
+  const [userData, setUserData] = useState({});
+  const [isFetching, setIsFetching] = useState(false);
   const [submitForm, setSubmitForm] = useState({
     refundType: 0,
     recipient: '',
@@ -31,11 +33,13 @@ function OrderPage() {
     shippingMsg: '',
     orderDtoReq: [0, 0, 0],
   });
+
   const [clickBtn, setClickBtn] = useState({
     destination: false,
     recipient: false,
     message: false,
   });
+
   const [clickPayment, setClickPayment] = useState({
     credit: false,
     deposit: false,
@@ -44,11 +48,6 @@ function OrderPage() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    console.log(location.state);
-    // setSubmitForm({
-    //   ...submitForm,
-    // });
-
     axios
       .all([
         axios.get('http://13.209.26.150:9000/users/shipping-addr/default', {
@@ -63,8 +62,13 @@ function OrderPage() {
         }),
       ])
       .then((res) => {
-        console.log(res);
+        setUserData({
+          destination: res[0].data.result,
+          recipient: res[1].data.result,
+        });
+        setStatus('fetching');
       });
+    console.log(userData);
   }, []);
 
   const handleClickPayment = (e) => {
@@ -94,6 +98,7 @@ function OrderPage() {
   };
 
   return (
+    { status === 'fetching') && (
     <div style={{ background: '#f5f5f5' }}>
       <MobileHeader title={changeTitle} />
       {clickBtn.destination && (
@@ -114,7 +119,7 @@ function OrderPage() {
             <div className="mnodr_article_head">
               <div className="mnodr_article_headlt">
                 <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-                  {/* 배송지 : {orderInfo.addr.addrName} */}
+                  배송지 : {userData.destination.addrName}
                 </h2>
               </div>
               <div className="mnodr_article_headrt">
@@ -131,12 +136,15 @@ function OrderPage() {
             <div className="mnodr_article_cont ty_pull">
               <div className="mnodr_form_sec">
                 <p className="mnodr_tx_desc">
-                  {/* [{orderInfo.addr.zipCode}] {orderInfo.addr.streetAddr} */}
+                  [{userData.destination.zipCode}]{' '}
+                  {userData.destination.streetAddr}
                 </p>
                 <div className="mnodr_tx_wrap ty_space">
                   <span className="mnodr_tx_size2 mnodr_tx_gray">
-                    {/* <span id="dispRcptpeNm_0">{orderInfo.addr.recipient}</span>/
-                    <span id="dispHpno_0">{orderInfo.addr.phone}</span> */}
+                    <span id="dispRcptpeNm_0">
+                      {userData.destination.recipient}{' '}
+                    </span>
+                    /<span id="dispHpno_0"> {userData.destination.phone}</span>
                   </span>
                 </div>
               </div>
@@ -709,7 +717,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeNmStr">
-                        {/* {orderInfo.recipient.name} */}
+                        {userData.recipient.name}
                       </p>
                     </dd>
                   </dl>
@@ -721,7 +729,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeHpnoStr">
-                        {/* {orderInfo.recipient.phone} */}
+                        {userData.recipient.phone}
                       </p>
                     </dd>
                   </dl>
@@ -733,7 +741,7 @@ function OrderPage() {
                     </dt>
                     <dd>
                       <p className="mnodr_tx_desc" id="ordpeEmailStr">
-                        {/* {orderInfo.recipient.email} */}
+                        {userData.recipient.email}
                       </p>
                     </dd>
                   </dl>
@@ -746,7 +754,7 @@ function OrderPage() {
                     <dd>
                       <p className="mnodr_tx_desc">
                         <span id="rfdMthdStrArea">
-                          {/* {orderInfo.recipient.refundCheck} */}
+                          {userData.recipient.refundCheck}
                         </span>
                       </p>
                     </dd>
@@ -918,6 +926,7 @@ function OrderPage() {
         원 결제하기
       </button>
     </div>
+    )}
   );
 }
 
