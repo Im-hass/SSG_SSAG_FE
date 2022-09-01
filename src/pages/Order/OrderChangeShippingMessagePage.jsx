@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 
-function OrderChangeShippingMessagePage() {
-  const handleClickInput = (e) => {};
+function OrderChangeShippingMessagePage({ props }) {
+  const { setClickBtn, setShippingMessageData } = props;
+  const [clickMessage, setClickMessage] = useState('');
+
+  const handleClickInput = (e) => {
+    setClickMessage(e.target.value);
+  };
+
+  const handleChangeMessage = (e) => {
+    setClickMessage(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShippingMessageData(clickMessage);
+    setClickBtn(false);
   };
 
   return (
@@ -104,7 +115,7 @@ function OrderChangeShippingMessagePage() {
                       cols="30"
                       rows="2"
                       maxLength="50"
-                      // onChange={handleChangeMessage}
+                      onChange={handleChangeMessage}
                     />
                     <span className="mnodr_inp_txtcount">
                       <span className="mnodr_inp_current">0</span>/

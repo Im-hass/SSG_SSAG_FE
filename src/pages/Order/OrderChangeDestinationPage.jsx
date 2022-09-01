@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './OrderChangeDestinationPage.scss';
 
-function OrderChangeDestinationPage(props) {
-  const { setClickBtn } = props;
+function OrderChangeDestinationPage({ props }) {
+  const { setClickBtn, setDestinationData } = props;
   const [destinationArr, setDestinationArr] = useState([]);
 
   useEffect(() => {
@@ -23,12 +24,13 @@ function OrderChangeDestinationPage(props) {
       });
   }, []);
 
-  // const handleInputClick = (e) => {
-  //   const clickAddr = destinationArr.find(
-  //     (addr) => addr.addrName === e.target.id,
-  //   );
-  //   setOrderInfo({ ...orderInfo, addr: clickAddr });
-  // };
+  const handleInputClick = (e) => {
+    const clickAddr = destinationArr.find(
+      (addr) => addr.addrName === e.target.id,
+    );
+    setDestinationData(clickAddr);
+    console.log(clickAddr);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +42,7 @@ function OrderChangeDestinationPage(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="destination_wrap">
       <div className="mnodr_sec_heading">
         <h3 className="mnodr_tx_heading">어디로 보내드릴까요?</h3>
       </div>
@@ -69,7 +71,7 @@ function OrderChangeDestinationPage(props) {
                   id={addr.addrName}
                   className="blind mnodr_rdotab_inp ordShpplocRadio"
                   name="addr"
-                  // onChange={handleInputClick}
+                  onChange={handleInputClick}
                 />
                 <label htmlFor={addr.addrName} className="mnodr_rdotab_label">
                   <div className="mnodr_rdotab_head">

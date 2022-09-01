@@ -1,6 +1,7 @@
 import React from 'react';
 
 function OrderChangeRecipientPage({ props }) {
+  const { setClickBtn, setRecipientData } = props;
   const handleChangeInput = (e) => {};
 
   const handleSubmit = (e) => {

@@ -21,7 +21,9 @@ function OrderPage() {
   // const deliveryFee = location.state.delivery;
 
   const [changeTitle, setChangeTitle] = useState('결제하기');
-  const [userData, setUserData] = useState({});
+  const [destinationData, setDestinationData] = useState({});
+  const [recipientData, setRecipientData] = useState({});
+  const [shippingMessageData, setShippingMessageData] = useState('');
   const [isFetching, setIsFetching] = useState(false);
   const [submitForm, setSubmitForm] = useState({
     refundType: 0,
@@ -62,13 +64,11 @@ function OrderPage() {
         }),
       ])
       .then((res) => {
-        setUserData({
-          destination: res[0].data.result,
-          recipient: res[1].data.result,
-        });
+        setDestinationData(res[0].data.result);
+        setRecipientData(res[1].data.result);
         setIsFetching(true);
+        console.log(destinationData, recipientData);
       });
-    console.log(userData);
   }, []);
 
   const handleClickPayment = (e) => {
@@ -87,27 +87,33 @@ function OrderPage() {
   };
 
   const handleClickBtn = (e) => {
+    setClickBtn({ ...clickBtn, [e.target.name]: !clickBtn[e.target.name] });
     if (e.target.name === 'destination') setChangeTitle('배송지 선택');
     if (e.target.name === 'recipient') setChangeTitle('주문자정보 변경');
     if (e.target.name === 'message') setChangeTitle('수령위치 선택');
-    setClickBtn({ ...clickBtn, [e.target.name]: !clickBtn[e.target.name] });
-    if (Object.values(clickBtn).every((v) => v === false) === true) {
-      setChangeTitle('결제하기');
-    }
-    console.log();
+    console.log(e.target.name, clickBtn);
   };
 
   return (
-    <div style={{ background: '#f5f5f5' }}>
+    <div style={{ background: '#f5f5f5', position: 'relative' }}>
       <MobileHeader title={changeTitle} />
       {clickBtn.destination && (
-        <OrderChangeDestinationPage setClickBtn={setClickBtn} />
+        <OrderChangeDestinationPage
+          setClickBtn={setClickBtn}
+          setDestinationData={setDestinationData}
+        />
       )}
       {clickBtn.recipient && (
-        <OrderChangeRecipientPage setClickBtn={setClickBtn} />
+        <OrderChangeRecipientPage
+          setClickBtn={setClickBtn}
+          setRecipientData={setRecipientData}
+        />
       )}
       {clickBtn.message && (
-        <OrderChangeShippingMessagePage setClickBtn={setClickBtn} />
+        <OrderChangeShippingMessagePage
+          setClickBtn={setClickBtn}
+          setShippingMessageData={setShippingMessageData}
+        />
       )}
       {isFetching && (
         <ul className="mnodr_article_list" id="ordPageShpplocInfoDiv_1">
@@ -119,7 +125,7 @@ function OrderPage() {
               <div className="mnodr_article_head">
                 <div className="mnodr_article_headlt">
                   <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-                    배송지 : {userData.destination.addrName}
+                    배송지 : {destinationData.addrName}
                   </h2>
                 </div>
                 <div className="mnodr_article_headrt">
@@ -136,16 +142,14 @@ function OrderPage() {
               <div className="mnodr_article_cont ty_pull">
                 <div className="mnodr_form_sec">
                   <p className="mnodr_tx_desc">
-                    [{userData.destination.zipCode}]{' '}
-                    {userData.destination.streetAddr}
+                    [{destinationData.zipCode}] {destinationData.streetAddr}
                   </p>
                   <div className="mnodr_tx_wrap ty_space">
                     <span className="mnodr_tx_size2 mnodr_tx_gray">
                       <span id="dispRcptpeNm_0">
-                        {userData.destination.recipient}{' '}
+                        {destinationData.recipient}{' '}
                       </span>
-                      /
-                      <span id="dispHpno_0"> {userData.destination.phone}</span>
+                      /<span id="dispHpno_0"> {destinationData.phone}</span>
                     </span>
                   </div>
                 </div>
@@ -180,7 +184,7 @@ function OrderPage() {
                     <span className="mnodr_tx_primary">
                       -{' '}
                       <em className="ssg_price dispTotItemEnuriWithout10Amt">
-                        {salePrice.toLocaleString()}
+                        {(salePrice * productCnt).toLocaleString()}
                       </em>
                       <span className="ssg_tx">원</span>
                     </span>
@@ -720,7 +724,7 @@ function OrderPage() {
                       </dt>
                       <dd>
                         <p className="mnodr_tx_desc" id="ordpeNmStr">
-                          {userData.recipient.name}
+                          {recipientData.name}
                         </p>
                       </dd>
                     </dl>
@@ -732,7 +736,7 @@ function OrderPage() {
                       </dt>
                       <dd>
                         <p className="mnodr_tx_desc" id="ordpeHpnoStr">
-                          {userData.recipient.phone}
+                          {recipientData.phone}
                         </p>
                       </dd>
                     </dl>
@@ -744,7 +748,7 @@ function OrderPage() {
                       </dt>
                       <dd>
                         <p className="mnodr_tx_desc" id="ordpeEmailStr">
-                          {userData.recipient.email}
+                          {recipientData.email}
                         </p>
                       </dd>
                     </dl>
@@ -757,7 +761,7 @@ function OrderPage() {
                       <dd>
                         <p className="mnodr_tx_desc">
                           <span id="rfdMthdStrArea">
-                            {userData.recipient.refundCheck}
+                            {recipientData.refundCheck}
                           </span>
                         </p>
                       </dd>
@@ -803,7 +807,7 @@ function OrderPage() {
                   </dt>
                   <dd>
                     <p className="mnodr_tx_desc" id="deliShppMemoTxt_0">
-                      {/* {orderInfo.message} */}
+                      {shippingMessageData}
                     </p>
                     <input
                       type="hidden"
