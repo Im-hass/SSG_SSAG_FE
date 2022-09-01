@@ -53,8 +53,11 @@ function AddAddressMyInfo({ state }) {
         ...data,
         addrName: state.addrName,
         recipient: state.recipient,
-        phone: state.phone.slice(3),
-        homePhone: state.homePhone.slice(3),
+        phone: state.phone,
+        homePhone:
+          state.homePhone.slice(0, 2) === '02'
+            ? state.homePhone.slice(0, 2)
+            : state.homePhone.slice(3),
       });
       setSelectedItem({
         ...selectedItem,
