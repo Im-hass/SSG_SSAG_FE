@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios/index';
 import './AddAddressMyInfo.scss';
@@ -31,7 +30,7 @@ function AddAddressMyInfo({ state }) {
     addrName: false,
     recipient: false,
     phone: false,
-    homePhone: false,
+    homePhone: true,
     zipCode: false,
   });
   const [error, setError] = useState({
@@ -44,12 +43,18 @@ function AddAddressMyInfo({ state }) {
 
   useEffect(() => {
     if (state !== undefined) {
+      setCode({
+        ...code,
+        phoneCode: state.phone.slice(0, 3),
+        homePhoneCode:
+          state.homePhone.length === 0 ? '선택' : state.homePhone.slice(0, 3),
+      });
       setData({
         ...data,
         addrName: state.addrName,
         recipient: state.recipient,
-        phone: state.phone,
-        homePhone: state.homePhone,
+        phone: state.phone.slice(3),
+        homePhone: state.homePhone.slice(3),
       });
       setSelectedItem({
         ...selectedItem,
@@ -129,14 +134,41 @@ function AddAddressMyInfo({ state }) {
         [name]: '',
       });
 
-      if ((name === 'phone' || name === 'homePhone') && value.length < 8) {
+      if (name === 'homePhone') {
+        if (
+          value.length === 0 ||
+          (value.length > 0 &&
+            value.length > 7 &&
+            code.homePhoneCode !== '선택')
+        ) {
+          setValid({
+            ...valid,
+            [name]: true,
+          });
+          setError({
+            ...error,
+            [name]: '',
+          });
+        } else {
+          setValid({
+            ...valid,
+            [name]: false,
+          });
+          setError({
+            ...error,
+            [name]: '값을 입력해주세요.',
+          });
+        }
+      }
+
+      if (name === 'phone' && value.length > 7) {
         setValid({
           ...valid,
-          [name]: false,
+          [name]: true,
         });
         setError({
           ...error,
-          [name]: '값을 입력해주세요.',
+          [name]: '',
         });
       }
     }
@@ -158,9 +190,9 @@ function AddAddressMyInfo({ state }) {
     checkedValid('zipCode', selectedItem.zipCode);
 
     if (Object.values(valid).every((v) => v === true) === true) {
+      const homeNumber = code.homePhoneCode + data.homePhone;
       const token = localStorage.getItem('token');
       if (state !== undefined) {
-        const homeNumber = code.homePhoneCode + data.homePhone;
         axios
           .put(
             `http://13.209.26.150:9000/users/shipping-addr`,
@@ -185,7 +217,6 @@ function AddAddressMyInfo({ state }) {
             toast.success('배송지가 수정되었습니다.');
           });
       } else {
-        const homeNumber = code.homePhoneCode + data.homePhone;
         axios
           .post(
             'http://13.209.26.150:9000/users/shipping-addr',
@@ -193,7 +224,12 @@ function AddAddressMyInfo({ state }) {
               addrName: data.addrName,
               recipient: data.recipient,
               phone: `${code.phoneCode}${data.phone}`,
-              homePhone: `${code.homePhoneCode === '선택' ? '' : homeNumber}`,
+              homePhone: `${
+                code.homePhoneCode === '선택' ||
+                (data.homePhone.length > 0 && data.homePhone.length < 7)
+                  ? ''
+                  : `${code.homePhoneCode}${data.homeNumber}`
+              }`,
               zipCode: selectedItem.zipCode,
               streetAddr: `${selectedItem.streetAddr} ${selectedItem.detailAddr}`,
               lotAddr: `${selectedItem.lotAddr} ${selectedItem.detailAddr}`,
@@ -216,6 +252,8 @@ function AddAddressMyInfo({ state }) {
 
   const onReset = () => {
     setIsReset(!isReset);
+    handleCodeChange('phoneCode', '010');
+    handleCodeChange('homePhoneCode', '선택');
     setData({
       ...data,
       addrName: '',
@@ -235,7 +273,7 @@ function AddAddressMyInfo({ state }) {
       addrName: false,
       recipient: false,
       phone: false,
-      homePhone: false,
+      homePhone: true,
       zipCode: false,
     });
     setError({
@@ -503,24 +541,6 @@ function AddAddressMyInfo({ state }) {
                         </li>
                       </ul>
                     </div>
-
-                    {/* <input type="hidden" name="shpplocSeq" defaultValue="" />
-                  <input type="hidden" name="bascShpplocYn" defaultValue="" />
-                  <input type="hidden" name="oldzipCode" defaultValue="" />
-                  <input type="hidden" name="roadNmBascAddr" defaultValue="" />
-                  <input type="hidden" name="roadNmDtlAddr" defaultValue="" />
-                  <input type="hidden" name="lotnoBascAddr" defaultValue="" />
-                  <input type="hidden" name="lotnoDtlAddr" defaultValue="" />
-                  <input
-                    type="hidden"
-                    name="mbrIptAddrTypeCd"
-                    defaultValue=""
-                  />
-                  <input type="hidden" name="mbrIptAddr" defaultValue="" />
-                  <input type="hidden" name="shpplocRegPstCd" defaultValue="" />
-                  <input type="hidden" name="addrExamRstCd" defaultValue="" />
-                  <input type="hidden" name="rcptpeTelno" defaultValue="" />
-                  <input type="hidden" name="rcptpeHpno" defaultValue="" /> */}
                   </form>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import axios from 'axios';
 import { DestinationListBtns } from '../index';
 import './DestinationList.scss';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { CustomAlert } from '../../common/CustomAlert';
+import { CustomAlert } from '../../common';
 
 function DestinationList({ datas, isDelete, setIsDelete, handleSelectedAddr }) {
   const navigate = useNavigate();

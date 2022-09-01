@@ -13,9 +13,11 @@ function Header() {
       <div className="header-container">
         <HeaderLeftSide />
         <SearchInput />
-        <Cart />
+        <div className="cart-btn-box">
+          <Cart />
+        </div>
       </div>
-      {isOpen && <SearchBox />}
+      <div>{isOpen && <SearchBox />}</div>
     </header>
   );
 }
