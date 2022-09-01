@@ -34,7 +34,8 @@ function NotFound() {
             수 없습니다.
           </p>
           <p className="ssgerr_txt">
-            <em id="goToSecond">{time}</em>초 후에 메인으로 자동 이동합니다.
+            <em id="goToSecond">{time}</em>초 후에 이전 페이지로 자동
+            이동합니다.
           </p>
           <button type="button" className="ssgerr_lnk" onClick={handleToBack}>
             이전페이지 돌아가기

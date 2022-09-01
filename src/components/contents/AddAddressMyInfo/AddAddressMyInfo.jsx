@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios/index';
 import './AddAddressMyInfo.scss';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { AddAddressZipCode } from '../index';
 
 function AddAddressMyInfo({ state }) {
@@ -527,11 +527,6 @@ function AddAddressMyInfo({ state }) {
             </div>
           </div>
         </div>
-        <Toaster
-          containerStyle={{
-            top: 30,
-          }}
-        />
       </div>
 
       {/* 우편번호 찾기 */}

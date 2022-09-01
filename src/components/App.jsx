@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import AuthContext from '../store/auth-context';
 import {
   AddDestinationPage,
@@ -113,6 +114,14 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollToTop />
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          duration: 2000,
+        }}
+      />
     </>
   );
 }

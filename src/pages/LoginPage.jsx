@@ -2,8 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
-
+import toast from 'react-hot-toast';
 import AuthContext from '../store/auth-context';
 import { MobileHeader, SNSLoginBtn, Button } from '../components/ui/index';
 import { Footer } from '../components/common/index';
@@ -177,11 +176,6 @@ function LoginPage() {
         </a>
       </div>
       <Footer />
-      <Toaster
-        containerStyle={{
-          top: 30,
-        }}
-      />
     </div>
   );
 }
