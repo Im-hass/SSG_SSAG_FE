@@ -32,8 +32,8 @@ function MobileHeader(props) {
           ) : (
             <div className="mcom_tit_rgt">
               {!isOpen && title === '장바구니' && <HeaderSearchButton />}
-              {!isOpen && title !== '장바구니' && <Cart />}
-              {!isOpen && <HeaderHomeButton />}
+              {!isOpen && title === 'MY SSG' && <Cart />}
+              {!isOpen && title !== '배송지 관리' && <HeaderHomeButton />}
             </div>
           )}
         </div>
