@@ -1,7 +1,18 @@
 import React from 'react';
+
 import './CartPageTotal.scss';
 
-function CartPageTotal() {
+function CartPageTotal({ cartData }) {
+  const defaultPrice = cartData.totalOrder;
+  const salePrice = cartData.totalSale;
+  const netPrice = cartData.totalAmount;
+  const overItems = cartData.storeList.filter((store) => {
+    const eachStoreTotal = store.storeAmount;
+    return eachStoreTotal <= 30000;
+  }).length;
+  const deliveryFee = 3000 * overItems;
+  const totalPrice = netPrice + deliveryFee;
+
   return (
     <div className="mnodr_total" id="cartInformation">
       <div className="mnodr_form_sec">
@@ -14,7 +25,10 @@ function CartPageTotal() {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              +<em className="ssg_price viewAmt_sellprc">23,000</em>
+              +
+              <em className="ssg_price viewAmt_sellprc">
+                {defaultPrice.toLocaleString()}
+              </em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -25,7 +39,10 @@ function CartPageTotal() {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              -<em className="ssg_price viewAmt_dcprc">2,300</em>
+              -
+              <em className="ssg_price viewAmt_dcprc">
+                {salePrice.toLocaleString()}
+              </em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -36,7 +53,10 @@ function CartPageTotal() {
           </dt>
           <dd>
             <span className="mnodr_tx_primary">
-              +<em className="ssg_price viewAmt_shppcst">3,000</em>
+              +
+              <em className="ssg_price viewAmt_shppcst">
+                {deliveryFee.toLocaleString()}
+              </em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>
@@ -49,7 +69,9 @@ function CartPageTotal() {
           </dt>
           <dd>
             <span className="mnodr_priceitem_total">
-              <em className="ssg_price viewAmt_paymt">23,700</em>
+              <em className="ssg_price viewAmt_paymt">
+                {totalPrice.toLocaleString()}
+              </em>
               <span className="ssg_tx">원</span>
             </span>
           </dd>

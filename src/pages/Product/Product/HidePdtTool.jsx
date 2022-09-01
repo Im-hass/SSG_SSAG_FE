@@ -58,6 +58,9 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
   const handleSelectColor = (e) => {
     const { value } = e.target;
+
+    if (value === 'default') return;
+
     setSelectedColor(+value);
   };
 
@@ -70,6 +73,9 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
   const handleSelectSize = (e) => {
     const { value } = e.target;
+
+    if (value === 'default') return;
+
     setSelectedProductOptionId(+value);
   };
 
@@ -85,7 +91,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
 
   if (isLoading) return <div>로딩 중</div>;
   if (!colorOptions) return <div>데이터 없음</div>;
-
+  console.log(colorOptions);
   return (
     <div
       id="_cdtl_opt_bar"

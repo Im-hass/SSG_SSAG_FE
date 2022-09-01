@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { isOpenState } from '../../../recoil/states';
 import './HeaderPrevButton.scss';
 
@@ -17,7 +17,6 @@ function HeaderPrevButton() {
     <div className="mcom_tit_lft">
       <button
         type="button"
-        // to="../"
         className="btn_back clickable"
         onClick={handleClick}
       >

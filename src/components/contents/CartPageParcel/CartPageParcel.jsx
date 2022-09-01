@@ -1,25 +1,47 @@
 import React from 'react';
-import { CartPageParcelContent } from '../index';
-
+import { CartPageParcelContentSummary, CartPageStoreList } from '../index';
 import './CartPageParcel.scss';
 
 function CartPageParcel({
-  data,
-  index,
-  isPut,
-  setIsPut,
+  cartData,
+  isCnt,
+  setIsCnt,
   isDelete,
   setIsDelete,
+  isOptionModalOpen,
+  setIsOptionModalOpen,
+  setIsSaleInfoModalOpen,
+  isAriaHidden,
+  setIsAriaHidden,
+  setProductId,
+  setCartId,
+  setSaleInfoItem,
 }) {
+  console.log(cartData);
   return (
-    <CartPageParcelContent
-      data={data}
-      index={index}
-      isPut={isPut}
-      setIsPut={setIsPut}
-      isDelete={isDelete}
-      setIsDelete={setIsDelete}
-    />
+    <div className="mnodr_acdo_cont">
+      {cartData &&
+        cartData.storeList.map((storeList, i) => (
+          <div key={storeList.storeId} className="mnodr_unit">
+            <CartPageStoreList
+              storeList={storeList}
+              isCnt={isCnt}
+              setIsCnt={setIsCnt}
+              isDelete={isDelete}
+              setIsDelete={setIsDelete}
+              isOptionModalOpen={isOptionModalOpen}
+              setIsOptionModalOpen={setIsOptionModalOpen}
+              setIsSaleInfoModalOpen={setIsSaleInfoModalOpen}
+              isAriaHidden={isAriaHidden}
+              setIsAriaHidden={setIsAriaHidden}
+              setProductId={setProductId}
+              setCartId={setCartId}
+              setSaleInfoItem={setSaleInfoItem}
+            />
+            <CartPageParcelContentSummary storeList={storeList} />
+          </div>
+        ))}
+    </div>
   );
 }
 

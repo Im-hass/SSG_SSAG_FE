@@ -18,6 +18,7 @@ function OrderPage() {
   const productPrice = location.state.data.price;
   const salePrice = productPrice * (location.state.data.sale / 100);
   const totalPrice = productPrice - salePrice;
+  // const deliveryFee = location.state.delivery;
 
   const [changeTitle, setChangeTitle] = useState('결제하기');
   const [submitForm, setSubmitForm] = useState({
@@ -576,7 +577,10 @@ function OrderPage() {
               </dt>
               <dd>
                 <span className="mnodr_tx_primary">
-                  +<em className="ssg_price paySummaryTotOrdCstAmt">3,000</em>
+                  +
+                  <em className="ssg_price paySummaryTotOrdCstAmt">
+                    {/* {deliveryFee.toLocaleString()} */}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </dd>
@@ -588,7 +592,10 @@ function OrderPage() {
               <li>
                 <span className="mnodr_paydetail_tx">배송비</span>
                 <span className="mnodr_paydetail_money">
-                  +<em className="ssg_price paySummaryOrdCstAmt">3,000</em>
+                  +
+                  <em className="ssg_price paySummaryOrdCstAmt">
+                    {/* {deliveryFee.toLocaleString()} */}
+                  </em>
                   <span className="ssg_tx">원</span>
                 </span>
               </li>

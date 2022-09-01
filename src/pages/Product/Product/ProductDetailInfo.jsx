@@ -58,11 +58,6 @@ function ProductDetailInfo() {
                 />
                 <br />
                 <img
-                  className="img_obj_21831"
-                  src="https://rolarola.wisacdn.com/__manage__/product_2964/5282d0b9a759ffcbbe92f99b749513fc.jpg"
-                  alt="img"
-                />
-                <img
                   className="img_obj_21832"
                   src="https://rolarola.wisacdn.com/__manage__/product_2964/aeec0115e9b1849b2dcd8abe4a4b9ab3.jpg"
                   alt="img"
