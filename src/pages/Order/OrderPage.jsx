@@ -25,25 +25,16 @@ function OrderPage() {
   const productPrice = location.state.data.price;
   const salePrice = productPrice * (location.state.data.sale / 100);
   const totalPrice = productPrice - salePrice;
-  // const deliveryFee = location.state.delivery;
+  const deliveryFee = 3000;
 
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
   const [destinationData, setDestinationData] = useState({});
   const [recipientData, setRecipientData] = useState({});
   const [shippingMessageData, setShippingMessageData] = useState('');
+  const [refundTypeData, setRefundTypeData] = useState(0);
   const [userPaymentData, setUserPaymentData] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [clickPayment, setClickPayment] = useState(false);
-  const [submitForm, setSubmitForm] = useState({
-    refundType: 0,
-    recipient: '',
-    recipientPhone: '',
-    addrName: '',
-    streetAddr: '',
-    zipCode: '',
-    shippingMsg: '',
-    orderDtoReq: [0, 0, 0],
-  });
 
   const [clickBtn, setClickBtn] = useState({
     destination: false,
@@ -62,6 +53,13 @@ function OrderPage() {
   //   }
   //   return cardNum.join('');
   // };
+
+  useEffect(() => {
+    if (userPaymentData.refundCheck === '주문 시 결제수단으로 환불')
+      setRefundTypeData(0);
+    if (userPaymentData.refundCheck === 'SSG MONEY로 환불')
+      setRefundTypeData(1);
+  }, [userPaymentData.refundCheck]);
 
   useEffect(() => {
     axios
@@ -87,6 +85,7 @@ function OrderPage() {
 
   const handleAddPaymentModal = () => {
     setIsModalOpen(true);
+    setClickPayment(false);
   };
 
   const handleClickPayment = () => {
@@ -98,12 +97,12 @@ function OrderPage() {
         },
       })
       .then((res) => {
-        if (res.data.result.cardNumber === undefined) {
+        if (res.data.result.length === 0) {
           confirmAlert({
             // eslint-disable-next-line react/no-unstable-nested-components
             customUI: ({ onClose }) => (
               <CustomAlert
-                title="등록된 결ㅈ"
+                title="등록된 결제수단이 없음"
                 desc="결제수단을 등록하시겠습니까?"
                 btnTitle="등록"
                 onAction={handleAddPaymentModal}
@@ -111,7 +110,9 @@ function OrderPage() {
               />
             ),
           });
-        } else setUserPaymentData(res.data.result);
+        } else {
+          setUserPaymentData(res.data.result);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -130,7 +131,37 @@ function OrderPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/completeOrder');
+
+    axios
+      .post(
+        'http://13.209.26.150:9000/users/order',
+        {
+          refundType: refundTypeData,
+          recipient: recipientData.name,
+          recipientPhone: recipientData.phone,
+          addrName: destinationData.addrName,
+          streetAddr: destinationData.streetAddr,
+          zipCode: destinationData.zipCode,
+          shippingMsg: shippingMessageData,
+          orderDtoReq: [
+            location.state.optionId,
+            productCnt,
+            totalPrice * productCnt + deliveryFee,
+          ],
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+        navigate('/completeOrder');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -274,6 +305,7 @@ function OrderPage() {
                           'mnodr_pay_tab payTracking' +
                           (clickPayment ? ' on' : '')
                         }
+                        onClick={handleClickPayment}
                       >
                         신용카드
                       </button>
@@ -289,7 +321,6 @@ function OrderPage() {
                           <select
                             id="creditCrdCdSelect"
                             title="카드를 선택하세요."
-                            onClick={handleClickPayment}
                           >
                             <option value="">카드를 선택하세요.</option>
                             {userPaymentData &&
@@ -422,7 +453,10 @@ function OrderPage() {
                 </dt>
                 <dd>
                   <span className="mnodr_tx_primary">
-                    +<em className="ssg_price paySummaryTotOrdCstAmt">3,000</em>
+                    +
+                    <em className="ssg_price paySummaryTotOrdCstAmt">
+                      {deliveryFee}
+                    </em>
                     <span className="ssg_tx">원</span>
                   </span>
                 </dd>
@@ -434,7 +468,11 @@ function OrderPage() {
                 <li>
                   <span className="mnodr_paydetail_tx">배송비</span>
                   <span className="mnodr_paydetail_money">
-                    +<em className="ssg_price paySummaryOrdCstAmt">3,000</em>
+                    +
+                    <em className="ssg_price paySummaryOrdCstAmt">
+                      {' '}
+                      {deliveryFee}
+                    </em>
                     <span className="ssg_tx">원</span>
                   </span>
                 </li>

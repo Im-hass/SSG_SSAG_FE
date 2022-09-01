@@ -9,7 +9,9 @@ function OrderChangeRecipientPage(props) {
   const handleChangeInput = (e) => {
     if (e.target.value !== undefined)
       setRecipientData({ ...recipientData, [e.target.name]: e.target.value });
-    if (e.target.checked) setCheckRefund(true);
+    if (e.target.checked === true) {
+      setCheckRefund(true);
+    }
   };
 
   useEffect(() => {
@@ -120,7 +122,7 @@ function OrderChangeRecipientPage(props) {
                     />
                     <label htmlFor="change.rdoRefund_10">
                       <span className="mnodr_tx_label rfdMthdTxt">
-                        주문시 결제수단으로 환불
+                        주문 시 결제수단으로 환불
                       </span>
                     </label>
                   </span>
