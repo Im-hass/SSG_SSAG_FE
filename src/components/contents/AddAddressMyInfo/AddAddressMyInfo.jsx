@@ -31,7 +31,7 @@ function AddAddressMyInfo({ state }) {
     addrName: false,
     recipient: false,
     phone: false,
-    homePhone: false,
+    homePhone: true,
     zipCode: false,
   });
   const [error, setError] = useState({
@@ -44,12 +44,18 @@ function AddAddressMyInfo({ state }) {
 
   useEffect(() => {
     if (state !== undefined) {
+      setCode({
+        ...code,
+        phoneCode: state.phone.slice(0, 3),
+        homePhoneCode:
+          state.homePhone.length === 0 ? '선택' : state.homePhone.slice(0, 3),
+      });
       setData({
         ...data,
         addrName: state.addrName,
         recipient: state.recipient,
-        phone: state.phone,
-        homePhone: state.homePhone,
+        phone: state.phone.slice(3),
+        homePhone: state.homePhone.slice(3),
       });
       setSelectedItem({
         ...selectedItem,
@@ -110,6 +116,7 @@ function AddAddressMyInfo({ state }) {
       });
 
       if (name === 'homePhone') {
+        console.log(name, value);
         setValid({
           ...valid,
           [name]: true,
@@ -129,14 +136,36 @@ function AddAddressMyInfo({ state }) {
         [name]: '',
       });
 
-      if ((name === 'phone' || name === 'homePhone') && value.length < 8) {
+      if (name === 'homePhone') {
+        if (value.length === 0 || (value.length > 0 && value.length > 7)) {
+          setValid({
+            ...valid,
+            [name]: true,
+          });
+          setError({
+            ...error,
+            [name]: '',
+          });
+        } else {
+          setValid({
+            ...valid,
+            [name]: false,
+          });
+          setError({
+            ...error,
+            [name]: '값을 입력해주세요.',
+          });
+        }
+      }
+
+      if (name === 'phone' && value.length > 7) {
         setValid({
           ...valid,
-          [name]: false,
+          [name]: true,
         });
         setError({
           ...error,
-          [name]: '값을 입력해주세요.',
+          [name]: '',
         });
       }
     }
@@ -210,6 +239,7 @@ function AddAddressMyInfo({ state }) {
           });
       }
     } else {
+      Object.entries(valid).map((v, key) => console.log(v, key));
       toast.error('비어있는 값이 있습니다. 값을 입력해주세요.');
     }
   };
@@ -235,7 +265,7 @@ function AddAddressMyInfo({ state }) {
       addrName: false,
       recipient: false,
       phone: false,
-      homePhone: false,
+      homePhone: true,
       zipCode: false,
     });
     setError({

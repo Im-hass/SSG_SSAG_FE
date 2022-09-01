@@ -66,7 +66,7 @@ function OrderPage() {
           destination: res[0].data.result,
           recipient: res[1].data.result,
         });
-        setStatus('fetching');
+        setIsFetching(true);
       });
     console.log(userData);
   }, []);
@@ -98,7 +98,6 @@ function OrderPage() {
   };
 
   return (
-    { status === 'fetching') && (
     <div style={{ background: '#f5f5f5' }}>
       <MobileHeader title={changeTitle} />
       {clickBtn.destination && (
@@ -110,48 +109,51 @@ function OrderPage() {
       {clickBtn.message && (
         <OrderChangeShippingMessagePage setClickBtn={setClickBtn} />
       )}
-      <ul className="mnodr_article_list" id="ordPageShpplocInfoDiv_1">
-        <li
-          className="mnodr_article_item ordPageShpplocArea fullOrdArea"
-          style={{ display: 'list-item' }}
-        >
-          <article className="mnodr_article mnodr_delivery_infos">
-            <div className="mnodr_article_head">
-              <div className="mnodr_article_headlt">
-                <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-                  배송지 : {userData.destination.addrName}
-                </h2>
-              </div>
-              <div className="mnodr_article_headrt">
-                <button
-                  type="button"
-                  className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  name="destination"
-                  onClick={handleClickBtn}
-                >
-                  변경
-                </button>
-              </div>
-            </div>
-            <div className="mnodr_article_cont ty_pull">
-              <div className="mnodr_form_sec">
-                <p className="mnodr_tx_desc">
-                  [{userData.destination.zipCode}]{' '}
-                  {userData.destination.streetAddr}
-                </p>
-                <div className="mnodr_tx_wrap ty_space">
-                  <span className="mnodr_tx_size2 mnodr_tx_gray">
-                    <span id="dispRcptpeNm_0">
-                      {userData.destination.recipient}{' '}
-                    </span>
-                    /<span id="dispHpno_0"> {userData.destination.phone}</span>
-                  </span>
+      {isFetching && (
+        <ul className="mnodr_article_list" id="ordPageShpplocInfoDiv_1">
+          <li
+            className="mnodr_article_item ordPageShpplocArea fullOrdArea"
+            style={{ display: 'list-item' }}
+          >
+            <article className="mnodr_article mnodr_delivery_infos">
+              <div className="mnodr_article_head">
+                <div className="mnodr_article_headlt">
+                  <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
+                    배송지 : {userData.destination.addrName}
+                  </h2>
+                </div>
+                <div className="mnodr_article_headrt">
+                  <button
+                    type="button"
+                    className="mnodr_btn ty_grayline ty_xxs payTracking"
+                    name="destination"
+                    onClick={handleClickBtn}
+                  >
+                    변경
+                  </button>
                 </div>
               </div>
-            </div>
-          </article>
-        </li>
-      </ul>
+              <div className="mnodr_article_cont ty_pull">
+                <div className="mnodr_form_sec">
+                  <p className="mnodr_tx_desc">
+                    [{userData.destination.zipCode}]{' '}
+                    {userData.destination.streetAddr}
+                  </p>
+                  <div className="mnodr_tx_wrap ty_space">
+                    <span className="mnodr_tx_size2 mnodr_tx_gray">
+                      <span id="dispRcptpeNm_0">
+                        {userData.destination.recipient}{' '}
+                      </span>
+                      /
+                      <span id="dispHpno_0"> {userData.destination.phone}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+      )}
 
       <article className="mnodr_article" id="discountBenefitArticle">
         <ul className="mnodr_article_cont">
@@ -686,85 +688,87 @@ function OrderPage() {
         </div>
       </article>
 
-      <ul className="mnodr_article_list fullOrdArea">
-        <li className="mnodr_article_item">
-          <article className="mnodr_article mnodr_delivery_infos">
-            <div className="mnodr_article_head">
-              <div className="mnodr_article_headlt">
-                <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
-                  주문자 정보
-                </h2>
-              </div>
-              <div className="mnodr_article_headrt">
-                <button
-                  type="button"
-                  className="mnodr_btn ty_grayline ty_xxs payTracking"
-                  name="recipient"
-                  onClick={handleClickBtn}
-                >
-                  변경
-                </button>
-              </div>
-            </div>
-            <div className="mnodr_article_cont ty_pull">
-              <div className="mnodr_form_sec">
-                <div className="mnodr_form_cont">
-                  <dl className="mnodr_dl_desc">
-                    <dt>
-                      <span className="mnodr_tx_desc mnodr_tx_gray">
-                        주문자명
-                      </span>
-                    </dt>
-                    <dd>
-                      <p className="mnodr_tx_desc" id="ordpeNmStr">
-                        {userData.recipient.name}
-                      </p>
-                    </dd>
-                  </dl>
-                  <dl className="mnodr_dl_desc">
-                    <dt>
-                      <span className="mnodr_tx_desc mnodr_tx_gray">
-                        연락처
-                      </span>
-                    </dt>
-                    <dd>
-                      <p className="mnodr_tx_desc" id="ordpeHpnoStr">
-                        {userData.recipient.phone}
-                      </p>
-                    </dd>
-                  </dl>
-                  <dl className="mnodr_dl_desc">
-                    <dt>
-                      <span className="mnodr_tx_desc mnodr_tx_gray">
-                        이메일
-                      </span>
-                    </dt>
-                    <dd>
-                      <p className="mnodr_tx_desc" id="ordpeEmailStr">
-                        {userData.recipient.email}
-                      </p>
-                    </dd>
-                  </dl>
-                  <dl className="mnodr_dl_desc">
-                    <dt>
-                      <span className="mnodr_tx_desc mnodr_tx_gray">
-                        품절시 환불
-                      </span>
-                    </dt>
-                    <dd>
-                      <p className="mnodr_tx_desc">
-                        <span id="rfdMthdStrArea">
-                          {userData.recipient.refundCheck}
-                        </span>
-                      </p>
-                    </dd>
-                  </dl>
+      {isFetching && (
+        <ul className="mnodr_article_list fullOrdArea">
+          <li className="mnodr_article_item">
+            <article className="mnodr_article mnodr_delivery_infos">
+              <div className="mnodr_article_head">
+                <div className="mnodr_article_headlt">
+                  <h2 className="mnodr_tx_tit" style={{ fontWeight: 'bold' }}>
+                    주문자 정보
+                  </h2>
+                </div>
+                <div className="mnodr_article_headrt">
+                  <button
+                    type="button"
+                    className="mnodr_btn ty_grayline ty_xxs payTracking"
+                    name="recipient"
+                    onClick={handleClickBtn}
+                  >
+                    변경
+                  </button>
                 </div>
               </div>
-            </div>
-          </article>
-        </li>
-      </ul>
+              <div className="mnodr_article_cont ty_pull">
+                <div className="mnodr_form_sec">
+                  <div className="mnodr_form_cont">
+                    <dl className="mnodr_dl_desc">
+                      <dt>
+                        <span className="mnodr_tx_desc mnodr_tx_gray">
+                          주문자명
+                        </span>
+                      </dt>
+                      <dd>
+                        <p className="mnodr_tx_desc" id="ordpeNmStr">
+                          {userData.recipient.name}
+                        </p>
+                      </dd>
+                    </dl>
+                    <dl className="mnodr_dl_desc">
+                      <dt>
+                        <span className="mnodr_tx_desc mnodr_tx_gray">
+                          연락처
+                        </span>
+                      </dt>
+                      <dd>
+                        <p className="mnodr_tx_desc" id="ordpeHpnoStr">
+                          {userData.recipient.phone}
+                        </p>
+                      </dd>
+                    </dl>
+                    <dl className="mnodr_dl_desc">
+                      <dt>
+                        <span className="mnodr_tx_desc mnodr_tx_gray">
+                          이메일
+                        </span>
+                      </dt>
+                      <dd>
+                        <p className="mnodr_tx_desc" id="ordpeEmailStr">
+                          {userData.recipient.email}
+                        </p>
+                      </dd>
+                    </dl>
+                    <dl className="mnodr_dl_desc">
+                      <dt>
+                        <span className="mnodr_tx_desc mnodr_tx_gray">
+                          품절시 환불
+                        </span>
+                      </dt>
+                      <dd>
+                        <p className="mnodr_tx_desc">
+                          <span id="rfdMthdStrArea">
+                            {userData.recipient.refundCheck}
+                          </span>
+                        </p>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
+      )}
 
       <ul
         className="mnodr_article_list fullOrdArea"
@@ -926,7 +930,6 @@ function OrderPage() {
         원 결제하기
       </button>
     </div>
-    )}
   );
 }
 
