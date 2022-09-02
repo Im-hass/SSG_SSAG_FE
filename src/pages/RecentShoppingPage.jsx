@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   RecentShoppingHeader,
   RecentShoppingProductList,
@@ -8,6 +9,28 @@ import { ToolbarList } from '../components/toolbar/ToolbarList';
 import { FloatingContents } from '../components/common';
 
 function RecentShoppingPage() {
+  const [recentShoppingData, setRecentShoppingData] = useState(null);
+  const [isRecentItemDelete, setIsRecentItemDelete] = useState(false);
+
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
+  useEffect(() => {
+    const getRecentDataUrl = 'http://13.209.26.150:9000/users/recent/product';
+
+    axios
+      .get(getRecentDataUrl, headers)
+      .then((res) => {
+        setRecentShoppingData(res.data.result);
+        console.log('recent res:', res);
+      })
+      .catch((err) => console.log('recent res:', err));
+  }, [isRecentItemDelete]);
+
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
       <link
@@ -21,13 +44,23 @@ function RecentShoppingPage() {
             <RecentShoppingHeader />
 
             <div className="cmhistory_ct">
-              <div className="cmhistory_scroll" id="_cmhistory_scroll">
-                <div className="iscroll">
-                  <RecentShoppingProductList />
+              {recentShoppingData && (
+                <div className="cmhistory_scroll" id="_cmhistory_scroll">
+                  <div className="iscroll">
+                    <ul className="cmhistory_list_area">
+                      {recentShoppingData.map((recentItem) => (
+                        <RecentShoppingProductList
+                          key={recentItem.viewHistoryId}
+                          recentItem={recentItem}
+                          isRecentItemDelete={isRecentItemDelete}
+                          setIsRecentItemDelete={setIsRecentItemDelete}
+                        />
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-
-              <NoDataMessage />
+              )}
+              {!recentShoppingData[0] && <NoDataMessage />}
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './CartPageParcelContentUnitTit.scss';
 
-function CartPageParcelContentUnitTit({ cartItem, index }) {
+function CartPageParcelContentUnitTit({ cartItem }) {
   const productName = cartItem.productOptionDto.productDto.name;
   const productColor = cartItem.productOptionDto.color;
   const productSize = cartItem.productOptionDto.size;

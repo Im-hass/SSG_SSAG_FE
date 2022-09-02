@@ -6,18 +6,19 @@ function CartPageParcelContentUnitPayRight({ cartItem, isCnt, setIsCnt }) {
   const cartItemId = cartItem.cartId;
   const cartItemCnt = cartItem.count;
 
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
   const putProductCount = (cnt, act) => {
     if (cartItemCnt === 1 && act === 'dec') return;
-    const token = localStorage.getItem('token');
     const putCntUrl = 'http://13.209.26.150:9000/users/carts/count';
     const productData = {
       cartId: cartItemId,
       count: cartItemCnt + cnt,
-    };
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
     };
 
     axios

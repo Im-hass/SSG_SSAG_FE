@@ -15,21 +15,20 @@ function CartPageOptionModal({
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedProductOptionId, setSelectedProductOptionId] = useState(null);
 
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
   // 색상 data 받아오기
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem('token');
-      const headers = {
-        headers: {
-          Authorization: JSON.parse(token),
-        },
-      };
+      const getColorUrl = `http://13.209.26.150:9000/comm-users/products/options/color/${productId}`;
       setIsLoading(true);
       try {
-        const res = await axios.get(
-          `http://13.209.26.150:9000/comm-users/products/options/color/${productId}`,
-          headers,
-        );
+        const res = await axios.get(getColorUrl, headers);
         setColorOptions(res.data.result);
         console.log('color response:', res);
       } catch (err) {
@@ -41,17 +40,10 @@ function CartPageOptionModal({
   }, []);
 
   const getSizeData = () => {
-    const token = localStorage.getItem('token');
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    };
+    const getSizeUrl = `http://13.209.26.150:9000/comm-users/products/options/size/${productId}/${selectedColor}`;
+
     axios
-      .get(
-        `http://13.209.26.150:9000/comm-users/products/options/size/${productId}/${selectedColor}`,
-        headers,
-      )
+      .get(getSizeUrl, headers)
       .then((res) => {
         setSizeOptions(res.data.result);
         console.log('size response:', res);
@@ -83,20 +75,15 @@ function CartPageOptionModal({
   };
 
   const handleChangeOption = () => {
-    console.log(cartId);
-    const token = localStorage.getItem('token');
     const selectedCartId = cartId;
     const data = {
       cartId: selectedCartId,
       productOptionId: selectedProductOptionId,
     };
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    };
+    const putOptionUrl = 'http://13.209.26.150:9000/users/carts/option';
+
     axios
-      .put('http://13.209.26.150:9000/users/carts/option', data, headers)
+      .put(putOptionUrl, data, headers)
       .then((res) => {
         console.log('change opt res:', res);
         setIsChange(!isChange);
