@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import useIntersectionObserver from '../../../hooks/useIntersectionObserver';
 import CategoryDetailList from '../../product/CategoryDetailList/CategoryDetailList';
 import CategoryProductListNav from '../../product/CategoryProductListNav/CategoryProductListNav';
 
@@ -10,7 +11,18 @@ function ProductListContent() {
   const [subTitle, setSubTitle] = useState();
   const [mediumCategoryList, setMediumCategoryList] = useState();
   const [datas, setDatas] = useState();
+  const [pagination, setPagination] = useState(0);
+  const [readMore, setReadMore] = useState(false);
   const [isWishChange, setIsWishChange] = useState(false);
+
+  const onIntersect = ([{ isIntersecting }]) => {
+    if (isIntersecting) {
+      setPagination(pagination + 1);
+      setReadMore(false);
+    }
+  };
+
+  const { targetRef } = useIntersectionObserver({ onIntersect });
 
   const handleProductList = (lId = 1, mId = 0, sId = 0) => {
     let urlParams = '';
@@ -29,18 +41,25 @@ function ProductListContent() {
         Authorization: JSON.parse(token),
       },
     };
+    const body = {
+      page: pagination,
+      size: 20,
+    };
 
     if (token !== null) isUser = true;
+
     axios
       .get(
         `http://13.209.26.150:9000/${
           isUser ? 'users' : 'non-users'
         }/products${urlParams}`,
+        body,
         headers,
       )
       .then((res) => {
         const respones = res.data.result;
         setDatas(respones);
+        setReadMore(true);
       });
 
     // console.log(lgId, mdId);
@@ -80,7 +99,6 @@ function ProductListContent() {
   return (
     <>
       <CategoryProductListNav lgId={lgId} title={title} subTitle={subTitle} />
-
       <div id="m_content" className="react-area">
         {mediumCategoryList && (
           <CategoryDetailList
@@ -92,6 +110,7 @@ function ProductListContent() {
           />
         )}
       </div>
+      {readMore && <div ref={targetRef}>Loading</div>}
     </>
   );
 }
