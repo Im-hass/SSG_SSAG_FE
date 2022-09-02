@@ -10,11 +10,6 @@ export const searchValueState = atom({
   default: '',
 });
 
-export const isItemsState = atom({
-  key: 'isItems',
-  default: false,
-});
-
 export const isCategorySelected = atom({
   key: 'isCategorySelected',
   default: new Array(11).fill(false),

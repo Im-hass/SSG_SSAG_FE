@@ -8,14 +8,15 @@ import './CartPageParcelContentUnitUtil.scss';
 function CartPageParcelContentUnitUtil({ cartItem, isDelete, setIsDelete }) {
   const cartItemId = cartItem.cartId;
 
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
   const onDeleteCartItem = () => {
-    const token = localStorage.getItem('token');
     const deleteUrl = `http://13.209.26.150:9000/users/carts/${cartItemId}`;
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    };
 
     axios
       .delete(deleteUrl, headers)
@@ -48,18 +49,6 @@ function CartPageParcelContentUnitUtil({ cartItem, isDelete, setIsDelete }) {
 
   return (
     <div className="mnodr_unit_util">
-      <Toaster
-        containerStyle={{
-          top: 30,
-        }}
-        toastOptions={{
-          success: {
-            iconTheme: {
-              primary: '#ff5b59',
-            },
-          },
-        }}
-      />
       <button
         type="button"
         className="mnodr_unit_pin1 cartTracking"

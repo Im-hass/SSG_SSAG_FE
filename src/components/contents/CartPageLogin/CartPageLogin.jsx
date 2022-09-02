@@ -6,16 +6,17 @@ function CartPageLogin() {
   const [defaultDestination, setDefaultDestination] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem('token');
       const defaultDestinationUrl =
         'http://13.209.26.150:9000/users/shipping-addr/default';
-      const headers = {
-        headers: {
-          Authorization: JSON.parse(token),
-        },
-      };
       setIsLoading(true);
       try {
         const res = await axios.get(defaultDestinationUrl, headers);

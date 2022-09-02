@@ -28,9 +28,9 @@ function CartPageStoreList({
 
   return (
     <>
-      {cartItems.map((cartItem, index) => (
+      {cartItems.map((cartItem) => (
         <div key={cartItem.cartId} className="pay_item_area mnodr_unit_item">
-          <CartPageParcelContentUnitThmb cartItem={cartItem} index={index} />
+          <CartPageParcelContentUnitThmb cartItem={cartItem} />
 
           <div className="mnodr_unit_cont">
             <CartPageParcelContentUnitInfo />
@@ -39,7 +39,7 @@ function CartPageStoreList({
               isDelete={isDelete}
               setIsDelete={setIsDelete}
             />
-            <CartPageParcelContentUnitTit cartItem={cartItem} index={index} />
+            <CartPageParcelContentUnitTit cartItem={cartItem} />
 
             <div className="mnodr_unit_prdpay">
               <CartPageParcelContentUnitPayLeft
