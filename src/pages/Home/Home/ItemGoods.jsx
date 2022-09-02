@@ -53,36 +53,6 @@ function ItemGoods({ data }) {
                     </li>
                   ))}
                 <li>
-                  <a href="https://m-shinsegaemall.ssg.com/item/dealItemView.ssg?itemId=1000034164356&amp;siteNo=6004&amp;salestrNo=6005&amp;dealCmptItemId=">
-                    <div className="cmitem_other_thmb">
-                      <img
-                        src="https://sitem.ssgcdn.com/19/30/17/item/1000413173019_i1_150.jpg"
-                        alt="다른 옵션 이미지"
-                      />
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://m-shinsegaemall.ssg.com/item/dealItemView.ssg?itemId=1000034164356&amp;siteNo=6004&amp;salestrNo=6005&amp;dealCmptItemId=">
-                    <div className="cmitem_other_thmb">
-                      <img
-                        src="https://sitem.ssgcdn.com/84/95/32/item/1000388329584_i1_150.jpg"
-                        alt="다른 옵션 이미지"
-                      />
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://m-shinsegaemall.ssg.com/item/dealItemView.ssg?itemId=1000034164356&amp;siteNo=6004&amp;salestrNo=6005&amp;dealCmptItemId=">
-                    <div className="cmitem_other_thmb">
-                      <img
-                        src="https://sitem.ssgcdn.com/55/21/84/item/1000064842155_i1_150.jpg"
-                        alt="다른 옵션 이미지"
-                      />
-                    </div>
-                  </a>
-                </li>
-                <li>
                   <Link to={`/product/${productId}`} className="clickable">
                     <div className="cmitem_other_thmb ty_more">
                       <i
