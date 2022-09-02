@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function ItemGoods({ data }) {
   const {
     happyLoungeImgDto,
-    imgOriginName,
+    // imgOriginName,
     // imgSaveName,
     imgUrl,
     name,
@@ -32,7 +32,7 @@ function ItemGoods({ data }) {
                   <img
                     className="cmitem_thmb_img"
                     src={`${imgUrl}`}
-                    alt={`${imgOriginName}`}
+                    alt={`${name}`}
                   />
                 </div>
               </Link>
@@ -41,47 +41,17 @@ function ItemGoods({ data }) {
               <ul className="cmitem_other_list ty_full">
                 {happyLoungeImgDto.length !== 0 &&
                   happyLoungeImgDto.map((img) => (
-                    <li key={`${img.imgOriginName}`}>
+                    <li key={`${img.thumbnailImgId}`}>
                       <Link to={`/product/${productId}`}>
                         <div className="cmitem_other_thmb">
                           <img
                             src={`${img.imgUrl}`}
-                            alt={`${img.imgOriginName}`}
+                            alt={`${img.originName}`}
                           />
                         </div>
                       </Link>
                     </li>
                   ))}
-                <li>
-                  <a href="https://m-shinsegaemall.ssg.com/item/dealItemView.ssg?itemId=1000034164356&amp;siteNo=6004&amp;salestrNo=6005&amp;dealCmptItemId=">
-                    <div className="cmitem_other_thmb">
-                      <img
-                        src="https://sitem.ssgcdn.com/19/30/17/item/1000413173019_i1_150.jpg"
-                        alt="다른 옵션 이미지"
-                      />
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://m-shinsegaemall.ssg.com/item/dealItemView.ssg?itemId=1000034164356&amp;siteNo=6004&amp;salestrNo=6005&amp;dealCmptItemId=">
-                    <div className="cmitem_other_thmb">
-                      <img
-                        src="https://sitem.ssgcdn.com/84/95/32/item/1000388329584_i1_150.jpg"
-                        alt="다른 옵션 이미지"
-                      />
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://m-shinsegaemall.ssg.com/item/dealItemView.ssg?itemId=1000034164356&amp;siteNo=6004&amp;salestrNo=6005&amp;dealCmptItemId=">
-                    <div className="cmitem_other_thmb">
-                      <img
-                        src="https://sitem.ssgcdn.com/55/21/84/item/1000064842155_i1_150.jpg"
-                        alt="다른 옵션 이미지"
-                      />
-                    </div>
-                  </a>
-                </li>
                 <li>
                   <Link to={`/product/${productId}`} className="clickable">
                     <div className="cmitem_other_thmb ty_more">
