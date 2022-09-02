@@ -2,28 +2,30 @@ import React from 'react';
 import axios from 'axios';
 
 function PaymentMeansCardList({ cards, isSubmit, setIsSubmit }) {
-  const handleDeleteCard = (data, index) => {
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
+  const handleDeleteCard = (data) => {
     const { paymentId } = data;
-    const token = localStorage.getItem('token');
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    };
+    const deleteCardUrl = `http://13.209.26.150:9000/users/payment/${paymentId}`;
 
     axios
-      .delete(`http://13.209.26.150:9000/users/payment/${paymentId}`, headers)
+      .delete(deleteCardUrl, headers)
       .then((res) => {
-        console.log('delete result:', res);
+        console.log('del card result:', res);
         setIsSubmit(!isSubmit);
       })
-      .catch((err) => console.log('delete err:', err));
+      .catch((err) => console.log('del card err:', err));
   };
 
   return (
     <ul className="myssgpay_reserv_cardlst" style={{ userSelect: 'auto' }}>
       {cards &&
-        cards.map((card, i) => (
+        cards.map((card) => (
           <li
             key={card.paymentId}
             className="myssgpay_reserv_card"
@@ -66,7 +68,7 @@ function PaymentMeansCardList({ cards, isSubmit, setIsSubmit }) {
                   className="btn_remove"
                   data-fncco-cd="08"
                   style={{ userSelect: 'auto' }}
-                  onClick={() => handleDeleteCard(card, i)}
+                  onClick={() => handleDeleteCard(card)}
                 >
                   삭제
                 </button>
