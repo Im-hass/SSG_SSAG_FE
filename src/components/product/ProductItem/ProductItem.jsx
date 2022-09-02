@@ -44,12 +44,14 @@ function ProductItem({ data, isWishChange, setIsWishChange }) {
 
             {/* {isAd && <AdInfo />} */}
 
-            <LikeButton
-              wishDto={data.wishDto}
-              productId={productProductId}
-              isWishChange={isWishChange}
-              setIsWishChange={setIsWishChange}
-            />
+            <div className="mnsditem_btn_like">
+              <LikeButton
+                wishDto={data.wishDto}
+                productId={productProductId}
+                isWishChange={isWishChange}
+                setIsWishChange={setIsWishChange}
+              />
+            </div>
           </div>
 
           {/* 상세 정보 */}
