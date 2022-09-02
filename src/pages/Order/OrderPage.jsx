@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import { useRecoilState } from 'recoil';
+import toast, { Toaster } from 'react-hot-toast';
 import { isModalOpenState } from '../../recoil/states';
 
 import { PaymentMeansAddCardModal } from '../../components/contents/index';
@@ -34,6 +35,7 @@ function OrderPage() {
   const [refundTypeData, setRefundTypeData] = useState(0);
   const [userPaymentData, setUserPaymentData] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [choicePayment, setChoicePayment] = useState('');
   const [clickPayment, setClickPayment] = useState(false);
   const sendNextPageData = {
     name: recipientData.name,
@@ -42,7 +44,7 @@ function OrderPage() {
     streetAddr: destinationData.streetAddr,
     totalPrice: totalPrice * productCnt + deliveryFee,
   };
-  console.log(recipientData, destinationData, location.state);
+  console.log(location.state);
 
   const [clickBtn, setClickBtn] = useState({
     destination: false,
@@ -86,6 +88,10 @@ function OrderPage() {
     setClickPayment(false);
   };
 
+  const handleCardOption = (e) => {
+    setChoicePayment(e.target.value);
+  };
+
   const handleClickPayment = () => {
     setClickPayment((prev) => !prev);
     axios
@@ -127,9 +133,7 @@ function OrderPage() {
     console.log(e.target.name, clickBtn);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSendOrderData = () => {
     axios
       .post(
         'http://13.209.26.150:9000/users/order',
@@ -162,6 +166,26 @@ function OrderPage() {
         console.log(err);
       });
     navigate('/completeOrder', { state: sendNextPageData });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (choicePayment === '카드를 선택하세요' || choicePayment.length === 0) {
+      toast.error('결제수단을 선택해주세요.');
+    } else {
+      confirmAlert({
+        // eslint-disable-next-line react/no-unstable-nested-components
+        customUI: ({ onClose }) => (
+          <CustomAlert
+            title="상품 주문"
+            desc="상품을 주문하시겠습니까?"
+            btnTitle="주문"
+            onAction={handleSendOrderData}
+            onClose={onClose}
+          />
+        ),
+      });
+    }
   };
 
   return (
@@ -321,6 +345,7 @@ function OrderPage() {
                           <select
                             id="creditCrdCdSelect"
                             title="카드를 선택하세요."
+                            onChange={handleCardOption}
                           >
                             <option value="">카드를 선택하세요.</option>
                             {userPaymentData &&
@@ -702,12 +727,12 @@ function OrderPage() {
                     <div className="mnodr_unit_item">
                       <div className="mnodr_unit_thmb">
                         <span className="mnodr_unit_img" aria-hidden="true">
-                          <img
+                          {/* <img
                             src={location.state.data.productImg[0].imgUrl}
                             alt={location.state.data.name}
                             width="85"
                             height="85"
-                          />
+                          /> */}
                         </span>
                       </div>
                       <div className="mnodr_unit_cont">
@@ -797,6 +822,18 @@ function OrderPage() {
           원 결제하기
         </button>
       </form>
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#ff5b59',
+            },
+          },
+        }}
+      />
     </>
   );
 }

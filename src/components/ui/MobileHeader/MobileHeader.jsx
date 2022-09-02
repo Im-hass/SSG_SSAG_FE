@@ -27,7 +27,8 @@ function MobileHeader(props) {
           {!isOpen &&
             title !== '배송지 선택' &&
             title !== '주문자정보 변경' &&
-            title !== '수령위치 선택' && <HeaderPrevButton />}
+            title !== '수령위치 선택' &&
+            title !== '결제완료' && <HeaderPrevButton />}
           {!isOpen && <HeaderTitle title={title} />}
 
           {token === null ? (
@@ -41,7 +42,8 @@ function MobileHeader(props) {
                 title !== '결제하기' &&
                 title !== '배송지 선택' &&
                 title !== '주문자정보 변경' &&
-                title !== '수령위치 선택' && <HeaderHomeButton />}
+                title !== '수령위치 선택' &&
+                title !== '결제완료' && <HeaderHomeButton />}
             </div>
           )}
         </div>
