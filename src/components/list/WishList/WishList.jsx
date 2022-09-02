@@ -1,24 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios/index';
+import React from 'react';
 import { WishItem } from '../WishItem';
 
-function WishList() {
-  const [datas, setDatas] = useState();
-  const [isWishChange, setIsWishChange] = useState();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    };
-
-    axios.get(`http://13.209.26.150:9000/users/wish`, headers).then((res) => {
-      setDatas(res.data.result);
-    });
-  }, [isWishChange]);
-
+function WishList({ datas, isWishChange, setIsWishChange }) {
   return (
     <div className="mylike_cmitem_wrap">
       <div className="mylike_cmitem_modify">
