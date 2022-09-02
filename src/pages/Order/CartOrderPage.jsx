@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import { useRecoilState } from 'recoil';
+import toast, { Toaster } from 'react-hot-toast';
 import { isModalOpenState } from '../../recoil/states';
 
 import { PaymentMeansAddCardModal } from '../../components/contents/index';
@@ -21,11 +22,10 @@ function CartOrderPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const productCnt = location.state.count;
-  const productPrice = location.state.data.price;
-  const salePrice = productPrice * (location.state.data.sale / 100);
-  const totalPrice = productPrice - salePrice;
-  const deliveryFee = 3000;
+  const totalProductPrice = location.state.data.totalOrder;
+  const totalSalePrice = location.state.data.totalSale;
+  const totalPrice = location.state.data.totalAmount;
+  const deliveryFee = location.state.delivery;
 
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
   const [destinationData, setDestinationData] = useState({});
@@ -33,16 +33,17 @@ function CartOrderPage() {
   const [shippingMessageData, setShippingMessageData] = useState('');
   const [refundTypeData, setRefundTypeData] = useState(0);
   const [userPaymentData, setUserPaymentData] = useState([]);
+  const [choicePayment, setChoicePayment] = useState('');
   const [isFetching, setIsFetching] = useState(false);
   const [clickPayment, setClickPayment] = useState(false);
+
   const sendNextPageData = {
     name: recipientData.name,
     phone: recipientData.phone,
     zipCode: destinationData.zipCode,
     streetAddr: destinationData.streetAddr,
-    totalPrice: totalPrice * productCnt + deliveryFee,
+    totalPrice: totalPrice + deliveryFee,
   };
-  console.log(recipientData, destinationData, location.state);
 
   const [clickBtn, setClickBtn] = useState({
     destination: false,
@@ -117,6 +118,10 @@ function CartOrderPage() {
       });
   };
 
+  const handleCardOption = (e) => {
+    setChoicePayment(e.target.value);
+  };
+
   const handleClickBtn = (e) => {
     if (e.target.name === 'destination')
       setClickBtn({ ...clickBtn, destination: true });
@@ -127,41 +132,28 @@ function CartOrderPage() {
     console.log(e.target.name, clickBtn);
   };
 
+  const handleSendOrderData = () => {
+    navigate('/completeOrder', { state: sendNextPageData });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios
-      .post(
-        'http://13.209.26.150:9000/users/order',
-        {
-          refundType: refundTypeData,
-          recipient: recipientData.name,
-          recipientPhone: recipientData.phone,
-          addrName: destinationData.addrName,
-          streetAddr: destinationData.streetAddr,
-          zipCode: destinationData.zipCode,
-          shippingMsg: shippingMessageData,
-          orderDtoReq: [
-            {
-              productOptionId: location.state.optionId,
-              count: productCnt,
-              totalPayment: totalPrice * productCnt + deliveryFee,
-            },
-          ],
-        },
-        {
-          headers: {
-            Authorization: JSON.parse(token),
-          },
-        },
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
+    if (choicePayment === '카드를 선택하세요' || choicePayment.length === 0) {
+      toast.error('결제수단을 선택해주세요.');
+    } else {
+      confirmAlert({
+        // eslint-disable-next-line react/no-unstable-nested-components
+        customUI: ({ onClose }) => (
+          <CustomAlert
+            title="상품 주문"
+            desc="상품을 주문하시겠습니까?"
+            btnTitle="주문"
+            onAction={handleSendOrderData}
+            onClose={onClose}
+          />
+        ),
       });
-    navigate('/completeOrder', { state: sendNextPageData });
+    }
   };
 
   return (
@@ -260,7 +252,7 @@ function CartOrderPage() {
                       <span className="mnodr_tx_primary">
                         -{' '}
                         <em className="ssg_price dispTotItemEnuriWithout10Amt">
-                          {(salePrice * productCnt).toLocaleString()}
+                          {totalSalePrice.toLocaleString()}
                         </em>
                         <span className="ssg_tx">원</span>
                       </span>
@@ -321,6 +313,7 @@ function CartOrderPage() {
                           <select
                             id="creditCrdCdSelect"
                             title="카드를 선택하세요."
+                            onChange={handleCardOption}
                           >
                             <option value="">카드를 선택하세요.</option>
                             {userPaymentData &&
@@ -413,7 +406,7 @@ function CartOrderPage() {
                   <span className="mnodr_tx_primary">
                     +{' '}
                     <em className="ssg_price dispTotPayOrdAmt">
-                      {(productPrice * productCnt).toLocaleString()}
+                      {totalProductPrice.toLocaleString()}
                     </em>
                     <span className="ssg_tx">원</span>
                   </span>
@@ -428,7 +421,7 @@ function CartOrderPage() {
                     -{' '}
                     <em className="ssg_price dispTotDcAmt">
                       {' '}
-                      {(salePrice * productCnt).toLocaleString()}
+                      {totalSalePrice.toLocaleString()}
                     </em>
                     <span className="ssg_tx">원</span>
                   </span>
@@ -441,7 +434,7 @@ function CartOrderPage() {
                     -
                     <em className="ssg_price dispTotDcAmtWithoutCrdDc">
                       {' '}
-                      {(salePrice * productCnt).toLocaleString()}
+                      {totalSalePrice.toLocaleString()}
                     </em>
                     <span className="ssg_tx">원</span>
                   </span>
@@ -490,7 +483,7 @@ function CartOrderPage() {
                   <strong className="mnodr_tx_primary mnodr_priceitem_total v2">
                     +
                     <em className="ssg_price paySummaryPayAmt paySummaryTgtPaymtAmt">
-                      {(totalPrice * productCnt + 3000).toLocaleString()}
+                      {(totalPrice + deliveryFee).toLocaleString()}
                     </em>
                     <span className="ssg_tx">원</span>
                   </strong>
@@ -696,72 +689,96 @@ function CartOrderPage() {
                 </div>
               </div>
 
-              <div className="mnodr_article_cont ty_pull">
-                <div className="mnodr_form_sec">
-                  <div className="mnodr_unit">
-                    <div className="mnodr_unit_item">
-                      <div className="mnodr_unit_thmb">
-                        <span className="mnodr_unit_img" aria-hidden="true">
-                          <img
-                            src={location.state.data.productImg[0].imgUrl}
-                            alt={location.state.data.name}
-                            width="85"
-                            height="85"
-                          />
-                        </span>
-                      </div>
-                      <div className="mnodr_unit_cont">
-                        <div className="mnodr_unit_info ty2">
-                          <span className="cm_mall_text">
-                            <i className="sm">신세계몰</i>
-                          </span>
-
-                          <em id="dispSalestrNm_1">
-                            {location.state.data.storeName}
-                          </em>
-                        </div>
-                        <p className="mnodr_unit_tit ">
-                          <a href="/">
-                            <strong
-                              className="mnodr_unit_brd"
-                              style={{ fontWeight: 'bold' }}
-                            >
-                              {location.state.data.name}
-                            </strong>
-                          </a>
-                        </p>
-
-                        <div className="mnodr_unit_prdpay ty_space">
-                          <div className="mnodr_unit_l">
-                            <div className="mnodr_unit_oldprice ty2">
-                              <del>
-                                <span className="blind">정상가격</span>
-                                <em className="ssg_price">
-                                  {productPrice.toLocaleString()}
-                                </em>
-                              </del>
-                              <span className="ssg_tx">원</span>
-                            </div>
-
-                            <div className="mnodr_unit_newprice ty2">
-                              <span className="blind">판매가격</span>
-                              <em className="ssg_price">
-                                {(productPrice - salePrice).toLocaleString()}
-                              </em>
-                              <span className="ssg_tx">원</span>
-                            </div>
-                          </div>
-                          <div className="mnodr_unit_r">
-                            <span className="mnodr_unit_option">
-                              수량 {productCnt}개
+              {location.state.data.storeList.map((store) =>
+                store.cartList.map((cart) => (
+                  <div
+                    className="mnodr_article_cont ty_pull"
+                    key={cart.cartAmount}
+                  >
+                    <div className="mnodr_form_sec">
+                      <div className="mnodr_unit">
+                        <div className="mnodr_unit_item">
+                          <div className="mnodr_unit_thmb">
+                            <span className="mnodr_unit_img" aria-hidden="true">
+                              <img
+                                src={cart.productOptionDto.productDto.imgUrl}
+                                alt={cart.productOptionDto.productDto.name}
+                                width="85"
+                                height="85"
+                              />
                             </span>
+                          </div>
+                          <div className="mnodr_unit_cont">
+                            <div className="mnodr_unit_info ty2">
+                              <span className="cm_mall_text">
+                                <i className="sm">신세계몰</i>
+                              </span>
+
+                              <em id="dispSalestrNm_1">{store.storeName}</em>
+                            </div>
+                            <p className="mnodr_unit_tit ">
+                              <a href="/">
+                                <strong
+                                  className="mnodr_unit_brd"
+                                  style={{ fontWeight: 'bold' }}
+                                >
+                                  {cart.productOptionDto.productDto.name}
+                                </strong>
+                              </a>
+                              <div
+                                style={{
+                                  fontSize: '11px',
+                                  marginTop: '5px',
+                                  color: '#aaa',
+                                }}
+                              >
+                                <span>
+                                  색상: {cart.productOptionDto.color}{' '}
+                                </span>
+                                <span>
+                                  / 사이즈: {cart.productOptionDto.size}
+                                </span>
+                              </div>
+                            </p>
+
+                            <div className="mnodr_unit_prdpay ty_space">
+                              <div className="mnodr_unit_l">
+                                <div className="mnodr_unit_oldprice ty2">
+                                  <del>
+                                    <span className="blind">정상가격</span>
+                                    <em className="ssg_price">
+                                      {cart.productOptionDto.productDto.price.toLocaleString()}
+                                    </em>
+                                  </del>
+                                  <span className="ssg_tx">원</span>
+                                </div>
+
+                                <div className="mnodr_unit_newprice ty2">
+                                  <span className="blind">판매가격</span>
+                                  <em className="ssg_price">
+                                    {(
+                                      cart.productOptionDto.productDto.price *
+                                      ((100 -
+                                        cart.productOptionDto.productDto.sale) /
+                                        100)
+                                    ).toLocaleString()}
+                                  </em>
+                                  <span className="ssg_tx">원</span>
+                                </div>
+                              </div>
+                              <div className="mnodr_unit_r">
+                                <span className="mnodr_unit_option">
+                                  수량 {cart.count}개
+                                </span>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                )),
+              )}
             </article>
           </li>
         </ul>
@@ -792,10 +809,15 @@ function CartOrderPage() {
           style={{ position: 'fixed', bottom: 0 }}
         >
           <span style={{ fontWeight: '600' }}>
-            {(totalPrice * productCnt + 3000).toLocaleString()}
+            {(totalPrice + deliveryFee).toLocaleString()}
           </span>
           원 결제하기
         </button>
+        <Toaster
+          containerStyle={{
+            top: 30,
+          }}
+        />
       </form>
     </>
   );
