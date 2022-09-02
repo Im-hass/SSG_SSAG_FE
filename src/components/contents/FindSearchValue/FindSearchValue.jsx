@@ -1,16 +1,17 @@
-import React, { useContext } from 'react';
-import AuthContext from '../../../store/auth-context';
+import React from 'react';
 import ProductList from '../../product/ProductList/ProductList';
 import { SearchFilter } from '../SearchFilter';
 import './FindSearchValue.scss';
 
-function FindSearchValue({ datas }) {
-  const ctx = useContext(AuthContext);
-
+function FindSearchValue({ datas, isWishChange, setIsWishChange }) {
   return (
     <>
       <SearchFilter />
-      <ProductList datas={datas} isLogin={ctx.isLogin} />
+      <ProductList
+        datas={datas}
+        isWishChange={isWishChange}
+        setIsWishChange={setIsWishChange}
+      />
     </>
   );
 }

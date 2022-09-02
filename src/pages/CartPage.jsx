@@ -31,15 +31,18 @@ function CartPage() {
   const [cartId, setCartId] = useState(null);
   const [saleInfoItem, setSaleInfoItem] = useState(null);
 
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    };
+    const getCardDataUrl = 'http://13.209.26.150:9000/users/carts';
+
     axios
-      .get('http://13.209.26.150:9000/users/carts', headers)
+      .get(getCardDataUrl, headers)
       .then((res) => {
         console.log('cart page res:', res);
         const data = res.data.result;

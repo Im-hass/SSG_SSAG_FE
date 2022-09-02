@@ -46,7 +46,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <FloatingContents pageName="main" />
+        <FloatingContents pageName="home" />
       </div>
     </div>
   );

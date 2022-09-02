@@ -1,7 +1,7 @@
 import React from 'react';
 import './DestinationBtns.scss';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { DES_BTNS_LIST } from '../../../assets/datas';
 
 function DestinationBtns({ selected, isDefaultChanged, setIsDefaultChanged }) {
@@ -48,11 +48,6 @@ function DestinationBtns({ selected, isDefaultChanged, setIsDefaultChanged }) {
           </li>
         ))}
       </ul>
-      <Toaster
-        containerStyle={{
-          top: 30,
-        }}
-      />
     </div>
   );
 }

@@ -10,11 +10,6 @@ export const searchValueState = atom({
   default: '',
 });
 
-export const isItemsState = atom({
-  key: 'isItems',
-  default: false,
-});
-
 export const isCategorySelected = atom({
   key: 'isCategorySelected',
   default: new Array(11).fill(false),
@@ -28,16 +23,6 @@ export const isModalOpenState = atom({
 export const isCategorySelected2 = atom({
   key: 'isCategorySelected2',
   default: new Array(6).fill(false),
-});
-
-export const orderInfoState = atom({
-  key: 'orderInfo',
-  default: {
-    productDetail: {},
-    addr: {},
-    recipient: {},
-    message: '',
-  },
 });
 
 export const sendOrderState = atom({

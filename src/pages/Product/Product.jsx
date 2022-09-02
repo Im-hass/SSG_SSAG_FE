@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { orderInfoState } from '../../recoil/states';
 import { Header, FloatingContents, Footer } from '../../components/common';
 
 import ProductImgHeaderBtn from './Product/ProductImgHeaderBtn';
@@ -34,7 +32,6 @@ import ProductDetailCategory from './Product/ProductDetailCategory';
 function Product() {
   const [productData, setProductData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
 
   const { productId } = useParams();
   const loginedUrl = `http://13.209.26.150:9000/users/products/info/${productId}`;

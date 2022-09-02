@@ -4,7 +4,7 @@ import { LikeButton } from '../../ui/LikeButton';
 // import { AdInfo } from '../../ui/AdInfo';
 import './ProductItem.scss';
 
-function ProductItem({ data, isLogin }) {
+function ProductItem({ data, isWishChange, setIsWishChange }) {
   const {
     productImgOriginName, // 이미지 원본 이름
     // productImgSaveName, // 이미지 저장 이름
@@ -18,7 +18,6 @@ function ProductItem({ data, isLogin }) {
     productStoreName, // 스토어(브랜드)명
     // productStoreStoreId, // 스토어 id
   } = data.categoryProductDtoRes;
-
   return (
     <li
       className={
@@ -28,7 +27,6 @@ function ProductItem({ data, isLogin }) {
       }
     >
       <div className="mnsditem_unit">
-        {/* <div className="mnsditem_helper" /> */}
         <div className="mnsditem_goods  gate_unit">
           <div className="mnsditem_thmb">
             <Link
@@ -46,11 +44,14 @@ function ProductItem({ data, isLogin }) {
 
             {/* {isAd && <AdInfo />} */}
 
-            <LikeButton
-              wishDto={data.wishDto}
-              productId={productProductId}
-              isLogin={isLogin}
-            />
+            <div className="mnsditem_btn_like">
+              <LikeButton
+                wishDto={data.wishDto}
+                productId={productProductId}
+                isWishChange={isWishChange}
+                setIsWishChange={setIsWishChange}
+              />
+            </div>
           </div>
 
           {/* 상세 정보 */}
