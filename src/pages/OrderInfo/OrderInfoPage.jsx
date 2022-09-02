@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MobileHeader } from '../../components/ui/index';
 
 function OrderInfoPage() {
+  const [orderData, setOrderData] = useState([]);
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -13,12 +14,13 @@ function OrderInfoPage() {
         },
       })
       .then((res) => {
-        console.log(res.data.result);
+        setOrderData(res.data.result);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  console.log(orderData);
 
   return (
     <div>
@@ -164,11 +166,11 @@ function OrderInfoPage() {
                   <span className="blind">신세계백화점</span>
                 </i>
               </span>
-              <strong className="codr_odrdeliv_delivtype">택배배송</strong>
+              <strong className="codr_odrdeliv_delivtype"> 택배배송</strong>
               <span className="codr_dot">ㆍ</span>
               <span className="codr_store sd">
                 <span className="blind">점포명</span>
-                강남점
+                {}
               </span>
               <div className="codr_btnarea_rgt">
                 <button

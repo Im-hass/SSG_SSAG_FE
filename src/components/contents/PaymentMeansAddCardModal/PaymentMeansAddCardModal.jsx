@@ -19,15 +19,15 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
   };
 
   const validCheck = (data) => {
-    const testData = data.split('');
+    const cardNum = data.split('');
 
-    if (testData.length > 16 || testData.length < 16) {
+    if (cardNum.length > 16 || cardNum.length < 16) {
       setIsCardNumValid(false);
       setCardNumErrMsg('카드 번호를 올바르게 입력하세요.');
       return false;
     }
-    for (let i = 0; i < testData.length; i += 1) {
-      if (Number.isNaN(Number(testData[i]))) {
+    for (let i = 0; i < cardNum.length; i += 1) {
+      if (Number.isNaN(Number(cardNum[i]))) {
         setIsCardNumValid(false);
         setCardNumErrMsg('카드 번호를 올바르게 입력하세요.');
         return false;
@@ -39,20 +39,21 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
   };
 
   const handleAddCardInputData = (e) => {
-    const nums = e.target.value;
+    const val = e.target.value;
 
-    setInputVal(nums);
+    setInputVal(val);
 
-    if (validCheck(nums)) {
+    if (validCheck(val)) {
       setAddCardInputData({
         ...addCardInputData,
-        cardNumber: nums,
+        cardNumber: val,
       });
     }
   };
 
   const handleSelectedCardData = (e) => {
     const card = e.target.value;
+
     setAddCardInputData({
       ...addCardInputData,
       cardCompany: card,
@@ -61,27 +62,31 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
 
   const generateCardNum = () => {
     let nums = addCardInputData.cardNumber;
+
     nums = nums.split('');
     nums.splice(4, 0, '-');
     nums.splice(9, 0, '-');
     nums.splice(14, 0, '-');
+
     return nums.join('');
   };
 
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
   const postData = () => {
-    const token = localStorage.getItem('token');
     const data = {
       cardCompany: addCardInputData.cardCompany,
       cardNumber: generateCardNum(),
     };
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    };
+    const postCardDataUrl = 'http://13.209.26.150:9000/users/payment';
 
     axios
-      .post('http://13.209.26.150:9000/users/payment', data, headers)
+      .post(postCardDataUrl, data, headers)
       .then((res) => {
         console.log('post res:', res);
         setIsSubmit(!isSubmit);

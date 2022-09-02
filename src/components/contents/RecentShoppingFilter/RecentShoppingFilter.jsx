@@ -15,22 +15,14 @@ function RecentShoppingFilter() {
       <ul className="cmhistory_delete">
         <li>
           <span className="cmhistory_bt">
-            <button
-              type="button"
-              className="cmhistory_bt_seldel"
-              onClick="historySsg.deleteHistoryMulti();"
-            >
+            <button type="button" className="cmhistory_bt_seldel">
               선택삭제
             </button>
           </span>
         </li>
         <li>
           <span className="cmhistory_bt">
-            <button
-              type="button"
-              className="cmhistory_bt_alldel"
-              onClick="historySsg.deleteHistoryAll();"
-            >
+            <button type="button" className="cmhistory_bt_alldel">
               전체삭제
             </button>
           </span>

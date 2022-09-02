@@ -17,11 +17,10 @@ function CartPageParcel({
   setCartId,
   setSaleInfoItem,
 }) {
-  console.log(cartData);
   return (
     <div className="mnodr_acdo_cont">
       {cartData &&
-        cartData.storeList.map((storeList, i) => (
+        cartData.storeList.map((storeList) => (
           <div key={storeList.storeId} className="mnodr_unit">
             <CartPageStoreList
               storeList={storeList}
