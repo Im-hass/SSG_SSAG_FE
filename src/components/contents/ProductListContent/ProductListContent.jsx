@@ -35,7 +35,7 @@ function ProductListContent() {
       .get(
         `http://13.209.26.150:9000/${
           isUser ? 'users' : 'non-users'
-        }/products${urlParams}?page=0&size=5&sort=product.sale,desc`,
+        }/products${urlParams}`,
         headers,
       )
       .then((res) => {

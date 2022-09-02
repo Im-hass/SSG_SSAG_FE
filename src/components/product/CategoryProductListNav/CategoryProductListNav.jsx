@@ -34,9 +34,7 @@ function CategoryProductListNav({ lgId, title, subTitle }) {
       </div>
       <div className="mcom_tit_rgt">
         <div className="btn_cate btn_clip">
-          <span className="cmlike _js_cmlike interestIt">
-            <LikeButton />
-          </span>
+          <LikeButton />
         </div>
         <div className="btn_cate btn_share">
           <button

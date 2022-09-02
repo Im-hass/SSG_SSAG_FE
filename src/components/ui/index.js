@@ -25,3 +25,5 @@ export { CircleImgList } from './CircleImgList';
 export { RequireLabel } from './RequireLabel';
 export { SignUpInput } from './SignUpInput';
 export { PaymentMeansPwBtn } from './PaymentMeansPwBtn';
+export { WishFolder } from './WishFolder';
+export { WishFilter } from './WishFilter';
