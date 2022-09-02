@@ -1,0 +1,16 @@
+.paginate_wrap {
+  height: fit-content;
+  padding: 20px 0;
+  border-top: 1px solid #e1e1e1;
+
+  .m_paginate {
+
+    a.prev,
+    a.next {
+      background-color: transparent;
+      border: none;
+      background-image: none;
+    }
+
+  }
+}
