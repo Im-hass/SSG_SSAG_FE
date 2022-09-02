@@ -11,11 +11,23 @@ function ZipCodeSearchResult({
   const handleListSelected = (e, i) => {
     e.preventDefault();
     setIsSelected(!isSelected);
+    let getZipNo = '';
+    let getlnmAdres = '';
+    let getRnAdres = '';
+    if (datas.length === undefined) {
+      getZipNo = datas.zipNo;
+      getlnmAdres = datas.lnmAdres;
+      getRnAdres = datas.rnAdres;
+    } else {
+      getZipNo = datas[i].zipNo;
+      getlnmAdres = datas[i].lnmAdres;
+      getRnAdres = datas[i].rnAdres;
+    }
     setSelectedItem((pre) => ({
       ...pre,
-      zipCode: datas[i].zipNo,
-      streetAddr: datas[i].lnmAdres,
-      lotAddr: datas[i].rnAdres,
+      zipCode: getZipNo,
+      streetAddr: getlnmAdres,
+      lotAddr: getRnAdres,
     }));
   };
 
@@ -53,7 +65,7 @@ function ZipCodeSearchResult({
                   >
                     <div className="srchaddr_zipcode">
                       <strong className="blind">우편번호</strong>
-                      <span className="num">{datas.zipNo}</span>
+                      {/* <span className="num">{datas.zipNo}</span> */}
                     </div>
                     <dl className="srchaddr_info">
                       <dt className="info_tit">도로명</dt>

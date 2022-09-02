@@ -14,9 +14,11 @@ function SearchContent() {
   const [isOpen] = useRecoilState(isOpenState);
   const [searchValue] = useRecoilState(searchValueState);
   const [datas, setDatas] = useState();
+  const [isWishChange, setIsWishChange] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
+      let isUser = false;
       const token = localStorage.getItem('token');
       const headers = {
         headers: {
@@ -24,10 +26,11 @@ function SearchContent() {
         },
       };
 
+      if (token !== null) isUser = true;
       axios
         .get(
           `http://13.209.26.150:9000/${
-            token !== null ? 'users' : 'non-users'
+            isUser ? 'users' : 'non-users'
           }/products/search/${value}`,
           token && headers,
         )
@@ -40,7 +43,7 @@ function SearchContent() {
           }
         });
     }
-  }, [isOpen]);
+  }, [isOpen, isWishChange]);
 
   return (
     <div id="m_wrap" className="mcom_wrap sm_v3">
@@ -95,9 +98,18 @@ function SearchContent() {
             {/* 검색 결과가 있을 때 */}
             {/* 검색 결과가 없을 때 */}
             {datas ? (
-              <FindSearchValue datas={datas} />
+              <FindSearchValue
+                datas={datas}
+                isWishChange={isWishChange}
+                setIsWishChange={setIsWishChange}
+              />
             ) : (
-              <NoSearchValue datas={datas} searchValue={searchValue} />
+              <NoSearchValue
+                datas={datas}
+                searchValue={searchValue}
+                isWishChange={isWishChange}
+                setIsWishChange={setIsWishChange}
+              />
             )}
           </div>
 

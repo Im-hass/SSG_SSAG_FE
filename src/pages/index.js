@@ -13,3 +13,4 @@ export { default as LoginPage } from './LoginPage';
 export { default as OrderPage } from './Order/OrderPage';
 export { default as ProductListPage } from './ProductListPage';
 export { default as ModifyDestinationPage } from './ModifyDestinationPage';
+export { default as WishListPage } from './WishListPage';
