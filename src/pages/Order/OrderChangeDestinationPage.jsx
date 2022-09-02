@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-import { orderInfoState } from '../../recoil/states';
 import { MobileHeader } from '../../components/ui/index';
 
-function OrderChangeDestinationPage() {
-  const navigate = useNavigate();
-
-  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+function OrderChangeDestinationPage(props) {
+  const { setClickBtn, setDestinationData } = props;
   const [destinationArr, setDestinationArr] = useState([]);
 
   useEffect(() => {
@@ -33,16 +28,20 @@ function OrderChangeDestinationPage() {
     const clickAddr = destinationArr.find(
       (addr) => addr.addrName === e.target.id,
     );
-    setOrderInfo({ ...orderInfo, addr: clickAddr });
+    setDestinationData(clickAddr);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(-1);
+    setClickBtn({
+      destination: false,
+      recipient: false,
+      message: false,
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="wrap">
       <MobileHeader title="배송지 선택" />
       <div className="mnodr_sec_heading">
         <h3 className="mnodr_tx_heading">어디로 보내드릴까요?</h3>

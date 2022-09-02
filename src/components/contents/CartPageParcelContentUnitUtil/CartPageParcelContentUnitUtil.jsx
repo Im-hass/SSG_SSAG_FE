@@ -35,8 +35,8 @@ function CartPageParcelContentUnitUtil({ cartItem, isDelete, setIsDelete }) {
       // eslint-disable-next-line react/no-unstable-nested-components
       customUI: ({ onClose }) => (
         <CustomAlert
-          title="배송지 삭제"
-          desc="배송지를 삭제하시겠습니까?"
+          title="장바구니 아이템 삭제"
+          desc="아이템을 삭제하시겠습니까?"
           btnTitle="삭제"
           id={cartItemId}
           onAction={onDeleteCartItem}

@@ -1,36 +1,34 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-
+import React, { useEffect, useState } from 'react';
 import { MobileHeader } from '../../components/ui/index';
-import { orderInfoState } from '../../recoil/states';
 
-function OrderChangeShippingMessagePage() {
-  const navigate = useNavigate();
+function OrderChangeShippingMessagePage(props) {
+  const { setClickBtn, setShippingMessageData } = props;
+  const [clickMessage, setClickMessage] = useState('');
 
-  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleClickInput = (e) => {
-    setOrderInfo({
-      ...orderInfo,
-      message: e.target.value,
-    });
+    setClickMessage(e.target.value);
   };
 
   const handleChangeMessage = (e) => {
-    setOrderInfo({
-      ...orderInfo,
-      message: e.target.value,
-    });
+    setClickMessage(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/order');
+    setShippingMessageData(clickMessage);
+    setClickBtn({
+      destination: false,
+      recipient: false,
+      message: false,
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="wrap">
       <MobileHeader title="수령위치 선택" />
       <div id="ordShppRcptInfoDiv">
         <div name="divOrdStep" id="rcptInfoDiv_1" className="fullOrdArea">
