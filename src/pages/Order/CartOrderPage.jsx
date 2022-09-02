@@ -6,8 +6,8 @@ import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import { useRecoilState } from 'recoil';
 import toast, { Toaster } from 'react-hot-toast';
-import { isModalOpenState } from '../../recoil/states';
 
+import { isModalOpenState } from '../../recoil/states';
 import { PaymentMeansAddCardModal } from '../../components/contents/index';
 import { CustomAlert } from '../../components/common/index';
 import { MobileHeader } from '../../components/ui/index';
