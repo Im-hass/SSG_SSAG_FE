@@ -1,9 +1,8 @@
 import React from 'react';
 import './ProductList.scss';
 import ProductItem from '../ProductItem/ProductItem';
-// import { PRODUCT_LIST } from '../../../assets/datas';
 
-function ProductList({ datas }) {
+function ProductList({ datas, isWishChange, setIsWishChange }) {
   return (
     <>
       {/* 필터 */}
@@ -323,6 +322,8 @@ function ProductList({ datas }) {
               <ProductItem
                 key={data.categoryProductDtoRes.productProductId}
                 data={data}
+                isWishChange={isWishChange}
+                setIsWishChange={setIsWishChange}
               />
             ))}
         </ul>

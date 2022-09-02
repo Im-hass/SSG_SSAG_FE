@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import AuthContext from '../../../store/auth-context';
 
 function FooterButtonBox() {
@@ -47,11 +47,6 @@ function FooterButtonBox() {
           </Link>
         </li>
       </ul>
-      <Toaster
-        containerStyle={{
-          top: 30,
-        }}
-      />
     </div>
   );
 }

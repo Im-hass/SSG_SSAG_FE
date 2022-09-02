@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './CategoryDetailList.scss';
-import { ProductList } from '../ProductList/index';
+import { ProductList } from '../ProductList';
 
-function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
+function CategoryDetailList({
+  mediumCategoryList,
+  datas,
+  handleProductList,
+  isWishChange,
+  setIsWishChange,
+}) {
   const { lgId, mdId, smId } = useParams();
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [smallCateList, setSmallCateList] = useState();
+  const [smallCategoryList, setSmallCategoryList] = useState();
   const [hasMId, setHasMid] = useState(false);
 
   const handleNavOpen = () => {
@@ -22,7 +28,7 @@ function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
       axios
         .get(`http://13.209.26.150:9000/comm-users/category/small/${mdId}`)
         .then((res) => {
-          setSmallCateList(res.data.result.smallCategoryList);
+          setSmallCategoryList(res.data.result.smallCategoryList);
         });
     }
   }, [hasMId, mdId, smId]);
@@ -84,10 +90,10 @@ function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
           </div>
         </div>
 
-        {hasMId && smallCateList && (
+        {hasMId && smallCategoryList && (
           <div className="m_catelst">
             <ul className="lst_cate">
-              {smallCateList.map((data) => (
+              {smallCategoryList.map((data) => (
                 <li key={data.smallCategoryId}>
                   <Link
                     to={`/products/${lgId}/${mdId}/${data.smallCategoryId}`}
@@ -107,7 +113,14 @@ function CategoryDetailList({ mediumCategoryList, datas, handleProductList }) {
         )}
         <div id="m_dimmed" className={`${isNavOpen ? 'mcom_dimmed' : ''}`} />
       </div>
-      <ProductList datas={datas} />
+
+      {datas && (
+        <ProductList
+          datas={datas}
+          isWishChange={isWishChange}
+          setIsWishChange={setIsWishChange}
+        />
+      )}
     </>
   );
 }

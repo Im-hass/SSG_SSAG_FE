@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function ItemGoods({ data }) {
   const {
     happyLoungeImgDto,
-    imgOriginName,
+    // imgOriginName,
     // imgSaveName,
     imgUrl,
     name,
@@ -32,7 +32,7 @@ function ItemGoods({ data }) {
                   <img
                     className="cmitem_thmb_img"
                     src={`${imgUrl}`}
-                    alt={`${imgOriginName}`}
+                    alt={`${name}`}
                   />
                 </div>
               </Link>
@@ -41,12 +41,12 @@ function ItemGoods({ data }) {
               <ul className="cmitem_other_list ty_full">
                 {happyLoungeImgDto.length !== 0 &&
                   happyLoungeImgDto.map((img) => (
-                    <li key={`${img.imgOriginName}`}>
+                    <li key={`${img.thumbnailImgId}`}>
                       <Link to={`/product/${productId}`}>
                         <div className="cmitem_other_thmb">
                           <img
                             src={`${img.imgUrl}`}
-                            alt={`${img.imgOriginName}`}
+                            alt={`${img.originName}`}
                           />
                         </div>
                       </Link>

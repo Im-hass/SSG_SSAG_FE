@@ -130,35 +130,37 @@ function OrderPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // axios
-    //   .post(
-    //     'http://13.209.26.150:9000/users/order',
-    //     {
-    //       refundType: refundTypeData,
-    //       recipient: recipientData.name,
-    //       recipientPhone: recipientData.phone,
-    //       addrName: destinationData.addrName,
-    //       streetAddr: destinationData.streetAddr,
-    //       zipCode: destinationData.zipCode,
-    //       shippingMsg: shippingMessageData,
-    //       orderDtoReq: [
-    //         location.state.optionId,
-    //         productCnt,
-    //         totalPrice * productCnt + deliveryFee,
-    //       ],
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: JSON.parse(token),
-    //       },
-    //     },
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios
+      .post(
+        'http://13.209.26.150:9000/users/order',
+        {
+          refundType: refundTypeData,
+          recipient: recipientData.name,
+          recipientPhone: recipientData.phone,
+          addrName: destinationData.addrName,
+          streetAddr: destinationData.streetAddr,
+          zipCode: destinationData.zipCode,
+          shippingMsg: shippingMessageData,
+          orderDtoReq: [
+            {
+              productOptionId: location.state.optionId,
+              count: productCnt,
+              totalPayment: totalPrice * productCnt + deliveryFee,
+            },
+          ],
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(token),
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     navigate('/completeOrder', { state: sendNextPageData });
   };
 

@@ -10,6 +10,7 @@ function ProductListContent() {
   const [subTitle, setSubTitle] = useState();
   const [mediumCategoryList, setMediumCategoryList] = useState();
   const [datas, setDatas] = useState();
+  const [isWishChange, setIsWishChange] = useState(false);
 
   const handleProductList = (lId = 1, mId = 0, sId = 0) => {
     let urlParams = '';
@@ -23,17 +24,32 @@ function ProductListContent() {
 
     let isUser = false;
     const token = localStorage.getItem('token');
+    const headers = {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    };
+
     if (token !== null) isUser = true;
     axios
       .get(
         `http://13.209.26.150:9000/${
           isUser ? 'users' : 'non-users'
-        }/products${urlParams}`,
+        }/products${urlParams}?page=0&size=5&sort=product.sale,desc`,
+        headers,
       )
       .then((res) => {
         const respones = res.data.result;
         setDatas(respones);
       });
+
+    // console.log(lgId, mdId);
+    // console.log(
+    //   `http://13.209.26.150:9000/${
+    //     isUser ? 'users' : 'non-users'
+    //   }/products${urlParams}`,
+    //   headers,
+    // );
   };
 
   useEffect(() => {
@@ -59,7 +75,7 @@ function ProductListContent() {
         setSubTitle(mdName);
         setMediumCategoryList(response.mediumCategoryList);
       });
-  }, [lgId, mdId]);
+  }, [lgId, mdId, isWishChange]);
 
   return (
     <>
@@ -71,6 +87,8 @@ function ProductListContent() {
             mediumCategoryList={mediumCategoryList}
             datas={datas}
             handleProductList={handleProductList}
+            isWishChange={isWishChange}
+            setIsWishChange={setIsWishChange}
           />
         )}
       </div>

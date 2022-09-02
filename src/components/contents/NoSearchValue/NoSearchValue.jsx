@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductList } from '../../product/ProductList/index';
 
-function NoSearchValue({ datas, searchValue }) {
+function NoSearchValue({ datas, searchValue, isWishChange, setIsWishChange }) {
   return (
     <>
       <div className="cm_result_titbox go_link">
@@ -30,7 +30,11 @@ function NoSearchValue({ datas, searchValue }) {
         </div>
 
         {/* 상품 리스트 */}
-        <ProductList datas={datas} />
+        <ProductList
+          datas={datas}
+          isWishChange={isWishChange}
+          setIsWishChange={setIsWishChange}
+        />
       </div>
     </>
   );
