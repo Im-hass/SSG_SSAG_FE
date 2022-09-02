@@ -60,7 +60,9 @@ function RecentShoppingPage() {
                   </div>
                 </div>
               )}
-              {!recentShoppingData[0] && <NoDataMessage />}
+              {recentShoppingData && !recentShoppingData[0] && (
+                <NoDataMessage />
+              )}
             </div>
           </div>
         </div>
