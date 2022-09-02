@@ -7,7 +7,7 @@ function ProductList({ datas, isWishChange, setIsWishChange }) {
     <div className="cmitem_grid">
       <ul className="cmitem_grid_lst cmitem_ty_thmb">
         {datas &&
-          datas.map((data) => (
+          datas.productDtoRes.map((data) => (
             <ProductItem
               key={data.categoryProductDtoRes.productProductId}
               data={data}
