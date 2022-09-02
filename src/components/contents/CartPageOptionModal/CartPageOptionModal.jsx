@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import './CartPageOptionModal.scss';
 
 function CartPageOptionModal({
+  cartData,
   setIsOptionModalOpen,
+  storeIndex,
+  cartIndex,
   productId,
   cartId,
   isChange,
@@ -14,13 +18,14 @@ function CartPageOptionModal({
   const [sizeOptions, setSizeOptions] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedProductOptionId, setSelectedProductOptionId] = useState(null);
-
   const token = localStorage.getItem('token');
   const headers = {
     headers: {
       Authorization: JSON.parse(token),
     },
   };
+  const itemDefaultColor =
+    cartData.storeList[storeIndex].cartList[cartIndex].productOptionDto.colorId;
 
   // 색상 data 받아오기
   useEffect(() => {
@@ -51,19 +56,35 @@ function CartPageOptionModal({
       .catch((err) => console.log('size error:', err));
   };
 
+  const selectedColorChecker = (val) => {
+    if (val === 'default') {
+      toast.error('색상을 선택해주세요.');
+      return false;
+    }
+    if (+val === itemDefaultColor) {
+      toast.error('기존 옵션과 다른 옵션을 선택해주세요.');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSelectColor = (e) => {
     const { value } = e.target;
 
-    if (value === 'default') return;
-
-    setSelectedColor(+value);
+    if (selectedColorChecker(value)) {
+      setSelectedColor(+value);
+    } else {
+      setSelectedColor(null);
+      setSizeOptions(null);
+    }
   };
 
   // 색상 선택 후 사이즈 데이터 받아오기
   useEffect(() => {
-    if (selectedColor !== null) {
-      getSizeData();
-    }
+    if (!selectedColor) return;
+
+    getSizeData();
   }, [selectedColor]);
 
   const handleSelectSize = (e) => {

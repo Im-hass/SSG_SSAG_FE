@@ -27,6 +27,8 @@ function CartPage() {
   const [isOptionModalOpen, setIsOptionModalOpen] = useState(false);
   const [isSaleInfoModalOpen, setIsSaleInfoModalOpen] = useState('');
   const [isAriaHidden, setIsAriaHidden] = useState(false);
+  const [storeIndex, setStoreIndex] = useState(null);
+  const [cartIndex, setCartIndex] = useState(null);
   const [productId, setProductId] = useState(null);
   const [cartId, setCartId] = useState(null);
   const [saleInfoItem, setSaleInfoItem] = useState(null);
@@ -63,7 +65,10 @@ function CartPage() {
         <MobileHeader title="장바구니" />
         {isOptionModalOpen && (
           <CartPageOptionModal
+            cartData={cartData}
             setIsOptionModalOpen={setIsOptionModalOpen}
+            storeIndex={storeIndex}
+            cartIndex={cartIndex}
             productId={productId}
             cartId={cartId}
             isChange={isChange}
@@ -112,6 +117,8 @@ function CartPage() {
                       setProductId={setProductId}
                       setCartId={setCartId}
                       setSaleInfoItem={setSaleInfoItem}
+                      setStoreIndex={setStoreIndex}
+                      setCartIndex={setCartIndex}
                     />
                   </div>
                 </div>

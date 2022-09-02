@@ -4,14 +4,21 @@ import './CartPageParcelContentUnitBtn.scss';
 function CartPageParcelContentUnitBtn({
   cartItem,
   setIsOptionModalOpen,
+  setStoreIndex,
+  setCartIndex,
   setProductId,
   setCartId,
+  storeIndex,
+  cartIndex,
 }) {
+  const dataId = cartItem.productOptionDto.productDto.productId;
+
   const handleOptionModalOpen = () => {
-    const dataId = cartItem.productOptionDto.productDto.productId;
     const { cartId } = cartItem;
 
     setIsOptionModalOpen(true);
+    setStoreIndex(storeIndex);
+    setCartIndex(cartIndex);
     setProductId(dataId);
     setCartId(cartId);
   };

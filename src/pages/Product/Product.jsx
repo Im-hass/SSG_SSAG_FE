@@ -31,30 +31,47 @@ import ProductDetailCategory from './Product/ProductDetailCategory';
 
 function Product() {
   const [productData, setProductData] = useState(null);
+  const [productDetailData, setProductDetailData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log(productData);
   const { productId } = useParams();
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
   const loginedUrl = `http://13.209.26.150:9000/users/products/info/${productId}`;
   const notLoginedUrl = `http://13.209.26.150:9000/non-users/products/info/${productId}`;
+  const detailInfoUrl = `http://13.209.26.150:9000/comm-users/products/detail-info/${productId}`;
+
+  const fetchProductData = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(token ? loginedUrl : notLoginedUrl, headers);
+      console.log('product response:', res);
+      setProductData(res.data.result);
+    } catch (err) {
+      console.log('product error:', err);
+    }
+    setIsLoading(false);
+  };
+
+  const fetchProductDetailData = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(detailInfoUrl, headers);
+      console.log('pdt detail response:', res);
+      setProductDetailData(res.data.result);
+    } catch (err) {
+      console.log('pdt detail error:', err);
+    }
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem('token');
-      setIsLoading(true);
-      try {
-        const res = await axios.get(token ? loginedUrl : notLoginedUrl, {
-          headers: {
-            Authorization: JSON.parse(token),
-          },
-        });
-        console.log('product response:', res);
-        setProductData(res.data.result);
-      } catch (err) {
-        console.log('product error:', err);
-      }
-      setIsLoading(false);
-    };
-    fetchData();
+    fetchProductData();
+    fetchProductDetailData();
   }, []);
 
   if (isLoading) return <div>로딩 중</div>;
@@ -80,7 +97,7 @@ function Product() {
           <div id="m_content" className="react-area">
             <div className="mndtl_wrap ty_default">
               <ProductImgHeaderBtn />
-              <ProductSwiper />
+              <ProductSwiper productData={productData} />
               <ProductExplaination productData={productData} />
               <ProductInfo />
 
@@ -90,7 +107,7 @@ function Product() {
                   <div className="mndtl_sec_subject">
                     <h3 className="mndtl_sec_tit">상세정보</h3>
                   </div>
-                  <ProductDetailInfo />
+                  <ProductDetailInfo productDetailData={productDetailData} />
                 </div>
 
                 <div
@@ -102,10 +119,10 @@ function Product() {
                     <h3 className="mndtl_sec_tit">고객리뷰</h3>
                   </div>
                   <div className="mndtl_review_wrap">
-                    <ProductReviewRate />
+                    <ProductReviewRate productData={productData} />
                     <ProductReviewGraph />
                     <ProductReviewPhotos />
-                    <ProductReviewSummary />
+                    <ProductReviewSummary productData={productData} />
                   </div>
                 </div>
 

@@ -23,7 +23,6 @@ export const TOOL_LIST = [
     link: '/historyList',
     iconName: 'icon_eye',
     txt: '최근본',
-    imgUrl: 'https://sitem.ssgcdn.com/56/43/16/item/1000034164356_i1_120.jpg',
     hasHistory: true,
   },
 ];
