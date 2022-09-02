@@ -15,16 +15,11 @@ import {
   LoginPage,
   ProductListPage,
   ModifyDestinationPage,
+  OrderPage,
+  OrderInfoPage,
   WishListPage,
 } from '../pages';
 import { MyPage } from '../pages/MyPage';
-import {
-  OrderPage,
-  OrderChangeDestinationPage,
-  OrderChangeRecipientPage,
-  OrderChangeShippingMessagePage,
-} from '../pages/Order';
-import OrderInfoPage from '../pages/OrderInfo/OrderInfoPage';
 import Product from '../pages/Product/Product';
 import {
   SignUpPage,
@@ -37,6 +32,7 @@ import { ScrollToTop } from './common/ScrollToTop';
 import { WithdrawMember, MyDestinations } from './contents';
 import WithDestinations from './contents/WithDestinations/WithDestinations';
 import PrivateRoute from '../lib/PrivateRoute';
+import { CompleteOrder, CartOrderPage } from '../pages/Order/index';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -56,18 +52,15 @@ function App() {
           </Route>
           <Route path="/addDestination" element={<AddDestinationPage />} />
           <Route path="/order" element={<OrderPage />} />
-          <Route
-            path="/orderDestination"
-            element={<OrderChangeDestinationPage />}
-          />
-          <Route
-            path="/orderChangeRecipient"
-            element={<OrderChangeRecipientPage />}
-          />
-          <Route
-            path="/orderChangeShippingMessage"
-            element={<OrderChangeShippingMessagePage />}
-          />
+          <Route path="/cartOrder" element={<CartOrderPage />} />
+        </Route>
+        <Route path="/completeOrder" element={<PrivateRoute />}>
+          <Route path="/completeOrder" element={<CompleteOrder />} />
+        </Route>
+        <Route path="/orderInfo" element={<PrivateRoute />}>
+          <Route path="/orderInfo" element={<OrderInfoPage />} />
+        </Route>
+        <Route path="/modifyDestination" element={<PrivateRoute />}>
           <Route
             path="/modifyDestination"
             element={<ModifyDestinationPage />}

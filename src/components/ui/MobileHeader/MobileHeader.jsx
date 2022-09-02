@@ -24,7 +24,11 @@ function MobileHeader(props) {
     >
       {!isOpen && (
         <div className="mcom_tit_renew  react-area">
-          {!isOpen && <HeaderPrevButton />}
+          {!isOpen &&
+            title !== '배송지 선택' &&
+            title !== '주문자정보 변경' &&
+            title !== '수령위치 선택' &&
+            title !== '결제완료' && <HeaderPrevButton />}
           {!isOpen && <HeaderTitle title={title} />}
 
           {token === null ? (
@@ -33,7 +37,13 @@ function MobileHeader(props) {
             <div className="mcom_tit_rgt">
               {!isOpen && title === '장바구니' && <HeaderSearchButton />}
               {!isOpen && title === 'MY SSG' && <Cart />}
-              {!isOpen && title !== '배송지 관리' && <HeaderHomeButton />}
+              {!isOpen &&
+                title !== '배송지 관리' &&
+                title !== '결제하기' &&
+                title !== '배송지 선택' &&
+                title !== '주문자정보 변경' &&
+                title !== '수령위치 선택' &&
+                title !== '결제완료' && <HeaderHomeButton />}
             </div>
           )}
         </div>

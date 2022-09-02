@@ -1,39 +1,42 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-
+import React, { useState, useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { MobileHeader } from '../../components/ui/index';
-import { orderInfoState } from '../../recoil/states';
 
-function OrderChangeRecipientPage() {
-  const navigate = useNavigate();
-
-  const [orderInfo, setOrderInfo] = useRecoilState(orderInfoState);
+function OrderChangeRecipientPage(props) {
+  const { setClickBtn, recipientData, setRecipientData } = props;
+  const [checkRefund, setCheckRefund] = useState(false);
 
   const handleChangeInput = (e) => {
-    if (e.target.name === 'refundCheck') {
-      setOrderInfo({
-        ...orderInfo,
-        recipient: {
-          ...orderInfo.recipient,
-          [e.target.name]: e.target.value,
-        },
-      });
+    if (e.target.value !== undefined)
+      setRecipientData({ ...recipientData, [e.target.name]: e.target.value });
+    if (e.target.checked === true) {
+      setCheckRefund(true);
+    }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!checkRefund) {
+      toast.error('환불 받으실 수단을 체크해주세요.');
     } else {
-      setOrderInfo({
-        ...orderInfo,
-        recipient: { ...orderInfo.recipient, [e.target.name]: e.target.value },
+      setClickBtn({
+        destination: false,
+        recipient: false,
+        message: false,
       });
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate('/order');
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ background: '#fff', overflow: 'scroll' }}
+      className="wrap"
+    >
       <MobileHeader title="주문자정보 변경" />
       <div id="ordNotiInfoDiv">
         <div name="divOrdStep" id="notiInfoDiv">
@@ -54,7 +57,7 @@ function OrderChangeRecipientPage() {
                 <input
                   type="text"
                   className="payTracking"
-                  value={orderInfo.recipient.name}
+                  value={recipientData.name}
                   placeholder="성명을 입력해주세요"
                   maxLength="50"
                   name="name"
@@ -74,7 +77,7 @@ function OrderChangeRecipientPage() {
                     type="tel"
                     name="phone"
                     maxLength="13"
-                    value={orderInfo.recipient.phone}
+                    value={recipientData.phone}
                     onChange={handleChangeInput}
                   />
                 </span>
@@ -91,7 +94,7 @@ function OrderChangeRecipientPage() {
                   type="text"
                   id="change.email"
                   name="email"
-                  value={orderInfo.recipient.email}
+                  value={recipientData.email}
                   className="payTracking"
                   placeholder="예) email@ssg.com"
                   maxLength="100"
@@ -119,7 +122,7 @@ function OrderChangeRecipientPage() {
                     />
                     <label htmlFor="change.rdoRefund_10">
                       <span className="mnodr_tx_label rfdMthdTxt">
-                        주문시 결제수단으로 환불
+                        주문 시 결제수단으로 환불
                       </span>
                     </label>
                   </span>
@@ -153,6 +156,11 @@ function OrderChangeRecipientPage() {
       >
         변경하기
       </button>
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+      />
     </form>
   );
 }
