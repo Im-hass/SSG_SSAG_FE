@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import { MobileHeader } from '../../components/ui/index';
 
 function OrderInfoPage() {
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    axios
+      .get('http://13.209.26.150:9000/users/order', {
+        headers: {
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        console.log(res.data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div>
       <MobileHeader title="나의주문내역" />
@@ -11,19 +29,9 @@ function OrderInfoPage() {
             <span className="mnodr_tab_tx ty_deliv">주문배송</span>
           </a>
         </li>
-        <li className="ty2">
-          <a href="/" className="orderInfoTracking">
-            <span className="mnodr_tab_tx ty_hotel">호텔예약</span>
-          </a>
-        </li>
-        <li className="ty2">
-          <a href="/" className="orderInfoTracking">
-            <span className="mnodr_tab_tx ty_air">항공권예약</span>
-          </a>
-        </li>
       </ul>
 
-      <div className="mnodr_filter_head">
+      {/* <div className="mnodr_filter_head">
         <div className="mnodr_control_tx ty_flthead">
           <div className="mnodr_selbox ty_flthead" data-o-selbox="">
             <a
@@ -113,28 +121,17 @@ function OrderInfoPage() {
           상세조회
           <span className="ico_more" />
         </button>
-      </div>
+      </div> */}
 
       <div className="codr_odrdeliv" name="divOrordUnit">
         <input type="hidden" name="orordNo" value="20220703BB2F86" />
         <input type="hidden" name="mbrId" value="0003832406" />
         <div className="codr_odrdeliv_headtit">
           <span className="codr_odrdeliv_odrdate">2022.07.03</span>
-          <span className="codr_odrdeliv_odrnum">(2022-07-03-BB2F86)</span>
-          <button
-            type="button"
-            className="codr_btn_odrhide2"
-            name="btn_delete_orderInfo"
-            data-orord-no="20220703BB2F86"
-            data-page-name="orderInfo"
-          >
-            <i className="icon ty_sm icon_close" aria-hidden="true" />
-            <span className="blind">내 주문목록에서 삭제</span>
-          </button>
         </div>
         <div className="codr_odrdeliv_headdetail">
           <span className="codr_odrdeliv_odrpay">
-            결제금액<span className="ssg_price">98,000</span>
+            결제금액 <span className="ssg_price">98,000</span>
             <span className="ssg_tx">원</span>
           </span>
           <ul className="codr_odrdeliv_odrinfo">
