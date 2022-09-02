@@ -32,7 +32,7 @@ import { ScrollToTop } from './common/ScrollToTop';
 import { WithdrawMember, MyDestinations } from './contents';
 import WithDestinations from './contents/WithDestinations/WithDestinations';
 import PrivateRoute from '../lib/PrivateRoute';
-import CompleteOrder from '../pages/Order/CompleteOrder';
+import { CompleteOrder, CartOrderPage } from '../pages/Order/index';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -52,6 +52,7 @@ function App() {
           </Route>
           <Route path="/addDestination" element={<AddDestinationPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/cartOrder" element={<CartOrderPage />} />
         </Route>
         <Route path="/completeOrder" element={<PrivateRoute />}>
           <Route path="/completeOrder" element={<CompleteOrder />} />

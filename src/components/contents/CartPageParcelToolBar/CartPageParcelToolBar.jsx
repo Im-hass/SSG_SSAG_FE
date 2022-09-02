@@ -19,7 +19,7 @@ function CartPageParcelToolBar({ cartData }) {
 
   const navigate = useNavigate();
   const handlePassData = () => {
-    navigate('/order', { state: passedData });
+    navigate('/cartOrder', { state: passedData });
   };
 
   return (
