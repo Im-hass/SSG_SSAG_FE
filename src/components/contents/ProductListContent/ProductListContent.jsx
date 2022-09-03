@@ -60,7 +60,7 @@ function ProductListContent() {
         let mdName = '';
         if (Number(mdId) === 0) {
           mdName = '전체보기';
-          setSubTitle('전체보기');
+          setSubTitle(mdName);
           handleProductList(lgId);
         } else {
           Object.values(response.mediumCategoryList).forEach((v) => {
