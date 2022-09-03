@@ -23,12 +23,15 @@ function CartPageStoreList({
   setProductId,
   setCartId,
   setSaleInfoItem,
+  setStoreIndex,
+  storeIndex,
+  setCartIndex,
 }) {
   const cartItems = storeList.cartList;
 
   return (
     <>
-      {cartItems.map((cartItem) => (
+      {cartItems.map((cartItem, cartIndex) => (
         <div key={cartItem.cartId} className="pay_item_area mnodr_unit_item">
           <CartPageParcelContentUnitThmb cartItem={cartItem} />
 
@@ -61,8 +64,12 @@ function CartPageStoreList({
               cartItem={cartItem}
               isOptionModalOpen={isOptionModalOpen}
               setIsOptionModalOpen={setIsOptionModalOpen}
+              setStoreIndex={setStoreIndex}
               setProductId={setProductId}
               setCartId={setCartId}
+              storeIndex={storeIndex}
+              cartIndex={cartIndex}
+              setCartIndex={setCartIndex}
             />
           </div>
         </div>

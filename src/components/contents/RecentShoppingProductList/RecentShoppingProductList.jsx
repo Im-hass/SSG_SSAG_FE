@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import './RecentShoppingProductList.scss';
 import { confirmAlert } from 'react-confirm-alert';
+import { Link, useNavigate } from 'react-router-dom';
 import { CustomAlert } from '../../common/index';
+import './RecentShoppingProductList.scss';
+import LikeButton from '../../ui/LikeButton/LikeButton';
 
 function RecentShoppingProductList({
   recentItem,
   isRecentItemDelete,
   setIsRecentItemDelete,
+  isWishChange,
+  setIsWishChange,
 }) {
-  const recenItemName = recentItem.name;
-  const recenItemPrice = recentItem.price;
-  const recenItemImgUrl = recentItem.productImg;
-  const recenItemId = recentItem.viewHistoryId;
+  const [optionArr, setOptionArr] = useState(undefined);
+  const recentItemName = recentItem.name;
+  const recentItemPrice = recentItem.price;
+  const recentItemImgUrl = recentItem.productImg;
+  const recentItemId = recentItem.productId;
+  const recentHistoryId = recentItem.viewHistoryId;
 
   const token = localStorage.getItem('token');
   const headers = {
@@ -23,7 +29,7 @@ function RecentShoppingProductList({
   };
 
   const onDeleteRecentItem = () => {
-    const deleteUrl = `http://13.209.26.150:9000/users/recent/product/${recenItemId}`;
+    const deleteUrl = `http://13.209.26.150:9000/users/recent/product/${recentHistoryId}`;
 
     axios
       .delete(deleteUrl, headers)
@@ -46,12 +52,53 @@ function RecentShoppingProductList({
           title="상품 삭제"
           desc="상품을 삭제하시겠습니까?"
           btnTitle="삭제"
-          id={recenItemId}
+          id={recentItemId}
           onAction={onDeleteRecentItem}
           onClose={onClose}
         />
       ),
     });
+  };
+
+  const getOptionData = () => {
+    const getOptionUrl = `http://13.209.26.150:9000/comm-users/products/options/color/${recentItemId}`;
+
+    axios
+      .get(getOptionUrl, headers)
+      .then((res) => {
+        console.log('recent get opt res:', res);
+        setOptionArr(res.data.result);
+      })
+      .catch((err) => {
+        console.log('recent get opt err', err);
+      });
+  };
+
+  useEffect(() => {
+    getOptionData();
+  }, [isRecentItemDelete]);
+
+  const navigate = useNavigate();
+  const redirectToItem = () => {
+    navigate(`/product/${recentItemId}`);
+  };
+
+  const handleAddCart = () => {
+    if (optionArr[0] !== undefined) {
+      confirmAlert({
+        // eslint-disable-next-line react/no-unstable-nested-components
+        customUI: ({ onClose }) => (
+          <CustomAlert
+            title="장바구니 담기"
+            desc="옵션이 있는 상품입니다. 상세 페이지에서 옵션을 선택해주세요."
+            btnTitle="이동"
+            id={recentItemId}
+            onAction={redirectToItem}
+            onClose={onClose}
+          />
+        ),
+      });
+    }
   };
 
   return (
@@ -66,22 +113,21 @@ function RecentShoppingProductList({
               value="10914241309"
             />
             <label htmlFor="cmhistory_chk0" className="blind">
-              {recenItemName}
+              {recentItemName}
             </label>
           </span>
         </div>
         <div className="cmhistory_cell cmhistory_h_link">
-          <a
-            href="https://m-shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000064626497&amp;siteNo=6009&amp;salestrNo=1013&amp;tarea=history_6005"
-            className="clickable"
-          >
+          <Link to={`/product/${recentItemId}`} className="clickable">
             <div className="cmhistory_h_txt">
               <span className="cm_mall_text">
                 <i className="sm">신세계몰</i>
               </span>
-              <span className="cmhistory_tx">{recenItemName}</span>
+              <span className="cmhistory_tx">{recentItemName}</span>
               <span className="cmhistory_tx_price">
-                <em className="ssg_price">{recenItemPrice.toLocaleString()}</em>
+                <em className="ssg_price">
+                  {recentItemPrice.toLocaleString()}
+                </em>
                 <span className="ssg_tx">원</span>
               </span>
             </div>
@@ -89,12 +135,12 @@ function RecentShoppingProductList({
               <div className="cmhistory_thmb">
                 <img
                   className="ssg_lazy"
-                  src={recenItemImgUrl}
-                  alt={recenItemName}
+                  src={recentItemImgUrl}
+                  alt={recentItemName}
                 />
               </div>
             </div>
-          </a>
+          </Link>
         </div>
 
         <div className="cmhistory_cell cmhistory_h_add">
@@ -114,7 +160,11 @@ function RecentShoppingProductList({
           </div>
 
           <div id="recent_btn_area" className="cmhistory_bt_area">
-            <button type="button" className="cmhistory_bt_cart">
+            <button
+              type="button"
+              className="cmhistory_bt_cart"
+              onClick={handleAddCart}
+            >
               <i className="sp_cmhistory_ic cmhistory_ic_cart">
                 <span className="blind">장바구니 담기</span>
               </i>
@@ -122,22 +172,12 @@ function RecentShoppingProductList({
           </div>
 
           <div id="recent_btn_area" className="cmhistory_bt_area">
-            <span className="cmlike _js_cmlike interestIt">
-              <button
-                type="button"
-                className="cmlike_btn _js_cmlike_btn sel_clip clickable"
-              >
-                <span className="cmlike_ico">
-                  <i className="cmlike_secondary_m" />
-                  <span className="sr_off">
-                    <span className="blind">관심상품 취소</span>
-                  </span>
-                  <span className="sr_on">
-                    <span className="blind">관심상품 등록</span>
-                  </span>
-                </span>
-              </button>
-            </span>
+            <LikeButton
+              wishDto={recentItem.wishDto}
+              productId={recentItemId}
+              isWishChange={isWishChange}
+              setIsWishChange={setIsWishChange}
+            />
           </div>
         </div>
       </div>
