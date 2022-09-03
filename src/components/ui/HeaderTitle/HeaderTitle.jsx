@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HeaderTitle.scss';
 
 function HeaderTitle(props) {
@@ -6,7 +7,7 @@ function HeaderTitle(props) {
 
   return (
     <h2 className="mcom_tit_txt clickable">
-      <a href="/">{title}</a>
+      <Link to="/">{title}</Link>
     </h2>
   );
 }
