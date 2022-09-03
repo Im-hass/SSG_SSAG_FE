@@ -98,9 +98,8 @@ function ProductItem({ data, isWishChange, setIsWishChange }) {
                         <div className="new_price">
                           <span className="blind">판매가격</span>
                           <em className="ssg_price">
-                            {(
-                              (productPrice * (100 - productSale)) /
-                              100
+                            {Math.ceil(
+                              (productPrice * (100 - productSale)) / 100,
                             ).toLocaleString()}
                           </em>
                           <span className="ssg_tx">원</span>

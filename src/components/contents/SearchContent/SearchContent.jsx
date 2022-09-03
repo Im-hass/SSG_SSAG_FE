@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { isOpenState, searchValueState } from '../../../recoil/states';
 import { AdInfo } from '../../ui/AdInfo';
@@ -27,7 +26,7 @@ function SearchContent() {
   useEffect(() => {
     if (!isOpen) {
       if (response !== null) {
-        if (response.length !== 0) {
+        if (response.productDtoRes.length !== 0) {
           setDatas(response);
         } else {
           setDatas();

@@ -756,11 +756,12 @@ function CartOrderPage() {
                                 <div className="mnodr_unit_newprice ty2">
                                   <span className="blind">판매가격</span>
                                   <em className="ssg_price">
-                                    {(
+                                    {Math.ceil(
                                       cart.productOptionDto.productDto.price *
-                                      ((100 -
-                                        cart.productOptionDto.productDto.sale) /
-                                        100)
+                                        ((100 -
+                                          cart.productOptionDto.productDto
+                                            .sale) /
+                                          100),
                                     ).toLocaleString()}
                                   </em>
                                   <span className="ssg_tx">원</span>
