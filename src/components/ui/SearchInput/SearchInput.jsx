@@ -1,30 +1,32 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { isOpenState, searchValueState } from '../../../recoil/states';
 import './SearchInput.scss';
 
-function SearchInput() {
+function SearchInput({
+  value,
+  isOpen,
+  setIsOpen,
+  searchValue,
+  setSearchValue,
+}) {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
-  const [searchValue, setSearchValue] = useRecoilState(searchValueState);
 
-  const handleOpenSearch = (action) =>
+  const handleSearchShow = (action) =>
     action === 'open' ? setIsOpen(true) : setIsOpen(false);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
   };
 
-  const handleSearchClose = () => {
-    setIsOpen(false);
-  };
-
   const handleSubmit = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       setIsOpen(false);
-      navigate(`/search/${searchValue}`);
+      if (searchValue.length !== 0) {
+        navigate(`/search/${searchValue}`);
+      } else {
+        navigate(`/search/%20`);
+      }
     }
   };
 
@@ -45,7 +47,9 @@ function SearchInput() {
             <Link
               className="search-btn"
               to={`/search/${searchValue}`}
-              onClick={handleSearchClose}
+              onClick={() => {
+                handleSearchShow('close');
+              }}
               type="button"
             >
               <i className="search-icon" />
@@ -60,13 +64,13 @@ function SearchInput() {
                 <input
                   className="not-open-search-input"
                   type="text"
-                  onFocus={() => handleOpenSearch('open')}
-                  defaultValue={searchValue !== '' ? searchValue : ''}
+                  onFocus={() => handleSearchShow('open')}
+                  defaultValue={searchValue !== '' ? value : ''}
                 />
                 <button
                   type="button"
                   onClick={() => {
-                    handleOpenSearch('open');
+                    handleSearchShow('open');
                   }}
                   className="search-btn"
                 >

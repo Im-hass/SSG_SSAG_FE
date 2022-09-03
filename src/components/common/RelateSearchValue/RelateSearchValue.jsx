@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import './RelateSearchValue.scss';
 
-function RelateSearchValue() {
+function RelateSearchValue({ setSearchValue }) {
+  const { value } = useParams();
   const [isSelected, setIsSelected] = useState(false);
 
   const handleOpen = (e) => {
     e.preventDefault();
     setIsSelected(!isSelected);
+  };
+
+  const handleSearch = () => {
+    setSearchValue(value);
   };
 
   return (
@@ -17,60 +23,76 @@ function RelateSearchValue() {
         <div className="csr_text_lst react-search">
           <ul>
             <li>
-              <a
-                href="?target=mobile&amp;query=%ea%b3%a0%ea%b8%b0%eb%a7%8c%eb%91%90&amp;inflow=6005&amp;src_area=ssgrlt"
+              <Link
+                to="/search/여성 슬랙스"
                 className="tx clickable"
+                onClick={handleSearch}
               >
-                고기만두
-              </a>
+                여성 슬랙스
+              </Link>
             </li>
             <li>
-              <a
-                href="?target=mobile&amp;query=%ea%b9%80%ec%b9%98%eb%a7%8c%eb%91%90&amp;inflow=6005&amp;src_area=ssgrlt"
+              <Link
+                to="/search/남성 슬랙스"
                 className="tx clickable"
+                onClick={handleSearch}
               >
-                김치만두
-              </a>
+                남성 슬랙스
+              </Link>
             </li>
             <li>
-              <a
-                href="?target=mobile&amp;query=%ec%99%95%ea%b5%90%ec%9e%90&amp;inflow=6005&amp;src_area=ssgrlt"
+              <Link
+                to="/search/밴딩 슬랙스"
                 className="tx clickable"
+                onClick={handleSearch}
               >
-                왕교자
-              </a>
+                밴딩 슬랙스
+              </Link>
             </li>
             <li>
-              <a
-                href="?target=mobile&amp;query=%ea%b5%b0%eb%a7%8c%eb%91%90&amp;inflow=6005&amp;src_area=ssgrlt"
+              <Link
+                to="/search/정장"
                 className="tx clickable"
+                onClick={handleSearch}
               >
-                군만두
-              </a>
+                정장
+              </Link>
             </li>
             <li>
-              <a
-                href="?target=mobile&amp;query=%ec%b0%90%eb%b9%b5&amp;inflow=6005&amp;src_area=ssgrlt"
+              <Link
+                to="/search/엠포르스슬랙스"
                 className="tx clickable"
+                onClick={handleSearch}
               >
-                찐빵
-              </a>
+                엠포르스슬랙스
+              </Link>
             </li>
             <li>
-              <a
-                href="?target=mobile&amp;query=%ec%b6%98%ea%b6%8c&amp;inflow=6005&amp;src_area=ssgrlt"
+              <Link
+                to="/search/앤듀슬랙스"
                 className="tx clickable"
+                onClick={handleSearch}
               >
-                춘권
-              </a>
+                앤듀슬랙스
+              </Link>
             </li>
             <li>
-              <a
-                href="?target=mobile&amp;query=%eb%83%89%eb%8f%99%ec%8b%9d%ed%92%88&amp;inflow=6005&amp;src_area=ssgrlt"
+              <Link
+                to="/search/마인드브릿지슬랙스"
                 className="tx clickable"
+                onClick={handleSearch}
               >
-                냉동식품
-              </a>
+                마인드브릿지슬랙스
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/search/지오다노슬랙스"
+                className="tx clickable"
+                onClick={handleSearch}
+              >
+                지오다노슬랙스
+              </Link>
             </li>
           </ul>
         </div>

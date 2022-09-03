@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SearchList from '../SearchList/SearchList';
 import './SearchBox.scss';
 
@@ -8,7 +9,11 @@ const datas = [
   { productId: 7, word: '갤럭시 워치' },
 ];
 
-function SearchBox() {
+function SearchBox({ setIsOpen }) {
+  const handleSearchClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div id="m_wrap" className="search-wrap">
       {datas.length === 0 ? (
@@ -24,11 +29,11 @@ function SearchBox() {
         <div className="cgsearch_recomm_container">
           <ul className="cgsearch_recomm_lst" id="now_hot_list">
             <li>
-              <a href="http://m.shinsegaemall.ssg.com/mall/search.ssg?query=%23데오드란트">
+              <Link to="/search/데오드란트" onClick={handleSearchClose}>
                 <span className="cgsearch_recomm_img">
                   <img
                     src="//sui.ssgcdn.com/cmpt/banner/202208/2022080516540766110801992080_411.PNG"
-                    alt=""
+                    alt="데오드란트"
                   />
                 </span>
                 <span className="cgsearch_recomm_txt">
@@ -36,14 +41,14 @@ function SearchBox() {
                   <br />
                   문제없지
                 </span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="http://m.shinsegaemall.ssg.com/mall/search.ssg?query=%23셀프네일">
+              <Link to="/search/셀프네일" onClick={handleSearchClose}>
                 <span className="cgsearch_recomm_img">
                   <img
                     src="//sui.ssgcdn.com/cmpt/banner/202208/2022080516543313728281406828_989.PNG"
-                    alt=""
+                    alt="셀프네일"
                   />
                 </span>
                 <span className="cgsearch_recomm_txt">
@@ -51,14 +56,14 @@ function SearchBox() {
                   <br />
                   네일아트
                 </span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="http://m.shinsegaemall.ssg.com/mall/search.ssg?query=%23빨래용">
+              <Link to="/search/빨래용" onClick={handleSearchClose}>
                 <span className="cgsearch_recomm_img">
                   <img
                     src="//sui.ssgcdn.com/cmpt/banner/202208/2022080516545680379857510095_980.PNG"
-                    alt=""
+                    alt="빨래용"
                   />
                 </span>
                 <span className="cgsearch_recomm_txt">
@@ -66,14 +71,14 @@ function SearchBox() {
                   <br />
                   뽀송하게!
                 </span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="http://m.shinsegaemall.ssg.com/mall/search.ssg?query=%23선글라스">
+              <Link to="/search/선글라스" onClick={handleSearchClose}>
                 <span className="cgsearch_recomm_img">
                   <img
                     src="//sui.ssgcdn.com/cmpt/banner/202208/2022080516551843460401697040_21.PNG"
-                    alt=""
+                    alt="선글라스"
                   />
                 </span>
                 <span className="cgsearch_recomm_txt">
@@ -81,7 +86,7 @@ function SearchBox() {
                   <br />
                   여름아이템
                 </span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
