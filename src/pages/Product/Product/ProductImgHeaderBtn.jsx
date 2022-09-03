@@ -1,15 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BackBtn from './BackBtn';
 
 function ProductImgHeaderBtn() {
   return (
     <div className="mndtl_header">
       <div className="mndtl_lft">
-        <Link to=".." className="mndtl_btn_back clickable" target="_parent">
+        <Link to=".." className="mndtl_btn_back clickable">
           <span className="blind">이전 페이지</span>
         </Link>
-        <BackBtn />
       </div>
       <div className="mndtl_cntr">
         <div className="mndtl_unit_tit">

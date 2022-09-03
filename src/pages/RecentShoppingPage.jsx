@@ -9,8 +9,10 @@ import { ToolbarList } from '../components/toolbar/ToolbarList';
 import { FloatingContents } from '../components/common';
 
 function RecentShoppingPage() {
-  const [recentShoppingData, setRecentShoppingData] = useState(null);
+  const [recentShoppingData, setRecentShoppingData] = useState(undefined);
   const [isRecentItemDelete, setIsRecentItemDelete] = useState(false);
+  const [isNoData, setisNoData] = useState(false);
+  const [isWishChange, setIsWishChange] = useState(false);
 
   const token = localStorage.getItem('token');
   const headers = {
@@ -25,11 +27,18 @@ function RecentShoppingPage() {
     axios
       .get(getRecentDataUrl, headers)
       .then((res) => {
-        setRecentShoppingData(res.data.result);
+        const data = res.data.result;
+        if (typeof data === 'undefined' || typeof data[0] === 'undefined') {
+          setisNoData(true);
+          setRecentShoppingData(undefined);
+        } else {
+          setisNoData(false);
+          setRecentShoppingData(res.data.result);
+        }
         console.log('recent res:', res);
       })
       .catch((err) => console.log('recent res:', err));
-  }, [isRecentItemDelete]);
+  }, [isRecentItemDelete, isWishChange]);
 
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
@@ -48,26 +57,26 @@ function RecentShoppingPage() {
                 <div className="cmhistory_scroll" id="_cmhistory_scroll">
                   <div className="iscroll">
                     <ul className="cmhistory_list_area">
-                      {recentShoppingData.map((recentItem) => (
+                      {recentShoppingData.map((recentItem, index) => (
                         <RecentShoppingProductList
                           key={recentItem.viewHistoryId}
                           recentItem={recentItem}
                           isRecentItemDelete={isRecentItemDelete}
                           setIsRecentItemDelete={setIsRecentItemDelete}
+                          isWishChange={isWishChange}
+                          setIsWishChange={setIsWishChange}
                         />
                       ))}
                     </ul>
                   </div>
                 </div>
               )}
-              {recentShoppingData && !recentShoppingData[0] && (
-                <NoDataMessage />
-              )}
+              {isNoData && <NoDataMessage />}
             </div>
           </div>
         </div>
       </div>
-      <ToolbarList />
+      <ToolbarList recentShoppingData={recentShoppingData} />
       <FloatingContents pageName="recentHistory" />
     </div>
   );

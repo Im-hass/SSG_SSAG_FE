@@ -4,8 +4,8 @@ import { useRecoilState } from 'recoil';
 import { isOpenState } from '../../../recoil/states';
 import './ToolbarItem.scss';
 
-function ToolbarItem({ data }) {
-  const { link, iconName, txt, imgUrl, hasHistory } = data;
+function ToolbarItem({ data, recentItemImgUrl }) {
+  const { link, iconName, txt, hasHistory } = data;
   const [, setIsOpen] = useRecoilState(isOpenState);
 
   const handleOpenSearch = (action, text) => {
@@ -25,13 +25,18 @@ function ToolbarItem({ data }) {
       <Link to={link} className="toolbar_lnk ty_category clickable">
         <i className={`icon ty_lg ${iconName}`} aria-hidden="true" />
         {hasHistory ? (
-          <span id="mHistory_toolbar_thumb" className="toolbar_thumb">
-            <img
-              id="bottomToolbarThumbImg"
-              alt="최근본 상품 이미지"
-              src={imgUrl}
-            />
-          </span>
+          <>
+            {recentItemImgUrl && (
+              <span id="mHistory_toolbar_thumb" className="toolbar_thumb">
+                <img
+                  id="bottomToolbarThumbImg"
+                  alt="최근본 상품 이미지"
+                  src={recentItemImgUrl}
+                />
+              </span>
+            )}
+            {!recentItemImgUrl && <span className="toolbar_txt">{txt}</span>}
+          </>
         ) : (
           <span className="toolbar_txt">{txt}</span>
         )}
