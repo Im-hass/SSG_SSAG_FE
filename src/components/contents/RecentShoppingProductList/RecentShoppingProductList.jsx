@@ -5,11 +5,14 @@ import { confirmAlert } from 'react-confirm-alert';
 import { Link, useNavigate } from 'react-router-dom';
 import { CustomAlert } from '../../common/index';
 import './RecentShoppingProductList.scss';
+import LikeButton from '../../ui/LikeButton/LikeButton';
 
 function RecentShoppingProductList({
   recentItem,
   isRecentItemDelete,
   setIsRecentItemDelete,
+  isWishChange,
+  setIsWishChange,
 }) {
   const [optionArr, setOptionArr] = useState(undefined);
   const recentItemName = recentItem.name;
@@ -169,22 +172,12 @@ function RecentShoppingProductList({
           </div>
 
           <div id="recent_btn_area" className="cmhistory_bt_area">
-            <span className="cmlike _js_cmlike interestIt">
-              <button
-                type="button"
-                className="cmlike_btn _js_cmlike_btn sel_clip clickable"
-              >
-                <span className="cmlike_ico">
-                  <i className="cmlike_secondary_m" />
-                  <span className="sr_off">
-                    <span className="blind">관심상품 취소</span>
-                  </span>
-                  <span className="sr_on">
-                    <span className="blind">관심상품 등록</span>
-                  </span>
-                </span>
-              </button>
-            </span>
+            <LikeButton
+              wishDto={recentItem.wishDto}
+              productId={recentItemId}
+              isWishChange={isWishChange}
+              setIsWishChange={setIsWishChange}
+            />
           </div>
         </div>
       </div>

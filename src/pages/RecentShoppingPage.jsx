@@ -12,6 +12,7 @@ function RecentShoppingPage() {
   const [recentShoppingData, setRecentShoppingData] = useState(undefined);
   const [isRecentItemDelete, setIsRecentItemDelete] = useState(false);
   const [isNoData, setisNoData] = useState(false);
+  const [isWishChange, setIsWishChange] = useState(false);
 
   const token = localStorage.getItem('token');
   const headers = {
@@ -37,7 +38,7 @@ function RecentShoppingPage() {
         console.log('recent res:', res);
       })
       .catch((err) => console.log('recent res:', err));
-  }, [isRecentItemDelete]);
+  }, [isRecentItemDelete, isWishChange]);
 
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
@@ -62,6 +63,8 @@ function RecentShoppingPage() {
                           recentItem={recentItem}
                           isRecentItemDelete={isRecentItemDelete}
                           setIsRecentItemDelete={setIsRecentItemDelete}
+                          isWishChange={isWishChange}
+                          setIsWishChange={setIsWishChange}
                         />
                       ))}
                     </ul>
