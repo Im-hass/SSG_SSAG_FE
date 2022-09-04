@@ -53,7 +53,7 @@ function AddAddressMyInfo({ state }) {
         ...data,
         addrName: state.addrName,
         recipient: state.recipient,
-        phone: state.phone,
+        phone: state.phone.slice(3),
         homePhone:
           state.homePhone.slice(0, 2) === '02'
             ? state.homePhone.slice(0, 2)
@@ -164,15 +164,26 @@ function AddAddressMyInfo({ state }) {
         }
       }
 
-      if (name === 'phone' && value.length > 7) {
-        setValid({
-          ...valid,
-          [name]: true,
-        });
-        setError({
-          ...error,
-          [name]: '',
-        });
+      if (name === 'phone') {
+        if (value.length > 7) {
+          setValid({
+            ...valid,
+            [name]: true,
+          });
+          setError({
+            ...error,
+            [name]: '',
+          });
+        } else {
+          setValid({
+            ...valid,
+            [name]: false,
+          });
+          setError({
+            ...error,
+            [name]: '값을 입력해주세요.',
+          });
+        }
       }
     }
   };
