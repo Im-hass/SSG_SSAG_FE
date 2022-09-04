@@ -5,7 +5,7 @@ function ProductImgHeaderBtn() {
   return (
     <div className="mndtl_header">
       <div className="mndtl_lft">
-        <Link to=".." className="mndtl_btn_back clickable">
+        <Link to="/category" className="mndtl_btn_back clickable">
           <span className="blind">이전 페이지</span>
         </Link>
       </div>
