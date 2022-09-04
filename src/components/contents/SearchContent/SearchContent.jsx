@@ -17,9 +17,13 @@ function SearchContent() {
   const [searchValue, setSearchValue] = useRecoilState(searchValueState);
   const [datas, setDatas] = useState();
   const [isWishChange, setIsWishChange] = useState(false);
-  const { response, loading } = useAxios({
+  const [urlParams, setUrlParams] = useState({
+    page: 0,
+    base: '',
+  });
+  const { response, loading, fetchData } = useAxios({
     method: 'get',
-    url: `/products/search/${value}`,
+    url: `/products/search/${value}?size=10&page=0`,
     userOrNot: true,
   });
 
@@ -34,7 +38,16 @@ function SearchContent() {
       }
       setSearchValue(value);
     }
-  }, [response, value, isOpen, isWishChange, searchValue]);
+  }, [response]);
+
+  useEffect(() => {
+    const strUrlParams = `&page=${urlParams.page}&sort=product.${urlParams.base}`;
+    fetchData({
+      reMethod: 'get',
+      reUrl: `/products/search/${value}?size=10${strUrlParams}`,
+      reUserOrNot: true,
+    });
+  }, [value, isOpen, isWishChange, searchValue, urlParams]);
 
   const handleBack = () => {
     setSearchValue(value);
@@ -96,8 +109,11 @@ function SearchContent() {
             {datas ? (
               <FindSearchValue
                 datas={datas}
+                value={value}
                 isWishChange={isWishChange}
                 setIsWishChange={setIsWishChange}
+                urlParams={urlParams}
+                setUrlParams={setUrlParams}
               />
             ) : (
               <NoSearchValue

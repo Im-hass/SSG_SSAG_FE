@@ -1,44 +1,30 @@
 export const RANK_OPTIONS = [
   {
-    isActive: true, // 임시
-    isRecommend: true, // 임시
-    title: 'rank',
-    value: '추천순',
+    name: '추천순',
+    option: '',
   },
   {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'sale',
-    value: '판매량순',
+    name: '할인율 오름차순',
+    option: 'sale',
   },
   {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'prcasc',
-    value: '낮은가격순',
+    name: '할인율 내림차순',
+    option: 'sale,desc',
   },
   {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'prcdsc',
-    value: '높은가격순',
+    name: '낮은가격순',
+    option: '',
   },
   {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'dcrt',
-    value: '할인율순',
+    name: '높은가격순',
+    option: '',
   },
   {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'regdt',
-    value: '신상품순',
+    name: '신상품순',
+    option: '',
   },
   {
-    isActive: false, // 임시
-    isRecommend: false, // 임시
-    title: 'cnt',
-    value: '리뷰많은순',
+    name: '리뷰많은순',
+    option: '',
   },
 ];

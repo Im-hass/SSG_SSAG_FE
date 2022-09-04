@@ -1,25 +1,45 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FilterList } from '../FilterList';
 import { RANK_OPTIONS } from '../../../assets/datas';
 import './SearchFilter.scss';
 
-function SearchFilter() {
-  const [isSelectedOption1, setIsSelectedOption1] = useState(false);
-  const [isSelectedOption2, setIsSelectedOption2] = useState(false);
-  const [isSelectedOption3, setIsSelectedOption3] = useState(false);
+function SearchFilter({ value, urlParams, setUrlParams }) {
+  // const [option1Value, setOption1Value] = useState('백화점상품');
+  const [option2Value, setOption2Value] = useState('추천순');
+  // const [option3Value, setOption3Value] = useState('필터');
+  const [isSelectedOption, setIsSelectedOption] = useState({
+    opt1: false,
+    opt2: false,
+    opt3: false,
+  });
 
-  const handleOption1 = () => {
-    setIsSelectedOption1(!isSelectedOption1);
-  };
-  const handleOption2 = () => {
-    setIsSelectedOption2(!isSelectedOption2);
-  };
-  const handleOption3 = () => {
-    setIsSelectedOption3(!isSelectedOption3);
+  const handleOption = (selectedOption) => {
+    if (isSelectedOption.opt2) {
+      setIsSelectedOption({
+        opt1: false,
+        opt2: false,
+        opt3: false,
+      });
+    } else {
+      const newState = {};
+      Object.keys(isSelectedOption).forEach((key) => {
+        if (key === selectedOption) {
+          newState[key] = true;
+        } else {
+          newState[key] = false;
+        }
+      });
+      setIsSelectedOption(newState);
+    }
   };
 
-  const handlePreventEvent = (e) => {
-    e.preventDefault();
+  const handleSelectedOption = (name, option) => {
+    setOption2Value(name);
+    setUrlParams({
+      ...urlParams,
+      base: option,
+    });
   };
 
   return (
@@ -42,56 +62,76 @@ function SearchFilter() {
               </li>
 
               {/* 백화점상품 / 매장픽업 */}
-              <li className="filter_td">
+              <li
+                className="filter_td"
+                role="menuitem"
+                onClick={() => {
+                  handleOption('opt1');
+                }}
+                onKeyDown={() => {
+                  handleOption('opt1');
+                }}
+              >
                 <div className="in">
                   {/* 누르면 on 클래스 추가되고 option 출력 */}
                   <div
-                    className={`cmft_sel_wrap ${isSelectedOption1 ? 'on' : ''}`}
+                    className={`cmft_sel_wrap ${
+                      isSelectedOption.opt1 ? 'on' : ''
+                    }`}
                   >
                     <span className="cmft_inp_chk">
+                      {/* checked 추가하면 보임 */}
                       <input
                         type="checkbox"
                         id="ui_ship_view"
-                        value="sd_store_chk"
+                        // value={option1Value}
+                        // ref={option1Ref}
                       />
                     </span>
                     <button
                       type="button"
                       className="cmft_sort_tit cmft_sel_curent"
-                      onClick={handleOption1}
+                      // onClick={() => {
+                      //   handleOption(option1Value);
+                      // }}
                     >
-                      <span className="cmft_txt ty_emart">
-                        {isSelectedOption1 ? '매장픽업' : '백화점상품'}
-                      </span>
+                      <span className="cmft_txt ty_emart">백화점상품</span>
                     </button>
                     <ul className="cmft_sel_lst">
+                      {/* li에 className="on" 추가 */}
                       <li
                         role="menuitem"
-                        onClick={handleOption1}
-                        onKeyDown={handleOption1}
+                        // onClick={() => {
+                        //   handleOption('백화점상품');
+                        // }}
+                        // onKeyDown={() => {
+                        //   handleOption('백화점상품');
+                        // }}
                       >
-                        <a
-                          href="/"
+                        <Link
+                          to={`/search/${value}`}
                           id="sd_store_chk"
                           className="chk clickable"
-                          onClick={handlePreventEvent}
                         >
                           <span className="cmft_txt">백화점상품</span>
-                        </a>
+                        </Link>
                       </li>
                       <li
                         role="menuitem"
-                        onClick={handleOption1}
-                        onKeyDown={handleOption1}
+                        // onClick={() => {
+                        //   handleOption('매장픽업');
+                        // }}
+                        // onKeyDown={() => {
+                        //   handleOption('매장픽업');
+                        // }}
                       >
-                        <a
-                          href="/"
+                        <Link
+                          to={`/search/${value}`}
                           id="magic_chk"
                           className="chk clickable"
-                          onClick={handlePreventEvent}
                         >
                           <span className="cmft_txt">매장픽업</span>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -102,22 +142,29 @@ function SearchFilter() {
               <li
                 className="rank_td"
                 role="menuitem"
-                onClick={handleOption2}
-                onKeyDown={handleOption2}
+                onClick={() => {
+                  handleOption('opt2');
+                }}
+                onKeyDown={() => {
+                  handleOption('opt2');
+                }}
               >
                 {/* 누르면 active 클래스 추가되고 option 출력 */}
-                <div className={`in ${isSelectedOption2 ? 'active' : ''}`}>
-                  <a href="/" className="btn_t" onClick={handlePreventEvent}>
-                    추천순<span className="sp_view ico_arrow">&nbsp;</span>
-                  </a>
+                <div className={`in ${isSelectedOption.opt2 ? 'active' : ''}`}>
+                  <Link to={`/search/${value}`} className="btn_t">
+                    {option2Value}
+                    <span className="sp_view ico_arrow">&nbsp;</span>
+                  </Link>
                   <ul className="mn_layer">
                     {/* 선택된 option에 active 클래스 추가되어 있음 */}
                     {RANK_OPTIONS &&
                       RANK_OPTIONS.map((data) => (
                         <FilterList
-                          key={data.title}
+                          key={data.name}
                           data={data}
-                          handlePreventEvent={handlePreventEvent}
+                          value={value}
+                          handleSelectedOption={handleSelectedOption}
+                          isActive={data.name === option2Value}
                         />
                       ))}
                   </ul>
@@ -128,14 +175,18 @@ function SearchFilter() {
               <li
                 className="sch_td"
                 role="menuitem"
-                onClick={handleOption3}
-                onKeyDown={handleOption3}
+                onClick={() => {
+                  handleOption('opt3');
+                }}
+                onKeyDown={() => {
+                  handleOption('opt3');
+                }}
               >
                 {/* active 클래스 추가시 필터 option 출력 */}
-                <div className={`in ${isSelectedOption3 ? 'active' : ''}`}>
-                  <a href="/" className="btn_t" onClick={handlePreventEvent}>
+                <div className={`in ${isSelectedOption.opt3 ? 'active' : ''}`}>
+                  <Link to={`/search/${value}`} className="btn_t">
                     필터<span className="sp_view ico_arrow">&nbsp;</span>
-                  </a>
+                  </Link>
                   <div className="m_ds_pos">
                     <div className="m_schmid" id="m_schmid">
                       <div className="detail_schwrap">
