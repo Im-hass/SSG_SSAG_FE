@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ProductDetailInfo() {
+function ProductDetailInfo({ productDetailData }) {
   const [isDetailInfoOpen, setisDetailInfoOpen] = useState('');
 
   const handleDetailInfoOpen = () =>
@@ -16,7 +16,6 @@ function ProductDetailInfo() {
       <div className="mndtl_detail_info">
         <ul className="mndtl_detail_infolist">
           <li>상품번호 : 1000304287202</li>
-
           <li>모델 : RML1DK-CD22137M034</li>
         </ul>
 
@@ -51,17 +50,14 @@ function ProductDetailInfo() {
                 className="img_wrapper"
                 style={{ textAlign: 'center' }}
               >
-                <img
-                  src="https://rolarola.wisacdn.com/__manage__/product_3388/1fdbc5169b083a81bbb9de2090252ed1.jpg"
-                  className="img_obj_23141"
-                  alt="img"
-                />
-                <br />
-                <img
-                  className="img_obj_21832"
-                  src="https://rolarola.wisacdn.com/__manage__/product_2964/aeec0115e9b1849b2dcd8abe4a4b9ab3.jpg"
-                  alt="img"
-                />
+                {productDetailData &&
+                  productDetailData.map((detailData) => (
+                    <img
+                      key={detailData.detailImgId}
+                      alt={detailData.originName}
+                      src={detailData.imgUrl}
+                    />
+                  ))}
                 <br />
               </div>
               <p align="center" style={{ textAlign: 'center' }}>

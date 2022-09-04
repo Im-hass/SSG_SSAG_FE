@@ -16,11 +16,13 @@ function CartPageParcel({
   setProductId,
   setCartId,
   setSaleInfoItem,
+  setStoreIndex,
+  setCartIndex,
 }) {
   return (
     <div className="mnodr_acdo_cont">
       {cartData &&
-        cartData.storeList.map((storeList) => (
+        cartData.storeList.map((storeList, storeIndex) => (
           <div key={storeList.storeId} className="mnodr_unit">
             <CartPageStoreList
               storeList={storeList}
@@ -36,6 +38,9 @@ function CartPageParcel({
               setProductId={setProductId}
               setCartId={setCartId}
               setSaleInfoItem={setSaleInfoItem}
+              setStoreIndex={setStoreIndex}
+              setCartIndex={setCartIndex}
+              storeIndex={storeIndex}
             />
             <CartPageParcelContentSummary storeList={storeList} />
           </div>

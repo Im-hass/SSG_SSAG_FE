@@ -1,12 +1,14 @@
 import React from 'react';
 
-function ProductReviewSummary() {
+function ProductReviewSummary({ productData }) {
+  const reviewCnt = productData.reviewTotal.reviewCount;
+
   return (
     <div className="mndtl_cmt_summary v2">
       <div className="mndtl_chart_tit">
         <span className="mndtl_tit_tx">전체 리뷰</span>
         <a href="/" className="mndtl_chart_more modal-iframe-open">
-          더보기<span className="count">(29)</span>
+          더보기<span className="count">({reviewCnt})</span>
           <i className="mndtl_ic_arr" />
         </a>
       </div>
