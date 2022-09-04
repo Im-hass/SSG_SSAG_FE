@@ -189,11 +189,11 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
                         <dd className="mndtl_art_r">
                           <span className="price">
                             <em className="ssg_price" data-prc="249000">
-                              {(
+                              {Math.ceil(
                                 productCount *
-                                ((productData.price *
-                                  (100 - productData.sale)) /
-                                  100)
+                                  ((productData.price *
+                                    (100 - productData.sale)) /
+                                    100),
                               ).toLocaleString()}
                             </em>
                             <span className="ssg_tx">원</span>
@@ -212,9 +212,9 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
           <strong className="mndtl_label">총 합계</strong>
           <strong className="price">
             <em id="totalPrc" className="ssg_price">
-              {(
+              {Math.ceil(
                 productCount *
-                ((productData.price * (100 - productData.sale)) / 100)
+                  ((productData.price * (100 - productData.sale)) / 100),
               ).toLocaleString()}
             </em>
             <span className="ssg_tx">원</span>

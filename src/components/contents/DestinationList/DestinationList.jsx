@@ -2,45 +2,49 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
-import axios from 'axios';
 import { DestinationListBtns } from '../index';
 import './DestinationList.scss';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { CustomAlert } from '../../common';
 
-function DestinationList({ datas, isDelete, setIsDelete, handleSelectedAddr }) {
+function DestinationList({
+  datas,
+  error,
+  isDelete,
+  setIsDelete,
+  handleSelectedAddr,
+  fetchData,
+}) {
   const navigate = useNavigate();
 
   const handleModify = (id) => {
-    const token = localStorage.getItem('token');
-    axios
-      .get(`http://13.209.26.150:9000/users/shipping-addr/${id}`, {
-        headers: {
-          Authorization: JSON.parse(token),
-        },
-      })
-      .then((res) => {
-        navigate('/modifyDestination', { state: res.data.result });
-      })
-      .catch((err) => new Error(err));
+    fetchData({
+      reMethod: 'get',
+      reUrl: `/users/shipping-addr/${id}`,
+      afterThen: (state) => {
+        navigate('/modifyDestination', { state });
+      },
+    });
   };
 
   const onDelete = (id) => {
-    const token = localStorage.getItem('token');
-    axios
-      .delete(`http://13.209.26.150:9000/users/shipping-addr/${id}`, {
-        headers: {
-          Authorization: JSON.parse(token),
-        },
-      })
-      .then(() => {
+    fetchData({
+      reMethod: 'delete',
+      reUrl: `/users/shipping-addr/${id}`,
+      afterThen: () => {
         setIsDelete(!isDelete);
         toast.success('배송지가 삭제되었습니다.');
-      })
-      .catch((e) => {
-        (() => new Error(e))();
-        toast.error('배송지 삭제에 실패하였습니다');
-      });
+      },
+    });
+
+    fetchData({
+      reMethod: 'get',
+      reUrl: '/users/shipping-addr',
+    });
+
+    if (error) {
+      toast.error('배송지 삭제에 실패하였습니다');
+    }
   };
 
   const handleDelete = (id) => {

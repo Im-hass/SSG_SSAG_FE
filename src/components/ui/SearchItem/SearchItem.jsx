@@ -13,19 +13,10 @@ function SearchItem({ data }) {
 
   return (
     <li key={word}>
-      <Link
-        // href="javascript:srch.mdl.submit({word},'')"
-        to={`/search/${word}`}
-        className="box"
-        onClick={handleSearchClose}
-      >
+      <Link to={`/search/${word}`} className="box" onClick={handleSearchClose}>
         {word}
       </Link>
-      <button
-        type="button"
-        // onClick="javascript:srch.mdl.auto.del(4);"
-        className="cgsearch_keyword_del"
-      >
+      <button type="button" className="cgsearch_keyword_del">
         <span className="blind">삭제</span>
       </button>
     </li>

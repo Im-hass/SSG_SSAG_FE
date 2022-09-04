@@ -1,14 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import LoadingSpinner from '../../../components/common/LoadingSpinner/LoadingSpinner';
+import useAxios from '../../../lib/useAxios';
+import useScroll from '../../../lib/useScroll';
 import './style/MainSlider.scss';
-import axios from 'axios';
 
 function MainSlider() {
   const [mainSlider, setMainSlider] = useState([]);
   const [imgIdx, setImgIdx] = useState(0);
   const DELAY = 2500;
   const timeoutRef = useRef(null);
+  const { response, loading } = useAxios({
+    method: 'get',
+    url: '/comm-users/main-banner',
+  });
 
   const resetTimeout = () => {
     if (timeoutRef.current) {
@@ -26,34 +32,22 @@ function MainSlider() {
     return () => resetTimeout();
   }, [imgIdx]);
 
-  useEffect(() => {
-    axios
-      .get('http://13.209.26.150:9000/comm-users/main-banner')
-      .then((res) => {
-        setMainSlider(res.data.result);
-      })
-      .catch((err) => new Error(err));
-  }, []);
-
-  const useScroll = () => {
-    const [state, setState] = useState({
-      y: 0,
-    });
-    const onScroll = () => {
-      setState({ y: window.scrollY });
-    };
-    useEffect(() => {
-      window.addEventListener('scroll', onScroll);
-      return () => window.removeEventListener('scroll', onScroll);
-    }, []);
-    return state;
-  };
   const { y } = useScroll();
   let cal = 1 - y / 400;
   if (cal < 0) {
     cal = 0;
   } else if (cal > 1) {
     cal = 1;
+  }
+
+  useEffect(() => {
+    if (response !== null) {
+      setMainSlider(response);
+    }
+  }, [response]);
+
+  if (loading) {
+    return <LoadingSpinner />;
   }
 
   return (

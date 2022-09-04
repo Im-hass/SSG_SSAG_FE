@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { WishList } from '../../list/WishList';
 import { WishFolder, WishFilter } from '../../ui';
 import './WishListContent.scss';
+import useAxios from '../../../lib/useAxios';
+import { LoadingSpinner } from '../../common/LoadingSpinner';
 
 function WishListContent() {
   const [datas, setDatas] = useState();
   const [isWishChange, setIsWishChange] = useState();
+  const { response, loading, fetchData } = useAxios({
+    method: 'get',
+    url: '/users/wish',
+  });
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    };
+    if (response !== null) {
+      setDatas(response);
+    }
+  }, [response]);
 
-    axios.get(`http://13.209.26.150:9000/users/wish`, headers).then((res) => {
-      setDatas(res.data.result);
+  useEffect(() => {
+    fetchData({
+      reMethod: 'get',
+      reUrl: '/users/wish',
     });
   }, [isWishChange]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div id="m_content" className="react-area">

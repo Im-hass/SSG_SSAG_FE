@@ -24,7 +24,7 @@ function OrderPage() {
 
   const productCnt = location.state.count;
   const productPrice = location.state.data.price;
-  const salePrice = productPrice * (location.state.data.sale / 100);
+  const salePrice = Math.ceil(productPrice * (location.state.data.sale / 100));
   const totalPrice = productPrice - salePrice;
   const deliveryFee = 3000;
 

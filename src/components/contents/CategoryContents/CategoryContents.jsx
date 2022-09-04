@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { CategoryList } from '../CategoryList';
 import { ServiceList } from '../ServiceList';
@@ -12,17 +11,27 @@ import {
   isCategorySelected,
   isCategorySelected2,
 } from '../../../recoil/states';
+import useAxios from '../../../lib/useAxios';
+import { LoadingSpinner } from '../../common/LoadingSpinner';
 
 function CategoryContents() {
   const [datas, setDatas] = useState();
   const [isSelected, setIsSelected] = useRecoilState(isCategorySelected);
   const [isSelected2, setIsSelected2] = useRecoilState(isCategorySelected2);
+  const { response, loading } = useAxios({
+    method: 'get',
+    url: '/comm-users/category',
+  });
 
   useEffect(() => {
-    axios.get('http://13.209.26.150:9000/comm-users/category').then((res) => {
-      setDatas(res.data.result);
-    });
-  }, []);
+    if (response !== null) {
+      setDatas(response);
+    }
+  }, [response]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="clnb_wrap">
