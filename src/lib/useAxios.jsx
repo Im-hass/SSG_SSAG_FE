@@ -10,23 +10,28 @@ const useAxios = ({ method, url, body = null, userOrNot = false }) => {
   const token = localStorage.getItem('token');
   const isUser = token !== null;
 
-  const fetchData = () => {
-    let newUrl = url;
-    if (userOrNot) newUrl = isUser ? `/users${url}` : `/non-users${url}`;
-    console.log(newUrl);
+  const fetchData = ({
+    reMethod,
+    reUrl,
+    reBody = null,
+    reUserOrNot = false,
+    afterThen = null,
+  }) => {
+    let newUrl = reUrl;
+    if (reUserOrNot) newUrl = isUser ? `/users${reUrl}` : `/non-users${reUrl}`;
 
-    axios[method](
+    axios[reMethod](
       newUrl,
       {
         headers: {
           Authorization: JSON.parse(token),
         },
       },
-      JSON.parse(body),
+      JSON.parse(reBody),
     )
       .then((res) => {
-        console.log(res);
         setResponse(res.data.result);
+        afterThen(res.data.result);
       })
       .catch((err) => {
         setError(err);
@@ -37,10 +42,15 @@ const useAxios = ({ method, url, body = null, userOrNot = false }) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [method, url, body]);
+    fetchData({
+      reMethod: method,
+      reUrl: url,
+      reBody: body,
+      reUserOrNot: userOrNot,
+    });
+  }, []);
 
-  return { response, error, loading };
+  return { response, error, loading, fetchData };
 };
 
 export default useAxios;
