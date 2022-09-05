@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
-import { selectedProductCount, productOptionId } from '../../../recoil/states';
+import {
+  selectedProductCount,
+  productOptionId,
+  selectedOptionInfo,
+} from '../../../recoil/states';
 import './style/HidePdtTool.scss';
 
 function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
   const [, setSelectedProductOptionId] = useRecoilState(productOptionId);
   const [productCount, setProductCount] = useRecoilState(selectedProductCount);
+  const [selectOption, setSelectOption] = useRecoilState(selectedOptionInfo);
   const [colorOptions, setColorOptions] = useState(null);
   const [sizeOptions, setSizeOptions] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
@@ -62,6 +67,8 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
     if (value === 'default') return;
 
     setSelectedColor(+value);
+    const clickColor = colorOptions.find((color) => color.colorId === +value);
+    setSelectOption({ 1: clickColor.color });
   };
 
   // 색상 선택 후 사이즈 데이터 받아오기
@@ -77,6 +84,10 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
     if (value === 'default') return;
 
     setSelectedProductOptionId(+value);
+    const clickSize = sizeOptions.find(
+      (size) => size.productOptionId === +value,
+    );
+    setSelectOption({ ...selectOption, 2: clickSize.size });
   };
 
   const handleProductCount = (action) => {
