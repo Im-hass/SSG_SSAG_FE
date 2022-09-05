@@ -35,9 +35,8 @@ function MyDestinations() {
   useEffect(() => {
     if (response !== null && response !== '배송지를 삭제하였습니다.') {
       const lists = response;
-      console.log(lists);
       const sortLists = lists.sort(defaultAddrSort);
-      setSelected(lists[0].addrId);
+      setSelected(lists[0]?.addrId);
       setDatas(sortLists);
     }
   }, [response]);
