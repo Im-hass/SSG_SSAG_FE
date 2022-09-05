@@ -3,10 +3,21 @@ import ProductList from '../../product/ProductList/ProductList';
 import { SearchFilter } from '../SearchFilter';
 import './FindSearchValue.scss';
 
-function FindSearchValue({ datas, isWishChange, setIsWishChange }) {
+function FindSearchValue({
+  datas,
+  value,
+  isWishChange,
+  setIsWishChange,
+  urlParams,
+  setUrlParams,
+}) {
   return (
     <>
-      <SearchFilter />
+      <SearchFilter
+        value={value}
+        urlParams={urlParams}
+        setUrlParams={setUrlParams}
+      />
       <ProductList
         datas={datas}
         isWishChange={isWishChange}
