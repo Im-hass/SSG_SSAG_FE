@@ -13,15 +13,15 @@ export const RANK_OPTIONS = [
   },
   {
     name: '낮은가격순',
-    option: '',
+    option: 'price,asc',
   },
   {
     name: '높은가격순',
-    option: '',
+    option: 'price,desc',
   },
   {
     name: '신상품순',
-    option: '',
+    option: 'createAt,desc',
   },
   {
     name: '리뷰많은순',
