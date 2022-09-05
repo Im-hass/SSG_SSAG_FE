@@ -56,7 +56,7 @@ function RecentShoppingPage() {
                 <div className="cmhistory_scroll" id="_cmhistory_scroll">
                   <div className="iscroll">
                     <ul className="cmhistory_list_area">
-                      {recentShoppingData.map((recentItem, index) => (
+                      {recentShoppingData.map((recentItem) => (
                         <RecentShoppingProductList
                           key={recentItem.viewHistoryId}
                           recentItem={recentItem}

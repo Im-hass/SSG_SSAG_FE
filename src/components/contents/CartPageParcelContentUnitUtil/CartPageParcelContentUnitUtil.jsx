@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { confirmAlert } from 'react-confirm-alert';
 import { CustomAlert } from '../../common';
 import './CartPageParcelContentUnitUtil.scss';
