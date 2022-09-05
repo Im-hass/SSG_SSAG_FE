@@ -8,7 +8,9 @@ function CartPageLoginInfo({ cartData }) {
 
   return (
     <>
-      {ctx.isLogin && cartData && <CartPageTab />}
+      {ctx.isLogin && cartData && (
+        <CartPageTab dataCount={cartData.storeList.length} />
+      )}
       <div className="mnodr_info">
         {ctx.isLogin && cartData && <CartPageLogin />}
         {!ctx.isLogin && cartData && <CartPageNotLogin />}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import LoadingSpinner from '../../../components/common/LoadingSpinner/LoadingSpinner';
+import { LoadingSpinner } from '../../../components/common/LoadingSpinner';
 import useAxios from '../../../lib/useAxios';
 import useScroll from '../../../lib/useScroll';
 import './style/MainSlider.scss';
@@ -71,13 +71,13 @@ function MainSlider() {
                     <li className="swiper-slide swiper-slide-duplicate">
                       <div className="smhero_bn gate_unit">
                         <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
-                          <a
-                            // href="#"
-                            href="/"
+                          <Link
+                            // to="#"
+                            to="/"
                             className="cmitem_btn_tt_adinfo ssg-tooltip"
                           >
                             <span className="blind">광고 안내 툴팁</span>
-                          </a>
+                          </Link>
                           <div className="cmitem_tt_adinfo_layer ssg-tooltip-layer">
                             검색어와 관련된 상품으로 입찰가순으로 전시됩니다.
                             <button
@@ -168,12 +168,12 @@ function MainSlider() {
                   <li>
                     <div className="smhero_bn gate_unit">
                       <div className="cmitem_tt_adinfo ssg-tooltip-wrap">
-                        <a
-                          href="/"
+                        <Link
+                          to="/"
                           className="cmitem_btn_tt_adinfo ssg-tooltip"
                         >
                           <span className="blind">광고 안내 툴팁</span>
-                        </a>
+                        </Link>
                         <div className="cmitem_tt_adinfo_layer ssg-tooltip-layer">
                           검색어와 관련된 상품으로 입찰가순으로 전시됩니다.
                           <button
@@ -184,7 +184,7 @@ function MainSlider() {
                           </button>
                         </div>
                       </div>
-                      <a href="/" className="smhero_bnlink">
+                      <Link to="/" className="smhero_bnlink">
                         <div className="smhero_thumb">
                           <img
                             className="ssg_lazy"
@@ -206,15 +206,12 @@ function MainSlider() {
                             <span className="csmhero_titsub_tx" />
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   </li>
                   <li>
                     <div className="smhero_bn gate_unit">
-                      <a
-                        className="smhero_bnlink"
-                        href="https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001250"
-                      >
+                      <Link className="smhero_bnlink" to="/">
                         <div className="smhero_thumb">
                           <img
                             className="ssg_lazy"
@@ -236,15 +233,12 @@ function MainSlider() {
                             <span className="csmhero_titsub_tx" />
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   </li>
                   <li>
                     <div className="smhero_bn gate_unit">
-                      <a
-                        className="smhero_bnlink"
-                        href="https://m-shinsegaemall.ssg.com/page/giftshop.ssg"
-                      >
+                      <Link className="smhero_bnlink" to="/">
                         <div className="smhero_thumb">
                           <img
                             className="ssg_lazy"
@@ -266,15 +260,12 @@ function MainSlider() {
                             <span className="csmhero_titsub_tx" />
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   </li>
                   <li>
                     <div className="smhero_bn gate_unit">
-                      <a
-                        className="smhero_bnlink"
-                        href="https://event.ssg.com/m/eventDetail.ssg?nevntId=1000000001307"
-                      >
+                      <Link className="smhero_bnlink" to="/">
                         <div className="smhero_thumb">
                           <img
                             className="ssg_lazy"
@@ -296,7 +287,7 @@ function MainSlider() {
                             <span className="csmhero_titsub_tx" />
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   </li>
                 </ul>

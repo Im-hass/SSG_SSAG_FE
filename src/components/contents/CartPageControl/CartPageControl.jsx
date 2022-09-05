@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './CartPageControl.scss';
 
 function CartPageControl() {
@@ -22,35 +23,21 @@ function CartPageControl() {
         </label>
 
         <span className="mnodr_control_tx">
-          <a
-            // href="javascript:void(0);"
-            href="/"
+          <Link
+            to="/cart"
             className="mnodr_control_link layer_filter cartTracking"
           >
             <span className="mnodr_selbox_tx"> 배송방법바꾸기 </span>
-          </a>
-          <a href="/" style={{ display: 'none' }} className="modal-fix-open">
-            ㅇㅅㅇ
-          </a>
+          </Link>
         </span>
       </div>
       <span className="mnodr_control_delete">
-        <a
-          // href="javascript:void(0);"
-          href="/"
-          className="df cartTracking"
-          name="btDelChekItemAll"
-        >
+        <Link to="/cart" className="df cartTracking" name="btDelChekItemAll">
           품절상품삭제
-        </a>
-        <a
-          // href="javascript:void(0);"
-          href="/"
-          className="sm cartTracking"
-          name="btDelChekItemAll"
-        >
+        </Link>
+        <Link to="/cart" className="sm cartTracking" name="btDelChekItemAll">
           품절삭제
-        </a>
+        </Link>
       </span>
     </div>
   );

@@ -33,7 +33,6 @@ function PaymentMeansPage() {
         },
       })
       .then((res) => {
-        console.log('get result:', res);
         const data = res.data.result;
         setCards(data);
 
@@ -42,7 +41,7 @@ function PaymentMeansPage() {
           data[i].cardNumber = changeCardNum(cardNum);
         }
       })
-      .catch((err) => console.log('get result:', err));
+      .catch((err) => new Error(err));
   }, [isSubmit]);
 
   return (

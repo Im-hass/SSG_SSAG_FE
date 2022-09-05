@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './FooterService.scss';
 
 function FooterService() {
@@ -14,15 +15,12 @@ function FooterService() {
           <span className="mcom_email_tx">ssg@ssg.com</span>
         </p>
         <div className="mcom_service_btnarea">
-          <a href="tel:1577-3419" className="mcom_service_btn clickable">
+          <Link to="/" className="mcom_service_btn clickable">
             <em>전화걸기</em>
-          </a>
-          <a
-            href="http://talk.ssg.com/webchat?gateType=cs"
-            className="mcom_service_btn clickable"
-          >
+          </Link>
+          <Link to="/" className="mcom_service_btn clickable">
             <em>1:1 고객센터</em>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

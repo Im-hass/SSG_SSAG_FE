@@ -17,6 +17,7 @@ import {
 } from '../components/contents';
 import { MobileHeader } from '../components/ui';
 import AuthContext from '../store/auth-context';
+import { LoadingSpinner } from '../components/common/LoadingSpinner';
 
 function CartPage() {
   const ctx = useContext(AuthContext);
@@ -46,14 +47,12 @@ function CartPage() {
     axios
       .get(getCardDataUrl, headers)
       .then((res) => {
-        console.log('cart page res:', res);
-        const data = res.data.result;
-        setCartData(data);
+        setCartData(res.data.result);
       })
-      .catch((err) => console.log('cart page error:', err));
+      .catch((err) => new Error(err));
   }, [isDelete, isChange, isCnt]);
 
-  if (!cartData) return <div>데이터 없음</div>;
+  if (!cartData) return <LoadingSpinner />;
 
   return (
     <>

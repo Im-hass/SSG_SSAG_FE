@@ -15,6 +15,9 @@ function CategoryDetailList({
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [smallCategoryList, setSmallCategoryList] = useState();
   const [hasMId, setHasMid] = useState(false);
+  const TEMP_LINK = `/products/${lgId}${
+    mdId !== undefined ? `/${mdId}` : '/0'
+  }${smId !== undefined ? `/${smId}` : ''}`;
 
   const handleNavOpen = () => {
     setIsNavOpen(!isNavOpen);
@@ -124,10 +127,15 @@ function CategoryDetailList({
                   className="cmft_inp_chk clickable"
                   data-react-tarea="카테고리|바닥필터|배송_필터_선택|매장픽업"
                 >
-                  <input type="checkbox" id="ui_ship_view" value="picku" />
+                  <input
+                    type="checkbox"
+                    id="ui_ship_view"
+                    value="picku"
+                    // checked
+                  />
                 </span>
-                <a
-                  href="/('picku')"
+                <Link
+                  to={TEMP_LINK}
                   className="clickable"
                   data-react-tarea="카테고리|바닥필터|배송_필터_선택|매장픽업"
                 >
@@ -137,78 +145,78 @@ function CategoryDetailList({
                   >
                     <span className="cmft_txt">매장픽업</span>
                   </label>
-                </a>
+                </Link>
               </div>
             </li>
             <li className="cmft_cell cmft_sort_rank">
               <div className="cmft_sel_wrap">
-                <a href="/" className="cmft_sort_tit cmft_sel_curent">
+                <Link to={TEMP_LINK} className="cmft_sort_tit cmft_sel_curent">
                   <span className="cmft_txt">추천순</span>
-                </a>
+                </Link>
                 <ul className="cmft_sel_lst">
                   <li
                     className="clickable on"
                     data-react-tarea="카테고리|바닥필터|정렬_필터_선택|추천순"
                   >
-                    <a href="/">
+                    <Link to={TEMP_LINK}>
                       <span className="cmft_txt">추천순</span>
-                    </a>
+                    </Link>
                   </li>
                   <li
                     className="clickable "
                     data-react-tarea="카테고리|바닥필터|정렬_필터_선택|판매순"
                   >
-                    <a href="/">
+                    <Link to={TEMP_LINK}>
                       <span className="cmft_txt">판매순</span>
-                    </a>
+                    </Link>
                   </li>
                   <li
                     className="clickable "
                     data-react-tarea="카테고리|바닥필터|정렬_필터_선택|낮은가격순"
                   >
-                    <a href="/">
+                    <Link to={TEMP_LINK}>
                       <span className="cmft_txt">낮은가격순</span>
-                    </a>
+                    </Link>
                   </li>
                   <li
                     className="clickable "
                     data-react-tarea="카테고리|바닥필터|정렬_필터_선택|높은가격순"
                   >
-                    <a href="/">
+                    <Link to={TEMP_LINK}>
                       <span className="cmft_txt">높은가격순</span>
-                    </a>
+                    </Link>
                   </li>
                   <li
                     className="clickable "
                     data-react-tarea="카테고리|바닥필터|정렬_필터_선택|할인율순"
                   >
-                    <a href="/">
+                    <Link to={TEMP_LINK}>
                       <span className="cmft_txt">할인율순</span>
-                    </a>
+                    </Link>
                   </li>
                   <li
                     className="clickable "
                     data-react-tarea="카테고리|바닥필터|정렬_필터_선택|신상품순"
                   >
-                    <a href="/">
+                    <Link to={TEMP_LINK}>
                       <span className="cmft_txt">신상품순</span>
-                    </a>
+                    </Link>
                   </li>
                   <li
                     className="clickable "
                     data-react-tarea="카테고리|바닥필터|정렬_필터_선택|리뷰많은순"
                   >
-                    <a href="/">
+                    <Link to={TEMP_LINK}>
                       <span className="cmft_txt">리뷰많은순</span>
-                    </a>
+                    </Link>
                   </li>
                   <input type="hidden" name="sortType" id="sortType" value="" />
                 </ul>
               </div>
             </li>
             <li className="cmft_cell cmft_sort_srch ">
-              <a
-                href="/"
+              <Link
+                to={TEMP_LINK}
                 className="cmft_sort_tit clickable sort-filter"
                 data-react-tarea="카테고리|바닥필터|필터더보기_선택"
               >
@@ -216,7 +224,7 @@ function CategoryDetailList({
                 <span className="cmft_num">
                   <strong />
                 </span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -231,91 +239,91 @@ function CategoryDetailList({
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|전체"
               >
-                <a href="/">전체</a>
+                <Link to={TEMP_LINK}>전체</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|본점"
               >
-                <a href="/">본점</a>
+                <Link to={TEMP_LINK}>본점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|강남점"
               >
-                <a href="/">강남점</a>
+                <Link to={TEMP_LINK}>강남점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|경기점"
               >
-                <a href="/">경기점</a>
+                <Link to={TEMP_LINK}>경기점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|센텀시티점"
               >
-                <a href="/">센텀시티점</a>
+                <Link to={TEMP_LINK}>센텀시티점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|타임스퀘어점패션관"
               >
-                <a href="/">타임스퀘어점패션관</a>
+                <Link to={TEMP_LINK}>타임스퀘어점패션관</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|타임스퀘어점리빙관"
               >
-                <a href="/">타임스퀘어점리빙관</a>
+                <Link to={TEMP_LINK}>타임스퀘어점리빙관</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|의정부점"
               >
-                <a href="/">의정부점</a>
+                <Link to={TEMP_LINK}>의정부점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|광주신세계"
               >
-                <a href="/">광주신세계</a>
+                <Link to={TEMP_LINK}>광주신세계</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|마산점"
               >
-                <a href="/">마산점</a>
+                <Link to={TEMP_LINK}>마산점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|천안아산점"
               >
-                <a href="/">천안아산점</a>
+                <Link to={TEMP_LINK}>천안아산점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|김해점"
               >
-                <a href="/">김해점</a>
+                <Link to={TEMP_LINK}>김해점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|하남점"
               >
-                <a href="/">하남점</a>
+                <Link to={TEMP_LINK}>하남점</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|대구신세계"
               >
-                <a href="/">대구신세계</a>
+                <Link to={TEMP_LINK}>대구신세계</Link>
               </li>
               <li
                 className="clickable "
                 data-react-tarea="카테고리|바닥필터|백화점픽업_필터_선택|대전신세계"
               >
-                <a href="/">대전신세계</a>
+                <Link to={TEMP_LINK}>대전신세계</Link>
               </li>
               <input
                 type="hidden"
@@ -333,91 +341,91 @@ function CategoryDetailList({
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|전체"
             >
-              <a href="/">전체</a>
+              <Link to={TEMP_LINK}>전체</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|본점"
             >
-              <a href="/">본점</a>
+              <Link to={TEMP_LINK}>본점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|강남점"
             >
-              <a href="/">강남점</a>
+              <Link to={TEMP_LINK}>강남점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|경기점"
             >
-              <a href="/">경기점</a>
+              <Link to={TEMP_LINK}>경기점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|센텀시티점"
             >
-              <a href="/">센텀시티점</a>
+              <Link to={TEMP_LINK}>센텀시티점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|타임스퀘어점패션관"
             >
-              <a href="/">타임스퀘어점패션관</a>
+              <Link to={TEMP_LINK}>타임스퀘어점패션관</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|타임스퀘어점리빙관"
             >
-              <a href="/">타임스퀘어점리빙관</a>
+              <Link to={TEMP_LINK}>타임스퀘어점리빙관</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|의정부점"
             >
-              <a href="/">의정부점</a>
+              <Link to={TEMP_LINK}>의정부점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|광주신세계"
             >
-              <a href="/">광주신세계</a>
+              <Link to={TEMP_LINK}>광주신세계</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|마산점"
             >
-              <a href="/">마산점</a>
+              <Link to={TEMP_LINK}>마산점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|천안아산점"
             >
-              <a href="/">천안아산점</a>
+              <Link to={TEMP_LINK}>천안아산점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|김해점"
             >
-              <a href="/">김해점</a>
+              <Link to={TEMP_LINK}>김해점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|하남점"
             >
-              <a href="/">하남점</a>
+              <Link to={TEMP_LINK}>하남점</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|대구신세계"
             >
-              <a href="/">대구신세계</a>
+              <Link to={TEMP_LINK}>대구신세계</Link>
             </li>
             <li
               className="clickable "
               data-react-tarea="카테고리|바닥필터|백화점상품_필터_선택|대전신세계"
             >
-              <a href="/">대전신세계</a>
+              <Link to={TEMP_LINK}>대전신세계</Link>
             </li>
             <input type="hidden" name="salestr" id="salestr" value="" />
           </ul>

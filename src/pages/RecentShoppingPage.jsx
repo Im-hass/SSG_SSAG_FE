@@ -35,9 +35,8 @@ function RecentShoppingPage() {
           setisNoData(false);
           setRecentShoppingData(res.data.result);
         }
-        console.log('recent res:', res);
       })
-      .catch((err) => console.log('recent res:', err));
+      .catch((err) => new Error(err));
   }, [isRecentItemDelete, isWishChange]);
 
   return (
@@ -57,7 +56,7 @@ function RecentShoppingPage() {
                 <div className="cmhistory_scroll" id="_cmhistory_scroll">
                   <div className="iscroll">
                     <ul className="cmhistory_list_area">
-                      {recentShoppingData.map((recentItem, index) => (
+                      {recentShoppingData.map((recentItem) => (
                         <RecentShoppingProductList
                           key={recentItem.viewHistoryId}
                           recentItem={recentItem}

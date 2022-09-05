@@ -150,8 +150,8 @@ function LoginPage() {
                 name="로그인"
               />
               <div className="cmem_login_support">
-                <a href="/m/member/findIdPw.ssg">아이디 찾기</a>
-                <a href="/m/member/findIdPw.ssg?tabType=pw">비밀번호 찾기</a>
+                <Link to="/login">아이디 찾기</Link>
+                <Link to="/login">비밀번호 찾기</Link>
                 <Link to="/signup">회원가입</Link>
               </div>
             </fieldset>
@@ -171,9 +171,9 @@ function LoginPage() {
         ))}
       </ul>
       <div className="cmem_nomemarea notranslate">
-        <a href="/m/member/nonMemberLogin.ssg" className="cmem_nomem_btn">
+        <Link to="/login" className="cmem_nomem_btn">
           <span>비회원 조회하기</span>
-        </a>
+        </Link>
       </div>
       <Footer />
     </div>

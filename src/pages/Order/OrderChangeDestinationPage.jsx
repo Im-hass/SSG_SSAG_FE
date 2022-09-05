@@ -19,9 +19,7 @@ function OrderChangeDestinationPage(props) {
       .then((res) => {
         setDestinationArr(res.data.result);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => new Error(err));
   }, []);
 
   const handleInputClick = (e) => {

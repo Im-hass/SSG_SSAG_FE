@@ -42,14 +42,6 @@ function ProductListContent() {
         const respones = res.data.result;
         setDatas(respones);
       });
-
-    // console.log(lgId, mdId);
-    // console.log(
-    //   `http://13.209.26.150:9000/${
-    //     isUser ? 'users' : 'non-users'
-    //   }/products${urlParams}`,
-    //   headers,
-    // );
   };
 
   useEffect(() => {

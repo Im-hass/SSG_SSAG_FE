@@ -52,6 +52,7 @@ function App() {
           </Route>
           <Route path="/addDestination" element={<AddDestinationPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Route>
         <Route path="/completeOrder" element={<PrivateRoute />}>
           <Route path="/completeOrder" element={<CompleteOrder />} />
@@ -88,7 +89,6 @@ function App() {
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />} />
         </Route>
-        <Route path="/cart" element={<CartPage />} />
         <Route path="/historyList" element={<RecentShoppingPage />} />
       </Routes>
       <ScrollToTop />
