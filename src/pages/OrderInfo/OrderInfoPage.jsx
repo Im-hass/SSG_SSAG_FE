@@ -9,10 +9,16 @@ import { CustomAlert } from '../../components/common/index';
 
 function OrderInfoPage() {
   const [orderData, setOrderData] = useState([]);
-  const [cancelOrderData, setCancelOrderData] = useState('');
   const [isCancel, setIsCancel] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const token = localStorage.getItem('token');
+
+  function orderSort(a, b) {
+    if (a.orderListId > b.orderListId) {
+      return -1;
+    }
+    return 0;
+  }
 
   useEffect(() => {
     axios
@@ -22,7 +28,9 @@ function OrderInfoPage() {
         },
       })
       .then((res) => {
-        setOrderData(res.data.result);
+        const lists = res.data.result;
+        const sortLists = lists.sort(orderSort);
+        setOrderData(sortLists);
         setIsFetching(true);
         setIsCancel(false);
       })
@@ -31,29 +39,30 @@ function OrderInfoPage() {
       });
   }, [isCancel]);
 
-  const handleSendCancelRequest = () => {
-    axios
-      .put(
-        'http://13.209.26.150:9000/users/order/cancel',
-        { orderId: cancelOrderData },
-        {
-          headers: {
-            Authorization: JSON.parse(token),
+  const handleSendCancelRequest = (cancelOrderItem) => {
+    if (cancelOrderItem !== undefined) {
+      axios
+        .put(
+          'http://13.209.26.150:9000/users/order/cancel',
+          { orderId: cancelOrderItem },
+          {
+            headers: {
+              Authorization: JSON.parse(token),
+            },
           },
-        },
-      )
-      .then(() => {
-        toast.success('주문이 취소되었습니다.');
-        setIsCancel(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        )
+        .then(() => {
+          toast.success('주문이 취소되었습니다.');
+          setIsCancel(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
-  console.log(cancelOrderData);
   const handleCancelOrder = (e) => {
-    setCancelOrderData(e.target.name);
+    const cancelOrderItem = e.target.name;
 
     confirmAlert({
       // eslint-disable-next-line react/no-unstable-nested-components
@@ -62,6 +71,7 @@ function OrderInfoPage() {
           title="주문 취소"
           desc="주문을 취소하시겠습니까?"
           btnTitle="주문취소"
+          id={cancelOrderItem}
           onAction={handleSendCancelRequest}
           onClose={onClose}
         />
