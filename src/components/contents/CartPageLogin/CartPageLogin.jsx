@@ -64,9 +64,6 @@ function CartPageLogin() {
           >
             배송지 변경
           </button>
-          <a href="/" style={{ display: 'none' }} className="modal-fix-open">
-            ㅇㅅㅇ
-          </a>
 
           <div
             className="mnodr_modal ty_full mnodr_changeaddr"

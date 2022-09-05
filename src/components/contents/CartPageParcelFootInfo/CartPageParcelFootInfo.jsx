@@ -57,9 +57,6 @@ function CartPageParcelFootInfo() {
           </i>
         </span>
       </button>
-      <a href="/" style={{ display: 'none' }} className="modal-fix-open">
-        ㅇㅅㅇ
-      </a>
 
       <div
         className="mnodr_modal ty_full"

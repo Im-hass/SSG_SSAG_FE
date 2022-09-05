@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function TryOnSlider() {
   return (
@@ -90,7 +91,7 @@ function TryOnSlider() {
               </div>
               <div className="postunit_tryon_body">
                 <div className="postunit_tryon_content on">
-                  <a href="/" className="postunit_tryon_content_tx">
+                  <Link to="/" className="postunit_tryon_content_tx">
                     <span className="postunit_tryon_content_tit">
                       다양하게 연출하는 아이 섀도우 팔레트
                     </span>
@@ -100,7 +101,7 @@ function TryOnSlider() {
                         팔레트. 무드있는 컬러 조합으로 매력적인 눈매 연출.
                       </span>
                     </span>
-                  </a>
+                  </Link>
                   <button
                     type="button"
                     className="postunit_tryon_btn_more _js_postunit_tryon_expand_btn"
@@ -114,14 +115,14 @@ function TryOnSlider() {
             <li className="swiper-slide swiper-slide-next">
               <div className="postunit_tryon_media">
                 <div className="postunit_tryon_thmb">
-                  <a href="/" className="postunit_tryon_thmb_link">
+                  <Link to="/" className="postunit_tryon_thmb_link">
                     <div className="postunit_tryon_slider_img">
                       {/* <img
                         src="//sui.ssgcdn.com/cmpt/banner/202208/2022080115340567128579610957_943.jpg"
                         className="swiper-lazy swiper-lazy-loaded"
                       /> */}
                     </div>
-                  </a>
+                  </Link>
                   <a
                     href="https://m.ssg.com/service/ssgtv/player.ssg?inflowTypeCd=40&amp;dispVodcId=100000000536"
                     className="postunit_tryon_btn_play"
@@ -208,7 +209,7 @@ function TryOnSlider() {
               </div>
               <div className="postunit_tryon_body">
                 <div className="postunit_tryon_content on">
-                  <a href="/" className="postunit_tryon_content_tx">
+                  <Link to="/" className="postunit_tryon_content_tx">
                     <span className="postunit_tryon_content_tit">
                       무너짐 없이 깔끔하게 고정되는 메이크업
                     </span>
@@ -218,7 +219,7 @@ function TryOnSlider() {
                         비타민C와 선인장 추출물로 수분까지 픽싱.
                       </span>
                     </span>
-                  </a>
+                  </Link>
                   <button
                     type="button"
                     className="postunit_tryon_btn_more _js_postunit_tryon_expand_btn"
@@ -232,14 +233,14 @@ function TryOnSlider() {
             <li className="swiper-slide">
               <div className="postunit_tryon_media">
                 <div className="postunit_tryon_thmb">
-                  <a href="/" className="postunit_tryon_thmb_link">
+                  <Link to="/" className="postunit_tryon_thmb_link">
                     <div className="postunit_tryon_slider_img">
                       {/* <img
                         src="http://sui.ssgcdn.com/cmpt/banner/202208/2022080115331229415853869585_155.jpg"
                         className="swiper-lazy"
                       /> */}
                     </div>
-                  </a>
+                  </Link>
                   <a
                     href="https://m.ssg.com/service/ssgtv/player.ssg?inflowTypeCd=40&amp;dispVodcId=100000000537"
                     className="postunit_tryon_btn_play"
@@ -326,7 +327,7 @@ function TryOnSlider() {
               </div>
               <div className="postunit_tryon_body">
                 <div className="postunit_tryon_content on">
-                  <a href="/" className="postunit_tryon_content_tx">
+                  <Link to="/" className="postunit_tryon_content_tx">
                     <span className="postunit_tryon_content_tit">
                       페미닌한 컬러감을 담은 아이 팔레트
                     </span>
@@ -336,7 +337,7 @@ function TryOnSlider() {
                         로즈의 자연스러움이 묻어나는 메이크업 완성.
                       </span>
                     </span>
-                  </a>
+                  </Link>
                   <button
                     type="button"
                     className="postunit_tryon_btn_more _js_postunit_tryon_expand_btn"
@@ -350,14 +351,14 @@ function TryOnSlider() {
             <li className="swiper-slide">
               <div className="postunit_tryon_media">
                 <div className="postunit_tryon_thmb">
-                  <a href="/" className="postunit_tryon_thmb_link">
+                  <Link to="/" className="postunit_tryon_thmb_link">
                     <div className="postunit_tryon_slider_img">
                       {/* <img
                         src="//sui.ssgcdn.com/cmpt/banner/202207/2022071914401557851463000246_800.jpg"
                         className="swiper-lazy"
                       /> */}
                     </div>
-                  </a>
+                  </Link>
                   <a
                     href="https://m.ssg.com/service/ssgtv/player.ssg?inflowTypeCd=40&amp;dispVodcId=100000000491"
                     className="postunit_tryon_btn_play"
@@ -444,7 +445,7 @@ function TryOnSlider() {
               </div>
               <div className="postunit_tryon_body">
                 <div className="postunit_tryon_content on">
-                  <a href="/" className="postunit_tryon_content_tx">
+                  <Link to="/" className="postunit_tryon_content_tx">
                     <span className="postunit_tryon_content_tit">
                       피부에 얇게 밀착되는 파운데이션
                     </span>
@@ -454,7 +455,7 @@ function TryOnSlider() {
                         다크닝 없이 화사한 피부톤 선사.
                       </span>
                     </span>
-                  </a>
+                  </Link>
                   <button
                     type="button"
                     className="postunit_tryon_btn_more _js_postunit_tryon_expand_btn"
@@ -468,14 +469,14 @@ function TryOnSlider() {
             <li className="swiper-slide">
               <div className="postunit_tryon_media">
                 <div className="postunit_tryon_thmb">
-                  <a href="/" className="postunit_tryon_thmb_link">
+                  <Link to="/" className="postunit_tryon_thmb_link">
                     <div className="postunit_tryon_slider_img">
                       {/* <img
                         src="//sui.ssgcdn.com/cmpt/banner/202207/2022071914421798872728371372_337.jpg"
                         className="swiper-lazy"
                       /> */}
                     </div>
-                  </a>
+                  </Link>
                   <a
                     href="https://m.ssg.com/service/ssgtv/player.ssg?inflowTypeCd=40&amp;dispVodcId=100000000493"
                     className="postunit_tryon_btn_play"
@@ -562,7 +563,7 @@ function TryOnSlider() {
               </div>
               <div className="postunit_tryon_body">
                 <div className="postunit_tryon_content on">
-                  <a href="/" className="postunit_tryon_content_tx">
+                  <Link to="/" className="postunit_tryon_content_tx">
                     <span className="postunit_tryon_content_tit">
                       오랜 시간 유지되는 아이라이너
                     </span>
@@ -572,7 +573,7 @@ function TryOnSlider() {
                         아이라이너. 선명한 발색으로 완성하는 또렷한 눈매.
                       </span>
                     </span>
-                  </a>
+                  </Link>
                   <button
                     type="button"
                     className="postunit_tryon_btn_more _js_postunit_tryon_expand_btn"

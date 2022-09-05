@@ -1,5 +1,6 @@
 import React from 'react';
 import './FooterMallWrap.scss';
+import { Link } from 'react-router-dom';
 import { MALL_WRAP_CONTENTS } from '../../../assets/datas';
 
 function FooterMallWrap() {
@@ -12,9 +13,9 @@ function FooterMallWrap() {
           870-88-01143
           <br />
           통신판매업 신고번호: 제2022-서울강남-03751호
-          <a href="/" className="txt_link">
+          <Link to="/" className="txt_link">
             사업자 정보확인
-          </a>
+          </Link>
           <br />
           개인정보보호 책임자: 김우진<span className="bar">|</span>주소:
           서울특별시 강남구 테헤란로 231
@@ -25,9 +26,9 @@ function FooterMallWrap() {
       <div className="mcom_noti_wrap">
         <p className="mcom_noti_tip">
           우리은행 채무지급보증 안내
-          <a href="/" className="txt_link">
+          <Link to="/" className="txt_link">
             서비스가입사실 확인
-          </a>
+          </Link>
         </p>
         <p className="mcom_noti_txt">
           당사는 고객님이 현금 결제한 금액에 대해 우리은행과
@@ -40,13 +41,13 @@ function FooterMallWrap() {
         <ul className="mcom_cont_lst">
           {MALL_WRAP_CONTENTS.map((el) => (
             <li key={el.id}>
-              <a href={el.href} title={el.title}>
+              <Link to={el.href} title={el.title}>
                 <span
                   style={{ color: el.name === '개인정보처리방침' ? 'red' : '' }}
                 >
                   {el.name}
                 </span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

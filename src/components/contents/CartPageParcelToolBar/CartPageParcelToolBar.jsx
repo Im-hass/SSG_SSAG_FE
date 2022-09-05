@@ -1,6 +1,6 @@
 import React from 'react';
 import './CartPageParcelToolBar.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function CartPageParcelToolBar({ cartData }) {
   const netPrice = cartData.totalAmount;
@@ -44,10 +44,13 @@ function CartPageParcelToolBar({ cartData }) {
             className="mnodr_tx_desc mnodr_tx_point"
             style={{ display: 'block' }}
           >
-            <a href="/" className="mnodr_tx_link2 layer_filter cartTracking">
+            <Link
+              to="/cart"
+              className="mnodr_tx_link2 layer_filter cartTracking"
+            >
               청구할인 혜택보기
               <i className="icon ty_xs icon_chevron_right" aria-hidden="true" />
-            </a>
+            </Link>
           </p>
         </div>
       </div>
