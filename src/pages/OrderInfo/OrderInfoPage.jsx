@@ -34,9 +34,7 @@ function OrderInfoPage() {
         setIsFetching(true);
         setIsCancel(false);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => new Error(err));
   }, [isCancel]);
 
   const handleSendCancelRequest = (cancelOrderItem) => {
@@ -55,9 +53,7 @@ function OrderInfoPage() {
           toast.success('주문이 취소되었습니다.');
           setIsCancel(true);
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => new Error(err));
     }
   };
 

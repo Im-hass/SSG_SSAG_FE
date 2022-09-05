@@ -33,7 +33,6 @@ function Product() {
   const [productData, setProductData] = useState(null);
   const [productDetailData, setProductDetailData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  console.log(productData);
   const { productId } = useParams();
   const token = localStorage.getItem('token');
   const headers = {
@@ -49,10 +48,9 @@ function Product() {
     setIsLoading(true);
     try {
       const res = await axios.get(token ? loginedUrl : notLoginedUrl, headers);
-      console.log('product response:', res);
       setProductData(res.data.result);
     } catch (err) {
-      console.log('product error:', err);
+      // console.log(err);
     }
     setIsLoading(false);
   };
@@ -61,10 +59,9 @@ function Product() {
     setIsLoading(true);
     try {
       const res = await axios.get(detailInfoUrl, headers);
-      console.log('pdt detail response:', res);
       setProductDetailData(res.data.result);
     } catch (err) {
-      console.log('pdt detail error:', err);
+      // console.log(err);
     }
     setIsLoading(false);
   };

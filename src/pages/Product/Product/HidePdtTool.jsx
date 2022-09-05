@@ -34,9 +34,8 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
           },
         );
         setColorOptions(res.data.result);
-        console.log('color response:', res);
       } catch (err) {
-        console.log('color error:', err);
+        // console.log(err);
       }
       setIsLoading(false);
     };
@@ -56,9 +55,8 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
       )
       .then((res) => {
         setSizeOptions(res.data.result);
-        console.log('size response:', res);
       })
-      .catch((err) => console.log('size error:', err));
+      .catch((err) => new Error(err));
   };
 
   const handleSelectColor = (e) => {

@@ -20,13 +20,11 @@ function CartPageParcelContentUnitUtil({ cartItem, isDelete, setIsDelete }) {
 
     axios
       .delete(deleteUrl, headers)
-      .then((res) => {
-        console.log('cart del res:', res);
+      .then(() => {
         toast.success('상품을 삭제했습니다.');
         setIsDelete(!isDelete);
       })
-      .catch((err) => {
-        console.log('cart del err', err);
+      .catch(() => {
         toast.error('상품을 삭제하지 못했습니다');
       });
   };

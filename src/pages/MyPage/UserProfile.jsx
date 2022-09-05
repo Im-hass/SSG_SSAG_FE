@@ -16,11 +16,10 @@ function UserProfile() {
     axios
       .get('http://13.209.26.150:9000/users/info', headers)
       .then((res) => {
-        console.log('my page res:', res);
         const data = res.data.result;
         setUserInfo(data);
       })
-      .catch((err) => console.log('my page err:', err));
+      .catch((err) => new Error(err));
   }, []);
 
   return (

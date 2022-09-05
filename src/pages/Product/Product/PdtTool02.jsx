@@ -18,10 +18,6 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
     isHeaderCartCntSubmit,
   );
 
-  useEffect(() => {
-    console.log(productData, selectedProductOptionId, productCount);
-  }, []);
-
   const handleAddCart = () => {
     const token = localStorage.getItem('token');
     const data = {
@@ -40,13 +36,11 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
 
     axios
       .post('http://13.209.26.150:9000/users/carts', data, headers)
-      .then((res) => {
-        console.log('add cart res:', res);
+      .then(() => {
         setIsHeaderCartCnt(!isHeaderCartCnt);
         toast.success('상품을 장바구니에 추가했습니다.');
       })
-      .catch((err) => {
-        console.log('add cart err:', err);
+      .catch(() => {
         toast.error('상품을 장바구니에 추가하지 못했습니다.');
       });
   };

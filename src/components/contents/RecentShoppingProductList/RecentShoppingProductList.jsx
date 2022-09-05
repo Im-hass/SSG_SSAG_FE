@@ -33,13 +33,11 @@ function RecentShoppingProductList({
 
     axios
       .delete(deleteUrl, headers)
-      .then((res) => {
-        console.log('recent del res:', res);
+      .then(() => {
         toast.success('상품을 삭제했습니다.');
         setIsRecentItemDelete(!isRecentItemDelete);
       })
-      .catch((err) => {
-        console.log('recent del err', err);
+      .catch(() => {
         toast.error('상품을 삭제하지 못했습니다');
       });
   };
@@ -66,12 +64,9 @@ function RecentShoppingProductList({
     axios
       .get(getOptionUrl, headers)
       .then((res) => {
-        console.log('recent get opt res:', res);
         setOptionArr(res.data.result);
       })
-      .catch((err) => {
-        console.log('recent get opt err', err);
-      });
+      .catch((err) => new Error(err));
   };
 
   useEffect(() => {

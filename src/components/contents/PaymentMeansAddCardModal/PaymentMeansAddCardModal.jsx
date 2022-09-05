@@ -87,11 +87,10 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
 
     axios
       .post(postCardDataUrl, data, headers)
-      .then((res) => {
-        console.log('post res:', res);
+      .then(() => {
         setIsSubmit(!isSubmit);
       })
-      .catch((err) => console.log('post err:', err));
+      .catch((err) => new Error(err));
   };
 
   const resetData = () => {

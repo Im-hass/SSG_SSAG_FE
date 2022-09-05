@@ -129,9 +129,7 @@ function OrderPage() {
           setUserPaymentData(res.data.result);
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => new Error(err));
   };
 
   const handleCardOption = (e) => {
@@ -203,12 +201,7 @@ function OrderPage() {
           },
         },
       )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => new Error(err));
     navigate('/completeOrder', { state: sendNextPageData });
   };
 

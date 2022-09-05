@@ -15,11 +15,10 @@ function PaymentMeansCardList({ cards, isSubmit, setIsSubmit }) {
 
     axios
       .delete(deleteCardUrl, headers)
-      .then((res) => {
-        console.log('del card result:', res);
+      .then(() => {
         setIsSubmit(!isSubmit);
       })
-      .catch((err) => console.log('del card err:', err));
+      .catch((err) => new Error(err));
   };
 
   return (

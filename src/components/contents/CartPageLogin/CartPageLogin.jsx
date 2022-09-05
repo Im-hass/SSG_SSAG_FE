@@ -20,10 +20,9 @@ function CartPageLogin() {
       setIsLoading(true);
       try {
         const res = await axios.get(defaultDestinationUrl, headers);
-        console.log('cart des result:', res);
         setDefaultDestination(res.data.result);
       } catch (err) {
-        console.log('cart des err:', err);
+        // console.log(err);
       }
       setIsLoading(false);
     };
