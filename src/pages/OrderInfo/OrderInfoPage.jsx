@@ -47,8 +47,6 @@ function OrderInfoPage() {
     setClickDestinationBtn((prev) => !prev);
   };
 
-  console.log(orderData);
-
   const handleSendCancelRequest = (cancelOrderItem) => {
     if (cancelOrderItem !== undefined) {
       axios

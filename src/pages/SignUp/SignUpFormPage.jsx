@@ -175,7 +175,7 @@ function SignUpFormPage() {
           if (res.data.isSuccess === true)
             navigate('/signupDone', { state: inputData.name });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => new Error(err));
     } else if (!valid.confirmId) toast.error('아이디 중복검사를 진행해주세요.');
     else {
       toast.error('유효하지 않은 값이 있습니다.');
