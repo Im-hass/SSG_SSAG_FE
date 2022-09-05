@@ -4,13 +4,16 @@ import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import toast, { Toaster } from 'react-hot-toast';
 import { MobileHeader } from '../../components/ui/index';
+import OrderInfoDestinationModal from './OrderInfoDestinationModal';
 
 import { CustomAlert } from '../../components/common/index';
 
 function OrderInfoPage() {
   const [orderData, setOrderData] = useState([]);
+  const [destinationData, setDestinationData] = useState({});
   const [isCancel, setIsCancel] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
+  const [clickDestinationBtn, setClickDestinationBtn] = useState(false);
   const token = localStorage.getItem('token');
 
   function orderSort(a, b) {
@@ -38,6 +41,15 @@ function OrderInfoPage() {
         console.log(err);
       });
   }, [isCancel]);
+
+  const handleClickDestinationBtn = (e) => {
+    const { id } = e.target;
+    const clickItem = orderData.find((item) => item.orderListId === Number(id));
+    setDestinationData(clickItem);
+    setClickDestinationBtn((prev) => !prev);
+  };
+
+  console.log(orderData);
 
   const handleSendCancelRequest = (cancelOrderItem) => {
     if (cancelOrderItem !== undefined) {
@@ -82,6 +94,12 @@ function OrderInfoPage() {
   return (
     <div>
       <MobileHeader title="나의주문내역" />
+      {clickDestinationBtn && (
+        <OrderInfoDestinationModal
+          destinationData={destinationData}
+          setClickDestinationBtn={setClickDestinationBtn}
+        />
+      )}
       <ul className="mnodr_tab">
         <li className="on ty2">
           <a href="/" className="orderInfoTracking">
@@ -117,7 +135,12 @@ function OrderInfoPage() {
               </span>
               <ul className="codr_odrdeliv_odrinfo">
                 <li>
-                  <button type="button" className="codr_btn_arr4">
+                  <button
+                    type="button"
+                    className="codr_btn_arr4"
+                    onClick={handleClickDestinationBtn}
+                    id={data.orderListId}
+                  >
                     배송지 [{data.addrName}]
                     <span className="codr_sp_ico codr_ico_arrgray" />
                   </button>
