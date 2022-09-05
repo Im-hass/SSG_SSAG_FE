@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import { useInView } from 'react-intersection-observer';
 import { isOpenState, searchValueState } from '../../../recoil/states';
 import { AdInfo } from '../../ui/AdInfo';
 import { NoSearchValue } from '../NoSearchValue';
@@ -15,7 +16,9 @@ function SearchContent() {
   const navigate = useNavigate();
   const [isOpen] = useRecoilState(isOpenState);
   const [searchValue, setSearchValue] = useRecoilState(searchValueState);
-  const [datas, setDatas] = useState();
+  const [datas, setDatas] = useState(null);
+  const [hasNextPage, setHasNextPage] = useState(true);
+  const { ref, inView } = useInView();
   const [isWishChange, setIsWishChange] = useState(false);
   const [urlParams, setUrlParams] = useState({
     page: 0,
@@ -30,10 +33,9 @@ function SearchContent() {
   useEffect(() => {
     if (!isOpen) {
       if (response !== null) {
-        if (response.productDtoRes.length !== 0) {
-          setDatas(response);
-        } else {
-          setDatas();
+        if (!inView) {
+          setDatas(response.productDtoRes);
+          setHasNextPage(response.next);
         }
       }
       setSearchValue(value);
@@ -41,13 +43,53 @@ function SearchContent() {
   }, [response]);
 
   useEffect(() => {
-    const strUrlParams = `&page=${urlParams.page}&sort=product.${urlParams.base}`;
+    const strUrlParams = `?size=10&page=0&sort=product.${urlParams.base}`;
     fetchData({
       reMethod: 'get',
-      reUrl: `/products/search/${value}?size=10${strUrlParams}`,
+      reUrl: `/products/search/${value}${strUrlParams}`,
       reUserOrNot: true,
+      afterThen: (res) => {
+        setDatas(res.productDtoRes);
+        setHasNextPage(res.next);
+      },
     });
-  }, [value, isOpen, isWishChange, searchValue, urlParams]);
+  }, [value, isOpen, searchValue]);
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      const strUrlParams = `?size=10&page=${urlParams.page + 1}&sort=product.${
+        urlParams.base
+      }`;
+      fetchData({
+        reMethod: 'get',
+        reUrl: `/products/search/${value}${strUrlParams}`,
+        reUserOrNot: true,
+        afterThen: (res) => {
+          setUrlParams({
+            ...urlParams,
+            page: res.pageNumber,
+            size: res.productDtoRes.length,
+          });
+          setDatas((prevDatas) => {
+            const arr = prevDatas;
+            return [...arr, ...res.productDtoRes];
+          });
+          setHasNextPage(res.next);
+        },
+      });
+    }
+  }, [inView]);
+
+  useEffect(() => {
+    if (datas !== null) {
+      const strUrlParams = `?size=${datas.length}&page=0&sort=product.${urlParams.base}`;
+      fetchData({
+        reMethod: 'get',
+        reUrl: `/products/search/${value}${strUrlParams}`,
+        reUserOrNot: true,
+      });
+    }
+  }, [isWishChange, urlParams.base]);
 
   const handleBack = () => {
     setSearchValue(value);
@@ -114,14 +156,10 @@ function SearchContent() {
                 setIsWishChange={setIsWishChange}
                 urlParams={urlParams}
                 setUrlParams={setUrlParams}
+                listEndRef={ref}
               />
             ) : (
-              <NoSearchValue
-                datas={datas}
-                searchValue={searchValue}
-                isWishChange={isWishChange}
-                setIsWishChange={setIsWishChange}
-              />
+              <NoSearchValue searchValue={searchValue} />
             )}
           </div>
 
