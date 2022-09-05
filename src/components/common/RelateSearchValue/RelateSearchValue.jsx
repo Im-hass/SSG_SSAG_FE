@@ -96,7 +96,7 @@ function RelateSearchValue({ setSearchValue }) {
             </li>
           </ul>
         </div>
-        <a href="none" className="csr_open" onClick={handleOpen}>
+        <a href="/" className="csr_open" onClick={handleOpen}>
           <span className="sp_csr">연관 검색어 펼쳐보기</span>
         </a>
       </div>

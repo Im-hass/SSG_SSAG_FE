@@ -23,11 +23,10 @@ function CartPageParcelContentUnitPayRight({ cartItem, isCnt, setIsCnt }) {
 
     axios
       .put(putCntUrl, productData, headers)
-      .then((res) => {
-        console.log('cart cnt result:', res);
+      .then(() => {
         setIsCnt(!isCnt);
       })
-      .catch((err) => console.log('cart cnt err:', err));
+      .catch((err) => new Error(err));
   };
 
   return (

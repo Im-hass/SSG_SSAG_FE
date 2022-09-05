@@ -17,7 +17,6 @@ function FtUpBtn() {
 
     return state;
   };
-  console.log(useScroll);
   const { y } = useScroll();
 
   return (

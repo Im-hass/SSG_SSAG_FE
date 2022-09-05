@@ -12,7 +12,7 @@ function Cart() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const getCartDataUrl = 'http://13.209.26.150:9000/users/carts';
+    const getCartDataUrl = 'http://13.209.26.150:9000/users/carts/count';
     const headers = {
       headers: {
         Authorization: JSON.parse(token),
@@ -21,18 +21,12 @@ function Cart() {
 
     if (!token) return;
 
-    // setHeaderCartCount(res.data.result.storeList.);
     axios
       .get(getCartDataUrl, headers)
       .then((res) => {
-        console.log('cart header cnt result:', res);
-        const data = res.data.result.storeList;
-        for (let i = 0; i < data.length; i += 1) {
-          const storeData = data[i].cartList.length;
-          setHeaderCartCount(storeData);
-        }
+        setHeaderCartCount(res.data.result.cartCount);
       })
-      .catch((err) => console.log('cart header  cnt err:', err));
+      .catch((err) => new Error(err));
   }, [isHeaderCartCnt]);
 
   const handleClick = () => {

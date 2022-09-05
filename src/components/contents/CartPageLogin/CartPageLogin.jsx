@@ -20,10 +20,9 @@ function CartPageLogin() {
       setIsLoading(true);
       try {
         const res = await axios.get(defaultDestinationUrl, headers);
-        console.log('cart des result:', res);
         setDefaultDestination(res.data.result);
       } catch (err) {
-        console.log('cart des err:', err);
+        // console.log(err);
       }
       setIsLoading(false);
     };
@@ -64,9 +63,6 @@ function CartPageLogin() {
           >
             배송지 변경
           </button>
-          <a href="/" style={{ display: 'none' }} className="modal-fix-open">
-            ㅇㅅㅇ
-          </a>
 
           <div
             className="mnodr_modal ty_full mnodr_changeaddr"

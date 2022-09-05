@@ -33,7 +33,6 @@ export function AuthContextProvider(props) {
       navigate('/login');
       toast.error('토큰이 만료되었습니다.');
     }
-    console.log(isExpired);
   }, [isExpired]);
 
   const handleLogin = (token) => {
