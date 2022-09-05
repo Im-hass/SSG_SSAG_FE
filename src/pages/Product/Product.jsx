@@ -118,12 +118,14 @@ function Product() {
                   <div className="mndtl_sec_subject">
                     <h3 className="mndtl_sec_tit">고객리뷰</h3>
                   </div>
-                  <div className="mndtl_review_wrap">
-                    <ProductReviewRate productData={productData} />
-                    <ProductReviewGraph />
-                    <ProductReviewPhotos />
-                    <ProductReviewSummary productData={productData} />
-                  </div>
+                  {productData.reviewTotal && (
+                    <div className="mndtl_review_wrap">
+                      <ProductReviewRate productData={productData} />
+                      <ProductReviewGraph />
+                      <ProductReviewPhotos />
+                      <ProductReviewSummary productData={productData} />
+                    </div>
+                  )}
                 </div>
 
                 <div
