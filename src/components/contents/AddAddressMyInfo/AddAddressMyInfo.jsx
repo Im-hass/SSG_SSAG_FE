@@ -520,7 +520,7 @@ function AddAddressMyInfo({ state, title, setClickAddDestinationBtn }) {
                               우편번호
                             </button>
                           </div>
-                          {selectedItem.detailAddr && (
+                          {selectedItem.streetAddr && (
                             <div className="addr_info">
                               <strong className="info_tit">도로명</strong>
                               <span id="roadNmAddr" className="info_cont">

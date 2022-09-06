@@ -4,7 +4,7 @@ import { isOpenState } from '../../../recoil/states';
 import './HeaderBackArrow.scss';
 
 function HeaderBackArrow() {
-  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [, setIsOpen] = useRecoilState(isOpenState);
 
   const handleOpenSearch = (action) =>
     action === 'open' ? setIsOpen(true) : setIsOpen(false);

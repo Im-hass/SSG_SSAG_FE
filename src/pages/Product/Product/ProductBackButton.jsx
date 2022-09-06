@@ -1,5 +1,4 @@
 import React from 'react';
-import BackBtn from './BackBtn';
 
 function ProductBackButton() {
   return (
