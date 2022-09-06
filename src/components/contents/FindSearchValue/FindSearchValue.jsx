@@ -10,6 +10,7 @@ function FindSearchValue({
   setIsWishChange,
   urlParams,
   setUrlParams,
+  listEndRef,
 }) {
   return (
     <>
@@ -19,9 +20,10 @@ function FindSearchValue({
         setUrlParams={setUrlParams}
       />
       <ProductList
-        datas={datas}
+        datas={{ productDtoRes: datas }}
         isWishChange={isWishChange}
         setIsWishChange={setIsWishChange}
+        listEndRef={listEndRef}
       />
     </>
   );

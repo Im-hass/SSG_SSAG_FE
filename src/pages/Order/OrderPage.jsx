@@ -103,6 +103,16 @@ function OrderPage() {
     setClickPaymentBtn(false);
   };
 
+  const changeCardNum = (num) => {
+    const cardNum = num;
+    for (let i = 0; i < cardNum.length; i += 1) {
+      if (i === 7 || i === 8 || i === 10 || i === 11 || i === 12 || i === 13) {
+        cardNum[i] = '*';
+      }
+    }
+    return cardNum.join('');
+  };
+
   const handleClickPayment = () => {
     setClickPaymentBtn((prev) => !prev);
     axios
@@ -126,7 +136,13 @@ function OrderPage() {
             ),
           });
         } else {
-          setUserPaymentData(res.data.result);
+          const data = res.data.result;
+          setUserPaymentData(data);
+
+          for (let i = 0; i < data.length; i += 1) {
+            const cardNum = data[i].cardNumber.split('');
+            data[i].cardNumber = changeCardNum(cardNum);
+          }
         }
       })
       .catch((err) => new Error(err));

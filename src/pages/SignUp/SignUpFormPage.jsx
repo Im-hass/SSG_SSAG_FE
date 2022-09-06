@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 import {
   MobileHeader,
@@ -39,7 +40,6 @@ function SignUpFormPage() {
     loginPwd: '',
     email: '',
     phone: '',
-    submit: '',
   });
 
   const validCheck = (data) => {
@@ -174,13 +174,11 @@ function SignUpFormPage() {
         .then((res) => {
           if (res.data.isSuccess === true)
             navigate('/signupDone', { state: inputData.name });
-          else {
-            setError({
-              ...error,
-              submit: res.data.message,
-            });
-          }
-        });
+        })
+        .catch((err) => new Error(err));
+    } else if (!valid.confirmId) toast.error('아이디 중복검사를 진행해주세요.');
+    else {
+      toast.error('유효하지 않은 값이 있습니다.');
     }
   };
 
@@ -396,11 +394,6 @@ function SignUpFormPage() {
                 </strong>
               </p>
             </div>
-            <span className="cmem_noti">
-              <em className="usable_value">
-                <p style={{ textAlign: 'center' }}>{error.submit}</p>
-              </em>
-            </span>
             <div className="cmem_btn_area">
               <button type="submit" className="cmem_btn cmem_btn_orange2">
                 가입하기
@@ -410,6 +403,11 @@ function SignUpFormPage() {
         </div>
       </form>
       <Footer />
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+      />
     </div>
   );
 }
