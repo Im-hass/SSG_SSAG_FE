@@ -16,13 +16,28 @@ function AddAddressZipCode(props) {
     e.preventDefault();
     setHasDatas(true);
     setIsSelected(false);
+
+    // 공공 데이터 API
+    // axios
+    //   .get(
+    //     `${process.env.REACT_APP_ZIPCODE_SERVICE_URL}?ServiceKey=${process.env.REACT_APP_ZIPCODE_SERVICE_KEY}&srchwrd=${searchVal}`,
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //     setDatas(res.data.NewAddressListResponse.newAddressListAreaCdSearchAll);
+    //   })
+    //   .catch((err) => new Error(err));
+
+    // 주소기반산업지원서비스 API
     axios
       .get(
-        `${process.env.REACT_APP_ZIPCODE_SERVICE_URL}?ServiceKey=${process.env.REACT_APP_ZIPCODE_SERVICE_KEY}&srchwrd=${searchVal}`,
+        `${process.env.REACT_APP_ZIPCODE_SERVICE_URL2}?currentPage=1&countPerPage=10&keyword=${searchVal}&confmKey=${process.env.REACT_APP_ZIPCODE_SERVICE_KEY2}&resultType=json
+        `,
       )
       .then((res) => {
-        setDatas(res.data.NewAddressListResponse.newAddressListAreaCdSearchAll);
-      });
+        setDatas(res.data.results.juso);
+      })
+      .catch((err) => new Error(err));
   };
 
   const handleInputData = (e) => {

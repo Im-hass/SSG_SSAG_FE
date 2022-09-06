@@ -14,15 +14,23 @@ function ZipCodeSearchResult({
     let getZipNo = '';
     let getlnmAdres = '';
     let getRnAdres = '';
-    if (datas.length === undefined) {
-      getZipNo = datas.zipNo;
-      getlnmAdres = datas.lnmAdres;
-      getRnAdres = datas.rnAdres;
-    } else {
-      getZipNo = datas[i].zipNo;
-      getlnmAdres = datas[i].lnmAdres;
-      getRnAdres = datas[i].rnAdres;
-    }
+
+    // 공공 데이터 API
+    // if (datas.length === undefined) {
+    //   getZipNo = datas.zipNo;
+    //   getlnmAdres = datas.lnmAdres;
+    //   getRnAdres = datas.rnAdres;
+    // } else {
+    //   getZipNo = datas[i].zipNo;
+    //   getlnmAdres = datas[i].lnmAdres;
+    //   getRnAdres = datas[i].rnAdres;
+    // }
+
+    // 주소기반산업지원서비스 API
+    getZipNo = datas[i].zipNo;
+    getlnmAdres = datas[i].roadAddr;
+    getRnAdres = datas[i].jibunAddr;
+
     setSelectedItem((pre) => ({
       ...pre,
       zipCode: getZipNo,
@@ -58,7 +66,7 @@ function ZipCodeSearchResult({
               <ul className="result_list">
                 {datas.length === undefined ? (
                   <li
-                    key={datas.lnmAdres}
+                    key={datas.roadAddr}
                     role="menuitem"
                     onClick={(e) => handleListSelected(e, 0)}
                     onKeyDown={(e) => handleListSelected(e, 0)}
@@ -70,11 +78,13 @@ function ZipCodeSearchResult({
                     <dl className="srchaddr_info">
                       <dt className="info_tit">도로명</dt>
                       <dd className="info_cont">
-                        <span>{datas.lnmAdres}</span>
+                        {/* <span>{datas.lnmAdres}</span> */}
+                        <span>{datas.roadAddr}</span>
                       </dd>
                       <dt className="info_tit">지번</dt>
                       <dd className="info_cont">
-                        <span>{datas.rnAdres}</span>
+                        {/* <span>{datas.rnAdres}</span> */}
+                        <span>{datas.jibunAddr}</span>
                         <span className="srchaddr_rel" />
                       </dd>
                     </dl>
@@ -82,7 +92,7 @@ function ZipCodeSearchResult({
                 ) : (
                   datas.map((data, i) => (
                     <li
-                      key={data.lnmAdres}
+                      key={data.roadAddr}
                       role="menuitem"
                       onClick={(e) => handleListSelected(e, i)}
                       onKeyDown={(e) => handleListSelected(e, i)}
@@ -94,11 +104,13 @@ function ZipCodeSearchResult({
                       <dl className="srchaddr_info">
                         <dt className="info_tit">도로명</dt>
                         <dd className="info_cont">
-                          <span>{data.lnmAdres}</span>
+                          {/* <span>{data.lnmAdres}</span> */}
+                          <span>{data.roadAddr}</span>
                         </dd>
                         <dt className="info_tit">지번</dt>
                         <dd className="info_cont">
-                          <span>{data.rnAdres}</span>
+                          {/* <span>{data.rnAdres}</span> */}
+                          <span>{data.jibunAddr}</span>
                           <span className="srchaddr_rel" />
                         </dd>
                       </dl>
