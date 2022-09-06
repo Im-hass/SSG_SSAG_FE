@@ -9,7 +9,6 @@ import { CustomAlert } from '../../common';
 
 function DestinationList({
   datas,
-  error,
   isDelete,
   setIsDelete,
   handleSelectedAddr,

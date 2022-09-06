@@ -1,13 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function ProductImgHeaderBtn() {
+  const navigate = useNavigate();
+
   return (
     <div className="mndtl_header">
       <div className="mndtl_lft">
-        <Link to="/category" className="mndtl_btn_back clickable">
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="mndtl_btn_back clickable"
+        >
           <span className="blind">이전 페이지</span>
-        </Link>
+        </button>
       </div>
       <div className="mndtl_cntr">
         <div className="mndtl_unit_tit">
