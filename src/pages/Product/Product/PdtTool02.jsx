@@ -7,7 +7,7 @@ import {
   selectedProductCount,
   productOptionId,
   isHeaderCartCntSubmit,
-} from '../../../recoil/states';
+} from '../../../store/states';
 
 function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
   const navigate = useNavigate();
@@ -18,8 +18,24 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
     isHeaderCartCntSubmit,
   );
 
+  const token = localStorage.getItem('token');
+  const headers = {
+    headers: {
+      Authorization: JSON.parse(token),
+    },
+  };
+
   const handleAddCart = () => {
-    const token = localStorage.getItem('token');
+    if (!selectedProductOptionId) {
+      toast.error('상품 옵션을 먼저 선택해주세요.');
+      return;
+    }
+
+    if (!token) {
+      toast.error('로그인 후 이용 가능한 서비스입니다.');
+      return;
+    }
+
     const data = {
       cartList: [
         {
@@ -27,11 +43,6 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
           count: productCount,
         },
       ],
-    };
-    const headers = {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
     };
 
     axios
@@ -46,6 +57,11 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
   };
 
   const handleClickOrderBtn = () => {
+    if (!selectedProductOptionId) {
+      toast.error('상품 옵션을 먼저 선택해주세요.');
+      return;
+    }
+
     navigate('/order', {
       state: {
         data: productData,

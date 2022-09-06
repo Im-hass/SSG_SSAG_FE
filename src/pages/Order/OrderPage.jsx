@@ -7,7 +7,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useRecoilState } from 'recoil';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { isModalOpenState } from '../../recoil/states';
+import { isModalOpenState } from '../../store/states';
 import {
   PaymentMeansAddCardModal,
   OrderChangeDestinationModal,

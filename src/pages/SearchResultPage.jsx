@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
 import { Header, Footer, FloatingContents } from '../components/common/index';
 import { SearchContent } from '../components/contents/index';
-import { isOpenState } from '../recoil/states';
+import { isOpenState } from '../store/states';
 
 function SearchResultPage() {
   const [isOpen] = useRecoilState(isOpenState);

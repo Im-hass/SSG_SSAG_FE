@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { isOpenState } from '../../../recoil/states';
+import { isOpenState } from '../../../store/states';
 import './HeaderSearchButton.scss';
 
 function HeaderSearchButton() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { selectedOptionInfo } from '../../../recoil/states';
+import { selectedOptionInfo } from '../../../store/states';
 
 function OrderItemInfo(props) {
   const { prevPage, orderItemData } = props;

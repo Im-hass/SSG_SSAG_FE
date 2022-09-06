@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isOpenState } from '../../../recoil/states';
+import { isOpenState } from '../../../store/states';
 import { HeaderBackArrow } from '../index';
 
 import './HeaderLeftSide.scss';

@@ -1,14 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function TitTxtBtn() {
   return (
     <div className="cmtit_txtbtn">
-      <a
-        href="https://m-shinsegaemall.ssg.com/page/happybuy.ssg"
-        className="cmtit_txtbtn_link"
-      >
+      <Link to="/" className="cmtit_txtbtn_link">
         전체보기
-      </a>
+      </Link>
     </div>
   );
 }

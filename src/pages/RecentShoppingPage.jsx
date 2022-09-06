@@ -8,7 +8,7 @@ import {
 } from '../components/contents';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
 import { FloatingContents, Header } from '../components/common';
-import { isOpenState } from '../recoil/states';
+import { isOpenState } from '../store/states';
 
 function RecentShoppingPage() {
   const [recentShoppingData, setRecentShoppingData] = useState(undefined);

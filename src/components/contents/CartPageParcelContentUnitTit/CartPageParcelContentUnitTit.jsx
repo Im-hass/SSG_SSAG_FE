@@ -10,7 +10,6 @@ function CartPageParcelContentUnitTit({ cartItem }) {
     <p className="mnodr_unit_tit">
       <a
         className="cartTracking"
-        // href="javascript:void(0);"
         href="/"
         name="itemNmBtn"
         style={{

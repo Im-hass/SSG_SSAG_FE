@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { useParams } from 'react-router-dom';
 import { SearchInput, Cart, HeaderLeftSide } from '../../ui';
 import SearchBox from '../../ui/SearchBox/SearchBox';
-import { isOpenState, searchValueState } from '../../../recoil/states';
+import { isOpenState, searchValueState } from '../../../store/states';
 
 function Header() {
   const { value } = useParams();

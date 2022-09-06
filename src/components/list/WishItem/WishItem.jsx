@@ -7,14 +7,9 @@ function WishItem({ data, isWishChange, setIsWishChange }) {
     productName,
     productPrice,
     productSale,
-    // productSaleStartDate,
-    // productSaleEndDate,
-    // productImgOriginName,
-    // productImgSaveName,
     productImgUrl,
     wishId,
     productProductId,
-    // productStoreStoreId,
     productStoreName,
   } = data;
   const wishDto = {

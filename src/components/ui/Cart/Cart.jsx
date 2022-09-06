@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { isOpenState, isHeaderCartCntSubmit } from '../../../recoil/states';
+import { isOpenState, isHeaderCartCntSubmit } from '../../../store/states';
 import './Cart.scss';
 
 function Cart() {

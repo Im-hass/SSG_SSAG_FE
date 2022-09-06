@@ -81,33 +81,17 @@ function SearchFilter({ value, urlParams, setUrlParams }) {
                   >
                     <span className="cmft_inp_chk">
                       {/* checked 추가하면 보임 */}
-                      <input
-                        type="checkbox"
-                        id="ui_ship_view"
-                        // value={option1Value}
-                        // ref={option1Ref}
-                      />
+                      <input type="checkbox" id="ui_ship_view" />
                     </span>
                     <button
                       type="button"
                       className="cmft_sort_tit cmft_sel_curent"
-                      // onClick={() => {
-                      //   handleOption(option1Value);
-                      // }}
                     >
                       <span className="cmft_txt ty_emart">백화점상품</span>
                     </button>
                     <ul className="cmft_sel_lst">
                       {/* li에 className="on" 추가 */}
-                      <li
-                        role="menuitem"
-                        // onClick={() => {
-                        //   handleOption('백화점상품');
-                        // }}
-                        // onKeyDown={() => {
-                        //   handleOption('백화점상품');
-                        // }}
-                      >
+                      <li role="menuitem">
                         <Link
                           to={`/search/${value}`}
                           id="sd_store_chk"
@@ -116,15 +100,7 @@ function SearchFilter({ value, urlParams, setUrlParams }) {
                           <span className="cmft_txt">백화점상품</span>
                         </Link>
                       </li>
-                      <li
-                        role="menuitem"
-                        // onClick={() => {
-                        //   handleOption('매장픽업');
-                        // }}
-                        // onKeyDown={() => {
-                        //   handleOption('매장픽업');
-                        // }}
-                      >
+                      <li role="menuitem">
                         <Link
                           to={`/search/${value}`}
                           id="magic_chk"

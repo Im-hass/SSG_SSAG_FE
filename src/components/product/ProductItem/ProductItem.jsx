@@ -7,16 +7,12 @@ import './ProductItem.scss';
 function ProductItem({ data, isWishChange, setIsWishChange }) {
   const {
     productImgOriginName, // 이미지 원본 이름
-    // productImgSaveName, // 이미지 저장 이름
     productImgUrl, // 이미지 경로
     productName, // 상품 이름
     productPrice, // 상품 가격
     productProductId, // 상품 id
     productSale, // 상품 할인율
-    // productSaleEndDate, // 할인 종료일
-    // productSaleStartDate, // 할인 시작일
     productStoreName, // 스토어(브랜드)명
-    // productStoreStoreId, // 스토어 id
   } = data.categoryProductDtoRes;
   return (
     <li

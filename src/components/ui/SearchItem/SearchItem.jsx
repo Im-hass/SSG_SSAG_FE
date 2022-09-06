@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import './SearchItem.scss';
 
-import { isOpenState } from '../../../recoil/states';
+import { isOpenState } from '../../../store/states';
 
 function SearchItem({ data }) {
   const navigate = useNavigate();

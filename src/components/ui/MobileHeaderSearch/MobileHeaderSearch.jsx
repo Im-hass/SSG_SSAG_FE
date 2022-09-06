@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom/index';
-import { isOpenState, searchValueState } from '../../../recoil/states';
+import { isOpenState, searchValueState } from '../../../store/states';
 import { HeaderBackArrow } from '../index';
 import './MobileHeaderSearch.scss';
 

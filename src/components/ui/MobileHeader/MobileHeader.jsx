@@ -8,7 +8,7 @@ import {
   HeaderTitle,
   MobileHeaderSearch,
 } from '../index';
-import { isOpenState } from '../../../recoil/states';
+import { isOpenState } from '../../../store/states';
 import './MobileHeader.scss';
 
 function MobileHeader(props) {

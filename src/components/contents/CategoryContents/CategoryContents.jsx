@@ -7,10 +7,7 @@ import {
   CATEGORY1_IMG_LIST,
   CATEGORY2_IMG_LIST,
 } from '../../../assets/datas/CategoryList';
-import {
-  isCategorySelected,
-  isCategorySelected2,
-} from '../../../recoil/states';
+import { isCategorySelected, isCategorySelected2 } from '../../../store/states';
 import useAxios from '../../../lib/useAxios';
 import { LoadingSpinner } from '../../common/LoadingSpinner';
 

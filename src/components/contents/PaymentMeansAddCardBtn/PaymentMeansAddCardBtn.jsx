@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { isModalOpenState } from '../../../recoil/states';
+import { isModalOpenState } from '../../../store/states';
 import './PaymentMeansAddCardBtn.scss';
 
 function PaymentMeansAddCardBtn() {

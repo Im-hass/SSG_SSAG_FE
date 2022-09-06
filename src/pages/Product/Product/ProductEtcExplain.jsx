@@ -6,12 +6,7 @@ function ProductEctExplain() {
     <>
       <div id="cdtl_mflick_layer">
         <div className="flick_zoom_img" />
-        <a
-          // href='/'
-          href="/"
-          className="cdtl_btn_close"
-          target="_parent"
-        >
+        <a href="/" className="cdtl_btn_close" target="_parent">
           <span className="blind">닫기</span>
         </a>
       </div>

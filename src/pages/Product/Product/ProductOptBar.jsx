@@ -29,7 +29,6 @@ function ProductOptBar() {
       >
         <div className="mndtl_opt_close">
           <a
-            // href="javascript:;"
             href="/"
             className="mndtl_btn_opt_close _js_mndtl_opt_toggle_btn clickable"
             target="_parent"
@@ -56,7 +55,6 @@ function ProductOptBar() {
                           <dd className="mndtl_art_l">
                             <div className="mndtl_amount">
                               <a
-                                // href="javascript:void(0);"
                                 href="/"
                                 className="mndtl_b_minus clickable"
                                 target="_parent"
@@ -67,7 +65,6 @@ function ProductOptBar() {
                                 <span className="opa_tx">1</span>
                               </span>
                               <a
-                                // href="javascript:void(0);"
                                 href="/"
                                 className="mndtl_b_plus clickable"
                                 target="_parent"
@@ -105,12 +102,7 @@ function ProductOptBar() {
 
       <div className="mndtl_opt_calendar _js_mndtl_opt_calendar react-area">
         <div className="mndtl_opt_close">
-          <a
-            // href="#"
-            href="/"
-            className="mndtl_btn_opt_close"
-            target=""
-          >
+          <a href="/" className="mndtl_btn_opt_close" target="">
             <span className="blind">닫기</span>
           </a>
         </div>

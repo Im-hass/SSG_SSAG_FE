@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './PaymentMeansAddCardModal.scss';
 import { useRecoilState } from 'recoil';
-import { isModalOpenState } from '../../../recoil/states';
+import { isModalOpenState } from '../../../store/states';
 
 function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
@@ -132,7 +132,6 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
       <form
         className="codr_modal_wrap codr_modal_focus"
         role="document"
-        // tabIndex="0"
         style={{ userSelect: 'auto' }}
         onSubmit={handleSubmit}
       >

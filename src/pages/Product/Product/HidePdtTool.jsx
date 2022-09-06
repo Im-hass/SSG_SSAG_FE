@@ -6,7 +6,7 @@ import {
   selectedProductCount,
   productOptionId,
   selectedOptionInfo,
-} from '../../../recoil/states';
+} from '../../../store/states';
 import './style/HidePdtTool.scss';
 
 function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {

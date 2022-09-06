@@ -22,7 +22,6 @@ function FtUpBtn() {
   return (
     <div className={y > 300 ? 'floating_top viewCom' : 'floating_top'}>
       <a
-        // href="javascript:window.scrollTo(0,0)"
         href="/"
         className="floating_btn ty_top clickable"
         data-react-tarea="웹공통_N|버튼_영역|위로"

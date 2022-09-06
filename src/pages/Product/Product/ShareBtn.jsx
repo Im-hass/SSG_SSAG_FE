@@ -8,19 +8,12 @@ function ShareBtn() {
         <div className="mcom_ly_cont">
           <ul className="cm_sns">
             <li>
-              <a
-                // href="javascript:void(0)"
-                href="/"
-                className="kakao"
-                title="카카오톡"
-                target="_parent"
-              >
+              <a href="/" className="kakao" title="카카오톡" target="_parent">
                 <span className="blind">카카오톡</span>
               </a>
             </li>
             <li>
               <a
-                // href="javascript:void(0)"
                 href="/"
                 className="facebook"
                 title="페이스북"
@@ -30,35 +23,17 @@ function ShareBtn() {
               </a>
             </li>
             <li>
-              <a
-                // href="javascript:void(0)"
-                href="/"
-                className="twitter"
-                title="트위터"
-                target="_parent"
-              >
+              <a href="/" className="twitter" title="트위터" target="_parent">
                 <span className="blind">트위터</span>
               </a>
             </li>
             <li>
-              <a
-                // href="javascript:void(0)"
-                href="/"
-                className="sms"
-                title="SMS"
-                target="_parent"
-              >
+              <a href="/" className="sms" title="SMS" target="_parent">
                 <span className="blind">SMS 발송</span>
               </a>
             </li>
             <li>
-              <a
-                // href="javascript:void(0)"
-                href="/"
-                className="url"
-                title="URL복사"
-                target="_parent"
-              >
+              <a href="/" className="url" title="URL복사" target="_parent">
                 <span className="blind">URL복사</span>
               </a>
             </li>
@@ -70,12 +45,7 @@ function ShareBtn() {
             <input type="text" />
           </div>
         </div>
-        <a
-          // href="#"
-          href="/"
-          className="modal-close-btn"
-          target=""
-        >
+        <a href="/" className="modal-close-btn" target="">
           <span className="blind">닫기</span>
         </a>
       </div>

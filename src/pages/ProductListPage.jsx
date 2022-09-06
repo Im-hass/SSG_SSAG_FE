@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { Header, Footer, FloatingContents } from '../components/common';
 import { ProductListContent } from '../components/contents';
 import ToolbarList from '../components/toolbar/ToolbarList/ToolbarList';
-import { isOpenState } from '../recoil/states';
+import { isOpenState } from '../store/states';
 
 function ProductListPage() {
   const [isOpen] = useRecoilState(isOpenState);

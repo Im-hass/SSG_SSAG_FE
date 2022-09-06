@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { isOpenState } from '../../../recoil/states';
+import { isOpenState } from '../../../store/states';
 import './HeaderPrevButton.scss';
 
 function HeaderPrevButton() {

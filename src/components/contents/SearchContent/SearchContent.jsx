@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { useInView } from 'react-intersection-observer';
-import { isOpenState, searchValueState } from '../../../recoil/states';
+import { isOpenState, searchValueState } from '../../../store/states';
 import { AdInfo } from '../../ui/AdInfo';
 import { NoSearchValue } from '../NoSearchValue';
 import { FindSearchValue } from '../FindSearchValue';

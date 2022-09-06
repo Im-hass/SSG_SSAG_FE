@@ -7,7 +7,7 @@ import {
 } from '../components/common/index';
 import { CategoryContents } from '../components/contents/CategoryContents/index';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
-import { isOpenState } from '../recoil/states';
+import { isOpenState } from '../store/states';
 
 function CategoryPage() {
   const [isOpen] = useRecoilState(isOpenState);

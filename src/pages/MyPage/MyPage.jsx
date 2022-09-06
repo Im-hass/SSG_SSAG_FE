@@ -12,7 +12,7 @@ import UserSection from './UserSection';
 import UserManageSection from './UserManageSection';
 import './MyPage.scss';
 import LoginPage from '../LoginPage';
-import { isOpenState } from '../../recoil/states';
+import { isOpenState } from '../../store/states';
 
 function MyPage() {
   const ctx = useContext(AuthContext);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import MainCtgy from './MainCtgy.json';
 import './style/MainCategory.scss';
 
@@ -11,11 +12,7 @@ function MainCategory() {
             {MainCtgy &&
               MainCtgy.map((data) => (
                 <li key={data.id}>
-                  <a
-                    href="https://m-shinsegaemall.ssg.com/page/ssgluxury.ssg"
-                    className="clickable"
-                    rel="nofollow"
-                  >
+                  <Link to="/" className="clickable" rel="nofollow">
                     <span
                       className="cmitem_quick_thmb ssg_lazy"
                       style={{
@@ -23,7 +20,7 @@ function MainCategory() {
                       }}
                     />
                     <span className="cmitem_quick_tx" />
-                  </a>
+                  </Link>
                 </li>
               ))}
           </ul>

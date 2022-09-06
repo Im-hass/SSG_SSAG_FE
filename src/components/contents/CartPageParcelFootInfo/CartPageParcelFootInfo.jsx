@@ -65,11 +65,7 @@ function CartPageParcelFootInfo() {
         aria-hidden="true"
         id="_layerDiscountCharge"
       >
-        <div
-          className="mnodr_modal_wrap"
-          role="document"
-          // tabIndex="0"
-        />
+        <div className="mnodr_modal_wrap" role="document" />
       </div>
     </div>
   );

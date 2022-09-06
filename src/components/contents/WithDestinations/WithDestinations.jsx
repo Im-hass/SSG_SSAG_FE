@@ -9,11 +9,7 @@ function WithDestinations() {
           <p className="myodr_nodata_tx">
             등록된 함께장보기 배송지가 없습니다.
           </p>
-          <button
-            type="button"
-            className="myodr_btn myodr_btn_gray2"
-            // onClick="location.href='https://pay.ssg.com/m/cartShare/create.ssg';"
-          >
+          <button type="button" className="myodr_btn myodr_btn_gray2">
             <span>함께장보기 시작하기</span>
           </button>
         </div>
