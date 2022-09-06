@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios/index';
 import './AddAddressMyInfo.scss';
 import toast from 'react-hot-toast';
 import { AddAddressZipCode } from '../index';
+import { MobileHeader } from '../../ui/index';
 
-function AddAddressMyInfo({ state }) {
+function AddAddressMyInfo({ state, title, setClickAddDestinationBtn }) {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -194,9 +195,7 @@ function AddAddressMyInfo({ state }) {
     setData({ ...data, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     checkedValid('addrName', data.addrName);
     checkedValid('recipient', data.recipient);
     checkedValid('phone', data.phone);
@@ -255,7 +254,8 @@ function AddAddressMyInfo({ state }) {
             },
           )
           .then(() => {
-            navigate(-1);
+            if (title === 'order') setClickAddDestinationBtn(false);
+            else navigate(-1);
             toast.success('배송지가 추가되었습니다.');
           });
       }
@@ -300,8 +300,14 @@ function AddAddressMyInfo({ state }) {
     });
   };
 
+  const handleCancelBtn = () => {
+    if (title === 'order') setClickAddDestinationBtn(false);
+    else navigate('/destination');
+  };
+
   return (
-    <>
+    <div className="wrap">
+      <MobileHeader title="배송지 추가" />
       <div id="m_content" style={isOpen ? { display: 'none' } : {}}>
         <div className="m_addrbx order_sectionwrap">
           <div className="delivery_detail">
@@ -311,7 +317,7 @@ function AddAddressMyInfo({ state }) {
             >
               <div className="order_artcont">
                 <div className="order_infoset">
-                  <form onSubmit={handleSubmit}>
+                  <div>
                     <ul className="order_infolist">
                       <li className="oi_th_inp">
                         <span className="oi_th">
@@ -543,19 +549,27 @@ function AddAddressMyInfo({ state }) {
                         </li>
 
                         <li>
-                          <Link to="/destination" className="b_def">
+                          <button
+                            type="button"
+                            className="b_def"
+                            onClick={handleCancelBtn}
+                          >
                             취소
-                          </Link>
+                          </button>
                         </li>
 
                         <li>
-                          <button type="submit" className="b_def5">
+                          <button
+                            type="submit"
+                            className="b_def5"
+                            onClick={handleSubmit}
+                          >
                             {state !== undefined ? '수정완료' : '등록'}
                           </button>
                         </li>
                       </ul>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -571,7 +585,7 @@ function AddAddressMyInfo({ state }) {
           setSelectedItem={setSelectedItem}
         />
       )}
-    </>
+    </div>
   );
 }
 

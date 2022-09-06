@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 import { MobileHeader } from '../../components/ui/index';
+import { AddAddressMyInfo } from '../../components/contents/index';
 
 function OrderChangeDestinationPage(props) {
   const { setClickBtn, setDestinationData } = props;
   const [destinationArr, setDestinationArr] = useState([]);
+  const [clickAddDestinationBtn, setClickAddDestinationBtn] = useState(false);
+  const title = 'order';
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -20,7 +23,7 @@ function OrderChangeDestinationPage(props) {
         setDestinationArr(res.data.result);
       })
       .catch((err) => new Error(err));
-  }, []);
+  }, [destinationArr]);
 
   const handleInputClick = (e) => {
     const clickAddr = destinationArr.find(
@@ -29,18 +32,28 @@ function OrderChangeDestinationPage(props) {
     setDestinationData(clickAddr);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleOpenAddDestinationModal = () => {
+    setClickAddDestinationBtn((prev) => !prev);
+  };
+
+  const handleSubmit = () => {
     setClickBtn({
       destination: false,
       recipient: false,
       message: false,
     });
+    toast.success('배송지가 변경되었습니다.');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="wrap">
+    <div className="wrap">
       <MobileHeader title="배송지 선택" />
+      {clickAddDestinationBtn && (
+        <AddAddressMyInfo
+          title={title}
+          setClickAddDestinationBtn={setClickAddDestinationBtn}
+        />
+      )}
       <div className="mnodr_sec_heading">
         <h3 className="mnodr_tx_heading">어디로 보내드릴까요?</h3>
       </div>
@@ -49,13 +62,14 @@ function OrderChangeDestinationPage(props) {
         style={{ paddingBottom: '90px' }}
       >
         <div className="mnodr_form_head">
-          <Link
-            to="/addDestination"
+          <button
+            type="button"
             className="mbrShpplocAddButton mnodr_tx_wrap2"
+            onClick={handleOpenAddDestinationModal}
           >
             <i className="mnodr_ic ic_plus_css" />
             <span className="mnodr_tx">신규배송지등록</span>
-          </Link>
+          </button>
         </div>
         <div className="mnodr_form_cont ty_space">
           <ul className="mnodr_rdotablist">
@@ -97,13 +111,19 @@ function OrderChangeDestinationPage(props) {
         </div>
       </div>
       <button
-        type="submit"
+        type="button"
         className="mnodr_btn ty_point ty_m payTracking"
         style={{ position: 'fixed', bottom: 0, zIndex: '1' }}
+        onClick={handleSubmit}
       >
         변경하기
       </button>
-    </form>
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+      />
+    </div>
   );
 }
 

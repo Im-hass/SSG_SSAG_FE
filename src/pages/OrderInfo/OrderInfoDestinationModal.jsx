@@ -27,9 +27,11 @@ function OrderInfoDestinationModal(props) {
           <div className="mnodr_contit2">
             <h3 className="codr_contit2_tx">받으시는 분</h3>
           </div>
-          <p className="mnodr_contxt_large">최민정</p>
+          <p className="mnodr_contxt_large">{destinationData.recipient}</p>
           <div className="mnodr_contit2">
-            <h3 className="mnodr_contit2_tx">받으시는 주소</h3>
+            <h3 className="mnodr_contit2_tx" style={{ fontWeight: 'bold' }}>
+              받으시는 주소
+            </h3>
           </div>
           <p className="mnodr_contxt mnodr_contxt2">
             [{destinationData.addrName}] [{destinationData.zipCode}]{' '}
@@ -37,13 +39,17 @@ function OrderInfoDestinationModal(props) {
           </p>
 
           <div className="mnodr_contit2">
-            <h3 className="mnodr_contit2_tx">배송메시지</h3>
+            <h3 className="mnodr_contit2_tx" style={{ fontWeight: 'bold' }}>
+              배송메시지
+            </h3>
           </div>
           <p className="mnodr_contxt mnodr_contxt2">
             {destinationData.shippingMsg}
           </p>
           <div className="mnodr_contit2">
-            <h3 className="mnodr_contit2_tx">주문자정보</h3>
+            <h3 className="mnodr_contit2_tx" style={{ fontWeight: 'bold' }}>
+              주문자정보
+            </h3>
           </div>
           <p className="mnodr_contxt mnodr_contxt2">
             {destinationData.user.name} / {destinationData.user.phone}

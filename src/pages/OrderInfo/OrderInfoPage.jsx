@@ -67,6 +67,8 @@ function OrderInfoPage() {
     }
   };
 
+  console.log(orderData);
+
   const handleCancelOrder = (e) => {
     const cancelOrderItem = e.target.name;
 
@@ -251,7 +253,7 @@ function OrderInfoPage() {
                       </ul>
                     )}
                   </div>
-                  <div className="codr_unit" key={`${order.storeName}-${i}`}>
+                  <div className="codr_unit">
                     <div className="codr_unit_area " name="divItemUnit">
                       <div className="codr_unit_thmb">
                         <span className="codr_unit_img" aria-hidden="true">

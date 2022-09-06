@@ -41,10 +41,6 @@ function DestinationList({
       reMethod: 'get',
       reUrl: '/users/shipping-addr',
     });
-
-    if (error) {
-      toast.error('배송지 삭제에 실패하였습니다');
-    }
   };
 
   const handleDelete = (id) => {

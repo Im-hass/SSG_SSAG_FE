@@ -12,8 +12,7 @@ function AddAddressZipCode(props) {
   const [datas, setDatas] = useState();
   const [isSelected, setIsSelected] = useState(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     setHasDatas(true);
     setIsSelected(false);
     axios
@@ -23,6 +22,11 @@ function AddAddressZipCode(props) {
       .then((res) => {
         setDatas(res.data.NewAddressListResponse.newAddressListAreaCdSearchAll);
       });
+  };
+
+  const handleKeyPress = (e) => {
+    console.log(e.key);
+    if (e.key === 'Enter') handleSubmit();
   };
 
   const handleInputData = (e) => {
@@ -44,7 +48,7 @@ function AddAddressZipCode(props) {
 
       <div className="search_address">
         <div className="srchaddr_form">
-          <form onSubmit={handleSubmit}>
+          <div>
             <fieldset>
               <legend className="blind">검색어 입력</legend>
               <div className="srchaddr_search">
@@ -56,16 +60,21 @@ function AddAddressZipCode(props) {
                   autoComplete="off"
                   placeholder="도로명 또는 지번 주소를 입력해주세요."
                   onChange={handleInputData}
+                  onKeyPress={handleKeyPress}
                 />
                 <button type="button" className="search_clear">
                   <span className="blind">검색어 지우기</span>
                 </button>
-                <button type="submit" className="search_btn">
+                <button
+                  type="button"
+                  className="search_btn"
+                  onClick={handleSubmit}
+                >
                   <span className="blind">검색</span>
                 </button>
               </div>
             </fieldset>
-          </form>
+          </div>
         </div>
 
         {hasDatas ? (
