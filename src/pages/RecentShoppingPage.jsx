@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
 import {
   RecentShoppingHeader,
   RecentShoppingProductList,
   NoDataMessage,
 } from '../components/contents';
 import { ToolbarList } from '../components/toolbar/ToolbarList';
-import { FloatingContents } from '../components/common';
+import { FloatingContents, Header } from '../components/common';
+import { isOpenState } from '../recoil/states';
 
 function RecentShoppingPage() {
   const [recentShoppingData, setRecentShoppingData] = useState(undefined);
   const [isRecentItemDelete, setIsRecentItemDelete] = useState(false);
   const [isNoData, setisNoData] = useState(false);
   const [isWishChange, setIsWishChange] = useState(false);
+  const [isOpen] = useRecoilState(isOpenState);
 
   const token = localStorage.getItem('token');
   const headers = {
@@ -38,6 +41,10 @@ function RecentShoppingPage() {
       })
       .catch((err) => new Error(err));
   }, [isRecentItemDelete, isWishChange]);
+
+  if (isOpen) {
+    return <Header />;
+  }
 
   return (
     <div id="m_wrap" className="mcom_wrap ssg">
