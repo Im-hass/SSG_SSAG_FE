@@ -40,7 +40,6 @@ function AddAddressZipCode(props) {
   };
 
   const handleKeyPress = (e) => {
-    console.log(e.key);
     if (e.key === 'Enter') handleSubmit();
   };
 

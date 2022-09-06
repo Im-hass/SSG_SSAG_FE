@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MobileHeader } from '../../components/ui/index';
+import { MobileHeader } from '../../ui/index';
 
 function OrderChangeShippingMessagePage(props) {
   const { setClickBtn, setShippingMessageData } = props;

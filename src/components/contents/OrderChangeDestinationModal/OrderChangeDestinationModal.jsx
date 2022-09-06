@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import { MobileHeader } from '../../components/ui/index';
-import { AddAddressMyInfo } from '../../components/contents/index';
+import { MobileHeader } from '../../ui/index';
+import { AddAddressMyInfo } from '../index';
 
-function OrderChangeDestinationPage(props) {
+function OrderChangeDestinationModal(props) {
   const { setClickBtn, setDestinationData } = props;
   const [destinationArr, setDestinationArr] = useState([]);
   const [clickAddDestinationBtn, setClickAddDestinationBtn] = useState(false);
@@ -127,4 +127,4 @@ function OrderChangeDestinationPage(props) {
   );
 }
 
-export default OrderChangeDestinationPage;
+export default OrderChangeDestinationModal;

@@ -139,12 +139,7 @@ function AddAddressMyInfo({ state, title, setClickAddDestinationBtn }) {
       });
 
       if (name === 'homePhone') {
-        if (
-          value.length === 0 ||
-          (value.length > 0 &&
-            value.length > 7 &&
-            code.homePhoneCode !== '선택')
-        ) {
+        if (value.length > 7) {
           setValid({
             ...valid,
             [name]: true,
@@ -266,8 +261,11 @@ function AddAddressMyInfo({ state, title, setClickAddDestinationBtn }) {
 
   const onReset = () => {
     setIsReset(!isReset);
-    handleCodeChange('phoneCode', '010');
-    handleCodeChange('homePhoneCode', '선택');
+    setCode({
+      ...code,
+      phoneCode: '010',
+      homePhoneCode: '선택',
+    });
     setData({
       ...data,
       addrName: '',

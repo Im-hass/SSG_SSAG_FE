@@ -9,8 +9,8 @@ import {
   RequireLabel,
   WithdrawTit,
 } from '../../components/ui/index';
+import { SignUpAgreement } from '../../components/contents/index';
 import { Footer } from '../../components/common/index';
-import SignUpTermTit from '../../components/ui/SignUpTermTit/SignUpTermTit';
 
 function SignUpFormPage() {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ function SignUpFormPage() {
         .then((res) => {
           if (res.data.isSuccess === true) {
             setValid({ ...valid, confirmId: true });
-            setError({ ...error, loginId: res.data.result });
+            toast.success(res.data.result);
           } else {
             setValid({ ...valid, confirmId: false });
             setError({ ...error, loginId: res.data.message });
@@ -203,7 +203,7 @@ function SignUpFormPage() {
                         title="아이디"
                         value={inputData.loginId}
                         maxLength={20}
-                        placeholder="대소문자 또는 숫자로 6~20자리"
+                        placeholder="6~20자리 (대소문자, 숫자 사용가능)"
                         onChange={handleInputData}
                       />
                     </span>
@@ -217,7 +217,7 @@ function SignUpFormPage() {
                   </div>
                   <span className="cmem_noti">
                     <em className="usable_value">
-                      <p>{error.loginId}</p>
+                      <p style={{ color: '#f12e24' }}>{error.loginId}</p>
                     </em>
                   </span>
                 </dd>
@@ -236,7 +236,7 @@ function SignUpFormPage() {
                       title="패스워드"
                       value={inputData.loginPwd}
                       maxLength={20}
-                      placeholder="대소문자 또는 숫자로 6~20자리"
+                      placeholder="6~20자리 (대소문자, 숫자 사용가능)"
                       onChange={handleInputData}
                     />
                   </div>
@@ -253,7 +253,7 @@ function SignUpFormPage() {
                   </div>
                   <span className="cmem_noti">
                     <em className="usable_value">
-                      <p>{error.loginPwd}</p>
+                      <p style={{ color: '#f12e24' }}>{error.loginPwd}</p>
                     </em>
                   </span>
                 </dd>
@@ -319,7 +319,7 @@ function SignUpFormPage() {
                   </div>
                   <span className="cmem_noti">
                     <em className="usable_value">
-                      <p>{error.email}</p>
+                      <p style={{ color: '#f12e24' }}>{error.email}</p>
                     </em>
                   </span>
                 </dd>
@@ -329,71 +329,7 @@ function SignUpFormPage() {
 
           <WithdrawTit title="광고 정보 수신 동의" />
           <div className="cmem_cont">
-            <div className="cmem_row">
-              <div className="cmem_terms">
-                <SignUpTermTit title="신세계포인트" />
-                <div className="cmem_term_box">
-                  <span className="cmem_inp_chk">
-                    <input
-                      type="checkbox"
-                      id="marketing1"
-                      name="marketing1"
-                      onChange={handleCheckOption}
-                    />
-                    <label htmlFor="marketing1">
-                      (선택) 서비스·이벤트정보 제공을 위한 개인정보 수집 및 이용
-                      동의
-                    </label>
-                  </span>
-                  <button type="button" className="cmem_btn cmem_btn_gray3">
-                    내용보기
-                  </button>
-                </div>
-                <div className="cmem_term_box">
-                  <span className="cmem_inp_chk">
-                    <input
-                      type="checkbox"
-                      id="marketing2"
-                      name="marketing2"
-                      onChange={handleCheckOption}
-                    />
-                    <label htmlFor="marketing2">
-                      (선택) 선택 정보 이마트/신세계백화점 공동 개인정보 수집 및
-                      이용 동의
-                    </label>
-                  </span>
-                  <button type="button" className="cmem_btn cmem_btn_gray3">
-                    내용보기
-                  </button>
-                </div>
-                <SignUpTermTit title="SSG.COM" />
-                <div className="cmem_term_box">
-                  <span className="cmem_inp_chk">
-                    <input
-                      type="checkbox"
-                      id="marketing3"
-                      name="marketing3"
-                      onChange={handleCheckOption}
-                    />
-                    <label htmlFor="marketing3">
-                      (선택) 서비스·이벤트정보 제공을 위한 개인정보 수집 및 이용
-                      동의
-                    </label>
-                  </span>
-                  <button type="button" className="cmem_btn cmem_btn_gray3">
-                    내용보기
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="cmem_row">
-              <p className="cmem_noti">
-                <strong style={{ fontWeight: 'bold' }}>
-                  선택 항목에 동의하지 않더라도 SSG,COM회원가입 및 기본 서비스를
-                  이용하실 수 있습니다.
-                </strong>
-              </p>
-            </div>
+            <SignUpAgreement handleCheckOption={handleCheckOption} />
             <div className="cmem_btn_area">
               <button type="submit" className="cmem_btn cmem_btn_orange2">
                 가입하기

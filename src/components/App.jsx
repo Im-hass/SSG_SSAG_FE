@@ -23,16 +23,14 @@ import { MyPage } from '../pages/MyPage';
 import Product from '../pages/Product/Product';
 import {
   SignUpPage,
-  SignUpAuthPage,
   SignUpFormPage,
   SignUpAgreementPage,
   SignUpDonePage,
 } from '../pages/SignUp';
 import { ScrollToTop } from './common/ScrollToTop';
-import { WithdrawMember, MyDestinations } from './contents';
+import { WithdrawMember, MyDestinations, CompleteOrder } from './contents';
 import WithDestinations from './contents/WithDestinations/WithDestinations';
 import PrivateRoute from '../lib/PrivateRoute';
-import { CompleteOrder } from '../pages/Order/index';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -70,7 +68,6 @@ function App() {
           <>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/signupAuth" element={<SignUpAuthPage />} />
             <Route path="/signupAgreement" element={<SignUpAgreementPage />} />
             <Route path="/signupForm" element={<SignUpFormPage />} />
             <Route path="/signupDone" element={<SignUpDonePage />} />

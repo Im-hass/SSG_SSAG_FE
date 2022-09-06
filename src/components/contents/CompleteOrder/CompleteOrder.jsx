@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import MobileHeader from '../../components/ui/MobileHeader/MobileHeader';
+import MobileHeader from '../../ui/MobileHeader/MobileHeader';
 
 function CompleteOrderAccount() {
   const location = useLocation();

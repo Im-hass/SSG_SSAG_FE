@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { MobileHeader } from '../../components/ui/index';
+import { MobileHeader } from '../../ui/index';
 
 function OrderChangeRecipientPage(props) {
   const { setClickBtn, recipientData, setRecipientData } = props;

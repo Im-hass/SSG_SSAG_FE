@@ -4,7 +4,7 @@ import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import toast, { Toaster } from 'react-hot-toast';
 import { MobileHeader } from '../../components/ui/index';
-import OrderInfoDestinationModal from './OrderInfoDestinationModal';
+import { OrderInfoDestinationModal } from '../../components/contents/index';
 
 import { CustomAlert } from '../../components/common/index';
 
@@ -67,8 +67,6 @@ function OrderInfoPage() {
     }
   };
 
-  console.log(orderData);
-
   const handleCancelOrder = (e) => {
     const cancelOrderItem = e.target.name;
 
@@ -111,8 +109,6 @@ function OrderInfoPage() {
             name="divOrordUnit"
             key={data.createAt}
           >
-            <input type="hidden" name="orordNo" value="20220703BB2F86" />
-            <input type="hidden" name="mbrId" value="0003832406" />
             <div className="codr_odrdeliv_headtit">
               <span className="codr_odrdeliv_odrdate">
                 {data.createAt.slice(0, 10).replaceAll('-', '.')}
