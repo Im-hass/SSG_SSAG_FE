@@ -1,9 +1,9 @@
 # SSG.COM 클론코딩
 
 ## 📍 프로젝트 소개
-> 본 프로젝트는 스파로스 아카데미 1기에서 진행한 SSG.COM 신세계몰 클론 코딩 프로젝트입니다.
+> 본 프로젝트는 스파로스 아카데미 1기에서 진행한 **SSG.COM 신세계몰 클론 코딩 프로젝트**입니다.
 
-- 쓱싹쓱싹(5조)의 프론트엔드 저장소입니다.
+- **쓱싹쓱싹(5조)의 프론트엔드 저장소**입니다.
 
 ### Project Repositories
 - [프론트엔드](https://github.com/Im-hass/SSG_SSAG_FE)
@@ -15,6 +15,7 @@
 ```bash
 > npm (v8.15.0)
 > node (v16.16.0)
+> react (v18.2.0)
 ```
 ### 설치 및 실행
 ```bash
@@ -27,6 +28,7 @@ $ npm run start
 ### Frontend
 <img src="https://img.shields.io/badge/Vscode-23a9f2?style=flat-square&logo=visual studio code&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/React-17b6e7?style=flat-square&logo=React&logoColor=white"/></a>&nbsp;
+<img src="https://img.shields.io/badge/recoil-17b6e7?style=flat-square&logo=recoil&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/SASS-CC6699?style=flat-square&logo=SASS&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/></a>&nbsp;
