@@ -1,21 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import './SearchItem.scss';
+
 import { isOpenState } from '../../../recoil/states';
 
 function SearchItem({ data }) {
-  const [setIsOpen] = useRecoilState(isOpenState);
+  const navigate = useNavigate();
+  const [, setIsOpen] = useRecoilState(isOpenState);
   const { word } = data;
 
   const handleSearchClose = () => {
     setIsOpen(false);
+    navigate(`/search/${word}`);
   };
 
   return (
     <li key={word}>
-      <Link to={`/search/${word}`} className="box" onClick={handleSearchClose}>
+      <button
+        type="button"
+        className="box search-word"
+        onClick={handleSearchClose}
+      >
         {word}
-      </Link>
+      </button>
       <button type="button" className="cgsearch_keyword_del">
         <span className="blind">삭제</span>
       </button>

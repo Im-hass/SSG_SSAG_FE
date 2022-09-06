@@ -32,7 +32,7 @@ function SearchContent() {
 
   useEffect(() => {
     if (!isOpen) {
-      if (response !== null) {
+      if (response !== null && response !== undefined) {
         if (!inView) {
           setDatas(response.productDtoRes);
           setHasNextPage(response.next);
