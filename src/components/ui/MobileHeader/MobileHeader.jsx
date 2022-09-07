@@ -33,22 +33,24 @@ function MobileHeader(props) {
             title !== '결제완료' && <HeaderPrevButton />}
           {!isOpen && <HeaderTitle title={title} />}
 
-          {token === null ? (
-            ''
-          ) : (
-            <div className="mcom_tit_rgt">
-              {!isOpen && title === '장바구니' && <HeaderSearchButton />}
-              {!isOpen && title === 'MY SSG' && <Cart />}
-              {!isOpen &&
-                title !== '배송지 관리' &&
-                title !== '결제하기' &&
-                title !== '배송지 선택' &&
-                title !== '주문자정보 변경' &&
-                title !== '수령위치 선택' &&
-                title !== '배송지 추가' &&
-                title !== '결제완료' && <HeaderHomeButton />}
-            </div>
-          )}
+          <div className="mcom_tit_rgt">
+            {token === null ? (
+              <HeaderHomeButton />
+            ) : (
+              <>
+                {!isOpen && title === '장바구니' && <HeaderSearchButton />}
+                {!isOpen && title === 'MY SSG' && <Cart />}
+                {!isOpen &&
+                  title !== '배송지 관리' &&
+                  title !== '결제하기' &&
+                  title !== '배송지 선택' &&
+                  title !== '주문자정보 변경' &&
+                  title !== '수령위치 선택' &&
+                  title !== '배송지 추가' &&
+                  title !== '결제완료' && <HeaderHomeButton />}
+              </>
+            )}
+          </div>
         </div>
       )}
       {isOpen && <MobileHeaderSearch />}

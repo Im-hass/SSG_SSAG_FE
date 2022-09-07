@@ -71,7 +71,7 @@ function ProductListContent() {
 
   useEffect(() => {
     handleProductList(lgId, mdId, smId);
-  }, [isWishChange]);
+  }, [isWishChange, smId]);
 
   return (
     <>

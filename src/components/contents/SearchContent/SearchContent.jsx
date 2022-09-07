@@ -43,17 +43,19 @@ function SearchContent() {
   }, [response]);
 
   useEffect(() => {
-    const strUrlParams = `?size=10&page=0&sort=product.${urlParams.base}`;
-    fetchData({
-      reMethod: 'get',
-      reUrl: `/products/search/${value}${strUrlParams}`,
-      reUserOrNot: true,
-      afterThen: (res) => {
-        setDatas(res.productDtoRes);
-        setHasNextPage(res.next);
-      },
-    });
-  }, [value, isOpen, searchValue]);
+    if (datas !== null) {
+      const strUrlParams = `?size=10&page=0&sort=product.${urlParams.base}`;
+      fetchData({
+        reMethod: 'get',
+        reUrl: `/products/search/${value}${strUrlParams}`,
+        reUserOrNot: true,
+        afterThen: (res) => {
+          setDatas(res.productDtoRes);
+          setHasNextPage(res.next);
+        },
+      });
+    }
+  }, [value, isOpen]);
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -68,7 +70,6 @@ function SearchContent() {
           setUrlParams({
             ...urlParams,
             page: res.pageNumber,
-            size: res.productDtoRes.length,
           });
           setDatas((prevDatas) => {
             const arr = prevDatas;
@@ -148,7 +149,7 @@ function SearchContent() {
             {/* 검색 결과 배너 */}
             {/* 검색 결과가 있을 때 */}
             {/* 검색 결과가 없을 때 */}
-            {datas ? (
+            {datas && datas.length !== 0 ? (
               <FindSearchValue
                 datas={datas}
                 value={value}

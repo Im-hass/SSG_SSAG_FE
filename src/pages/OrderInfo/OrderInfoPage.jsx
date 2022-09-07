@@ -120,7 +120,7 @@ function OrderInfoPage() {
                 <span className="ssg_price">
                   {data.orders
                     .map((datum) => datum.totalPayment)
-                    .reduce((a, b) => a + b)
+                    .reduce((a, b) => a + b, 0)
                     .toLocaleString()}
                 </span>
                 <span className="ssg_tx">원</span>
