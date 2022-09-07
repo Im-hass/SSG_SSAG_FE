@@ -37,6 +37,7 @@ function OrderPage() {
   const [userPaymentData, setUserPaymentData] = useState([]);
   const [choicePayment, setChoicePayment] = useState('');
   const [isFetching, setIsFetching] = useState(false);
+  const [registDestination, setRegistDestination] = useState(false);
   const [clickPaymentBtn, setClickPaymentBtn] = useState(false);
 
   const totalProductPrice =
@@ -58,7 +59,7 @@ function OrderPage() {
   const sendNextPageData = {
     name: recipientData.name,
     phone: recipientData.phone,
-    zipCode: destinationData.zipCode,
+    zipCode: !registDestination && destinationData.zipCode,
     streetAddr: destinationData.streetAddr,
     totalPrice: totalPrice + deliveryFee, // 조건문
   };
@@ -77,6 +78,10 @@ function OrderPage() {
     if (userPaymentData.refundCheck === 'SSG MONEY로 환불')
       setRefundTypeData(1);
   }, [userPaymentData.refundCheck]);
+
+  const handleDefaultDestination = () => {
+    setClickBtn({ ...clickBtn, destination: true });
+  };
 
   useEffect(() => {
     const isTrue = 'delivery' in location.state;
@@ -97,7 +102,24 @@ function OrderPage() {
         }),
       ])
       .then((res) => {
-        setDestinationData(res[0].data.result);
+        if (res[0].data.result !== undefined) {
+          setDestinationData(res[0].data.result);
+          setRegistDestination(false);
+        } else {
+          setRegistDestination(true);
+          confirmAlert({
+            // eslint-disable-next-line react/no-unstable-nested-components
+            customUI: ({ onClose }) => (
+              <CustomAlert
+                title="등록된 배송지가 없음"
+                desc="배송지를 등록하시겠습니까?"
+                btnTitle="등록"
+                onAction={handleDefaultDestination}
+                onClose={onClose}
+              />
+            ),
+          });
+        }
         setRecipientData(res[1].data.result);
         setIsFetching(true);
       });
@@ -252,6 +274,7 @@ function OrderPage() {
         <OrderChangeDestinationModal
           setClickBtn={setClickBtn}
           setDestinationData={setDestinationData}
+          setRegistDestination={setRegistDestination}
         />
       )}
       {clickBtn.recipient && (
@@ -277,6 +300,7 @@ function OrderPage() {
           <OrderDestinationInfo
             destinationData={destinationData}
             handleClickBtn={handleClickBtn}
+            registDestination={registDestination}
           />
         )}
         <article className="mnodr_article" id="discountBenefitArticle">

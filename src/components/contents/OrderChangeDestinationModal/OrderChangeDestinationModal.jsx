@@ -5,7 +5,7 @@ import { MobileHeader } from '../../ui/index';
 import { AddAddressMyInfo } from '../index';
 
 function OrderChangeDestinationModal(props) {
-  const { setClickBtn, setDestinationData } = props;
+  const { setClickBtn, setDestinationData, setRegistDestination } = props;
   const [destinationArr, setDestinationArr] = useState([]);
   const [clickAddDestinationBtn, setClickAddDestinationBtn] = useState(false);
   const title = 'order';
@@ -30,6 +30,7 @@ function OrderChangeDestinationModal(props) {
       (addr) => addr.addrName === e.target.id,
     );
     setDestinationData(clickAddr);
+    setRegistDestination(false);
   };
 
   const handleOpenAddDestinationModal = () => {
