@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom/index';
 import { MobileHeader } from '../../components/ui';
 import { OrderInfoDestinationModal } from '../../components/contents';
 import { CustomAlert } from '../../components/common';
@@ -265,7 +266,7 @@ function OrderInfoPage() {
                           className="codr_unit_tit"
                           style={{ marginBottom: '2px' }}
                         >
-                          <a href="/" target="_blank">
+                          <Link to={`/product/${order.productId}`}>
                             <strong
                               className="codr_unit_brd"
                               style={{ fontWeight: 'bold' }}
@@ -275,7 +276,7 @@ function OrderInfoPage() {
                             <span className="codr_unit_name">
                               {order.productName}
                             </span>
-                          </a>
+                          </Link>
                         </p>
                         <div
                           style={{
