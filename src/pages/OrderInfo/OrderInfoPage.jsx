@@ -3,10 +3,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import toast, { Toaster } from 'react-hot-toast';
-import { MobileHeader } from '../../components/ui/index';
-import { OrderInfoDestinationModal } from '../../components/contents/index';
+import { MobileHeader } from '../../components/ui';
+import { OrderInfoDestinationModal } from '../../components/contents';
+import { CustomAlert } from '../../components/common';
 
-import { CustomAlert } from '../../components/common/index';
+function orderSort(a, b) {
+  if (a.orderListId > b.orderListId) {
+    return -1;
+  }
+  return 0;
+}
 
 function OrderInfoPage() {
   const [orderData, setOrderData] = useState([]);
@@ -15,13 +21,6 @@ function OrderInfoPage() {
   const [isFetching, setIsFetching] = useState(false);
   const [clickDestinationBtn, setClickDestinationBtn] = useState(false);
   const token = localStorage.getItem('token');
-
-  function orderSort(a, b) {
-    if (a.orderListId > b.orderListId) {
-      return -1;
-    }
-    return 0;
-  }
 
   useEffect(() => {
     axios
@@ -186,7 +185,9 @@ function OrderInfoPage() {
                               order.shippingState === 3 &&
                               '배송중'}
                             {order.orderState === 1 && '주문취소완료'}
-                            {order.orderState === 4 && '배송완료'}
+                            {order.orderState === 0 &&
+                              order.shippingState === 4 &&
+                              '배송완료'}
                           </em>
                           <div style={{ fontSize: '13px' }}>
                             {order.orderState === 0 &&
@@ -203,7 +204,9 @@ function OrderInfoPage() {
                               '주문하신 물품이 현재 배송중입니다.'}
                             {order.orderState === 1 &&
                               '주문취소가 완료되었습니다.'}
-                            {order.orderState === 4 && '배송이 완료되었습니다.'}
+                            {order.orderState === 0 &&
+                              order.shippingState === 4 &&
+                              '배송이 완료되었습니다.'}
                           </div>
                         </div>
                       </div>

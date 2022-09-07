@@ -1,6 +1,7 @@
 import React from 'react';
 import './CartPageParcelToolBar.scss';
 import { useNavigate, Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 function CartPageParcelToolBar({ cartData }) {
   const netPrice = cartData.totalAmount;
@@ -19,6 +20,10 @@ function CartPageParcelToolBar({ cartData }) {
 
   const navigate = useNavigate();
   const handlePassData = () => {
+    if (!cartData.storeList[0]) {
+      toast.error('장바구니에 상품이 없습니다.');
+      return;
+    }
     navigate('/order', { state: passedData });
   };
 

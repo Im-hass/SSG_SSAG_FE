@@ -72,7 +72,7 @@ function LoginPage() {
           else {
             if (checkedSaveId) localStorage.setItem('id', inputData.loginId);
             authCtx.login(JSON.stringify(res.data.result));
-            navigate(-1);
+            navigate('/');
             toast.success('환영합니다!');
           }
         });

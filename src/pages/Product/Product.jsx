@@ -28,6 +28,7 @@ import ProductEtc from './Product/ProductEtc';
 import ProductBanners from './Product/ProductBanners';
 import ProductStoreInfo from './Product/ProductStoreInfo';
 import ProductDetailCategory from './Product/ProductDetailCategory';
+import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 
 function Product() {
   const [productData, setProductData] = useState(null);
@@ -71,8 +72,8 @@ function Product() {
     fetchProductDetailData();
   }, []);
 
-  if (isLoading) return <div>로딩 중</div>;
-  if (!productData) return <div>데이터 없음</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (!productData) return <LoadingSpinner />;
 
   return (
     <>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './CartPageLogin.scss';
+import LoadingSpinner from '../../common/LoadingSpinner/LoadingSpinner';
 
 function CartPageLogin() {
   const [defaultDestination, setDefaultDestination] = useState(null);
@@ -29,8 +30,8 @@ function CartPageLogin() {
     fetchData();
   }, []);
 
-  if (isLoading) return <div>로딩 중</div>;
-  if (!defaultDestination) return <div>데이터 없음</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (!defaultDestination) return <LoadingSpinner />;
 
   return (
     <>

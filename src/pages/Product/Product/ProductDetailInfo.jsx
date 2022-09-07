@@ -44,12 +44,8 @@ function ProductDetailInfo({ productDetailData }) {
         <div className="mndtl_detail_area ty_detail">
           <div className="mndtl_tmpl_detail">
             <div className="mndtl_tmpl_html">
-              <p align="center" style={{ textAlign: 'center' }} />
-              <div
-                align="center"
-                className="img_wrapper"
-                style={{ textAlign: 'center' }}
-              >
+              <p style={{ textAlign: 'center' }} />
+              <div className="img_wrapper" style={{ textAlign: 'center' }}>
                 {productDetailData &&
                   productDetailData.map((detailData) => (
                     <img
@@ -60,10 +56,8 @@ function ProductDetailInfo({ productDetailData }) {
                   ))}
                 <br />
               </div>
-              <p align="center" style={{ textAlign: 'center' }}>
-                &nbsp;
-              </p>
-              <p align="center" style={{ textAlign: 'center' }} />
+              <p style={{ textAlign: 'center' }}>&nbsp;</p>
+              <p style={{ textAlign: 'center' }} />
               <p />
             </div>
 

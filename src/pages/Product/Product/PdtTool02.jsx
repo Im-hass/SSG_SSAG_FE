@@ -97,7 +97,6 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
             type="button"
             className="mndtl_btn type01 clickable"
             target="_parent"
-            state={productData}
             onClick={handleClickOrderBtn}
           >
             <span className="btn_tx ssgpay">

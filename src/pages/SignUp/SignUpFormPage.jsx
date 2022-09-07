@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import { confirmAlert } from 'react-confirm-alert';
+import { CustomAlert, Footer } from '../../components/common';
 
 import {
   MobileHeader,
@@ -10,7 +12,6 @@ import {
   WithdrawTit,
 } from '../../components/ui/index';
 import { SignUpAgreement } from '../../components/contents/index';
-import { Footer } from '../../components/common/index';
 
 function SignUpFormPage() {
   const navigate = useNavigate();
@@ -156,9 +157,7 @@ function SignUpFormPage() {
     }
   };
 
-  const handleSubmitSignUpForm = (e) => {
-    e.preventDefault();
-
+  const handleSendData = () => {
     if (Object.values(valid).every((v) => v === true) === true) {
       axios
         .post('http://13.209.26.150:9000/comm-users/signup', {
@@ -174,12 +173,28 @@ function SignUpFormPage() {
         .then((res) => {
           if (res.data.isSuccess === true)
             navigate('/signupDone', { state: inputData.name });
+          else toast.error(res.data.message);
         })
         .catch((err) => new Error(err));
     } else if (!valid.confirmId) toast.error('아이디 중복검사를 진행해주세요.');
     else {
       toast.error('유효하지 않은 값이 있습니다.');
     }
+  };
+  const handleSubmitSignUpForm = (e) => {
+    e.preventDefault();
+    confirmAlert({
+      // eslint-disable-next-line react/no-unstable-nested-components
+      customUI: ({ onClose }) => (
+        <CustomAlert
+          title="회원가입"
+          desc="회원가입 하시겠습니까?"
+          btnTitle="회원가입"
+          onAction={handleSendData}
+          onClose={onClose}
+        />
+      ),
+    });
   };
 
   return (

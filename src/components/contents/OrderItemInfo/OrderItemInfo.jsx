@@ -113,12 +113,22 @@ function OrderItemInfo(props) {
                   <div className="mnodr_unit_item">
                     <div className="mnodr_unit_thmb">
                       <span className="mnodr_unit_img" aria-hidden="true">
-                        <img
-                          src={orderItemData.data.productImg[0].imgUrl}
-                          alt={orderItemData.data.name}
-                          width="85"
-                          height="85"
-                        />
+                        {orderItemData.data.productImg[0] !== undefined ? (
+                          <img
+                            src={orderItemData.data.productImg[0].imgUrl}
+                            alt={orderItemData.data.name}
+                            width="85"
+                            height="85"
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              width: '85px',
+                              height: '85px',
+                              backgroundColor: '#eee',
+                            }}
+                          />
+                        )}
                       </span>
                     </div>
                     <div className="mnodr_unit_cont">

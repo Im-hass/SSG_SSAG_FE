@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import './CartPageOptionModal.scss';
+import { LoadingSpinner } from '../../common/LoadingSpinner';
 
 function CartPageOptionModal({
   cartData,
@@ -114,8 +115,8 @@ function CartPageOptionModal({
     setIsOptionModalOpen(false);
   };
 
-  if (isLoading) return <div>로딩 중</div>;
-  if (!colorOptions) return <div>데이터 없음</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (!colorOptions) return <LoadingSpinner />;
 
   return (
     <div

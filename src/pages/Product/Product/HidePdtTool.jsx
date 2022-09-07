@@ -8,6 +8,7 @@ import {
   selectedOptionInfo,
 } from '../../../store/states';
 import './style/HidePdtTool.scss';
+import { LoadingSpinner } from '../../../components/common/LoadingSpinner';
 
 function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
   const [, setSelectedProductOptionId] = useRecoilState(productOptionId);
@@ -98,8 +99,8 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
     }
   };
 
-  if (isLoading) return <div>로딩 중</div>;
-  if (!colorOptions) return <div>데이터 없음</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (!colorOptions) return <LoadingSpinner />;
 
   return (
     <div
