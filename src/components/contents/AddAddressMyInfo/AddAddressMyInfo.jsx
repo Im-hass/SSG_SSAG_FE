@@ -305,7 +305,7 @@ function AddAddressMyInfo({ state, title, setClickAddDestinationBtn }) {
 
   return (
     <div className="wrap">
-      <MobileHeader title="배송지 추가" />
+      <MobileHeader title="배송지 추가" isOrder />
       <div id="m_content" style={isOpen ? { display: 'none' } : {}}>
         <div className="m_addrbx order_sectionwrap">
           <div className="delivery_detail">

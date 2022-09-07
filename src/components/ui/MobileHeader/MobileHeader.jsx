@@ -12,7 +12,7 @@ import { isOpenState } from '../../../store/states';
 import './MobileHeader.scss';
 
 function MobileHeader(props) {
-  const { title } = props;
+  const { title, isOrder = false } = props;
   const [isOpen] = useRecoilState(isOpenState);
   const token = localStorage.getItem('token');
 
@@ -25,11 +25,11 @@ function MobileHeader(props) {
       {!isOpen && (
         <div className="mcom_tit_renew  react-area">
           {!isOpen &&
+            !isOrder &&
             title !== '배송지 선택' &&
             title !== '주문자정보 변경' &&
             title !== '로그인' &&
             title !== '수령위치 선택' &&
-            title !== '배송지 추가' &&
             title !== '결제완료' && <HeaderPrevButton />}
           {!isOpen && <HeaderTitle title={title} />}
 
