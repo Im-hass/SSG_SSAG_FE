@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function PaymentMeansCardList({ cards, isSubmit, setIsSubmit }) {
   const token = localStorage.getItem('token');
@@ -17,8 +18,11 @@ function PaymentMeansCardList({ cards, isSubmit, setIsSubmit }) {
       .delete(deleteCardUrl, headers)
       .then(() => {
         setIsSubmit(!isSubmit);
+        toast.success('카드가 삭제되었습니다.');
       })
-      .catch((err) => new Error(err));
+      .catch(() => {
+        toast.error('카드 삭제에 실패하였습니다.');
+      });
   };
 
   return (
