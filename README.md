@@ -10,7 +10,7 @@
 
 - [프론트엔드](https://github.com/Im-hass/SSG_SSAG_FE)
 - [백엔드](https://github.com/K-J-HYEON/SSG_SSAG_BE)
-- [Demo](https://shinsegae-mall.shop/)
+- [Demo](https://ssg-ssag.shop/)
 
 &nbsp;
 
