@@ -31,19 +31,20 @@ function CartPageLogin() {
   }, []);
 
   if (isLoading) return <LoadingSpinner />;
-  if (!defaultDestination) return <LoadingSpinner />;
 
   return (
     <>
       <div className="mnodr_info_header">
         <div className="mnodr_info_row">
           <i className="mnodr_ic ic_location" />
-          <h3 className="mnodr_info_tit">{defaultDestination.recipient}</h3>
+          <h3 className="mnodr_info_tit">
+            {defaultDestination && defaultDestination.recipient}
+          </h3>
           <span className="mnodr_info_subtit">[기본배송지]</span>
         </div>
         <p className="mnodr_info_desc">
           <span className="blind">배송지 주소</span>
-          {defaultDestination.streetAddr}
+          {defaultDestination && defaultDestination.streetAddr}
         </p>
         <p className="mnodr_tx_desc mnodr_tx_point" id="delicoText" />
       </div>

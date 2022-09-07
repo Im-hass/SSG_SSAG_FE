@@ -224,28 +224,32 @@ function OrderPage() {
           ];
     const cart = prevPage === 'cart' ? filterCartId : null;
 
-    axios
-      .post(
-        'http://13.209.26.150:9000/users/order',
-        {
-          refundType: refundTypeData,
-          recipient: recipientData.name,
-          recipientPhone: recipientData.phone,
-          addrName: destinationData.addrName,
-          streetAddr: destinationData.streetAddr,
-          zipCode: destinationData.zipCode,
-          shippingMsg: shippingMessageData,
-          orderDtoReq: orderList,
-          cartId: cart,
-        },
-        {
-          headers: {
-            Authorization: JSON.parse(token),
+    if (destinationData.addrName === undefined)
+      toast.error('배송지를 등록해주세요.');
+    else {
+      axios
+        .post(
+          'http://13.209.26.150:9000/users/order',
+          {
+            refundType: refundTypeData,
+            recipient: recipientData.name,
+            recipientPhone: recipientData.phone,
+            addrName: destinationData.addrName,
+            streetAddr: destinationData.streetAddr,
+            zipCode: destinationData.zipCode,
+            shippingMsg: shippingMessageData,
+            orderDtoReq: orderList,
+            cartId: cart,
           },
-        },
-      )
-      .catch((err) => new Error(err));
-    navigate('/completeOrder', { state: sendNextPageData });
+          {
+            headers: {
+              Authorization: JSON.parse(token),
+            },
+          },
+        )
+        .catch((err) => new Error(err));
+      navigate('/completeOrder', { state: sendNextPageData });
+    }
   };
 
   const handleSubmit = (e) => {
