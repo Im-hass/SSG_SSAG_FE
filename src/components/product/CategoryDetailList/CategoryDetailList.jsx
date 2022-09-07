@@ -34,7 +34,7 @@ function CategoryDetailList({
           setSmallCategoryList(res.data.result.smallCategoryList);
         });
     }
-  }, [hasMId, mdId, smId]);
+  }, [hasMId, mdId]);
 
   return (
     <>

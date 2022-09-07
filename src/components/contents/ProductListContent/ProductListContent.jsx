@@ -5,7 +5,7 @@ import CategoryDetailList from '../../product/CategoryDetailList/CategoryDetailL
 import CategoryProductListNav from '../../product/CategoryProductListNav/CategoryProductListNav';
 
 function ProductListContent() {
-  const { lgId, mdId } = useParams();
+  const { lgId, mdId, smId } = useParams();
   const [title, setTitle] = useState();
   const [subTitle, setSubTitle] = useState();
   const [mediumCategoryList, setMediumCategoryList] = useState();
@@ -67,7 +67,11 @@ function ProductListContent() {
         setSubTitle(mdName);
         setMediumCategoryList(response.mediumCategoryList);
       });
-  }, [lgId, mdId, isWishChange]);
+  }, [lgId, mdId]);
+
+  useEffect(() => {
+    handleProductList(lgId, mdId, smId);
+  }, [isWishChange]);
 
   return (
     <>
