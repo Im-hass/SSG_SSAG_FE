@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './PaymentMeansAddCardModal.scss';
 import { useRecoilState } from 'recoil';
+import toast from 'react-hot-toast';
 import { isModalOpenState } from '../../../store/states';
 
 function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
@@ -13,10 +14,6 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
   const [inputVal, setInputVal] = useState('');
   const [isCardNumValid, setIsCardNumValid] = useState(false);
   const [cardNumErrMsg, setCardNumErrMsg] = useState('');
-
-  const handleModalOpen = () => {
-    setIsModalOpen(false);
-  };
 
   const validCheck = (data) => {
     const cardNum = data.split('');
@@ -104,12 +101,19 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
     setCardNumErrMsg('');
   };
 
+  const handleModalOpen = () => {
+    setIsModalOpen(false);
+    resetData();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isCardNumValid) return;
-
-    postData();
-    resetData();
+    if (!isCardNumValid || !addCardInputData.cardCompany) {
+      toast.error('카드 정보를 올바르게 입력해주세요.');
+    } else {
+      postData();
+      resetData();
+    }
   };
 
   return (
@@ -254,8 +258,8 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
 
             <div className="codr_btnarea" style={{ userSelect: 'auto' }}>
               <ul className="ty_inbtn" style={{ userSelect: 'auto' }}>
-                <li
-                  role="presentation"
+                <button
+                  type="button"
                   style={{ userSelect: 'auto' }}
                   onClick={handleModalOpen}
                 >
@@ -265,7 +269,7 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
                   >
                     취소
                   </span>
-                </li>
+                </button>
                 <button type="submit" style={{ userSelect: 'auto' }}>
                   <span
                     className="codr_btn codr_btn_blkline"

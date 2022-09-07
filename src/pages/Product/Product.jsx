@@ -34,6 +34,7 @@ function Product() {
   const [productData, setProductData] = useState(null);
   const [productDetailData, setProductDetailData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isWishChange, setIsWishChange] = useState(false);
   const { productId } = useParams();
   const token = localStorage.getItem('token');
   const headers = {
@@ -46,31 +47,33 @@ function Product() {
   const detailInfoUrl = `http://13.209.26.150:9000/comm-users/products/detail-info/${productId}`;
 
   const fetchProductData = async () => {
-    setIsLoading(true);
     try {
       const res = await axios.get(token ? loginedUrl : notLoginedUrl, headers);
       setProductData(res.data.result);
     } catch (err) {
       // console.log(err);
     }
-    setIsLoading(false);
   };
 
   const fetchProductDetailData = async () => {
-    setIsLoading(true);
     try {
       const res = await axios.get(detailInfoUrl, headers);
       setProductDetailData(res.data.result);
     } catch (err) {
       // console.log(err);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchProductData();
     fetchProductDetailData();
+    setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    fetchProductData();
+  }, [isWishChange]);
 
   if (isLoading) return <LoadingSpinner />;
   if (!productData) return <LoadingSpinner />;
@@ -170,7 +173,11 @@ function Product() {
         <ProductBackButton />
       </div>
       <ProductOptBar />
-      <ProductToolbar productData={productData} />
+      <ProductToolbar
+        productData={productData}
+        isWishChange={isWishChange}
+        setIsWishChange={setIsWishChange}
+      />
       <ProductLikeCouponBtn />
       <ProductLikeCouponSection />
       <ShareBtn />

@@ -26,7 +26,7 @@
     "id": 3,
     "title": "나의 활동관리",
     "list": [
-      { "id": 1, "name": "좋아요", "path": "" },
+      { "id": 1, "name": "좋아요", "path": "/wishList" },
       { "id": 2, "name": "마이리뷰", "path": "" },
       { "id": 3, "name": "새벽배송 알비백 관리", "path": "" },
       { "id": 4, "name": "스탬프 내역", "path": "" },

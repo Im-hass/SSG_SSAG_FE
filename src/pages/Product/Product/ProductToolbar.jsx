@@ -3,7 +3,7 @@ import HidePdtTool from './HidePdtTool';
 import PdtTool01 from './PdtTool01';
 import PdtTool02 from './PdtTool02';
 
-function ProductToolbar({ productData }) {
+function ProductToolbar({ productData, isWishChange, setIsWishChange }) {
   const [buyBtn, setBuyBtn] = useState('');
   const [goBuyBtn, setGoBuyBtn] = useState('hideCom');
   const [toggleOn, setToggleOn] = useState('');
@@ -25,7 +25,13 @@ function ProductToolbar({ productData }) {
       <div className="mndtl_opt_btm _js_mndtl_opt_btm react-area">
         <div className="opt_btm_bgn">
           {toggleOn !== 'on' && (
-            <PdtTool01 buyBtn={buyBtn} handleOpenBtn={handleOpenBtn} />
+            <PdtTool01
+              buyBtn={buyBtn}
+              productData={productData}
+              handleOpenBtn={handleOpenBtn}
+              isWishChange={isWishChange}
+              setIsWishChange={setIsWishChange}
+            />
           )}
           {toggleOn === 'on' && (
             <PdtTool02
