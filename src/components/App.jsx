@@ -38,7 +38,6 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="*" element={<NotFoundPage />} />
         <Route exact path="/" element={<MainPage />} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/my" element={<MyPage />} />
@@ -87,6 +86,7 @@ function App() {
           <Route path=":productId" element={<Product />} />
         </Route>
         <Route path="/historyList" element={<RecentShoppingPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollToTop />
       <Toaster
