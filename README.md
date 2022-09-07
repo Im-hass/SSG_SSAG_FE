@@ -32,7 +32,6 @@
 3. 설치 및 실행
    ```bash
    $ npm install
-   $ npm install prettier # 오류 수정 중
    $ npm run start
    ```
 
