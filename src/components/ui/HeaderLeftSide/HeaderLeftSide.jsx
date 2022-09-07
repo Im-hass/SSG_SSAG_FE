@@ -15,8 +15,11 @@ function HeaderLeftSide() {
 
       {!isOpen && (
         <Link to="/" className="header-logo-wrap">
-          <div className="logo-ssg" />
-          <div className="logo-ssg-mall" />
+          <img
+            src="https://user-images.githubusercontent.com/68591616/188794549-2591ec2c-dac6-4a11-bb5e-1faea77a9b33.png"
+            alt="logo"
+            style={{ height: '14px' }}
+          />
           <div className="open-mall-btn">
             <span className="open-mall-btn-icon" />
           </div>
