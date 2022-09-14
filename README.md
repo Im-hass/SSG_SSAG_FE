@@ -20,7 +20,7 @@
 - [백엔드](https://docs.google.com/spreadsheets/d/1Aq4r99EeWKmvo9DBn9GqJEGnWcX8iQBx/edit#gid=990061567)
 
 ### 테스트 케이스
-- (https://docs.google.com/spreadsheets/d/1L2U9AW0K4CZAcw2gEB2nxJ5lRfKHPoah/edit#gid=2076342699)
+- [공통](https://docs.google.com/spreadsheets/d/1L2U9AW0K4CZAcw2gEB2nxJ5lRfKHPoah/edit#gid=2076342699)
 
 ### 시스템 아키텍쳐
 ![KakaoTalk_Photo_2022-09-14-22-28-05](https://user-images.githubusercontent.com/77037051/190167424-5181ad73-1d2b-487d-9d77-175b9e647498.png)
