@@ -26,7 +26,7 @@
 ![KakaoTalk_Photo_2022-09-14-22-28-05](https://user-images.githubusercontent.com/77037051/190167424-5181ad73-1d2b-487d-9d77-175b9e647498.png)
 
 ### JIRA 활용
-- (https://applebanana.atlassian.net/jira/software/projects/SPHAR/boards/2)
+- [공통](https://applebanana.atlassian.net/jira/software/projects/SPHAR/boards/2)
 
 &nbsp;
 
