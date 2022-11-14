@@ -11,6 +11,7 @@
 - [프론트엔드](https://github.com/Im-hass/SSG_SSAG_FE)
 - [백엔드](https://github.com/K-J-HYEON/SSG_SSAG_BE)
 - [Demo](https://ssg-ssag.shop/)
+- [Demo - vercel](https://ssg-ssag.vercel.app/)
 
 ### 요구사항 명세서
 - [공통](https://applebanana.atlassian.net/wiki/spaces/SPHAR/pages/2457601)
