@@ -33,7 +33,7 @@ function ProductListContent() {
     if (token !== null) isUser = true;
     axios
       .get(
-        `http://13.209.26.150:9000/${
+        `http://54.180.132.155:9000/${
           isUser ? 'users' : 'non-users'
         }/products${urlParams}`,
         headers,
@@ -46,7 +46,7 @@ function ProductListContent() {
 
   useEffect(() => {
     axios
-      .get(`http://13.209.26.150:9000/comm-users/category/${lgId}`)
+      .get(`http://54.180.132.155:9000/comm-users/category/${lgId}`)
       .then((res) => {
         const response = res.data.result;
         let mdName = '';

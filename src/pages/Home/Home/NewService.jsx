@@ -11,7 +11,7 @@ function NewService() {
 
   useEffect(() => {
     axios
-      .get('http://13.209.26.150:9000/comm-users/main/new-service')
+      .get('http://54.180.132.155:9000/comm-users/main/new-service')
       .then((res) => {
         setDatas(res.data.result);
       });

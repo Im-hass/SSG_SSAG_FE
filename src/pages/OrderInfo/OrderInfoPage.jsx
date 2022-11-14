@@ -25,7 +25,7 @@ function OrderInfoPage() {
 
   useEffect(() => {
     axios
-      .get('http://13.209.26.150:9000/users/order', {
+      .get('http://54.180.132.155:9000/users/order', {
         headers: {
           Authorization: JSON.parse(token),
         },
@@ -51,7 +51,7 @@ function OrderInfoPage() {
     if (cancelOrderItem !== undefined) {
       axios
         .put(
-          'http://13.209.26.150:9000/users/order/cancel',
+          'http://54.180.132.155:9000/users/order/cancel',
           { orderId: cancelOrderItem },
           {
             headers: {

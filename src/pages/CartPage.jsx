@@ -42,7 +42,7 @@ function CartPage() {
   };
 
   useEffect(() => {
-    const getCardDataUrl = 'http://13.209.26.150:9000/users/carts';
+    const getCardDataUrl = 'http://54.180.132.155:9000/users/carts';
 
     axios
       .get(getCardDataUrl, headers)

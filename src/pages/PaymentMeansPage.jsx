@@ -27,7 +27,7 @@ function PaymentMeansPage() {
     const token = localStorage.getItem('token');
 
     axios
-      .get('http://13.209.26.150:9000/users/payment', {
+      .get('http://54.180.132.155:9000/users/payment', {
         headers: {
           Authorization: JSON.parse(token),
         },

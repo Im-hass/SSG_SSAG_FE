@@ -80,7 +80,7 @@ function PaymentMeansAddCardModal({ isSubmit, setIsSubmit }) {
       cardCompany: addCardInputData.cardCompany,
       cardNumber: generateCardNum(),
     };
-    const postCardDataUrl = 'http://13.209.26.150:9000/users/payment';
+    const postCardDataUrl = 'http://54.180.132.155:9000/users/payment';
 
     axios
       .post(postCardDataUrl, data, headers)

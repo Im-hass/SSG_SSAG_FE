@@ -8,7 +8,7 @@ function HotBrand() {
 
   useEffect(() => {
     axios
-      .get('http://13.209.26.150:9000/comm-users/main/hot-brand')
+      .get('http://54.180.132.155:9000/comm-users/main/hot-brand')
       .then((res) => {
         setDatas(res.data.result);
       });

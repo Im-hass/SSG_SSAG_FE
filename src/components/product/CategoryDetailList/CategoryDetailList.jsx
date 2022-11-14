@@ -29,7 +29,7 @@ function CategoryDetailList({
     } else {
       setHasMid(true);
       axios
-        .get(`http://13.209.26.150:9000/comm-users/category/small/${mdId}`)
+        .get(`http://54.180.132.155:9000/comm-users/category/small/${mdId}`)
         .then((res) => {
           setSmallCategoryList(res.data.result.smallCategoryList);
         });

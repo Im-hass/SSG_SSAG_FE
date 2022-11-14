@@ -42,9 +42,9 @@ function Product() {
       Authorization: JSON.parse(token),
     },
   };
-  const loginedUrl = `http://13.209.26.150:9000/users/products/info/${productId}`;
-  const notLoginedUrl = `http://13.209.26.150:9000/non-users/products/info/${productId}`;
-  const detailInfoUrl = `http://13.209.26.150:9000/comm-users/products/detail-info/${productId}`;
+  const loginedUrl = `http://54.180.132.155:9000/users/products/info/${productId}`;
+  const notLoginedUrl = `http://54.180.132.155:9000/non-users/products/info/${productId}`;
+  const detailInfoUrl = `http://54.180.132.155:9000/comm-users/products/detail-info/${productId}`;
 
   const fetchProductData = async () => {
     try {

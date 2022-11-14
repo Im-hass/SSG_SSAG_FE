@@ -90,12 +90,12 @@ function OrderPage() {
 
     axios
       .all([
-        axios.get('http://13.209.26.150:9000/users/shipping-addr/default', {
+        axios.get('http://54.180.132.155:9000/users/shipping-addr/default', {
           headers: {
             Authorization: JSON.parse(token),
           },
         }),
-        axios.get('http://13.209.26.150:9000/users/info', {
+        axios.get('http://54.180.132.155:9000/users/info', {
           headers: {
             Authorization: JSON.parse(token),
           },
@@ -143,7 +143,7 @@ function OrderPage() {
   const handleClickPayment = () => {
     setClickPaymentBtn((prev) => !prev);
     axios
-      .get('http://13.209.26.150:9000/users/payment', {
+      .get('http://54.180.132.155:9000/users/payment', {
         headers: {
           Authorization: JSON.parse(token),
         },
@@ -229,7 +229,7 @@ function OrderPage() {
     else {
       axios
         .post(
-          'http://13.209.26.150:9000/users/order',
+          'http://54.180.132.155:9000/users/order',
           {
             refundType: refundTypeData,
             recipient: recipientData.name,

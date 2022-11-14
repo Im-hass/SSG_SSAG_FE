@@ -63,7 +63,7 @@ function LoginPage() {
 
     if (inputData.loginId.length !== 0 && inputData.loginPwd.length !== 0) {
       axios
-        .post('http://13.209.26.150:9000/comm-users/login/user', {
+        .post('http://54.180.132.155:9000/comm-users/login/user', {
           loginId: inputData.loginId,
           loginPwd: inputData.loginPwd,
         })

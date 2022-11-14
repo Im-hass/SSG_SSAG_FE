@@ -12,7 +12,7 @@ function Cart() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const getCartDataUrl = 'http://13.209.26.150:9000/users/carts/count';
+    const getCartDataUrl = 'http://54.180.132.155:9000/users/carts/count';
     const headers = {
       headers: {
         Authorization: JSON.parse(token),

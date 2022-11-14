@@ -27,7 +27,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          `http://13.209.26.150:9000/comm-users/products/options/color/${productId}`,
+          `http://54.180.132.155:9000/comm-users/products/options/color/${productId}`,
           {
             headers: {
               Authorization: JSON.parse(token),
@@ -47,7 +47,7 @@ function HidePdtTool({ toggleOn, handleOpenBtn, productData }) {
     const token = localStorage.getItem('token');
     axios
       .get(
-        `http://13.209.26.150:9000/comm-users/products/options/size/${productId}/${selectedColor}`,
+        `http://54.180.132.155:9000/comm-users/products/options/size/${productId}/${selectedColor}`,
         {
           headers: {
             Authorization: JSON.parse(token),

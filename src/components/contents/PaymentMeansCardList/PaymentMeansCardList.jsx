@@ -12,7 +12,7 @@ function PaymentMeansCardList({ cards, isSubmit, setIsSubmit }) {
 
   const handleDeleteCard = (data) => {
     const { paymentId } = data;
-    const deleteCardUrl = `http://13.209.26.150:9000/users/payment/${paymentId}`;
+    const deleteCardUrl = `http://54.180.132.155:9000/users/payment/${paymentId}`;
 
     axios
       .delete(deleteCardUrl, headers)

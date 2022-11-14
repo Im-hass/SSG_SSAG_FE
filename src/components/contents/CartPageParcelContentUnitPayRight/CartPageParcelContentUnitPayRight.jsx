@@ -15,7 +15,7 @@ function CartPageParcelContentUnitPayRight({ cartItem, isCnt, setIsCnt }) {
 
   const putProductCount = (cnt, act) => {
     if (cartItemCnt === 1 && act === 'dec') return;
-    const putCntUrl = 'http://13.209.26.150:9000/users/carts/count';
+    const putCntUrl = 'http://54.180.132.155:9000/users/carts/count';
     const productData = {
       cartId: cartItemId,
       count: cartItemCnt + cnt,
