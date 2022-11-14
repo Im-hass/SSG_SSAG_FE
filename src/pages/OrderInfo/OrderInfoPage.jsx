@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import toast, { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router-dom/index';
+import { Link } from 'react-router-dom';
 import { MobileHeader } from '../../components/ui';
 import { OrderInfoDestinationModal } from '../../components/contents';
 import { CustomAlert } from '../../components/common';
