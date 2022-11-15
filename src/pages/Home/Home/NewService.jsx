@@ -11,7 +11,7 @@ function NewService() {
 
   useEffect(() => {
     axios
-      .get('http://54.180.132.155:9000/comm-users/main/new-service')
+      .get('https://ssg-ssag.shop:9000/comm-users/main/new-service')
       .then((res) => {
         setDatas(res.data.result);
       });

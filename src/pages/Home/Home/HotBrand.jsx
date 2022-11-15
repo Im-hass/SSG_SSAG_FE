@@ -8,7 +8,7 @@ function HotBrand() {
 
   useEffect(() => {
     axios
-      .get('http://54.180.132.155:9000/comm-users/main/hot-brand')
+      .get('https://ssg-ssag.shop:9000/comm-users/main/hot-brand')
       .then((res) => {
         setDatas(res.data.result);
       });

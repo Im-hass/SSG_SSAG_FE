@@ -25,7 +25,7 @@ function RecentShoppingPage() {
   };
 
   useEffect(() => {
-    const getRecentDataUrl = 'http://54.180.132.155:9000/users/recent/product';
+    const getRecentDataUrl = 'https://ssg-ssag.shop:9000/users/recent/product';
 
     axios
       .get(getRecentDataUrl, headers)

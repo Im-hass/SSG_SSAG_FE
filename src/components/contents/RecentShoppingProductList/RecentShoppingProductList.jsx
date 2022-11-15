@@ -29,7 +29,7 @@ function RecentShoppingProductList({
   };
 
   const onDeleteRecentItem = () => {
-    const deleteUrl = `http://54.180.132.155:9000/users/recent/product/${recentHistoryId}`;
+    const deleteUrl = `https://ssg-ssag.shop:9000/users/recent/product/${recentHistoryId}`;
 
     axios
       .delete(deleteUrl, headers)
@@ -59,7 +59,7 @@ function RecentShoppingProductList({
   };
 
   const getOptionData = () => {
-    const getOptionUrl = `http://54.180.132.155:9000/comm-users/products/options/color/${recentItemId}`;
+    const getOptionUrl = `https://ssg-ssag.shop:9000/comm-users/products/options/color/${recentItemId}`;
 
     axios
       .get(getOptionUrl, headers)

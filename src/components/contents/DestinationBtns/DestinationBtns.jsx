@@ -13,7 +13,7 @@ function DestinationBtns({ selected, isDefaultChanged, setIsDefaultChanged }) {
     const token = localStorage.getItem('token');
     axios
       .put(
-        'http://54.180.132.155:9000/users/shipping-addr/default',
+        'https://ssg-ssag.shop:9000/users/shipping-addr/default',
         {
           addrId: selected,
         },

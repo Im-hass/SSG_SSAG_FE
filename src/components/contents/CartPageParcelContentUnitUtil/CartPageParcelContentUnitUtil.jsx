@@ -16,7 +16,7 @@ function CartPageParcelContentUnitUtil({ cartItem, isDelete, setIsDelete }) {
   };
 
   const onDeleteCartItem = () => {
-    const deleteUrl = `http://54.180.132.155:9000/users/carts/${cartItemId}`;
+    const deleteUrl = `https://ssg-ssag.shop:9000/users/carts/${cartItemId}`;
 
     axios
       .delete(deleteUrl, headers)

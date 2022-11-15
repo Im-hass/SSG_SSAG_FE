@@ -14,7 +14,7 @@ function UserProfile() {
     };
 
     axios
-      .get('http://54.180.132.155:9000/users/info', headers)
+      .get('https://ssg-ssag.shop:9000/users/info', headers)
       .then((res) => {
         const data = res.data.result;
         setUserInfo(data);

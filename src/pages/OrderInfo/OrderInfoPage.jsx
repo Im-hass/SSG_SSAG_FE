@@ -25,7 +25,7 @@ function OrderInfoPage() {
 
   useEffect(() => {
     axios
-      .get('http://54.180.132.155:9000/users/order', {
+      .get('https://ssg-ssag.shop:9000/users/order', {
         headers: {
           Authorization: JSON.parse(token),
         },
@@ -51,7 +51,7 @@ function OrderInfoPage() {
     if (cancelOrderItem !== undefined) {
       axios
         .put(
-          'http://54.180.132.155:9000/users/order/cancel',
+          'https://ssg-ssag.shop:9000/users/order/cancel',
           { orderId: cancelOrderItem },
           {
             headers: {

@@ -17,7 +17,7 @@ function CartPageLogin() {
   useEffect(() => {
     const fetchData = async () => {
       const defaultDestinationUrl =
-        'http://54.180.132.155:9000/users/shipping-addr/default';
+        'https://ssg-ssag.shop:9000/users/shipping-addr/default';
       setIsLoading(true);
       try {
         const res = await axios.get(defaultDestinationUrl, headers);

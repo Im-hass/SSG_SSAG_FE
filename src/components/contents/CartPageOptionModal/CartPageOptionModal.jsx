@@ -31,7 +31,7 @@ function CartPageOptionModal({
   // 색상 data 받아오기
   useEffect(() => {
     const fetchData = async () => {
-      const getColorUrl = `http://54.180.132.155:9000/comm-users/products/options/color/${productId}`;
+      const getColorUrl = `https://ssg-ssag.shop:9000/comm-users/products/options/color/${productId}`;
       setIsLoading(true);
       try {
         const res = await axios.get(getColorUrl, headers);
@@ -45,7 +45,7 @@ function CartPageOptionModal({
   }, []);
 
   const getSizeData = () => {
-    const getSizeUrl = `http://54.180.132.155:9000/comm-users/products/options/size/${productId}/${selectedColor}`;
+    const getSizeUrl = `https://ssg-ssag.shop:9000/comm-users/products/options/size/${productId}/${selectedColor}`;
 
     axios
       .get(getSizeUrl, headers)
@@ -100,7 +100,7 @@ function CartPageOptionModal({
       cartId: selectedCartId,
       productOptionId: selectedProductOptionId,
     };
-    const putOptionUrl = 'http://54.180.132.155:9000/users/carts/option';
+    const putOptionUrl = 'https://ssg-ssag.shop:9000/users/carts/option';
 
     axios
       .put(putOptionUrl, data, headers)

@@ -62,7 +62,7 @@ function SignUpFormPage() {
     if (valid.loginId) {
       axios
         .get(
-          `http://54.180.132.155:9000/comm-users/signup/overlap/${inputData.loginId}`,
+          `https://ssg-ssag.shop:9000/comm-users/signup/overlap/${inputData.loginId}`,
         )
         .then((res) => {
           if (res.data.isSuccess === true) {
@@ -160,7 +160,7 @@ function SignUpFormPage() {
   const handleSendData = () => {
     if (Object.values(valid).every((v) => v === true) === true) {
       axios
-        .post('http://54.180.132.155:9000/comm-users/signup', {
+        .post('https://ssg-ssag.shop:9000/comm-users/signup', {
           loginId: inputData.loginId,
           loginPwd: inputData.loginPwd,
           name: inputData.name,

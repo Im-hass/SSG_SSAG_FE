@@ -203,7 +203,7 @@ function AddAddressMyInfo({ state, title, setClickAddDestinationBtn }) {
       if (state !== undefined) {
         axios
           .put(
-            `http://54.180.132.155:9000/users/shipping-addr`,
+            `https://ssg-ssag.shop:9000/users/shipping-addr`,
             {
               addrId: state.addrId,
               addrName: data.addrName,
@@ -227,7 +227,7 @@ function AddAddressMyInfo({ state, title, setClickAddDestinationBtn }) {
       } else {
         axios
           .post(
-            'http://54.180.132.155:9000/users/shipping-addr',
+            'https://ssg-ssag.shop:9000/users/shipping-addr',
             {
               addrName: data.addrName,
               recipient: data.recipient,

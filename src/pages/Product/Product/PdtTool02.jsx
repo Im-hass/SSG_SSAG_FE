@@ -46,7 +46,7 @@ function PdtTool02({ goBuyBtn, handleOpenBtn, productData }) {
     };
 
     axios
-      .post('http://54.180.132.155:9000/users/carts', data, headers)
+      .post('https://ssg-ssag.shop:9000/users/carts', data, headers)
       .then(() => {
         setIsHeaderCartCnt(!isHeaderCartCnt);
         toast.success('상품을 장바구니에 추가했습니다.');

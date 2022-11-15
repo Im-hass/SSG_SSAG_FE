@@ -16,7 +16,7 @@ function ItemCard() {
 
   useEffect(() => {
     axios
-      .get('http://54.180.132.155:9000/comm-users/main/card-promotion')
+      .get('https://ssg-ssag.shop:9000/comm-users/main/card-promotion')
       .then((res) => {
         setDatas(res.data.result);
       });

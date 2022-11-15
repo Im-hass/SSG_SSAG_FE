@@ -8,7 +8,7 @@ function HappyLounge() {
 
   useEffect(() => {
     axios
-      .get('http://54.180.132.155:9000/comm-users/main/happy-lounge')
+      .get('https://ssg-ssag.shop:9000/comm-users/main/happy-lounge')
       .then((res) => {
         setDatas(res.data.result);
       });

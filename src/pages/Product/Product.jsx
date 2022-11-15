@@ -42,9 +42,9 @@ function Product() {
       Authorization: JSON.parse(token),
     },
   };
-  const loginedUrl = `http://54.180.132.155:9000/users/products/info/${productId}`;
-  const notLoginedUrl = `http://54.180.132.155:9000/non-users/products/info/${productId}`;
-  const detailInfoUrl = `http://54.180.132.155:9000/comm-users/products/detail-info/${productId}`;
+  const loginedUrl = `https://ssg-ssag.shop:9000/users/products/info/${productId}`;
+  const notLoginedUrl = `https://ssg-ssag.shop:9000/non-users/products/info/${productId}`;
+  const detailInfoUrl = `https://ssg-ssag.shop:9000/comm-users/products/detail-info/${productId}`;
 
   const fetchProductData = async () => {
     try {

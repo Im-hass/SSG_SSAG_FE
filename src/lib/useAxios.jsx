@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://54.180.132.155:9000';
+axios.defaults.baseURL = 'https://ssg-ssag.shop:9000';
 
 const useAxios = ({ method, url, body = null, userOrNot = false }) => {
   const [response, setResponse] = useState(null);

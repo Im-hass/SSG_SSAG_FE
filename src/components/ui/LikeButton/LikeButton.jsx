@@ -26,7 +26,7 @@ function LikeButton({
       if (wishDto !== null) {
         axios
           .delete(
-            `http://54.180.132.155:9000/users/wish/${wishDto.wishId}`,
+            `https://ssg-ssag.shop:9000/users/wish/${wishDto.wishId}`,
             headers,
           )
           .then(() => {
@@ -34,7 +34,7 @@ function LikeButton({
           });
       } else {
         axios
-          .post('http://54.180.132.155:9000/users/wish', { productId }, headers)
+          .post('https://ssg-ssag.shop:9000/users/wish', { productId }, headers)
           .then(() => {
             setIsWishChange(!isWishChange);
           });

@@ -14,7 +14,7 @@ function OrderChangeDestinationModal(props) {
     const token = localStorage.getItem('token');
 
     axios
-      .get('http://54.180.132.155:9000/users/shipping-addr', {
+      .get('https://ssg-ssag.shop:9000/users/shipping-addr', {
         headers: {
           Authorization: JSON.parse(token),
         },
