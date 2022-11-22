@@ -92,3 +92,8 @@
     ├─ store # recoil, context 폴더
     └─ styles # style 폴더
 ```
+
+&nbsp;
+
+## 📍 개발 산출물
+- [wiki 참조](https://github.com/Im-hass/SSG_SSAG_FE/wiki)
