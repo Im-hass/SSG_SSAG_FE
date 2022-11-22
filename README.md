@@ -14,6 +14,11 @@
 
 &nbsp;
 
+## 📍 시스템 아키텍처
+![시스템 아키텍처](https://user-images.githubusercontent.com/77854486/203240194-fba60225-adfd-452e-afeb-f9d7f56b1368.png)
+
+&nbsp;
+
 ## 📍 개발환경
 
 ```bash
